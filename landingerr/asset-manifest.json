@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.9fc8239d.chunk.css",
-    "main.js": "/static/js/main.419b1e55.chunk.js",
-    "main.js.map": "/static/js/main.419b1e55.chunk.js.map",
-    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
-    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
-    "static/css/2.22a7d4ef.chunk.css": "/static/css/2.22a7d4ef.chunk.css",
-    "static/js/2.6c917c27.chunk.js": "/static/js/2.6c917c27.chunk.js",
-    "static/js/2.6c917c27.chunk.js.map": "/static/js/2.6c917c27.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.2cc67e735e8f01906e45b0c34deb19a6.js": "/precache-manifest.2cc67e735e8f01906e45b0c34deb19a6.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/2.22a7d4ef.chunk.css.map": "/static/css/2.22a7d4ef.chunk.css.map",
-    "static/css/main.9fc8239d.chunk.css.map": "/static/css/main.9fc8239d.chunk.css.map",
-    "static/media/herr.png": "/static/media/herr.9bd0bfd1.png"
+    "main.css": "/landingerr/static/css/main.9fc8239d.chunk.css",
+    "main.js": "/landingerr/static/js/main.82695342.chunk.js",
+    "main.js.map": "/landingerr/static/js/main.82695342.chunk.js.map",
+    "runtime~main.js": "/landingerr/static/js/runtime~main.224b24e6.js",
+    "runtime~main.js.map": "/landingerr/static/js/runtime~main.224b24e6.js.map",
+    "static/css/2.22a7d4ef.chunk.css": "/landingerr/static/css/2.22a7d4ef.chunk.css",
+    "static/js/2.651ff59b.chunk.js": "/landingerr/static/js/2.651ff59b.chunk.js",
+    "static/js/2.651ff59b.chunk.js.map": "/landingerr/static/js/2.651ff59b.chunk.js.map",
+    "index.html": "/landingerr/index.html",
+    "precache-manifest.5fcf90ef419e8c572cb3f592c66eabc0.js": "/landingerr/precache-manifest.5fcf90ef419e8c572cb3f592c66eabc0.js",
+    "service-worker.js": "/landingerr/service-worker.js",
+    "static/css/2.22a7d4ef.chunk.css.map": "/landingerr/static/css/2.22a7d4ef.chunk.css.map",
+    "static/css/main.9fc8239d.chunk.css.map": "/landingerr/static/css/main.9fc8239d.chunk.css.map",
+    "static/media/herr.png": "/landingerr/static/media/herr.9bd0bfd1.png"
   }
 }
