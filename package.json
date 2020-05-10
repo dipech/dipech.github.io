@@ -1,0 +1,32 @@
+{
+  "name": "dipech",
+  "version": "1.0.0",
+  "description": "my personal website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack --mode development",
+    "prod": "webpack --mode production",
+    "watch": "npm run dev -- --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DiPech/DiPech.github.io.git"
+  },
+  "author": "dipech",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DiPech/DiPech.github.io/issues"
+  },
+  "homepage": "https://github.com/DiPech/DiPech.github.io#readme",
+  "devDependencies": {
+    "css-loader": "^3.5.3",
+    "ts-loader": "^7.0.3",
+    "typescript": "^3.8.3",
+    "vue": "^2.6.11",
+    "vue-loader": "^15.9.2",
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  }
+}
