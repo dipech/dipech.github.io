@@ -9,7 +9,7 @@
     "prod": "webpack --mode production",
     "watch": "npm run dev -- --watch",
     "predeploy": "npm run prod",
-    "deploy": "gh-pages --dist . --branch master"
+    "deploy": "gh-pages --dist . --remove node_modules --branch master"
   },
   "repository": {
     "type": "git",
