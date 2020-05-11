@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --mode development",
     "prod": "webpack --mode production",
-    "watch": "npm run dev -- --watch"
+    "watch": "npm run dev -- --watch",
+    "predeploy": "npm run prod",
+    "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",
@@ -15,12 +17,10 @@
   },
   "author": "dipech",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/DiPech/DiPech.github.io/issues"
-  },
-  "homepage": "https://github.com/DiPech/DiPech.github.io#readme",
+  "homepage": "https://dipech.github.io",
   "devDependencies": {
     "css-loader": "^3.5.3",
+    "gh-pages": "^2.2.0",
     "ts-loader": "^7.0.3",
     "typescript": "^3.8.3",
     "vue": "^2.6.11",
