@@ -3,7 +3,7 @@ const webpack = require("webpack");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
 
 module.exports = {
-    entry: "./src/index.ts",
+    entry: "./src/js/index.ts",
     output: {
         path: path.resolve(__dirname, "./dist"),
         publicPath: "/dist/",
@@ -42,7 +42,15 @@ module.exports = {
                     "vue-style-loader",
                     "css-loader"
                 ]
-            }
+            },
+            {
+                test: /\.s[ac]ss$/i,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader',
+                ],
+            },
         ]
     },
     resolve: {
@@ -52,8 +60,10 @@ module.exports = {
         }
     },
     devServer: {
+        open: true,
         historyApiFallback: true,
-        noInfo: true
+        noInfo: true,
+        port: 9000
     },
     performance: {
         hints: false

@@ -1,5 +1,6 @@
 import Vue from "vue";
 import IndexComponent from "./components/index.vue";
+import "../css/index.scss";
 
 class App {
 
