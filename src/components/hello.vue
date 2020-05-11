@@ -2,6 +2,7 @@
     <div>
         <div class="greeting">Hello {{message}}{{exclamationMarks}}</div>
         <button @click="decrement">-</button>
+        {{counter}}
         <button @click="increment">+</button>
     </div>
 </template>
