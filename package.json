@@ -9,7 +9,7 @@
     "prod": "webpack --mode production",
     "watch": "npm run dev -- --watch",
     "predeploy": "npm run prod",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d ."
   },
   "repository": {
     "type": "git",
