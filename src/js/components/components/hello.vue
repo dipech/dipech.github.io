@@ -22,7 +22,6 @@
         @Prop()
         private counter!: number;
 
-        // @todo use https://github.com/ktsn/vuex-class for state and mutations
         get greeting() {
             return this.$store.state.greeting;
         }

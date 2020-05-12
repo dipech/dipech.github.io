@@ -1,8 +1,8 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-light bg-light mt-3 mb-3">
-        <a class="navbar-brand" href="#">
-            <img src="resources/logo.png" class="logo" alt="Welcome!">
-        </a>
+        <router-link class="navbar-brand" to="/">
+            <img src="resources/images/logo.png" class="logo" alt="Welcome!">
+        </router-link>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -10,14 +10,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Blog</a>
+                <li class="nav-item">
+                    <router-link class="nav-link" to="/blog">Blog</router-link>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Portfolio</a>
+                    <router-link class="nav-link" to="/portfolio">Portfolio</router-link>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About me</a>
+                    <router-link class="nav-link" to="/about-me">About me</router-link>
                 </li>
             </ul>
         </div>
@@ -36,6 +36,6 @@
 
 <style scoped>
     .logo {
-        max-height: 30px;
+        max-height: 50px;
     }
 </style>
