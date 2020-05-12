@@ -1,0 +1,143 @@
+{
+  "user": {
+    "about": "I've been developing since 2010. Freelancer, Founder, Developer. In love with clean-code. Constantly improving my skills.",
+    "specialization": "Web (Java and PHP) Developer",
+    "photo": "resources/data/resume/photo.jpg",
+    "firstName": "Dmitry",
+    "lastName": "Pechkovsky-Tsikorin",
+    "middleName": "Mikhailovich",
+    "birthDate": "25.12.1994",
+    "location": "Saint-Petersburg",
+    "contacts": [
+      {
+        "type": "phone",
+        "value": "+7 (903) 375-13-87",
+        "icon": "resources/data/resume/icons/phone.png"
+      },
+      {
+        "type": "email",
+        "value": "dmitry.pechkovsky@gmail.com",
+        "icon": "resources/data/resume/icons/envelope.png"
+      },
+      {
+        "type": "link",
+        "value": "https://github.com/DiPech",
+        "icon": "resources/data/resume/icons/github.svg"
+      },
+      {
+        "type": "link",
+        "value": "http://linkedin.com/in/dipech",
+        "icon": "resources/data/resume/icons/linkedin.ico"
+      },
+      {
+        "type": "link",
+        "value": "https://vk.com/dmitry.pechkovsky",
+        "icon": "resources/data/resume/icons/vk.png"
+      }
+    ]
+  },
+  "keySkills": [
+    "Java",
+    "Spring",
+    "Hibernate",
+    "Maven/Gradle",
+    "Docker",
+    "Git",
+    "OOP (SOLID, GRASP)",
+    "PHP",
+    "Symfony",
+    "Laravel",
+    "Unit Testing",
+    "TDD",
+    "SCSS",
+    "VueJS",
+    "Jquery",
+    "CI/CD",
+    "Webpack",
+    "SQL (MySQL, PostgreSQL)",
+    "Bootstrap",
+    "Redis",
+    "RabbitMQ"
+  ],
+  "languages": [
+    {
+      "name": "Russian",
+      "level": "native"
+    },
+    {
+      "name": "English",
+      "level": "B2"
+    }
+  ],
+  "courses": [
+    {
+      "name": "«TopJava» – Retraining from PHP to Java developer (enterprise level)",
+      "year": "2019"
+    },
+    {
+      "name": "«BaseJava» – Retraining from PHP to Java developer",
+      "year": "2019"
+    }
+  ],
+  "education": [
+    {
+      "name": "Volgograd State Pedagogical University",
+      "degree": "Master's degree",
+      "fieldOfStudy": "Mathematics, Informatics, and Physics",
+      "startYear": "2016",
+      "endYear": "2018"
+    },
+    {
+      "name": "Volgograd State University",
+      "degree": "Bachelor's degree",
+      "fieldOfStudy": "Information Systems and Technologies",
+      "startYear": "2012",
+      "endYear": "2016"
+    }
+  ],
+  "experience": [
+    {
+      "companyName": "NetCat",
+      "companyDescription": "One of the most successful commercial CMS in Russia.",
+      "website": "netcat.ru",
+      "position": "Web Developer",
+      "employmentType": "Full-time (Remote)",
+      "location": "Russia, Moscow",
+      "startDate": "07.2017",
+      "endDate": "09.2018",
+      "duties": [
+        "Developing a data exchange module that works with the most used formats (CSV, XLSX, YML, CommerceML), provides many options for end-users (manual/semi-automatic/automatic run mode, automatic data downloading, logging, reports sending, etc).",
+        "Improving and rewriting the CMS core while working on major version of CMS (6.0).",
+        "CMS integration with Yandex.Delivery."
+      ],
+      "technologies": [
+        "PHP",
+        "MySQL",
+        "Composer",
+        "JS (JQuery, AJAX)",
+        "SCSS"
+      ]
+    },
+    {
+      "companyName": "NetCat34",
+      "companyDescription": "Web sites development: landing pages, online shopping sites, corporate websites, etc.",
+      "website": "",
+      "position": "Web Developer",
+      "employmentType": "Full-time",
+      "location": "Russia, Volgograd",
+      "startDate": "11.2015",
+      "endDate": "05.2017",
+      "duties": [
+        "Different business logic development for different web-projects.",
+        "NetCat CMS modules development.",
+        "Websites optimisations, business logic optimisations.",
+        "Exchanges with different systems like 1C, Yandex.Market and other sites and systems."
+      ],
+      "technologies": [
+        "NetCat (PHP + MySQL)",
+        "JS (JQuery, AJAX)",
+        "Linux"
+      ]
+    }
+  ]
+}
