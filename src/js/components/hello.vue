@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="greeting">Hello {{message}}{{exclamationMarks}}</div>
+        <div class="greeting">Hello {{greeting}}{{exclamationMarks}}</div>
         <button class="btn btn-outline-secondary"
                 @click="decrement"
         >-</button>
@@ -20,10 +20,12 @@
     export default class HelloComponent extends Vue {
 
         @Prop()
-        private message!: string;
-
-        @Prop()
         private counter!: number;
+
+        // @todo use https://github.com/ktsn/vuex-class for state and mutations
+        get greeting() {
+            return this.$store.state.greeting;
+        }
 
         decrement(): void {
             if (this.counter > 1) {

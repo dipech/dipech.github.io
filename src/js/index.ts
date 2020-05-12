@@ -1,15 +1,19 @@
 import Vue from "vue";
+import Vuex from "vuex";
+import createStore from "./store/create";
 import IndexComponent from "./components/index.vue";
 import "../css/index.scss";
 import "bootstrap";
 
 class App {
 
-    private instance: Vue;
+    private vue: Vue;
 
     constructor() {
-        this.instance = new Vue({
+        Vue.use(Vuex);
+        this.vue = new Vue({
             el: "#app",
+            store: createStore(),
             render: h => h(IndexComponent),
         })
     }
