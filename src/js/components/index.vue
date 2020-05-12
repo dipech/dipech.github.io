@@ -1,24 +1,27 @@
 <template>
     <div class="container">
-        <c-menu/>
+        <c-header/>
         <div class="alert alert-info">
-            Actual site content (portfolio, blog, etc) will be available soon!
+            This site is still in development. Actual content will be available soon!
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <router-view/>
+        <c-footer/>
     </div>
 </template>
 
 <script lang="ts">
     import Vue from "vue";
     import Component from "vue-class-component";
-    import MenuComponent from "./partials/menu.vue";
+    import HeaderComponent from "./partials/header.vue";
+    import FooterComponent from "./partials/footer.vue";
 
     @Component({
         components: {
-            cMenu: MenuComponent
+            cHeader: HeaderComponent,
+            cFooter: FooterComponent
         }
     })
     export default class IndexComponent extends Vue {
