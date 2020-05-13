@@ -18,6 +18,6 @@
 
 <style scoped>
     .my-badge+.my-badge {
-        margin-left: 10px;
+        margin-left: 5px;
     }
 </style>
