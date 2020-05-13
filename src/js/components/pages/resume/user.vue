@@ -8,9 +8,10 @@
             <b>{{ user.specialization }}</b><br>
             {{ ages }} years old. Currently living in {{ user.location }}.
         </div>
-        <br>
-        <div v-for="contact in user.contacts">
-            <c-contact :contact="contact"/>
+        <div class="mt-2">
+            <div v-for="contact in user.contacts">
+                <c-contact :contact="contact"/>
+            </div>
         </div>
         <br>
         <blockquote class="blockquote">
