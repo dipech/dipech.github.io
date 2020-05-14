@@ -17,7 +17,7 @@
 </script>
 
 <style scoped>
-    .my-badge+.my-badge {
-        margin-left: 5px;
+    .my-badge {
+        margin-right: 5px;
     }
 </style>
