@@ -1,5 +1,5 @@
 <template>
-    <footer class="bg-light mt-4 mb-3 p-4">
+    <footer class="bg-light mt-3 mb-3 p-4">
         <a :href="siteUrl">{{ domain }}</a>, {{ year }}
         <div class="float-right">
             All rights reserved (c)

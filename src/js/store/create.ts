@@ -5,21 +5,16 @@ export default function createStore() {
     return new Vuex.Store({
         state: {
             resume: null,
+            portfolio: null,
             greeting: "World",
             exclamationMarksCount: 5
         },
         mutations: {
             ensureResumeIsLoaded(state) {
-                if (state.resume !== null) {
-                    return;
-                }
-                axios.get("resources/data/resume/data.json")
-                    .then(function (response) {
-                        state.resume = response.data;
-                    })
-                    .catch(function () {
-                        alert("Cannot load resume data :(");
-                    });
+                loadJsonIntoStateProperty(state, "resume", "resources/data/resume/data.json");
+            },
+            ensurePortfolioIsLoaded(state) {
+                loadJsonIntoStateProperty(state, "portfolio", "resources/data/portfolio/data.json");
             },
             setGreeting(state, greeting) {
                 state.greeting = greeting
@@ -29,4 +24,17 @@ export default function createStore() {
             }
         }
     })
+}
+
+function loadJsonIntoStateProperty(state: any, property: string, jsonUrl: string) {
+    if (state[property] !== null) {
+        return;
+    }
+    axios.get(jsonUrl)
+        .then(function (response) {
+            state[property] = response.data;
+        })
+        .catch(function () {
+            alert("Cannot load " + property + " data :(");
+        });
 }
