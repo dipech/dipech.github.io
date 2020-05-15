@@ -5,28 +5,43 @@ export default function createStore() {
     return new Vuex.Store({
         state: {
             resume: null,
-            greeting: "World",
-            exclamationMarksCount: 5
+            portfolio: null,
+            alerts: []
         },
         mutations: {
             ensureResumeIsLoaded(state) {
-                if (state.resume !== null) {
+                loadJsonIntoStateProperty(state, "resume", "resources/data/resume/data.json");
+            },
+            ensurePortfolioIsLoaded(state) {
+                loadJsonIntoStateProperty(state, "portfolio", "resources/data/portfolio/data.json");
+            },
+            addAlert(state: any, alert: object) {
+                let alertKey = JSON.stringify(alert);
+                let alreadyIndex = state.alerts.findIndex((alert: any) => alert.key === alertKey)
+                if (alreadyIndex > -1) {
                     return;
                 }
-                axios.get("resources/data/resume/data.json")
-                    .then(function (response) {
-                        state.resume = response.data;
-                    })
-                    .catch(function () {
-                        alert("Cannot load resume data :(");
-                    });
+                state.alerts.push({
+                    ...alert,
+                    key: alertKey
+                });
             },
-            setGreeting(state, greeting) {
-                state.greeting = greeting
-            },
-            setExclamationMarks(state, exclamationMarksCount) {
-                state.exclamationMarksCount = exclamationMarksCount
+            removeAlert(state: any, index: number) {
+                state.alerts.splice(index, 1);
             }
         }
     })
+}
+
+function loadJsonIntoStateProperty(state: any, property: string, jsonUrl: string) {
+    if (state[property] !== null) {
+        return;
+    }
+    axios.get(jsonUrl)
+        .then(function (response) {
+            state[property] = response.data;
+        })
+        .catch(function () {
+            alert("Cannot load " + property + " data :(");
+        });
 }

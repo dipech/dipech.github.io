@@ -1,9 +1,9 @@
 <template>
     <div class="row mt-2">
-        <div class="col-md-3">
+        <div class="col-6 col-md-3">
             {{ language.level }}
         </div>
-        <div class="col-md-9">
+        <div class="col-6 col-md-9">
             <b>{{ language.name }}</b>
         </div>
     </div>

@@ -1,0 +1,116 @@
+{
+  "projects": {
+    "oktarget": {
+      "name": "OKTarget",
+      "description": "SAAS – a lot of marketing tools for searching target (hot) audiences.",
+      "text": "text.md",
+      "logo": "logo.png",
+      "gallery": [
+        "interface.jpg"
+      ],
+      "link": "https://oktarget.ru",
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "PHP",
+          "Javascript",
+          "SQL",
+          "HTML",
+          "CSS"
+        ],
+        "instruments": [
+          "Nginx",
+          "PHP-FPM",
+          "Docker",
+          "Gitlab CI",
+          "Composer"
+        ],
+        "frameworks": [
+          "Symfony",
+          "VueJS"
+        ],
+        "libraries": [
+          "CSCC"
+        ]
+      }
+    },
+    "purple": {
+      "name": "Purple",
+      "description": "2D casual game for mobile phones (were distributed on PlayMarket for a while).",
+      "text": "text.md",
+      "logo": "logo.jpg",
+      "gallery": [
+        "1.jpg",
+        "2.jpg",
+        "3.jpg",
+        "4.jpg",
+        "5.jpg",
+        "6.jpg",
+        "7.jpg",
+        "8.jpg",
+        "9.jpg",
+        "10.jpg"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "mobile",
+        "languages": [
+          "Java"
+        ],
+        "instruments": [],
+        "frameworks": [
+          "LibGDX"
+        ]
+      }
+    },
+    "code-injector": {
+      "name": "Code Injector",
+      "description": "A useful Google Chrome extension for injection your code (JS, CSS, HTML) into a page.",
+      "text": "text.md",
+      "logo": "logo.jpg",
+      "gallery": [
+        "1.png",
+        "2.png",
+        "3.png",
+        "4.png",
+        "5.png"
+      ],
+      "link": "https://chrome.google.com/webstore/detail/code-injector/fehfokkkkeamcfiaogfdkkpoblipkmbd",
+      "technologies": {
+        "platform": "browser",
+        "languages": [
+          "Javascript",
+          "HTML",
+          "CSS"
+        ],
+        "instruments": [],
+        "frameworks": []
+      }
+    },
+    "voxel-model-maker": {
+      "name": "Voxel Model Maker",
+      "description": "Program for 3D voxel model editing.",
+      "text": "text.md",
+      "logo": "logo.jpg",
+      "gallery": [
+        "1.png",
+        "2.png",
+        "3.png",
+        "4.png",
+        "5.png",
+        "6.png"
+      ],
+      "link": "https://www.cwmods.com/downloads/info172-VoxelModelMaker.ModelEditor..html",
+      "technologies": {
+        "platform": "desktop",
+        "languages": [
+          "C++"
+        ],
+        "instruments": [],
+        "frameworks": [
+          "DirectX"
+        ]
+      }
+    }
+  }
+}

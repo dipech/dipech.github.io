@@ -1,21 +1,8 @@
 <template>
-    <div>
-        Portfolio page component
-        <div class="card mt-3">
-            <div class="card-header">
-                Index component
-            </div>
-            <div class="card-body">
-                Hello, {{greeting}}!<br>
-                <label>Greeting: <input v-model="greeting" type="text"></label>
-            </div>
-        </div>
-        <div class="card mt-3">
-            <div class="card-header">
-                Hello component
-            </div>
-            <div class="card-body">
-                <c-hello :counter="5"/>
+    <div v-if="portfolio !== null">
+        <div class="grid-projects">
+            <div class="grid-item" v-for="(project, projectKey) in projects">
+                <c-project :project="project" :projectKey="projectKey" :key="projectKey"/>
             </div>
         </div>
     </div>
@@ -24,20 +11,40 @@
 <script lang="ts">
     import Vue from "vue";
     import Component from "vue-class-component";
-    import HelloComponent from "../components/hello.vue";
+    import ProjectComponent from "./portfolio/project.vue";
 
     @Component({
         components: {
-            cHello: HelloComponent
+            cProject: ProjectComponent
         }
     })
     export default class PortfolioPageComponent extends Vue {
-        get greeting() {
-            return this.$store.state.greeting;
+        mounted() {
+            this.$store.commit("ensurePortfolioIsLoaded")
         }
 
-        set greeting(greeting: string) {
-            this.$store.commit("setGreeting", greeting);
+        created() {
+            this.$store.commit("addAlert", {
+                type: "info",
+                text: "This page is under development. More content will be available soon!",
+                page: "/portfolio"
+            });
+        }
+
+        get portfolio() {
+            return this.$store.state.portfolio;
+        }
+
+        get projects() {
+            return this.portfolio.projects;
         }
     }
 </script>
+
+<style scoped>
+    .grid-projects {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-gap: 1rem;
+    }
+</style>
