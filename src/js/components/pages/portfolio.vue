@@ -23,6 +23,14 @@
             this.$store.commit("ensurePortfolioIsLoaded")
         }
 
+        created() {
+            this.$store.commit("addAlert", {
+                type: "info",
+                text: "This page is under development. More content will be available soon!",
+                page: "/portfolio"
+            });
+        }
+
         get portfolio() {
             return this.$store.state.portfolio;
         }

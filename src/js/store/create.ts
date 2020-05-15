@@ -6,8 +6,7 @@ export default function createStore() {
         state: {
             resume: null,
             portfolio: null,
-            greeting: "World",
-            exclamationMarksCount: 5
+            alerts: []
         },
         mutations: {
             ensureResumeIsLoaded(state) {
@@ -16,11 +15,19 @@ export default function createStore() {
             ensurePortfolioIsLoaded(state) {
                 loadJsonIntoStateProperty(state, "portfolio", "resources/data/portfolio/data.json");
             },
-            setGreeting(state, greeting) {
-                state.greeting = greeting
+            addAlert(state: any, alert: object) {
+                let alertKey = JSON.stringify(alert);
+                let alreadyIndex = state.alerts.findIndex((alert: any) => alert.key === alertKey)
+                if (alreadyIndex > -1) {
+                    return;
+                }
+                state.alerts.push({
+                    ...alert,
+                    key: alertKey
+                });
             },
-            setExclamationMarks(state, exclamationMarksCount) {
-                state.exclamationMarksCount = exclamationMarksCount
+            removeAlert(state: any, index: number) {
+                state.alerts.splice(index, 1);
             }
         }
     })

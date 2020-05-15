@@ -5,7 +5,6 @@ import createStore from "./store/create";
 import createRouter from "./router/create";
 import IndexComponent from "./components/index.vue";
 import "../css/index.scss";
-import "bootstrap";
 
 class App {
 
