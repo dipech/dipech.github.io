@@ -69,8 +69,12 @@ module.exports = {
         hints: false
     },
     plugins: [
-        // make sure to include the plugin for the magic
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
+        new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery",
+            "window.jQuery": "jquery"
+        })
     ]
 }
 

@@ -6,6 +6,7 @@ import createRouter from "./router/create";
 import IndexComponent from "./components/index.vue";
 import "../css/index.scss";
 import "bootstrap";
+import "owl.carousel/dist/owl.carousel.min";
 
 class App {
 
@@ -13,7 +14,7 @@ class App {
 
     constructor() {
         Vue.use(Vuex);
-        Vue.use(VueRouter)
+        Vue.use(VueRouter);
         this.vue = new Vue({
             el: "#app",
             store: createStore(),

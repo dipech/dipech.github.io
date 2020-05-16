@@ -1,5 +1,5 @@
 <template>
-    <div v-if="resume !== null">
+    <div v-if="resume">
         <c-user :user="resume.user"/>
         <h3 class="mt-4">Key skills</h3>
         <c-badge v-for="skill in resume.keySkills" :key="skill">
@@ -12,17 +12,17 @@
                 {{ months }} {{ pluralForm(months, "month") }}
             </small>
         </h3>
-        <c-experience :experience="experience" v-for="experience in resume.experience"
-                      :key="experience.companyName"/>
+        <c-experience v-for="experience in resume.experience"
+                      :experience="experience" :key="experience.companyName"/>
         <h3 class="mt-4">Courses</h3>
-        <c-course :course="course" v-for="course in resume.courses"
-                      :key="course.name"/>
+        <c-course v-for="course in resume.courses"
+                  :course="course" :key="course.name"/>
         <h3 class="mt-4">Education</h3>
-        <c-education :education="education" v-for="education in resume.education"
-                      :key="education.name"/>
+        <c-education v-for="education in resume.education"
+                     :education="education" :key="education.name"/>
         <h3 class="mt-4">Languages</h3>
-        <c-language :language="language" v-for="language in resume.languages"
-                     :key="language.name"/>
+        <c-language v-for="language in resume.languages"
+                    :language="language" :key="language.name"/>
     </div>
 </template>
 
@@ -37,6 +37,7 @@
     import LanguageComponent from "./resume/language.vue";
     import {pluralForm} from "../../functions/functions";
     import moment from "moment";
+    import {resumeRes} from "../../store/resources";
 
     @Component({
         components: {
@@ -52,8 +53,13 @@
         }
     })
     export default class ResumePageComponent extends Vue {
+
         mounted() {
-            this.$store.commit("ensureResumeIsLoaded")
+            this.$store.commit("ensureResourceIsLoaded", resumeRes)
+        }
+
+        get resume() {
+            return this.$store.state[resumeRes.key];
         }
 
         get oldestDate(): moment.Moment {
@@ -67,10 +73,6 @@
             return oldest;
         }
 
-        get resume() {
-            return this.$store.state.resume;
-        }
-
         get years(): number {
             return moment().diff(this.oldestDate, "years");
         }
@@ -78,6 +80,7 @@
         get months(): number {
             return moment().diff(this.oldestDate, "months") - 12 * this.years;
         }
+
     }
 </script>
 

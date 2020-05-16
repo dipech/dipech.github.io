@@ -6,11 +6,11 @@ import ResumePageComponent from "../components/pages/resume.vue";
 
 const routes = [
     // {path: "/", redirect: "/blog"},
-    // {path: "/about-me", component: AboutMePageComponent},
     // {path: "/blog", component: BlogPageComponent},
     {path: "/", redirect: "/resume"},
-    {path: "/portfolio", component: PortfolioPageComponent},
     {path: "/resume", component: ResumePageComponent},
+    {path: "/portfolio", component: PortfolioPageComponent},
+    {path: "/about-me", component: AboutMePageComponent},
 ]
 
 export default function createStore() {

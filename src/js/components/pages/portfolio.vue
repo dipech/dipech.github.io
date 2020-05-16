@@ -1,5 +1,5 @@
 <template>
-    <div v-if="portfolio !== null">
+    <div v-if="portfolio">
         <div class="grid-projects">
             <div class="grid-item" v-for="(project, projectKey) in projects">
                 <c-project :project="project" :projectKey="projectKey" :key="projectKey"/>
@@ -12,6 +12,7 @@
     import Vue from "vue";
     import Component from "vue-class-component";
     import ProjectComponent from "./portfolio/project.vue";
+    import {portfolioRes} from "../../store/resources";
 
     @Component({
         components: {
@@ -19,25 +20,19 @@
         }
     })
     export default class PortfolioPageComponent extends Vue {
-        mounted() {
-            this.$store.commit("ensurePortfolioIsLoaded")
-        }
 
-        created() {
-            this.$store.commit("addAlert", {
-                type: "info",
-                text: "This page is under development. More content will be available soon!",
-                page: "/portfolio"
-            });
+        mounted() {
+            this.$store.commit("ensureResourceIsLoaded", portfolioRes);
         }
 
         get portfolio() {
-            return this.$store.state.portfolio;
+            return this.$store.state[portfolioRes.key];
         }
 
         get projects() {
             return this.portfolio.projects;
         }
+
     }
 </script>
 
