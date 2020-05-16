@@ -1,7 +1,6 @@
 <template>
     <div class="container">
         <c-header/>
-        <c-alerts/>
         <router-view/>
         <c-footer/>
     </div>
@@ -12,13 +11,11 @@
     import Component from "vue-class-component";
     import HeaderComponent from "./partials/header.vue";
     import FooterComponent from "./partials/footer.vue";
-    import AlertsComponent from "./partials/alerts.vue";
 
     @Component({
         components: {
             cHeader: HeaderComponent,
-            cFooter: FooterComponent,
-            cAlerts: AlertsComponent
+            cFooter: FooterComponent
         }
     })
     export default class IndexComponent extends Vue {

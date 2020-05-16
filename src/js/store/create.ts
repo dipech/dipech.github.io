@@ -1,47 +1,29 @@
 import Vuex from "vuex";
-import axios from "axios";
+import {loadJsonIntoStateProperty} from "./json-loader";
+import {getResourceUrl} from "../functions/functions";
+import {Resource} from "../classes/resource";
 
 export default function createStore() {
     return new Vuex.Store({
         state: {
             resume: null,
             portfolio: null,
-            alerts: []
+            aboutMe: null,
+            resources: new Map()
         },
         mutations: {
-            ensureResumeIsLoaded(state) {
-                loadJsonIntoStateProperty(state, "resume", "resources/data/resume/data.json");
+            ensureResumeIsLoaded(state, callback: () => void) {
+                loadJsonIntoStateProperty(state, "resume", getResourceUrl("resume", "data.json"), callback);
             },
-            ensurePortfolioIsLoaded(state) {
-                loadJsonIntoStateProperty(state, "portfolio", "resources/data/portfolio/data.json");
+            ensurePortfolioIsLoaded(state, callback: () => void) {
+                loadJsonIntoStateProperty(state, "portfolio", getResourceUrl("portfolio", "data.json"), callback);
             },
-            addAlert(state: any, alert: object) {
-                let alertKey = JSON.stringify(alert);
-                let alreadyIndex = state.alerts.findIndex((alert: any) => alert.key === alertKey)
-                if (alreadyIndex > -1) {
-                    return;
-                }
-                state.alerts.push({
-                    ...alert,
-                    key: alertKey
-                });
+            ensureAboutMeIsLoaded(state, callback: () => void) {
+                loadJsonIntoStateProperty(state, "aboutMe", getResourceUrl("about-me", "data.json"), callback);
             },
-            removeAlert(state: any, index: number) {
-                state.alerts.splice(index, 1);
+            addResource(state, resource: Resource) {
+                state.resources.set(resource.keyword, resource.value);
             }
         }
     })
-}
-
-function loadJsonIntoStateProperty(state: any, property: string, jsonUrl: string) {
-    if (state[property] !== null) {
-        return;
-    }
-    axios.get(jsonUrl)
-        .then(function (response) {
-            state[property] = response.data;
-        })
-        .catch(function () {
-            alert("Cannot load " + property + " data :(");
-        });
 }

@@ -19,9 +19,9 @@
                 <li class="nav-item">
                     <router-link class="nav-link" to="/portfolio">Portfolio</router-link>
                 </li>
-<!--                <li class="nav-item">-->
-<!--                    <router-link class="nav-link" to="/about-me">About me</router-link>-->
-<!--                </li>-->
+                <li class="nav-item">
+                    <router-link class="nav-link" to="/about-me">About me</router-link>
+                </li>
             </ul>
         </div>
     </nav>
