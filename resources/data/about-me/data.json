@@ -1,11 +1,11 @@
 {
   "gallery": [
-    "1.jpg",
-    "2.jpg",
-    "3.jpg",
-    "4.jpg",
-    "5.png",
-    "6.jpg",
-    "7.jpg"
+    "photos/1.jpg",
+    "photos/2.jpg",
+    "photos/3.jpg",
+    "photos/4.jpg",
+    "photos/5.png",
+    "photos/6.jpg",
+    "photos/7.jpg"
   ]
 }

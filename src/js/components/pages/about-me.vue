@@ -1,6 +1,7 @@
 <template>
     <div v-if="about && text">
-        {{ text }}
+        <c-markdown :text="text"/>
+        <c-carousel :images="images"/>
     </div>
 </template>
 
@@ -8,8 +9,16 @@
     import Vue from "vue";
     import Component from "vue-class-component";
     import {aboutMeRes, aboutMeTextRes} from "../../store/resources";
+    import CarouselComponent from "../partials/carousel.vue";
+    import {ApiResource} from "../../classes/api-resource";
+    import MarkdownComponent from "../partials/markdown.vue";
 
-    @Component
+    @Component({
+        components: {
+            cCarousel: CarouselComponent,
+            cMarkdown: MarkdownComponent
+        }
+    })
     export default class AboutMePageComponent extends Vue {
 
         mounted() {
@@ -23,6 +32,14 @@
 
         get text() {
             return this.$store.state[aboutMeTextRes.key];
+        }
+
+        get images(): ApiResource[] {
+            let result: ApiResource[] = [];
+            this.about.gallery.forEach((item: string) => {
+                result.push(new ApiResource("about-me", item));
+            })
+            return result;
         }
 
     }
