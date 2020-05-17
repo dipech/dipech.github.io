@@ -1,7 +1,7 @@
 <template>
     <div v-if="resume">
         <c-user :user="resume.user"/>
-        <h3 class="mt-4">Key skills</h3>
+        <h3 class="mt-2">Key skills</h3>
         <c-badge v-for="skill in resume.keySkills" :key="skill">
             {{ skill }}
         </c-badge>
