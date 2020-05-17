@@ -1,8 +1,14 @@
 <template>
     <footer class="bg-light mt-3 mb-3 p-4">
-        <a :href="siteUrl">{{ domain }}</a>, {{ year }}
-        <div class="float-right font-italic">
-            All rights are lost ©
+        <div class="row">
+            <div class="col-12 col-md-6 text-center text-sm-left">
+                <a :href="siteUrl">{{ domain }}</a>, {{ year }}
+            </div>
+            <div class="col-12 col-md-6 text-center text-sm-right">
+                <div class="font-italic">
+                    All rights are lost ©
+                </div>
+            </div>
         </div>
     </footer>
 </template>

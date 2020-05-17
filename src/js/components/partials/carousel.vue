@@ -34,18 +34,7 @@
                         autoWidth: true,
                         autoplayTimeout: 5000,
                         autoplayHoverPause: true,
-                        dots: false,
-                        responsive: {
-                            0: {
-                                items: 1
-                            },
-                            600: {
-                                items: 3
-                            },
-                            1000: {
-                                items: 5
-                            }
-                        }
+                        dots: false
                     })
                 }, 100);
                 CarouselComponent.isIntervalSet = true;
@@ -60,6 +49,6 @@
         border-radius: 5px;
         border: 1px solid lightgray;
         width: auto !important;
-        max-height: 200px;
+        height: 200px;
     }
 </style>
