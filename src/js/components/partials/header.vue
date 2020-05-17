@@ -10,14 +10,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-<!--                <li class="nav-item">-->
-<!--                    <router-link class="nav-link" to="/blog">Blog</router-link>-->
-<!--                </li>-->
                 <li class="nav-item">
                     <router-link class="nav-link" to="/resume">Resume</router-link>
                 </li>
                 <li class="nav-item">
                     <router-link class="nav-link" to="/portfolio">Portfolio</router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link class="nav-link" to="/blog">Blog</router-link>
                 </li>
                 <li class="nav-item">
                     <router-link class="nav-link" to="/about-me">About me</router-link>

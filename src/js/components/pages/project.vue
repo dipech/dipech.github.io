@@ -1,25 +1,21 @@
 <template>
     <div v-if="portfolio">
-        <div class="grid-projects">
-            <div class="grid-item" v-for="(project, projectKey) in projects">
-                <c-project-preview :project="project" :projectKey="projectKey" :key="projectKey"/>
-            </div>
-        </div>
+        <c-project :project="project" :projectKey="projectKey" />
     </div>
 </template>
 
 <script lang="ts">
     import Vue from "vue";
     import Component from "vue-class-component";
-    import ProjectPreviewComponent from "./portfolio/project-preview.vue";
+    import ProjectComponent from "./portfolio/project.vue";
     import {portfolioRes} from "../../store/resources";
 
     @Component({
         components: {
-            cProjectPreview: ProjectPreviewComponent
+            cProject: ProjectComponent
         }
     })
-    export default class PortfolioPageComponent extends Vue {
+    export default class ProjectPageComponent extends Vue {
 
         mounted() {
             this.$store.commit("ensureResourceIsLoaded", portfolioRes);
@@ -29,8 +25,12 @@
             return this.$store.state[portfolioRes.key];
         }
 
-        get projects() {
-            return this.portfolio.projects;
+        get projectKey(): string {
+            return this.$router.currentRoute.params.keyword;
+        }
+
+        get project() {
+            return this.portfolio.projects[this.projectKey];
         }
 
     }

@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="float-left photo d-none d-md-block">
-            <img :src="user.photo" alt="That's me!">
+            <img :src="user.photo" class="mr-3 mb-3" alt="That's me!">
         </div>
         <h2>{{ user.lastName }} {{ user.firstName }} {{ user.middleName }}</h2>
         <div>
@@ -43,11 +43,6 @@
 </script>
 
 <style scoped>
-    .photo {
-        margin-right: 20px;
-        margin-bottom: 20px;
-    }
-
     .photo img {
         max-height: 300px;
     }
