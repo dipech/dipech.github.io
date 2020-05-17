@@ -8,7 +8,7 @@
         <img :src="logoUrl(project.logo)" class="logo mr-3 mb-3" alt="Logo">
         <template v-if="project.link">
             <div class="mb-3">
-                <a :href="project.link">{{ project.link }}</a>
+                <a :href="project.link" class="project-link">{{ project.link }}</a>
             </div>
         </template>
         <div>
@@ -105,6 +105,10 @@
     .logo {
         height: 100%;
         width: 100%;
+    }
+
+    .project-link {
+        word-break: break-all;
     }
 
     @media only screen and (min-width: 500px) {

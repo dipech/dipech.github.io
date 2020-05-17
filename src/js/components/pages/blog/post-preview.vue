@@ -62,8 +62,8 @@
 
 <style scoped>
     .logo {
-        height: 100%;
-        max-width: 100%;
+        height: auto;
+        width: 100%;
     }
 
     @media only screen and (min-width: 500px) {
