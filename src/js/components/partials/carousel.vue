@@ -57,6 +57,8 @@
 
 <style scoped>
     .image {
+        border-radius: 5px;
+        border: 1px solid lightgray;
         width: auto !important;
         max-height: 200px;
     }
