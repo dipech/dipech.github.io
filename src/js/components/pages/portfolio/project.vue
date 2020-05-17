@@ -1,9 +1,9 @@
 <template>
     <div v-if="textRes && text">
-        <h2 class="mb-3">
+        <h3 class="mb-3">
             {{ project.name }}
             <span class="text-additional"> {{ project.description }}</span>
-        </h2>
+        </h3>
         <!--suppress HtmlUnknownTarget -->
         <img :src="logoUrl(project.logo)" class="logo mr-3 mb-3" alt="Logo">
         <template v-if="project.link">
@@ -67,8 +67,7 @@
         @Prop()
         private project!: any;
 
-        @Prop({default: null})
-        textRes!: ApiResource;
+        private textRes: ApiResource|null = null;
 
         mounted() {
             this.textRes = new ApiResource("portfolio", this.projectKey + "/text.md");
@@ -80,6 +79,9 @@
         }
 
         get text(): string {
+            if (this.textRes === null) {
+                throw new Error("textRes must be set!");
+            }
             return this.$store.state[this.textRes.key];
         }
 

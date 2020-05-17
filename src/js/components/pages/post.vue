@@ -1,23 +1,21 @@
 <template>
-    <div class="row" v-if="blog">
-        <div class="col-12" v-for="(post, postKeyword) in posts">
-            <c-post-preview :post="post" :postKeyword="postKeyword" :key="postKeyword"/>
-        </div>
+    <div v-if="blog">
+        <c-post :post="post" :postKeyword="postKeyword"/>
     </div>
 </template>
 
 <script lang="ts">
     import Vue from "vue";
     import Component from "vue-class-component";
-    import PostPreviewComponent from "./blog/post-preview.vue";
+    import PostComponent from "./blog/post.vue";
     import {blogRes} from "../../store/resources";
 
     @Component({
         components: {
-            cPostPreview: PostPreviewComponent
+            cPost: PostComponent
         }
     })
-    export default class BlogPageComponent extends Vue {
+    export default class PostPageComponent extends Vue {
 
         mounted() {
             this.$store.commit("ensureResourceIsLoaded", blogRes);
@@ -27,8 +25,12 @@
             return this.$store.state[blogRes.key];
         }
 
-        get posts() {
-            return this.blog.posts;
+        get postKeyword(): string {
+            return this.$router.currentRoute.params.keyword;
+        }
+
+        get post() {
+            return this.blog.posts[this.postKeyword];
         }
 
     }
