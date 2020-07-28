@@ -5,7 +5,7 @@
         </div>
         <div class="card-body">
             <!--suppress HtmlUnknownTarget -->
-            <img :src="logoUrl(project.logo)" class="logo" alt="Logo">
+            <c-image :src="logoUrl(project.logo)" class="logo" alt="Logo"/>
             <small class="d-block mt-3 mb-3">{{ project.description }}</small>
             <div class="text-right link d-none d-sm-block">
                 <router-link :to="{ name: 'project', params: { keyword: projectKey }}">
@@ -28,8 +28,13 @@
     import Component from "vue-class-component";
     import {Prop} from "vue-property-decorator";
     import {ApiResource} from "../../../classes/api-resource";
+    import ImageComponent from "../../partials/image.vue";
 
-    @Component
+    @Component({
+        components: {
+            cImage: ImageComponent
+        }
+    })
     export default class ProjectPreviewComponent extends Vue {
 
         @Prop()

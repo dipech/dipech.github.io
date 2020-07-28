@@ -1,7 +1,8 @@
 <template>
     <div>
         <div class="float-left photo d-none d-md-block">
-            <img :src="user.photo" class="mr-3 mb-3" alt="That's me!">
+            <!--suppress HtmlUnknownTarget -->
+            <c-image :src="user.photo" class="mr-3 mb-3" alt="That's me!"/>
         </div>
         <h2>{{ user.lastName }} {{ user.firstName }} {{ user.middleName }}</h2>
         <div>
@@ -26,10 +27,12 @@
     import {Prop} from "vue-property-decorator";
     import moment from "moment";
     import ContactComponent from "./contact.vue";
+    import ImageComponent from "../../partials/image.vue";
 
     @Component({
         components: {
-            cContact: ContactComponent
+            cContact: ContactComponent,
+            cImage: ImageComponent
         }
     })
     export default class UserComponent extends Vue {

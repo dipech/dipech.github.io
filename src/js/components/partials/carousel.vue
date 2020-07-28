@@ -3,7 +3,7 @@
         <div class="owl-carousel owl-theme mt-2">
             <div v-for="image in images">
                 <!--suppress HtmlUnknownTarget -->
-                <img :src="image.url" class="image" alt="Image!">
+                <c-image :src="image.url" class="image" alt="Image!"/>
             </div>
         </div>
     </div>
@@ -15,8 +15,13 @@
     import {Prop} from "vue-property-decorator";
     import {ApiResource} from "../../classes/api-resource";
     import jquery from "jquery";
+    import ImageComponent from "./image.vue";
 
-    @Component
+    @Component({
+        components: {
+            cImage: ImageComponent
+        }
+    })
     export default class CarouselComponent extends Vue {
 
         private static isIntervalSet: boolean = false;

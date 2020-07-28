@@ -5,7 +5,7 @@
             <span class="text-additional"> {{ project.description }}</span>
         </h3>
         <!--suppress HtmlUnknownTarget -->
-        <img :src="logoUrl(project.logo)" class="logo mr-3 mb-3" alt="Logo">
+        <c-image :src="logoUrl(project.logo)" class="logo mr-3 mb-3" alt="Logo"/>
         <template v-if="project.link">
             <div class="mb-3">
                 <a :href="project.link" class="project-link">{{ project.link }}</a>
@@ -51,12 +51,14 @@
     import MarkdownComponent from "../../partials/markdown.vue";
     import CarouselComponent from "../../partials/carousel.vue";
     import BadgeComponent from "../../partials/badge.vue";
+    import ImageComponent from "../../partials/image.vue";
 
     @Component({
         components: {
             cMarkdown: MarkdownComponent,
             cCarousel: CarouselComponent,
-            cBadge: BadgeComponent
+            cBadge: BadgeComponent,
+            cImage: ImageComponent
         }
     })
     export default class ProjectComponent extends Vue {
