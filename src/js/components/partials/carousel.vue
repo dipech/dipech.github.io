@@ -1,11 +1,11 @@
 <template>
     <div>
-        <div class="owl-carousel owl-theme mt-2">
+        <c-slider :auto-width="true" :mouse-drag="true" :loop="false" :gutter="15" :controls="false">
             <div v-for="image in images">
                 <!--suppress HtmlUnknownTarget -->
-                <img :src="image.url" class="image" alt="Image!">
+                <c-image :src="image.url" class="carousel-image" alt="Image!"/>
             </div>
-        </div>
+        </c-slider>
     </div>
 </template>
 
@@ -14,41 +14,50 @@
     import Component from "vue-class-component";
     import {Prop} from "vue-property-decorator";
     import {ApiResource} from "../../classes/api-resource";
-    import jquery from "jquery";
+    import ImageComponent from "./image.vue";
+    import VueTinySlider from "vue-tiny-slider";
 
-    @Component
+    @Component({
+        components: {
+            cImage: ImageComponent,
+            cSlider: VueTinySlider
+        }
+    })
     export default class CarouselComponent extends Vue {
-
-        private static isIntervalSet: boolean = false;
 
         @Prop()
         private images!: ApiResource[];
 
-        mounted() {
-            if (!CarouselComponent.isIntervalSet) {
-                setInterval(() => {
-                    (jquery(".owl-carousel:not(.owl-loaded)") as any).owlCarousel({
-                        loop: true,
-                        margin: 15,
-                        autoplay: true,
-                        autoWidth: true,
-                        autoplayTimeout: 5000,
-                        autoplayHoverPause: true,
-                        dots: false
-                    })
-                }, 100);
-                CarouselComponent.isIntervalSet = true;
-            }
-        }
-
     }
 </script>
 
-<style scoped>
-    .image {
+<style>
+    .carousel-image {
         border-radius: 5px;
         border: 1px solid lightgray;
-        width: auto !important;
         height: 200px;
+    }
+
+    .tns-nav {
+        text-align: center;
+    }
+
+    .tns-nav > button {
+        width: 9px;
+        height: 9px;
+        padding: 0;
+        margin: 0 5px;
+        border-radius: 50%;
+        background: #ddd;
+        border: 0;
+    }
+
+    .tns-nav > button:focus {
+        outline: none;
+        box-shadow: none;
+    }
+
+    .tns-nav > button.tns-nav-active {
+        background: #999;
     }
 </style>

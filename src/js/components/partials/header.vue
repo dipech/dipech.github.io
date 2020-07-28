@@ -1,7 +1,7 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-light bg-light mt-3 mb-3">
         <router-link class="navbar-brand" to="/">
-            <img src="resources/images/logo.png" class="logo" alt="Welcome!">
+            <c-image src="resources/images/logo.png" class="logo" alt="Welcome!" :zoomable="false"/>
         </router-link>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -30,8 +30,13 @@
 <script lang="ts">
     import Vue from "vue";
     import Component from "vue-class-component";
+    import ImageComponent from "./image.vue";
 
-    @Component
+    @Component({
+        components: {
+            cImage: ImageComponent
+        }
+    })
     export default class MenuComponent extends Vue {
 
     }

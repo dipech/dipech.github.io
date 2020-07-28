@@ -1,7 +1,8 @@
 <template>
     <div>
         <div class="float-left photo d-none d-md-block">
-            <img :src="user.photo" class="mr-3 mb-3" alt="That's me!">
+            <!--suppress HtmlUnknownTarget -->
+            <c-image :src="userPhotoUrl" class="mr-3 mb-3" alt="That's me!"/>
         </div>
         <h2>{{ user.lastName }} {{ user.firstName }} {{ user.middleName }}</h2>
         <div>
@@ -26,10 +27,13 @@
     import {Prop} from "vue-property-decorator";
     import moment from "moment";
     import ContactComponent from "./contact.vue";
+    import ImageComponent from "../../partials/image.vue";
+    import {ApiResource} from "../../../classes/api-resource";
 
     @Component({
         components: {
-            cContact: ContactComponent
+            cContact: ContactComponent,
+            cImage: ImageComponent
         }
     })
     export default class UserComponent extends Vue {
@@ -38,6 +42,10 @@
 
         get ages(): number {
             return moment().diff(moment(this.user.birthDate, "DD.MM.YYYY"), "years");
+        }
+
+        get userPhotoUrl(): string {
+            return new ApiResource("resume", this.user.photo).url;
         }
     }
 </script>

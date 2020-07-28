@@ -5,7 +5,7 @@
         </div>
         <div class="card-body">
             <!--suppress HtmlUnknownTarget -->
-            <img :src="logoUrl(post.logo)" class="logo" alt="Logo">
+            <c-image :src="logoUrl(post.logo)" class="logo" alt="Logo" :zoomable="false"/>
             <small>Posted on <b>{{ post.dateCreated }}</b></small>
             <div>
                 <small>
@@ -39,10 +39,12 @@
     import {Prop} from "vue-property-decorator";
     import {ApiResource} from "../../../classes/api-resource";
     import BadgeComponent from "../../partials/badge.vue";
+    import ImageComponent from "../../partials/image.vue";
 
     @Component({
         components: {
-            cBadge: BadgeComponent
+            cBadge: BadgeComponent,
+            cImage: ImageComponent
         }
     })
     export default class PostPreviewComponent extends Vue {

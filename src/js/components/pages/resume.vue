@@ -23,6 +23,8 @@
         <h3 class="mt-4">Languages</h3>
         <c-language v-for="language in resume.languages"
                     :language="language" :key="language.name"/>
+        <h3 class="mt-4">Certificates</h3>
+        <c-carousel :images="certificates"/>
     </div>
 </template>
 
@@ -38,6 +40,8 @@
     import {pluralForm} from "../../functions/functions";
     import moment from "moment";
     import {resumeRes} from "../../store/resources";
+    import CarouselComponent from "../partials/carousel.vue";
+    import {ApiResource} from "../../classes/api-resource";
 
     @Component({
         components: {
@@ -46,7 +50,8 @@
             cCourse: CourseComponent,
             cEducation: EducationComponent,
             cBadge: BadgeComponent,
-            cLanguage: LanguageComponent
+            cLanguage: LanguageComponent,
+            cCarousel: CarouselComponent
         },
         methods: {
             pluralForm
@@ -81,6 +86,13 @@
             return moment().diff(this.oldestDate, "months") - 12 * this.years;
         }
 
+        get certificates(): ApiResource[] {
+            let result: ApiResource[] = [];
+            for (let path of this.resume.certificates) {
+                result.push(new ApiResource("resume", path));
+            }
+            return result;
+        }
     }
 </script>
 

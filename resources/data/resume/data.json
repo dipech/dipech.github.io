@@ -2,7 +2,7 @@
   "user": {
     "about": "I've been developing since 2010. Freelancer, Founder, Developer. In love with clean-code. I've built from scratch several large projects and quite many medium-sized projects. Constantly improving my skills. I love odd humor, such as puns :)",
     "specialization": "Web (Java and PHP) Developer",
-    "photo": "resources/data/resume/photo.jpg",
+    "photo": "photo.jpg",
     "firstName": "Dmitry",
     "lastName": "Pechkovsky-Tsikorin",
     "middleName": "Mikhailovich",
@@ -12,27 +12,27 @@
       {
         "type": "phone",
         "value": "+7 (903) 375-13-87",
-        "icon": "resources/data/resume/icons/phone.png"
+        "icon": "icons/phone.png"
       },
       {
         "type": "email",
         "value": "dmitry.pechkovsky@gmail.com",
-        "icon": "resources/data/resume/icons/envelope.png"
+        "icon": "icons/envelope.png"
       },
       {
         "type": "link",
         "value": "https://github.com/DiPech",
-        "icon": "resources/data/resume/icons/github.svg"
+        "icon": "icons/github.svg"
       },
       {
         "type": "link",
         "value": "http://linkedin.com/in/dipech",
-        "icon": "resources/data/resume/icons/linkedin.ico"
+        "icon": "icons/linkedin.ico"
       },
       {
         "type": "link",
         "value": "https://vk.com/dmitry.pechkovsky",
-        "icon": "resources/data/resume/icons/vk.png"
+        "icon": "icons/vk.png"
       }
     ]
   },
@@ -78,6 +78,10 @@
       "name": "«BaseJava» – Retraining from PHP to Java developer",
       "year": "2019"
     }
+  ],
+  "certificates": [
+    "certificates/basejava-cert.png",
+    "certificates/topjava-cert.png"
   ],
   "education": [
     {
