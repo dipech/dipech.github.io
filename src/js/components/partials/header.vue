@@ -1,7 +1,7 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-light bg-light mt-3 mb-3">
         <router-link class="navbar-brand" to="/">
-            <c-image src="resources/images/logo.png" class="logo" alt="Welcome!"/>
+            <c-image src="resources/images/logo.png" class="logo" alt="Welcome!" :zoomable="false"/>
         </router-link>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

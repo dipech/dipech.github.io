@@ -5,7 +5,7 @@
         </div>
         <div class="card-body">
             <!--suppress HtmlUnknownTarget -->
-            <c-image :src="logoUrl(project.logo)" class="logo" alt="Logo"/>
+            <c-image :src="logoUrl(project.logo)" class="logo" alt="Logo" :zoomable="false"/>
             <small class="d-block mt-3 mb-3">{{ project.description }}</small>
             <div class="text-right link d-none d-sm-block">
                 <router-link :to="{ name: 'project', params: { keyword: projectKey }}">

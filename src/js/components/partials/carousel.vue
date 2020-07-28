@@ -6,9 +6,6 @@
                 <c-image :src="image.url" class="carousel-image" alt="Image!"/>
             </div>
         </c-slider>
-        <div v-if="false">
-            <div class="tns-nav"></div>
-        </div>
     </div>
 </template>
 
