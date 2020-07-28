@@ -109,6 +109,26 @@
           "DirectX"
         ]
       }
+    },
+    "encapsuweb": {
+      "name": "EncapsuWeb",
+      "description": "Make your own native macOS apps.",
+      "text": "text.md",
+      "logo": "encapsuweb/logo.png",
+      "gallery": [
+        "encapsuweb/1.png",
+        "encapsuweb/2.png",
+        "encapsuweb/3.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "desktop",
+        "languages": [
+          "Objective C"
+        ],
+        "instruments": [],
+        "frameworks": []
+      }
     }
   }
 }
