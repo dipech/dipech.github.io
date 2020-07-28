@@ -7,7 +7,6 @@ import createRouter from "./router/create";
 import IndexComponent from "./components/index.vue";
 import "../css/index.scss";
 import "bootstrap";
-import "owl.carousel/dist/owl.carousel.min";
 import loadingImage from "../img/loading.gif"
 import noImageImage from "../img/no-image.png"
 

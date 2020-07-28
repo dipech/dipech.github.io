@@ -3,5 +3,5 @@
 ## 1. How to run
 
 ```
-npm run server
+npm run start
 ```
