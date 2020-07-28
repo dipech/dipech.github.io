@@ -1,7 +1,7 @@
 <template>
     <div>
         <!--suppress HtmlUnknownTarget -->
-        <c-image :src="contact.icon" class="icon" alt="icon"/>
+        <c-image :src="iconUrl" class="icon" alt="icon"/>
         <a :href="href" target="_blank" rel="nofollow">{{ contact.value }}</a>
     </div>
 </template>
@@ -11,6 +11,7 @@
     import Component from "vue-class-component";
     import {Prop} from "vue-property-decorator";
     import ImageComponent from "../../partials/image.vue";
+    import {ApiResource} from "../../../classes/api-resource";
 
     @Component({
         components: {
@@ -36,6 +37,10 @@
                     break;
             }
             return prefix + value;
+        }
+
+        get iconUrl(): string {
+            return new ApiResource("resume", this.contact.icon).url;
         }
     }
 </script>

@@ -2,7 +2,7 @@
     <div>
         <div class="float-left photo d-none d-md-block">
             <!--suppress HtmlUnknownTarget -->
-            <c-image :src="user.photo" class="mr-3 mb-3" alt="That's me!"/>
+            <c-image :src="userPhotoUrl" class="mr-3 mb-3" alt="That's me!"/>
         </div>
         <h2>{{ user.lastName }} {{ user.firstName }} {{ user.middleName }}</h2>
         <div>
@@ -28,6 +28,7 @@
     import moment from "moment";
     import ContactComponent from "./contact.vue";
     import ImageComponent from "../../partials/image.vue";
+    import {ApiResource} from "../../../classes/api-resource";
 
     @Component({
         components: {
@@ -41,6 +42,10 @@
 
         get ages(): number {
             return moment().diff(moment(this.user.birthDate, "DD.MM.YYYY"), "years");
+        }
+
+        get userPhotoUrl(): string {
+            return new ApiResource("resume", this.user.photo).url;
         }
     }
 </script>
