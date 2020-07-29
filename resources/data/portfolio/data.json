@@ -602,6 +602,36 @@
         "frameworks": [
         ]
       }
+    },
+    "nc34-dsk": {
+      "name": "DSK",
+      "description": "[nc34] Online store of apartments",
+      "text": "nc34-dsk/text.md",
+      "logo": "nc34-dsk/logo.png",
+      "gallery": [
+        "nc34-dsk/1.png",
+        "nc34-dsk/2.png",
+        "nc34-dsk/3.png",
+        "nc34-dsk/4.png",
+        "nc34-dsk/5.png",
+        "nc34-dsk/6.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "PHP",
+          "MySQL",
+          "HTML",
+          "CSS",
+          "Javascript"
+        ],
+        "instruments": [
+          "NetCat CMS"
+        ],
+        "frameworks": [
+        ]
+      }
     }
   }
 }
