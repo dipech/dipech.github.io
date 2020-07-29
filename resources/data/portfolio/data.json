@@ -549,6 +549,32 @@
         "frameworks": [
         ]
       }
+    },
+    "nc34-zigmund-shtain-club": {
+      "name": "Aq Filter",
+      "description": "[nc34] Corporate website.",
+      "text": "nc34-zigmund-shtain-club/text.md",
+      "logo": "nc34-zigmund-shtain-club/logo.jpg",
+      "gallery": [
+        "nc34-zigmund-shtain-club/1.png",
+        "nc34-zigmund-shtain-club/2.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "PHP",
+          "MySQL",
+          "HTML",
+          "CSS",
+          "Javascript"
+        ],
+        "instruments": [
+          "NetCat CMS"
+        ],
+        "frameworks": [
+        ]
+      }
     }
   }
 }
