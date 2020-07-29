@@ -115,7 +115,8 @@
 
     .logo {
         height: 100%;
-        width: 100%;
+        /* I don't know why, but this page isn't behaving correctly in smartphones if width >= 99.9% -_- */
+        width: 99.8%;
     }
 
     .project-link {
