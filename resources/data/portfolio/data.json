@@ -285,14 +285,42 @@
       ],
       "link": null,
       "technologies": {
-        "platform": "desktop",
+        "platform": "web",
         "languages": [
-          "C#"
+          "Javascript",
+          "HTML",
+          "CSS"
         ],
         "instruments": [
-          "ZennoPoster"
+          "WebGL"
         ],
         "frameworks": [
+          "ThreeJS"
+        ]
+      }
+    },
+    "stl-viewer": {
+      "name": "STL Viewer",
+      "description": "Based on VMM STL viewer.",
+      "text": "stl-viewer/text.md",
+      "logo": "stl-viewer/logo.png",
+      "gallery": [
+        "stl-viewer/1.png",
+        "stl-viewer/2.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "Javascript",
+          "HTML",
+          "CSS"
+        ],
+        "instruments": [
+          "WebGL"
+        ],
+        "frameworks": [
+          "ThreeJS"
         ]
       }
     }
