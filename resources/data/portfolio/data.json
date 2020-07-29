@@ -494,6 +494,34 @@
           "VueJS"
         ]
       }
+    },
+    "nc34-antonov-race": {
+      "name": "Antonov Race",
+      "description": "[nc34] Website for registering in competitions.",
+      "text": "nc34-antonov-race/text.md",
+      "logo": "nc34-antonov-race/logo.png",
+      "gallery": [
+        "nc34-antonov-race/1.png",
+        "nc34-antonov-race/2.png",
+        "nc34-antonov-race/3.png",
+        "nc34-antonov-race/4.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "PHP",
+          "MySQL",
+          "HTML",
+          "CSS",
+          "Javascript"
+        ],
+        "instruments": [
+          "NetCat CMS"
+        ],
+        "frameworks": [
+        ]
+      }
     }
   }
 }
