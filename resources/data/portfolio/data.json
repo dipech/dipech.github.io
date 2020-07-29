@@ -204,6 +204,28 @@
         "frameworks": [
         ]
       }
+    },
+    "waker": {
+      "name": "Waker",
+      "description": "Wakes you up at your destination.",
+      "text": "waker/text.md",
+      "logo": "waker/logo.png",
+      "gallery": [
+        "waker/1.png",
+        "waker/2.png",
+        "waker/3.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "mobile",
+        "languages": [
+          "Java"
+        ],
+        "instruments": [
+        ],
+        "frameworks": [
+        ]
+      }
     }
   }
 }
