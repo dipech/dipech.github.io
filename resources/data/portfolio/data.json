@@ -326,7 +326,7 @@
     },
     "simple-solar-system": {
       "name": "Simple Solar System",
-      "description": "Dynamic web solar system",
+      "description": "Dynamic web solar system.",
       "text": "simple-solar-system/text.md",
       "logo": "simple-solar-system/logo.png",
       "gallery": [
@@ -347,6 +347,36 @@
         ],
         "frameworks": [
           "ThreeJS"
+        ]
+      }
+    },
+    "word-cards": {
+      "name": "Word Cards",
+      "description": "Learn new words easily.",
+      "text": "word-cards/text.md",
+      "logo": "word-cards/logo.png",
+      "gallery": [
+        "word-cards/1.png",
+        "word-cards/2.png",
+        "word-cards/3.png",
+        "word-cards/4.png",
+        "word-cards/5.png",
+        "word-cards/6.png",
+        "word-cards/7.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "PHP",
+          "Javascript",
+          "HTML",
+          "CSS"
+        ],
+        "instruments": [
+        ],
+        "frameworks": [
+          "Yii"
         ]
       }
     }
