@@ -145,7 +145,8 @@
           "C++"
         ],
         "instruments": [
-          "CUDA"
+          "CUDA",
+          "OpenGL"
         ],
         "frameworks": [
           "WinAPI"
@@ -170,10 +171,37 @@
           "C++"
         ],
         "instruments": [
-          "CUDA"
+          "CUDA",
+          "WinAPI",
+          "OpenGL"
         ],
         "frameworks": [
-          "WinAPI"
+        ]
+      }
+    },
+    "shallow-water-simulator": {
+      "name": "Shallow Water Simulator",
+      "description": "Improved water spill simulator.",
+      "text": "shallow-water-simulator/text.md",
+      "logo": "shallow-water-simulator/logo.png",
+      "gallery": [
+        "shallow-water-simulator/window.png",
+        "shallow-water-simulator/1.jpg",
+        "shallow-water-simulator/2.jpg",
+        "shallow-water-simulator/3.jpg"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "desktop",
+        "languages": [
+          "C++"
+        ],
+        "instruments": [
+          "CUDA",
+          "Qt",
+          "OpenGL"
+        ],
+        "frameworks": [
         ]
       }
     }
