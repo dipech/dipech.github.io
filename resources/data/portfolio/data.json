@@ -575,6 +575,33 @@
         "frameworks": [
         ]
       }
+    },
+    "nc34-content-labs": {
+      "name": "Content Labs",
+      "description": "[nc34] Online store of contents for online stores :)",
+      "text": "nc34-content-labs/text.md",
+      "logo": "nc34-content-labs/logo.png",
+      "gallery": [
+        "nc34-content-labs/1.png",
+        "nc34-content-labs/2.png",
+        "nc34-content-labs/3.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "PHP",
+          "MySQL",
+          "HTML",
+          "CSS",
+          "Javascript"
+        ],
+        "instruments": [
+          "NetCat CMS"
+        ],
+        "frameworks": [
+        ]
+      }
     }
   }
 }
