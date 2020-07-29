@@ -33,6 +33,62 @@
         ]
       }
     },
+    "alifba": {
+      "name": "Alifba",
+      "description": "A huge online store.",
+      "text": "alifba/text.md",
+      "logo": "alifba/logo.png",
+      "gallery": [
+        "alifba/1.png",
+        "alifba/2.png",
+        "alifba/3.png"
+      ],
+      "link": "https://alifba.ru",
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "PHP",
+          "Javascript",
+          "HTML",
+          "CSS",
+          "SCSS",
+          "SQL"
+        ],
+        "instruments": [
+          "Docker",
+          "Gitlab CI",
+          "MySQL"
+        ],
+        "frameworks": [
+          "Laravel",
+          "VueJS"
+        ]
+      }
+    },
+    "code-injector": {
+      "name": "Code Injector",
+      "description": "A useful Google Chrome extension for injection your code (JS, CSS, HTML) into a page.",
+      "text": "code-injector/text.md",
+      "logo": "code-injector/logo.jpg",
+      "gallery": [
+        "code-injector/1.png",
+        "code-injector/2.png",
+        "code-injector/3.png",
+        "code-injector/4.png",
+        "code-injector/5.png"
+      ],
+      "link": "https://chrome.google.com/webstore/detail/code-injector/fehfokkkkeamcfiaogfdkkpoblipkmbd",
+      "technologies": {
+        "platform": "browser",
+        "languages": [
+          "Javascript",
+          "HTML",
+          "CSS"
+        ],
+        "instruments": [],
+        "frameworks": []
+      }
+    },
     "purple": {
       "name": "Purple",
       "description": "2D casual game for mobile phones (were distributed on PlayMarket for a while).",
@@ -62,30 +118,6 @@
         ]
       }
     },
-    "code-injector": {
-      "name": "Code Injector",
-      "description": "A useful Google Chrome extension for injection your code (JS, CSS, HTML) into a page.",
-      "text": "code-injector/text.md",
-      "logo": "code-injector/logo.jpg",
-      "gallery": [
-        "code-injector/1.png",
-        "code-injector/2.png",
-        "code-injector/3.png",
-        "code-injector/4.png",
-        "code-injector/5.png"
-      ],
-      "link": "https://chrome.google.com/webstore/detail/code-injector/fehfokkkkeamcfiaogfdkkpoblipkmbd",
-      "technologies": {
-        "platform": "browser",
-        "languages": [
-          "Javascript",
-          "HTML",
-          "CSS"
-        ],
-        "instruments": [],
-        "frameworks": []
-      }
-    },
     "voxel-model-maker": {
       "name": "Voxel Model Maker",
       "description": "A tool for 3D modeling.",
@@ -109,26 +141,6 @@
         "frameworks": [
           "DirectX"
         ]
-      }
-    },
-    "encapsuweb": {
-      "name": "EncapsuWeb",
-      "description": "Make your own native macOS apps.",
-      "text": "encapsuweb/text.md",
-      "logo": "encapsuweb/logo.png",
-      "gallery": [
-        "encapsuweb/1.png",
-        "encapsuweb/2.png",
-        "encapsuweb/3.png"
-      ],
-      "link": null,
-      "technologies": {
-        "platform": "desktop",
-        "languages": [
-          "Objective C"
-        ],
-        "instruments": [],
-        "frameworks": []
       }
     },
     "heat-transfer-simulator": {
@@ -204,6 +216,26 @@
         ],
         "frameworks": [
         ]
+      }
+    },
+    "encapsuweb": {
+      "name": "EncapsuWeb",
+      "description": "Make your own native macOS apps.",
+      "text": "encapsuweb/text.md",
+      "logo": "encapsuweb/logo.png",
+      "gallery": [
+        "encapsuweb/1.png",
+        "encapsuweb/2.png",
+        "encapsuweb/3.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "desktop",
+        "languages": [
+          "Objective C"
+        ],
+        "instruments": [],
+        "frameworks": []
       }
     },
     "waker": {
@@ -460,38 +492,6 @@
           "NetCat CMS"
         ],
         "frameworks": [
-        ]
-      }
-    },
-    "alifba": {
-      "name": "Alifba",
-      "description": "A huge online store.",
-      "text": "alifba/text.md",
-      "logo": "alifba/logo.png",
-      "gallery": [
-        "alifba/1.png",
-        "alifba/2.png",
-        "alifba/3.png"
-      ],
-      "link": null,
-      "technologies": {
-        "platform": "web",
-        "languages": [
-          "PHP",
-          "Javascript",
-          "HTML",
-          "CSS",
-          "SCSS",
-          "SQL"
-        ],
-        "instruments": [
-          "Docker",
-          "Gitlab CI",
-          "MySQL"
-        ],
-        "frameworks": [
-          "Laravel",
-          "VueJS"
         ]
       }
     },
