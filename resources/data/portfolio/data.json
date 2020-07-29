@@ -773,6 +773,35 @@
         "frameworks": [
         ]
       }
+    },
+    "nc34-termoclub": {
+      "name": "Termoclub",
+      "description": "[nc34] Online store of heating equipments.",
+      "text": "nc34-termoclub/text.md",
+      "logo": "nc34-termoclub/logo.png",
+      "gallery": [
+        "nc34-termoclub/1.png",
+        "nc34-termoclub/2.png",
+        "nc34-termoclub/3.png",
+        "nc34-termoclub/4.png",
+        "nc34-termoclub/5.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "PHP",
+          "MySQL",
+          "HTML",
+          "CSS",
+          "Javascript"
+        ],
+        "instruments": [
+          "NetCat CMS"
+        ],
+        "frameworks": [
+        ]
+      }
     }
   }
 }
