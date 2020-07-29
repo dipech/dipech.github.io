@@ -1,44 +1,47 @@
 <template>
-    <div v-if="textRes && text">
-        <h3 class="mb-3">
-            {{ project.name }}
-            <span class="text-additional"> {{ project.description }}</span>
-        </h3>
-        <!--suppress HtmlUnknownTarget -->
-        <c-image :src="logoUrl(project.logo)" class="logo mr-3 mb-3" alt="Logo"/>
-        <template v-if="project.link">
-            <div class="mb-3">
-                <a :href="project.link" class="project-link">{{ project.link }}</a>
+    <div>
+        <c-preloader v-if="!loaded"/>
+        <div v-if="loaded">
+            <h3 class="mb-3">
+                {{ project.name }}
+                <span class="text-additional"> {{ project.description }}</span>
+            </h3>
+            <!--suppress HtmlUnknownTarget -->
+            <c-image :src="logoUrl(project.logo)" class="logo mr-3 mb-3" alt="Logo"/>
+            <template v-if="project.link">
+                <div class="mb-3">
+                    <a :href="project.link" class="project-link">{{ project.link }}</a>
+                </div>
+            </template>
+            <div>
+                <b>Platform:</b>
+                <c-badge>{{ project.technologies.platform }}</c-badge>
             </div>
-        </template>
-        <div>
-            <b>Platform:</b>
-            <c-badge>{{ project.technologies.platform }}</c-badge>
-        </div>
-        <div>
-            <b>Languages:</b>
-            <c-badge v-for="language in project.technologies.languages" :key="language">
-                {{ language }}
-            </c-badge>
-        </div>
-        <div v-if="project.technologies.frameworks.length > 0">
-            <b>Frameworks:</b>
-            <c-badge v-for="framework in project.technologies.frameworks" :key="framework">
-                {{ framework }}
-            </c-badge>
-        </div>
-        <div v-if="project.technologies.instruments.length > 0">
-            <b>Instruments:</b>
-            <c-badge v-for="instrument in project.technologies.instruments" :key="instrument">
-                {{ instrument }}
-            </c-badge>
-        </div>
-        <div class="mt-3">
-            <c-markdown :text="text"/>
-        </div>
-        <div class="clearfix"></div>
-        <div>
-            <c-carousel :images="images"/>
+            <div>
+                <b>Languages:</b>
+                <c-badge v-for="language in project.technologies.languages" :key="language">
+                    {{ language }}
+                </c-badge>
+            </div>
+            <div v-if="project.technologies.frameworks.length > 0">
+                <b>Frameworks:</b>
+                <c-badge v-for="framework in project.technologies.frameworks" :key="framework">
+                    {{ framework }}
+                </c-badge>
+            </div>
+            <div v-if="project.technologies.instruments.length > 0">
+                <b>Instruments:</b>
+                <c-badge v-for="instrument in project.technologies.instruments" :key="instrument">
+                    {{ instrument }}
+                </c-badge>
+            </div>
+            <div class="mt-3">
+                <c-markdown :text="text"/>
+            </div>
+            <div class="clearfix"></div>
+            <div>
+                <c-carousel :images="images"/>
+            </div>
         </div>
     </div>
 </template>
@@ -52,13 +55,15 @@
     import CarouselComponent from "../../partials/carousel.vue";
     import BadgeComponent from "../../partials/badge.vue";
     import ImageComponent from "../../partials/image.vue";
+    import PreloaderComponent from "../../partials/preloader.vue";
 
     @Component({
         components: {
             cMarkdown: MarkdownComponent,
             cCarousel: CarouselComponent,
             cBadge: BadgeComponent,
-            cImage: ImageComponent
+            cImage: ImageComponent,
+            cPreloader: PreloaderComponent
         }
     })
     export default class ProjectComponent extends Vue {
@@ -93,6 +98,10 @@
                 result.push(new ApiResource("portfolio", item));
             })
             return result;
+        }
+
+        get loaded() {
+            return this.textRes && this.text;
         }
 
     }
