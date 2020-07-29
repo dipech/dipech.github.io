@@ -72,7 +72,7 @@
         private textRes: ApiResource|null = null;
 
         mounted() {
-            this.textRes = new ApiResource("portfolio", this.projectKey + "/text.md");
+            this.textRes = new ApiResource("portfolio", this.project.text);
             this.$store.commit("ensureResourceIsLoaded", this.textRes);
         }
 

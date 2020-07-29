@@ -37,7 +37,7 @@
         private textRes: ApiResource|null = null;
 
         mounted() {
-            this.textRes = new ApiResource("blog", this.postKeyword + "/text.md");
+            this.textRes = new ApiResource("blog", this.post.text);
             this.$store.commit("ensureResourceIsLoaded", this.textRes);
         }
 

@@ -1,0 +1,1 @@
+This android application can help you monitor time you spend during working hours.

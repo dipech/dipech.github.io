@@ -3,7 +3,7 @@
     "oktarget": {
       "name": "OKTarget",
       "description": "SAAS – a lot of marketing tools for searching target (hot) audiences.",
-      "text": "text.md",
+      "text": "oktarget/text.md",
       "logo": "oktarget/logo.png",
       "gallery": [
         "oktarget/interface.jpg"
@@ -16,7 +16,8 @@
           "Javascript",
           "SQL",
           "HTML",
-          "CSS/SCSS"
+          "CSS",
+          "SCSS"
         ],
         "instruments": [
           "Nginx",
@@ -35,7 +36,7 @@
     "purple": {
       "name": "Purple",
       "description": "2D casual game for mobile phones (were distributed on PlayMarket for a while).",
-      "text": "text.md",
+      "text": "purple/text.md",
       "logo": "purple/logo.jpg",
       "gallery": [
         "purple/1.png",
@@ -64,7 +65,7 @@
     "code-injector": {
       "name": "Code Injector",
       "description": "A useful Google Chrome extension for injection your code (JS, CSS, HTML) into a page.",
-      "text": "text.md",
+      "text": "code-injector/text.md",
       "logo": "code-injector/logo.jpg",
       "gallery": [
         "code-injector/1.png",
@@ -87,8 +88,8 @@
     },
     "voxel-model-maker": {
       "name": "Voxel Model Maker",
-      "description": "Program for 3D voxel model editing.",
-      "text": "text.md",
+      "description": "A tool for 3D modeling.",
+      "text": "voxel-model-maker/text.md",
       "logo": "voxel-model-maker/logo.jpg",
       "gallery": [
         "voxel-model-maker/1.png",
@@ -113,7 +114,7 @@
     "encapsuweb": {
       "name": "EncapsuWeb",
       "description": "Make your own native macOS apps.",
-      "text": "text.md",
+      "text": "encapsuweb/text.md",
       "logo": "encapsuweb/logo.png",
       "gallery": [
         "encapsuweb/1.png",
@@ -128,6 +129,370 @@
         ],
         "instruments": [],
         "frameworks": []
+      }
+    },
+    "heat-transfer-simulator": {
+      "name": "Heat Transfer Simulator",
+      "description": "Simulate heat transfer on drawn area.",
+      "text": "heat-transfer-simulator/text.md",
+      "logo": "heat-transfer-simulator/logo.png",
+      "gallery": [
+        "heat-transfer-simulator/window.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "desktop",
+        "languages": [
+          "C++"
+        ],
+        "instruments": [
+          "CUDA",
+          "OpenGL"
+        ],
+        "frameworks": [
+          "WinAPI"
+        ]
+      }
+    },
+    "water-spill-simulator": {
+      "name": "Water Spill Simulator",
+      "description": "Simulate water spill on loaded area.",
+      "text": "water-spill-simulator/text.md",
+      "logo": "water-spill-simulator/logo.png",
+      "gallery": [
+        "water-spill-simulator/window.png",
+        "water-spill-simulator/1.png",
+        "water-spill-simulator/2.png",
+        "water-spill-simulator/3.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "desktop",
+        "languages": [
+          "C++"
+        ],
+        "instruments": [
+          "CUDA",
+          "WinAPI",
+          "OpenGL"
+        ],
+        "frameworks": [
+        ]
+      }
+    },
+    "shallow-water-simulator": {
+      "name": "Shallow Water Simulator",
+      "description": "Improved water spill simulator.",
+      "text": "shallow-water-simulator/text.md",
+      "logo": "shallow-water-simulator/logo.png",
+      "gallery": [
+        "shallow-water-simulator/window.png",
+        "shallow-water-simulator/1.jpg",
+        "shallow-water-simulator/2.jpg",
+        "shallow-water-simulator/3.jpg"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "desktop",
+        "languages": [
+          "C++"
+        ],
+        "instruments": [
+          "CUDA",
+          "Qt",
+          "OpenGL"
+        ],
+        "frameworks": [
+        ]
+      }
+    },
+    "waker": {
+      "name": "Waker",
+      "description": "Wakes you up at your destination.",
+      "text": "waker/text.md",
+      "logo": "waker/logo.png",
+      "gallery": [
+        "waker/1.png",
+        "waker/2.png",
+        "waker/3.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "mobile",
+        "languages": [
+          "Java"
+        ],
+        "instruments": [
+        ],
+        "frameworks": [
+        ]
+      }
+    },
+    "work-time-manager": {
+      "name": "Work Time Manager",
+      "description": "Manage your work/time balance.",
+      "text": "work-time-manager/text.md",
+      "logo": "work-time-manager/logo.png",
+      "gallery": [
+        "work-time-manager/1.png",
+        "work-time-manager/2.png",
+        "work-time-manager/3.png",
+        "work-time-manager/4.png",
+        "work-time-manager/5.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "mobile",
+        "languages": [
+          "Java"
+        ],
+        "instruments": [
+        ],
+        "frameworks": [
+        ]
+      }
+    },
+    "youtube-spammer": {
+      "name": "Youtube Spammer",
+      "description": "Dating videos auto-poster.",
+      "text": "youtube-spammer/text.md",
+      "logo": "youtube-spammer/logo.png",
+      "gallery": [
+        "youtube-spammer/window.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "desktop",
+        "languages": [
+          "C#"
+        ],
+        "instruments": [
+          "ZennoPoster"
+        ],
+        "frameworks": [
+        ]
+      }
+    },
+    "voxel-model-maker-web": {
+      "name": "Voxel Model Maker Web",
+      "description": "Stripped-down version of VMM.",
+      "text": "voxel-model-maker-web/text.md",
+      "logo": "voxel-model-maker-web/logo.png",
+      "gallery": [
+        "voxel-model-maker-web/1.png",
+        "voxel-model-maker-web/2.png",
+        "voxel-model-maker-web/3.png",
+        "voxel-model-maker-web/4.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "Javascript",
+          "HTML",
+          "CSS"
+        ],
+        "instruments": [
+          "WebGL"
+        ],
+        "frameworks": [
+          "ThreeJS"
+        ]
+      }
+    },
+    "stl-viewer": {
+      "name": "STL Viewer",
+      "description": "Based on VMM STL viewer.",
+      "text": "stl-viewer/text.md",
+      "logo": "stl-viewer/logo.png",
+      "gallery": [
+        "stl-viewer/1.png",
+        "stl-viewer/2.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "Javascript",
+          "HTML",
+          "CSS"
+        ],
+        "instruments": [
+          "WebGL"
+        ],
+        "frameworks": [
+          "ThreeJS"
+        ]
+      }
+    },
+    "simple-solar-system": {
+      "name": "Simple Solar System",
+      "description": "Dynamic web solar system.",
+      "text": "simple-solar-system/text.md",
+      "logo": "simple-solar-system/logo.png",
+      "gallery": [
+        "simple-solar-system/1.png",
+        "simple-solar-system/2.png",
+        "simple-solar-system/3.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "Javascript",
+          "HTML",
+          "CSS"
+        ],
+        "instruments": [
+          "WebGL"
+        ],
+        "frameworks": [
+          "ThreeJS"
+        ]
+      }
+    },
+    "word-cards": {
+      "name": "Word Cards",
+      "description": "Learn new words easily.",
+      "text": "word-cards/text.md",
+      "logo": "word-cards/logo.png",
+      "gallery": [
+        "word-cards/1.png",
+        "word-cards/2.png",
+        "word-cards/3.png",
+        "word-cards/4.png",
+        "word-cards/5.png",
+        "word-cards/6.png",
+        "word-cards/7.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "PHP",
+          "Javascript",
+          "HTML",
+          "CSS"
+        ],
+        "instruments": [
+        ],
+        "frameworks": [
+          "Yii"
+        ]
+      }
+    },
+    "dae-viewer": {
+      "name": "DAE Viewer",
+      "description": "Web-viewer for DAE and STL models.",
+      "text": "dae-viewer/text.md",
+      "logo": "dae-viewer/logo.png",
+      "gallery": [
+        "dae-viewer/1.png",
+        "dae-viewer/2.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "Javascript",
+          "HTML",
+          "CSS"
+        ],
+        "instruments": [
+          "WebGL"
+        ],
+        "frameworks": [
+          "ThreeJS"
+        ]
+      }
+    },
+    "efitail": {
+      "name": "Efitail",
+      "description": "Landing page for a beauty-master",
+      "text": "efitail/text.md",
+      "logo": "efitail/logo.png",
+      "gallery": [
+        "efitail/1.png",
+        "efitail/2.png",
+        "efitail/3.png",
+        "efitail/4.png",
+        "efitail/5.png",
+        "efitail/6.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "PHP",
+          "Javascript",
+          "HTML",
+          "CSS",
+          "SCSS"
+        ],
+        "instruments": [
+          "NetCat CMS"
+        ],
+        "frameworks": [
+        ]
+      }
+    },
+    "awesome-news": {
+      "name": "Awesome News",
+      "description": "A news website.",
+      "text": "awesome-news/text.md",
+      "logo": "awesome-news/logo.png",
+      "gallery": [
+        "awesome-news/1.png",
+        "awesome-news/2.png",
+        "awesome-news/3.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "PHP",
+          "Javascript",
+          "HTML",
+          "CSS",
+          "SCSS"
+        ],
+        "instruments": [
+          "NetCat CMS"
+        ],
+        "frameworks": [
+        ]
+      }
+    },
+    "alifba": {
+      "name": "Alifba",
+      "description": "A huge online store.",
+      "text": "alifba/text.md",
+      "logo": "alifba/logo.png",
+      "gallery": [
+        "alifba/1.png",
+        "alifba/2.png",
+        "alifba/3.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "PHP",
+          "Javascript",
+          "HTML",
+          "CSS",
+          "SCSS",
+          "SQL"
+        ],
+        "instruments": [
+          "Docker",
+          "Gitlab CI",
+          "MySQL"
+        ],
+        "frameworks": [
+          "Laravel",
+          "VueJS"
+        ]
       }
     }
   }
