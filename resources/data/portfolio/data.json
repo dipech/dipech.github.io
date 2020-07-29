@@ -659,6 +659,35 @@
         "frameworks": [
         ]
       }
+    },
+    "nc34-kartonaj": {
+      "name": "Kartonaj",
+      "description": "[nc34] Online store of cardboard products.",
+      "text": "nc34-kartonaj/text.md",
+      "logo": "nc34-kartonaj/logo.png",
+      "gallery": [
+        "nc34-kartonaj/1.png",
+        "nc34-kartonaj/2.png",
+        "nc34-kartonaj/3.png",
+        "nc34-kartonaj/4.png",
+        "nc34-kartonaj/5.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "PHP",
+          "MySQL",
+          "HTML",
+          "CSS",
+          "Javascript"
+        ],
+        "instruments": [
+          "NetCat CMS"
+        ],
+        "frameworks": [
+        ]
+      }
     }
   }
 }
