@@ -688,6 +688,34 @@
         "frameworks": [
         ]
       }
+    },
+    "nc34-kuban-electro": {
+      "name": "Kuban Electro",
+      "description": "[nc34] Online store of electronics.",
+      "text": "nc34-kuban-electro/text.md",
+      "logo": "nc34-kuban-electro/logo.png",
+      "gallery": [
+        "nc34-kuban-electro/1.png",
+        "nc34-kuban-electro/2.png",
+        "nc34-kuban-electro/3.png",
+        "nc34-kuban-electro/4.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "PHP",
+          "MySQL",
+          "HTML",
+          "CSS",
+          "Javascript"
+        ],
+        "instruments": [
+          "NetCat CMS"
+        ],
+        "frameworks": [
+        ]
+      }
     }
   }
 }
