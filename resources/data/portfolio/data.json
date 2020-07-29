@@ -271,6 +271,30 @@
         "frameworks": [
         ]
       }
+    },
+    "voxel-model-maker-web": {
+      "name": "Voxel Model Maker Web",
+      "description": "Stripped-down version of VMM.",
+      "text": "voxel-model-maker-web/text.md",
+      "logo": "voxel-model-maker-web/logo.png",
+      "gallery": [
+        "voxel-model-maker-web/1.png",
+        "voxel-model-maker-web/2.png",
+        "voxel-model-maker-web/3.png",
+        "voxel-model-maker-web/4.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "desktop",
+        "languages": [
+          "C#"
+        ],
+        "instruments": [
+          "ZennoPoster"
+        ],
+        "frameworks": [
+        ]
+      }
     }
   }
 }
