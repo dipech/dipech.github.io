@@ -802,6 +802,35 @@
         "frameworks": [
         ]
       }
+    },
+    "nc34-zigmund-shtain": {
+      "name": "Zigmund Shtain",
+      "description": "[nc34] A company online store.",
+      "text": "nc34-zigmund-shtain/text.md",
+      "logo": "nc34-zigmund-shtain/logo.png",
+      "gallery": [
+        "nc34-zigmund-shtain/1.png",
+        "nc34-zigmund-shtain/2.png",
+        "nc34-zigmund-shtain/3.png",
+        "nc34-zigmund-shtain/4.png",
+        "nc34-zigmund-shtain/5.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "PHP",
+          "MySQL",
+          "HTML",
+          "CSS",
+          "Javascript"
+        ],
+        "instruments": [
+          "NetCat CMS"
+        ],
+        "frameworks": [
+        ]
+      }
     }
   }
 }
