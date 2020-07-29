@@ -433,6 +433,32 @@
         "frameworks": [
         ]
       }
+    },
+    "awesome-news": {
+      "name": "Awesome News",
+      "description": "A news website.",
+      "text": "awesome-news/text.md",
+      "logo": "awesome-news/logo.png",
+      "gallery": [
+        "awesome-news/1.png",
+        "awesome-news/2.png",
+        "awesome-news/3.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "PHP",
+          "Javascript",
+          "HTML",
+          "CSS/CSCC"
+        ],
+        "instruments": [
+          "NetCat CMS"
+        ],
+        "frameworks": [
+        ]
+      }
     }
   }
 }
