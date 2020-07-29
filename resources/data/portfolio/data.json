@@ -16,7 +16,8 @@
           "Javascript",
           "SQL",
           "HTML",
-          "CSS/SCSS"
+          "CSS",
+          "SCSS"
         ],
         "instruments": [
           "Nginx",
@@ -425,7 +426,8 @@
           "PHP",
           "Javascript",
           "HTML",
-          "CSS/CSCC"
+          "CSS",
+          "SCSS"
         ],
         "instruments": [
           "NetCat CMS"
@@ -451,12 +453,45 @@
           "PHP",
           "Javascript",
           "HTML",
-          "CSS/CSCC"
+          "CSS",
+          "SCSS"
         ],
         "instruments": [
           "NetCat CMS"
         ],
         "frameworks": [
+        ]
+      }
+    },
+    "alifba": {
+      "name": "Alifba",
+      "description": "A huge online store.",
+      "text": "alifba/text.md",
+      "logo": "alifba/logo.png",
+      "gallery": [
+        "alifba/1.png",
+        "alifba/2.png",
+        "alifba/3.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "PHP",
+          "Javascript",
+          "HTML",
+          "CSS",
+          "SCSS",
+          "SQL"
+        ],
+        "instruments": [
+          "Docker",
+          "Gitlab CI",
+          "MySQL"
+        ],
+        "frameworks": [
+          "Laravel",
+          "VueJS"
         ]
       }
     }
