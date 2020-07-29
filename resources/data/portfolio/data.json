@@ -379,6 +379,31 @@
           "Yii"
         ]
       }
+    },
+    "dae-viewer": {
+      "name": "DAE Viewer",
+      "description": "Web-viewer for DAE and STL models.",
+      "text": "dae-viewer/text.md",
+      "logo": "dae-viewer/logo.png",
+      "gallery": [
+        "dae-viewer/1.png",
+        "dae-viewer/2.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "Javascript",
+          "HTML",
+          "CSS"
+        ],
+        "instruments": [
+          "WebGL"
+        ],
+        "frameworks": [
+          "ThreeJS"
+        ]
+      }
     }
   }
 }
