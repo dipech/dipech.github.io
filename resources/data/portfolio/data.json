@@ -716,6 +716,35 @@
         "frameworks": [
         ]
       }
+    },
+    "nc34-planet-jeans": {
+      "name": "Planet Jeans",
+      "description": "[nc34] Online store of clothes.",
+      "text": "nc34-planet-jeans/text.md",
+      "logo": "nc34-planet-jeans/logo.png",
+      "gallery": [
+        "nc34-planet-jeans/1.png",
+        "nc34-planet-jeans/2.png",
+        "nc34-planet-jeans/3.png",
+        "nc34-planet-jeans/4.png",
+        "nc34-planet-jeans/5.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "PHP",
+          "MySQL",
+          "HTML",
+          "CSS",
+          "Javascript"
+        ],
+        "instruments": [
+          "NetCat CMS"
+        ],
+        "frameworks": [
+        ]
+      }
     }
   }
 }
