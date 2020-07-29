@@ -323,6 +323,32 @@
           "ThreeJS"
         ]
       }
+    },
+    "simple-solar-system": {
+      "name": "Simple Solar System",
+      "description": "Dynamic web solar system",
+      "text": "simple-solar-system/text.md",
+      "logo": "simple-solar-system/logo.png",
+      "gallery": [
+        "simple-solar-system/1.png",
+        "simple-solar-system/2.png",
+        "simple-solar-system/3.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "Javascript",
+          "HTML",
+          "CSS"
+        ],
+        "instruments": [
+          "WebGL"
+        ],
+        "frameworks": [
+          "ThreeJS"
+        ]
+      }
     }
   }
 }
