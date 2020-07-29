@@ -522,6 +522,33 @@
         "frameworks": [
         ]
       }
+    },
+    "nc34-aq-filter": {
+      "name": "Aq Filter",
+      "description": "[nc34] Online store of water filter.",
+      "text": "nc34-aq-filter/text.md",
+      "logo": "nc34-aq-filter/logo.png",
+      "gallery": [
+        "nc34-aq-filter/1.png",
+        "nc34-aq-filter/2.png",
+        "nc34-aq-filter/3.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "PHP",
+          "MySQL",
+          "HTML",
+          "CSS",
+          "Javascript"
+        ],
+        "instruments": [
+          "NetCat CMS"
+        ],
+        "frameworks": [
+        ]
+      }
     }
   }
 }
