@@ -250,6 +250,27 @@
         "frameworks": [
         ]
       }
+    },
+    "youtube-spammer": {
+      "name": "Youtube Spammer",
+      "description": "Dating videos auto-poster.",
+      "text": "youtube-spammer/text.md",
+      "logo": "youtube-spammer/logo.png",
+      "gallery": [
+        "youtube-spammer/window.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "desktop",
+        "languages": [
+          "C#"
+        ],
+        "instruments": [
+          "ZennoPoster"
+        ],
+        "frameworks": [
+        ]
+      }
     }
   }
 }
