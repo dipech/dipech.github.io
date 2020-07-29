@@ -147,7 +147,34 @@
         "instruments": [
           "CUDA"
         ],
-        "frameworks": []
+        "frameworks": [
+          "WinAPI"
+        ]
+      }
+    },
+    "water-spill-simulator": {
+      "name": "Water Spill Simulator",
+      "description": "Simulate water spill on loaded area.",
+      "text": "water-spill-simulator/text.md",
+      "logo": "water-spill-simulator/logo.png",
+      "gallery": [
+        "water-spill-simulator/window.png",
+        "water-spill-simulator/1.png",
+        "water-spill-simulator/2.png",
+        "water-spill-simulator/3.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "desktop",
+        "languages": [
+          "C++"
+        ],
+        "instruments": [
+          "CUDA"
+        ],
+        "frameworks": [
+          "WinAPI"
+        ]
       }
     }
   }
