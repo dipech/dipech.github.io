@@ -745,6 +745,34 @@
         "frameworks": [
         ]
       }
+    },
+    "nc34-pump-cnp": {
+      "name": "Pump CNP",
+      "description": "[nc34] Online store of pumps.",
+      "text": "nc34-pump-cnp/text.md",
+      "logo": "nc34-pump-cnp/logo.png",
+      "gallery": [
+        "nc34-pump-cnp/1.png",
+        "nc34-pump-cnp/2.png",
+        "nc34-pump-cnp/3.png",
+        "nc34-pump-cnp/4.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "PHP",
+          "MySQL",
+          "HTML",
+          "CSS",
+          "Javascript"
+        ],
+        "instruments": [
+          "NetCat CMS"
+        ],
+        "frameworks": [
+        ]
+      }
     }
   }
 }
