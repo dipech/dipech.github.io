@@ -404,6 +404,35 @@
           "ThreeJS"
         ]
       }
+    },
+    "efitail": {
+      "name": "Efitail",
+      "description": "Landing page for a beauty-master",
+      "text": "efitail/text.md",
+      "logo": "efitail/logo.png",
+      "gallery": [
+        "efitail/1.png",
+        "efitail/2.png",
+        "efitail/3.png",
+        "efitail/4.png",
+        "efitail/5.png",
+        "efitail/6.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "PHP",
+          "Javascript",
+          "HTML",
+          "CSS/CSCC"
+        ],
+        "instruments": [
+          "NetCat CMS"
+        ],
+        "frameworks": [
+        ]
+      }
     }
   }
 }

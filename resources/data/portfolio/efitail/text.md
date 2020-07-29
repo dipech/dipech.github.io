@@ -1,0 +1,1 @@
+Landing-page for a beauty-master with rich admin panel.
