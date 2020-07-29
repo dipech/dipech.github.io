@@ -226,6 +226,30 @@
         "frameworks": [
         ]
       }
+    },
+    "work-time-manager": {
+      "name": "Work Time Manager",
+      "description": "Manage your work/time balance.",
+      "text": "work-time-manager/text.md",
+      "logo": "work-time-manager/logo.png",
+      "gallery": [
+        "work-time-manager/1.png",
+        "work-time-manager/2.png",
+        "work-time-manager/3.png",
+        "work-time-manager/4.png",
+        "work-time-manager/5.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "mobile",
+        "languages": [
+          "Java"
+        ],
+        "instruments": [
+        ],
+        "frameworks": [
+        ]
+      }
     }
   }
 }
