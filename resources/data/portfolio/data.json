@@ -605,7 +605,7 @@
     },
     "nc34-dsk": {
       "name": "DSK",
-      "description": "[nc34] Online store of apartments",
+      "description": "[nc34] Online store of apartments.",
       "text": "nc34-dsk/text.md",
       "logo": "nc34-dsk/logo.png",
       "gallery": [
@@ -615,6 +615,33 @@
         "nc34-dsk/4.png",
         "nc34-dsk/5.png",
         "nc34-dsk/6.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "PHP",
+          "MySQL",
+          "HTML",
+          "CSS",
+          "Javascript"
+        ],
+        "instruments": [
+          "NetCat CMS"
+        ],
+        "frameworks": [
+        ]
+      }
+    },
+    "nc34-foxberry-pro": {
+      "name": "Foxberry Pro",
+      "description": "[nc34] Online store of appliances.",
+      "text": "nc34-foxberry-pro/text.md",
+      "logo": "nc34-foxberry-pro/logo.png",
+      "gallery": [
+        "nc34-foxberry-pro/1.png",
+        "nc34-foxberry-pro/2.png",
+        "nc34-foxberry-pro/3.png"
       ],
       "link": null,
       "technologies": {
