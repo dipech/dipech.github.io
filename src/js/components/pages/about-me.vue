@@ -1,7 +1,10 @@
 <template>
-    <div v-if="about && text">
-        <c-markdown :text="text"/>
-        <c-carousel :images="images"/>
+    <div>
+        <c-preloader v-if="!loaded"/>
+        <div v-if="loaded">
+            <c-markdown :text="text"/>
+            <c-carousel :images="images"/>
+        </div>
     </div>
 </template>
 
@@ -12,11 +15,13 @@
     import CarouselComponent from "../partials/carousel.vue";
     import {ApiResource} from "../../classes/api-resource";
     import MarkdownComponent from "../partials/markdown.vue";
+    import PreloaderComponent from "../partials/preloader.vue";
 
     @Component({
         components: {
             cCarousel: CarouselComponent,
-            cMarkdown: MarkdownComponent
+            cMarkdown: MarkdownComponent,
+            cPreloader: PreloaderComponent
         }
     })
     export default class AboutMePageComponent extends Vue {
@@ -40,6 +45,10 @@
                 this.$store.commit("ensureResourceIsLoaded", this.aboutMeTextRes);
             }
             return this.$store.state[this.aboutMeTextRes.key];
+        }
+
+        get loaded() {
+            return this.about && this.text;
         }
 
         get images(): ApiResource[] {

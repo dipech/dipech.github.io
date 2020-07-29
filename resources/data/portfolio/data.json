@@ -33,6 +33,62 @@
         ]
       }
     },
+    "alifba": {
+      "name": "Alifba",
+      "description": "A huge online store.",
+      "text": "alifba/text.md",
+      "logo": "alifba/logo.png",
+      "gallery": [
+        "alifba/1.png",
+        "alifba/2.png",
+        "alifba/3.png"
+      ],
+      "link": "https://alifba.ru",
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "PHP",
+          "Javascript",
+          "HTML",
+          "CSS",
+          "SCSS",
+          "SQL"
+        ],
+        "instruments": [
+          "Docker",
+          "Gitlab CI",
+          "MySQL"
+        ],
+        "frameworks": [
+          "Laravel",
+          "VueJS"
+        ]
+      }
+    },
+    "code-injector": {
+      "name": "Code Injector",
+      "description": "A useful Google Chrome extension for injection your code (JS, CSS, HTML) into a page.",
+      "text": "code-injector/text.md",
+      "logo": "code-injector/logo.jpg",
+      "gallery": [
+        "code-injector/1.png",
+        "code-injector/2.png",
+        "code-injector/3.png",
+        "code-injector/4.png",
+        "code-injector/5.png"
+      ],
+      "link": "https://chrome.google.com/webstore/detail/code-injector/fehfokkkkeamcfiaogfdkkpoblipkmbd",
+      "technologies": {
+        "platform": "browser",
+        "languages": [
+          "Javascript",
+          "HTML",
+          "CSS"
+        ],
+        "instruments": [],
+        "frameworks": []
+      }
+    },
     "purple": {
       "name": "Purple",
       "description": "2D casual game for mobile phones (were distributed on PlayMarket for a while).",
@@ -62,30 +118,6 @@
         ]
       }
     },
-    "code-injector": {
-      "name": "Code Injector",
-      "description": "A useful Google Chrome extension for injection your code (JS, CSS, HTML) into a page.",
-      "text": "code-injector/text.md",
-      "logo": "code-injector/logo.jpg",
-      "gallery": [
-        "code-injector/1.png",
-        "code-injector/2.png",
-        "code-injector/3.png",
-        "code-injector/4.png",
-        "code-injector/5.png"
-      ],
-      "link": "https://chrome.google.com/webstore/detail/code-injector/fehfokkkkeamcfiaogfdkkpoblipkmbd",
-      "technologies": {
-        "platform": "browser",
-        "languages": [
-          "Javascript",
-          "HTML",
-          "CSS"
-        ],
-        "instruments": [],
-        "frameworks": []
-      }
-    },
     "voxel-model-maker": {
       "name": "Voxel Model Maker",
       "description": "A tool for 3D modeling.",
@@ -109,26 +141,6 @@
         "frameworks": [
           "DirectX"
         ]
-      }
-    },
-    "encapsuweb": {
-      "name": "EncapsuWeb",
-      "description": "Make your own native macOS apps.",
-      "text": "encapsuweb/text.md",
-      "logo": "encapsuweb/logo.png",
-      "gallery": [
-        "encapsuweb/1.png",
-        "encapsuweb/2.png",
-        "encapsuweb/3.png"
-      ],
-      "link": null,
-      "technologies": {
-        "platform": "desktop",
-        "languages": [
-          "Objective C"
-        ],
-        "instruments": [],
-        "frameworks": []
       }
     },
     "heat-transfer-simulator": {
@@ -204,6 +216,26 @@
         ],
         "frameworks": [
         ]
+      }
+    },
+    "encapsuweb": {
+      "name": "EncapsuWeb",
+      "description": "Make your own native macOS apps.",
+      "text": "encapsuweb/text.md",
+      "logo": "encapsuweb/logo.png",
+      "gallery": [
+        "encapsuweb/1.png",
+        "encapsuweb/2.png",
+        "encapsuweb/3.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "desktop",
+        "languages": [
+          "Objective C"
+        ],
+        "instruments": [],
+        "frameworks": []
       }
     },
     "waker": {
@@ -463,35 +495,340 @@
         ]
       }
     },
-    "alifba": {
-      "name": "Alifba",
-      "description": "A huge online store.",
-      "text": "alifba/text.md",
-      "logo": "alifba/logo.png",
+    "nc34-antonov-race": {
+      "name": "Antonov Race",
+      "description": "[nc34] Website for registering in competitions.",
+      "text": "nc34-antonov-race/text.md",
+      "logo": "nc34-antonov-race/logo.png",
       "gallery": [
-        "alifba/1.png",
-        "alifba/2.png",
-        "alifba/3.png"
+        "nc34-antonov-race/1.png",
+        "nc34-antonov-race/2.png",
+        "nc34-antonov-race/3.png",
+        "nc34-antonov-race/4.png"
       ],
       "link": null,
       "technologies": {
         "platform": "web",
         "languages": [
           "PHP",
-          "Javascript",
+          "MySQL",
           "HTML",
           "CSS",
-          "SCSS",
-          "SQL"
+          "Javascript"
         ],
         "instruments": [
-          "Docker",
-          "Gitlab CI",
-          "MySQL"
+          "NetCat CMS"
         ],
         "frameworks": [
-          "Laravel",
-          "VueJS"
+        ]
+      }
+    },
+    "nc34-aq-filter": {
+      "name": "Aq Filter",
+      "description": "[nc34] Online store of water filter.",
+      "text": "nc34-aq-filter/text.md",
+      "logo": "nc34-aq-filter/logo.png",
+      "gallery": [
+        "nc34-aq-filter/1.png",
+        "nc34-aq-filter/2.png",
+        "nc34-aq-filter/3.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "PHP",
+          "MySQL",
+          "HTML",
+          "CSS",
+          "Javascript"
+        ],
+        "instruments": [
+          "NetCat CMS"
+        ],
+        "frameworks": [
+        ]
+      }
+    },
+    "nc34-zigmund-shtain-club": {
+      "name": "Aq Filter",
+      "description": "[nc34] Corporate website.",
+      "text": "nc34-zigmund-shtain-club/text.md",
+      "logo": "nc34-zigmund-shtain-club/logo.jpg",
+      "gallery": [
+        "nc34-zigmund-shtain-club/1.png",
+        "nc34-zigmund-shtain-club/2.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "PHP",
+          "MySQL",
+          "HTML",
+          "CSS",
+          "Javascript"
+        ],
+        "instruments": [
+          "NetCat CMS"
+        ],
+        "frameworks": [
+        ]
+      }
+    },
+    "nc34-content-labs": {
+      "name": "Content Labs",
+      "description": "[nc34] Online store of contents for online stores :)",
+      "text": "nc34-content-labs/text.md",
+      "logo": "nc34-content-labs/logo.png",
+      "gallery": [
+        "nc34-content-labs/1.png",
+        "nc34-content-labs/2.png",
+        "nc34-content-labs/3.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "PHP",
+          "MySQL",
+          "HTML",
+          "CSS",
+          "Javascript"
+        ],
+        "instruments": [
+          "NetCat CMS"
+        ],
+        "frameworks": [
+        ]
+      }
+    },
+    "nc34-dsk": {
+      "name": "DSK",
+      "description": "[nc34] Online store of apartments.",
+      "text": "nc34-dsk/text.md",
+      "logo": "nc34-dsk/logo.png",
+      "gallery": [
+        "nc34-dsk/1.png",
+        "nc34-dsk/2.png",
+        "nc34-dsk/3.png",
+        "nc34-dsk/4.png",
+        "nc34-dsk/5.png",
+        "nc34-dsk/6.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "PHP",
+          "MySQL",
+          "HTML",
+          "CSS",
+          "Javascript"
+        ],
+        "instruments": [
+          "NetCat CMS"
+        ],
+        "frameworks": [
+        ]
+      }
+    },
+    "nc34-foxberry-pro": {
+      "name": "Foxberry Pro",
+      "description": "[nc34] Online store of appliances.",
+      "text": "nc34-foxberry-pro/text.md",
+      "logo": "nc34-foxberry-pro/logo.png",
+      "gallery": [
+        "nc34-foxberry-pro/1.png",
+        "nc34-foxberry-pro/2.png",
+        "nc34-foxberry-pro/3.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "PHP",
+          "MySQL",
+          "HTML",
+          "CSS",
+          "Javascript"
+        ],
+        "instruments": [
+          "NetCat CMS"
+        ],
+        "frameworks": [
+        ]
+      }
+    },
+    "nc34-kartonaj": {
+      "name": "Kartonaj",
+      "description": "[nc34] Online store of cardboard products.",
+      "text": "nc34-kartonaj/text.md",
+      "logo": "nc34-kartonaj/logo.png",
+      "gallery": [
+        "nc34-kartonaj/1.png",
+        "nc34-kartonaj/2.png",
+        "nc34-kartonaj/3.png",
+        "nc34-kartonaj/4.png",
+        "nc34-kartonaj/5.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "PHP",
+          "MySQL",
+          "HTML",
+          "CSS",
+          "Javascript"
+        ],
+        "instruments": [
+          "NetCat CMS"
+        ],
+        "frameworks": [
+        ]
+      }
+    },
+    "nc34-kuban-electro": {
+      "name": "Kuban Electro",
+      "description": "[nc34] Online store of electronics.",
+      "text": "nc34-kuban-electro/text.md",
+      "logo": "nc34-kuban-electro/logo.png",
+      "gallery": [
+        "nc34-kuban-electro/1.png",
+        "nc34-kuban-electro/2.png",
+        "nc34-kuban-electro/3.png",
+        "nc34-kuban-electro/4.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "PHP",
+          "MySQL",
+          "HTML",
+          "CSS",
+          "Javascript"
+        ],
+        "instruments": [
+          "NetCat CMS"
+        ],
+        "frameworks": [
+        ]
+      }
+    },
+    "nc34-planet-jeans": {
+      "name": "Planet Jeans",
+      "description": "[nc34] Online store of clothes.",
+      "text": "nc34-planet-jeans/text.md",
+      "logo": "nc34-planet-jeans/logo.png",
+      "gallery": [
+        "nc34-planet-jeans/1.png",
+        "nc34-planet-jeans/2.png",
+        "nc34-planet-jeans/3.png",
+        "nc34-planet-jeans/4.png",
+        "nc34-planet-jeans/5.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "PHP",
+          "MySQL",
+          "HTML",
+          "CSS",
+          "Javascript"
+        ],
+        "instruments": [
+          "NetCat CMS"
+        ],
+        "frameworks": [
+        ]
+      }
+    },
+    "nc34-pump-cnp": {
+      "name": "Pump CNP",
+      "description": "[nc34] Online store of pumps.",
+      "text": "nc34-pump-cnp/text.md",
+      "logo": "nc34-pump-cnp/logo.png",
+      "gallery": [
+        "nc34-pump-cnp/1.png",
+        "nc34-pump-cnp/2.png",
+        "nc34-pump-cnp/3.png",
+        "nc34-pump-cnp/4.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "PHP",
+          "MySQL",
+          "HTML",
+          "CSS",
+          "Javascript"
+        ],
+        "instruments": [
+          "NetCat CMS"
+        ],
+        "frameworks": [
+        ]
+      }
+    },
+    "nc34-termoclub": {
+      "name": "Termoclub",
+      "description": "[nc34] Online store of heating equipments.",
+      "text": "nc34-termoclub/text.md",
+      "logo": "nc34-termoclub/logo.png",
+      "gallery": [
+        "nc34-termoclub/1.png",
+        "nc34-termoclub/2.png",
+        "nc34-termoclub/3.png",
+        "nc34-termoclub/4.png",
+        "nc34-termoclub/5.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "PHP",
+          "MySQL",
+          "HTML",
+          "CSS",
+          "Javascript"
+        ],
+        "instruments": [
+          "NetCat CMS"
+        ],
+        "frameworks": [
+        ]
+      }
+    },
+    "nc34-zigmund-shtain": {
+      "name": "Zigmund Shtain",
+      "description": "[nc34] A company online store.",
+      "text": "nc34-zigmund-shtain/text.md",
+      "logo": "nc34-zigmund-shtain/logo.png",
+      "gallery": [
+        "nc34-zigmund-shtain/1.png",
+        "nc34-zigmund-shtain/2.png",
+        "nc34-zigmund-shtain/3.png",
+        "nc34-zigmund-shtain/4.png",
+        "nc34-zigmund-shtain/5.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "PHP",
+          "MySQL",
+          "HTML",
+          "CSS",
+          "Javascript"
+        ],
+        "instruments": [
+          "NetCat CMS"
+        ],
+        "frameworks": [
         ]
       }
     }

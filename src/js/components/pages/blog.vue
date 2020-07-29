@@ -1,7 +1,10 @@
 <template>
-    <div class="row" v-if="blog">
-        <div class="col-12" v-for="(post, postKeyword) in posts">
-            <c-post-preview :post="post" :postKeyword="postKeyword" :key="postKeyword"/>
+    <div class="row">
+        <c-preloader v-if="!loaded"/>
+        <div v-if="loaded">
+            <div class="col-12" v-for="(post, postKeyword) in posts">
+                <c-post-preview :post="post" :postKeyword="postKeyword" :key="postKeyword"/>
+            </div>
         </div>
     </div>
 </template>
@@ -11,10 +14,12 @@
     import Component from "vue-class-component";
     import PostPreviewComponent from "./blog/post-preview.vue";
     import {blogRes} from "../../store/resources";
+    import PreloaderComponent from "../partials/preloader.vue";
 
     @Component({
         components: {
-            cPostPreview: PostPreviewComponent
+            cPostPreview: PostPreviewComponent,
+            cPreloader: PreloaderComponent
         }
     })
     export default class BlogPageComponent extends Vue {
@@ -29,6 +34,10 @@
 
         get posts() {
             return this.blog.posts;
+        }
+
+        get loaded() {
+            return this.blog;
         }
 
     }
