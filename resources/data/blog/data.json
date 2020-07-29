@@ -4,6 +4,7 @@
       "title": "How to write business logic",
       "preview": "It's sometimes very hard to start writing code after getting a task and planning what to do. For this case I have a trick helps me to do that. Let me describe it for you...",
       "logo": "how-to-write-business-logic/logo.jpg",
+      "text": "how-to-write-business-logic/text.md",
       "dateCreated": "17.05.2020",
       "tags": [
         "development",

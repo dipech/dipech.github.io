@@ -3,7 +3,7 @@
     "oktarget": {
       "name": "OKTarget",
       "description": "SAAS – a lot of marketing tools for searching target (hot) audiences.",
-      "text": "text.md",
+      "text": "oktarget/text.md",
       "logo": "oktarget/logo.png",
       "gallery": [
         "oktarget/interface.jpg"
@@ -35,7 +35,7 @@
     "purple": {
       "name": "Purple",
       "description": "2D casual game for mobile phones (were distributed on PlayMarket for a while).",
-      "text": "text.md",
+      "text": "purple/text.md",
       "logo": "purple/logo.jpg",
       "gallery": [
         "purple/1.png",
@@ -64,7 +64,7 @@
     "code-injector": {
       "name": "Code Injector",
       "description": "A useful Google Chrome extension for injection your code (JS, CSS, HTML) into a page.",
-      "text": "text.md",
+      "text": "code-injector/text.md",
       "logo": "code-injector/logo.jpg",
       "gallery": [
         "code-injector/1.png",
@@ -88,7 +88,7 @@
     "voxel-model-maker": {
       "name": "Voxel Model Maker",
       "description": "A tool for 3D modeling.",
-      "text": "text.md",
+      "text": "voxel-model-maker/text.md",
       "logo": "voxel-model-maker/logo.jpg",
       "gallery": [
         "voxel-model-maker/1.png",
@@ -113,7 +113,7 @@
     "encapsuweb": {
       "name": "EncapsuWeb",
       "description": "Make your own native macOS apps.",
-      "text": "text.md",
+      "text": "encapsuweb/text.md",
       "logo": "encapsuweb/logo.png",
       "gallery": [
         "encapsuweb/1.png",
@@ -127,6 +127,26 @@
           "Objective C"
         ],
         "instruments": [],
+        "frameworks": []
+      }
+    },
+    "heat-transfer-simulator": {
+      "name": "Heat Transfer Simulator",
+      "description": "Simulate heat transfer on drawn area.",
+      "text": "heat-transfer-simulator/text.md",
+      "logo": "heat-transfer-simulator/logo.png",
+      "gallery": [
+        "heat-transfer-simulator/window.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "desktop",
+        "languages": [
+          "C++"
+        ],
+        "instruments": [
+          "CUDA"
+        ],
         "frameworks": []
       }
     }

@@ -8,7 +8,7 @@
 <script lang="ts">
     import Vue from "vue";
     import Component from "vue-class-component";
-    import {aboutMeRes, aboutMeTextRes} from "../../store/resources";
+    import {aboutMeRes} from "../../store/resources";
     import CarouselComponent from "../partials/carousel.vue";
     import {ApiResource} from "../../classes/api-resource";
     import MarkdownComponent from "../partials/markdown.vue";
@@ -21,9 +21,10 @@
     })
     export default class AboutMePageComponent extends Vue {
 
+        private aboutMeTextRes: ApiResource | null = null;
+
         mounted() {
             this.$store.commit("ensureResourceIsLoaded", aboutMeRes);
-            this.$store.commit("ensureResourceIsLoaded", aboutMeTextRes);
         }
 
         get about() {
@@ -31,7 +32,14 @@
         }
 
         get text() {
-            return this.$store.state[aboutMeTextRes.key];
+            if (!this.about && !this.aboutMeTextRes) {
+                return null;
+            }
+            if (!this.aboutMeTextRes) {
+                this.aboutMeTextRes = new ApiResource("about-me", this.about.text);
+                this.$store.commit("ensureResourceIsLoaded", this.aboutMeTextRes);
+            }
+            return this.$store.state[this.aboutMeTextRes.key];
         }
 
         get images(): ApiResource[] {
