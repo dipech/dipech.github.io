@@ -87,7 +87,7 @@
     },
     "voxel-model-maker": {
       "name": "Voxel Model Maker",
-      "description": "Program for 3D voxel model editing.",
+      "description": "A tool for 3D modeling.",
       "text": "text.md",
       "logo": "voxel-model-maker/logo.jpg",
       "gallery": [

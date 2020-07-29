@@ -52,7 +52,8 @@
         border: 0;
     }
 
-    .tns-nav > button:focus {
+    .tns-nav > button:focus,
+    .tns-item:focus {
         outline: none;
         box-shadow: none;
     }

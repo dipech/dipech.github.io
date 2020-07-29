@@ -1,6 +1,6 @@
 <template>
     <div>
-        <vue-markdown :emoji="false">{{ text }}</vue-markdown>
+        <vue-markdown :emoji="false" :anchorAttributes="anchorAttributes">{{ text }}</vue-markdown>
     </div>
 </template>
 
@@ -19,6 +19,13 @@
 
         @Prop()
         private text!: string;
+
+        get anchorAttributes() {
+            return {
+                target: "_blank",
+                rel: "nofollow"
+            };
+        }
 
     }
 </script>
