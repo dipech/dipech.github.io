@@ -3,6 +3,7 @@
     "oktarget": {
       "name": "OKTarget",
       "description": "SAAS – a lot of marketing tools for searching target (hot) audiences.",
+      "year": 2017,
       "text": "oktarget/text.md",
       "logo": "oktarget/logo.png",
       "gallery": [
@@ -36,6 +37,7 @@
     "alifba": {
       "name": "Alifba",
       "description": "A huge online store.",
+      "year": 2017,
       "text": "alifba/text.md",
       "logo": "alifba/logo.png",
       "gallery": [
@@ -68,6 +70,7 @@
     "code-injector": {
       "name": "Code Injector",
       "description": "A useful Google Chrome extension for injection your code (JS, CSS, HTML) into a page.",
+      "year": 2017,
       "text": "code-injector/text.md",
       "logo": "code-injector/logo.jpg",
       "gallery": [
@@ -92,6 +95,7 @@
     "purple": {
       "name": "Purple",
       "description": "2D casual game for mobile phones (were distributed on PlayMarket for a while).",
+      "year": 2016,
       "text": "purple/text.md",
       "logo": "purple/logo.jpg",
       "gallery": [
@@ -121,6 +125,7 @@
     "voxel-model-maker": {
       "name": "Voxel Model Maker",
       "description": "A tool for 3D modeling.",
+      "year": 2013,
       "text": "voxel-model-maker/text.md",
       "logo": "voxel-model-maker/logo.jpg",
       "gallery": [
@@ -146,6 +151,7 @@
     "heat-transfer-simulator": {
       "name": "Heat Transfer Simulator",
       "description": "Simulate heat transfer on drawn area.",
+      "year": 2012,
       "text": "heat-transfer-simulator/text.md",
       "logo": "heat-transfer-simulator/logo.png",
       "gallery": [
@@ -169,6 +175,7 @@
     "water-spill-simulator": {
       "name": "Water Spill Simulator",
       "description": "Simulate water spill on loaded area.",
+      "year": 2014,
       "text": "water-spill-simulator/text.md",
       "logo": "water-spill-simulator/logo.png",
       "gallery": [
@@ -195,6 +202,7 @@
     "shallow-water-simulator": {
       "name": "Shallow Water Simulator",
       "description": "Improved water spill simulator.",
+      "year": 2015,
       "text": "shallow-water-simulator/text.md",
       "logo": "shallow-water-simulator/logo.png",
       "gallery": [
@@ -221,6 +229,7 @@
     "encapsuweb": {
       "name": "EncapsuWeb",
       "description": "Make your own native macOS apps.",
+      "year": 2014,
       "text": "encapsuweb/text.md",
       "logo": "encapsuweb/logo.png",
       "gallery": [
@@ -241,6 +250,7 @@
     "waker": {
       "name": "Waker",
       "description": "Wakes you up at your destination.",
+      "year": 2014,
       "text": "waker/text.md",
       "logo": "waker/logo.png",
       "gallery": [
@@ -263,6 +273,7 @@
     "work-time-manager": {
       "name": "Work Time Manager",
       "description": "Manage your work/time balance.",
+      "year": 2014,
       "text": "work-time-manager/text.md",
       "logo": "work-time-manager/logo.png",
       "gallery": [
@@ -287,6 +298,7 @@
     "youtube-spammer": {
       "name": "Youtube Spammer",
       "description": "Dating videos auto-poster.",
+      "year": 2015,
       "text": "youtube-spammer/text.md",
       "logo": "youtube-spammer/logo.png",
       "gallery": [
@@ -308,6 +320,7 @@
     "voxel-model-maker-web": {
       "name": "Voxel Model Maker Web",
       "description": "Stripped-down version of VMM.",
+      "year": 2015,
       "text": "voxel-model-maker-web/text.md",
       "logo": "voxel-model-maker-web/logo.png",
       "gallery": [
@@ -335,6 +348,7 @@
     "stl-viewer": {
       "name": "STL Viewer",
       "description": "Based on VMM STL viewer.",
+      "year": 2015,
       "text": "stl-viewer/text.md",
       "logo": "stl-viewer/logo.png",
       "gallery": [
@@ -360,6 +374,7 @@
     "simple-solar-system": {
       "name": "Simple Solar System",
       "description": "Dynamic web solar system.",
+      "year": 2015,
       "text": "simple-solar-system/text.md",
       "logo": "simple-solar-system/logo.png",
       "gallery": [
@@ -386,6 +401,7 @@
     "word-cards": {
       "name": "Word Cards",
       "description": "Learn new words easily.",
+      "year": 2014,
       "text": "word-cards/text.md",
       "logo": "word-cards/logo.png",
       "gallery": [
@@ -416,6 +432,7 @@
     "dae-viewer": {
       "name": "DAE Viewer",
       "description": "Web-viewer for DAE and STL models.",
+      "year": 2015,
       "text": "dae-viewer/text.md",
       "logo": "dae-viewer/logo.png",
       "gallery": [
@@ -441,6 +458,7 @@
     "efitail": {
       "name": "Efitail",
       "description": "Landing page for a beauty-master",
+      "year": 2016,
       "text": "efitail/text.md",
       "logo": "efitail/logo.png",
       "gallery": [
@@ -471,6 +489,7 @@
     "awesome-news": {
       "name": "Awesome News",
       "description": "A news website.",
+      "year": 2015,
       "text": "awesome-news/text.md",
       "logo": "awesome-news/logo.png",
       "gallery": [
@@ -498,6 +517,7 @@
     "nc34-antonov-race": {
       "name": "Antonov Race",
       "description": "[nc34] Website for registering in competitions.",
+      "year": 2016,
       "text": "nc34-antonov-race/text.md",
       "logo": "nc34-antonov-race/logo.png",
       "gallery": [
@@ -526,6 +546,7 @@
     "nc34-aq-filter": {
       "name": "Aq Filter",
       "description": "[nc34] Online store of water filter.",
+      "year": 2015,
       "text": "nc34-aq-filter/text.md",
       "logo": "nc34-aq-filter/logo.png",
       "gallery": [
@@ -553,6 +574,7 @@
     "nc34-zigmund-shtain-club": {
       "name": "Aq Filter",
       "description": "[nc34] Corporate website.",
+      "year": 2017,
       "text": "nc34-zigmund-shtain-club/text.md",
       "logo": "nc34-zigmund-shtain-club/logo.jpg",
       "gallery": [
@@ -579,6 +601,7 @@
     "nc34-content-labs": {
       "name": "Content Labs",
       "description": "[nc34] Online store of contents for online stores :)",
+      "year": 2017,
       "text": "nc34-content-labs/text.md",
       "logo": "nc34-content-labs/logo.png",
       "gallery": [
@@ -606,6 +629,7 @@
     "nc34-dsk": {
       "name": "DSK",
       "description": "[nc34] Online store of apartments.",
+      "year": 2016,
       "text": "nc34-dsk/text.md",
       "logo": "nc34-dsk/logo.png",
       "gallery": [
@@ -636,6 +660,7 @@
     "nc34-foxberry-pro": {
       "name": "Foxberry Pro",
       "description": "[nc34] Online store of appliances.",
+      "year": 2016,
       "text": "nc34-foxberry-pro/text.md",
       "logo": "nc34-foxberry-pro/logo.png",
       "gallery": [
@@ -663,6 +688,7 @@
     "nc34-kartonaj": {
       "name": "Kartonaj",
       "description": "[nc34] Online store of cardboard products.",
+      "year": 2017,
       "text": "nc34-kartonaj/text.md",
       "logo": "nc34-kartonaj/logo.png",
       "gallery": [
@@ -692,6 +718,7 @@
     "nc34-kuban-electro": {
       "name": "Kuban Electro",
       "description": "[nc34] Online store of electronics.",
+      "year": 2015,
       "text": "nc34-kuban-electro/text.md",
       "logo": "nc34-kuban-electro/logo.png",
       "gallery": [
@@ -720,6 +747,7 @@
     "nc34-planet-jeans": {
       "name": "Planet Jeans",
       "description": "[nc34] Online store of clothes.",
+      "year": 2016,
       "text": "nc34-planet-jeans/text.md",
       "logo": "nc34-planet-jeans/logo.png",
       "gallery": [
@@ -749,6 +777,7 @@
     "nc34-pump-cnp": {
       "name": "Pump CNP",
       "description": "[nc34] Online store of pumps.",
+      "year": 2016,
       "text": "nc34-pump-cnp/text.md",
       "logo": "nc34-pump-cnp/logo.png",
       "gallery": [
@@ -777,6 +806,7 @@
     "nc34-termoclub": {
       "name": "Termoclub",
       "description": "[nc34] Online store of heating equipments.",
+      "year": 2016,
       "text": "nc34-termoclub/text.md",
       "logo": "nc34-termoclub/logo.png",
       "gallery": [
@@ -806,6 +836,7 @@
     "nc34-zigmund-shtain": {
       "name": "Zigmund Shtain",
       "description": "[nc34] A company online store.",
+      "year": 2016,
       "text": "nc34-zigmund-shtain/text.md",
       "logo": "nc34-zigmund-shtain/logo.png",
       "gallery": [

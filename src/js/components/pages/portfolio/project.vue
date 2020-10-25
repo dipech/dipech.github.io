@@ -14,6 +14,10 @@
                 </div>
             </template>
             <div>
+                <b>Year:</b>
+                <c-badge>{{ project.year }}</c-badge>
+            </div>
+            <div>
                 <b>Platform:</b>
                 <c-badge>{{ project.technologies.platform }}</c-badge>
             </div>
