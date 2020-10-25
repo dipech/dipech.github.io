@@ -159,7 +159,7 @@
       "employmentType": "self-employment",
       "location": "Russia, Saint-Petersburg",
       "startDate": "10.2017",
-      "endDate": null,
+      "endDate": "06.2020",
       "duties": [
         "Development of the system from scratch with Symfony framework.",
         "Development of a multi-threaded system for performing users tasks.",
@@ -185,7 +185,7 @@
       "employmentType": "freelance",
       "location": "Russia, Makhachkala",
       "startDate": "01.2017",
-      "endDate": null,
+      "endDate": "11.2020",
       "duties": [
         "Development of all the functions from scratch with Laravel framework.",
         "Development of all the basic functions of an online shopping website.",
@@ -198,7 +198,7 @@
         "JS (VueJS)",
         "Linux (Docker + Gitlab CI)",
         "Redis",
-        "Spring Boot (for an internal tool)"
+        "Spring Boot (internal tools)"
       ]
     },
     {
