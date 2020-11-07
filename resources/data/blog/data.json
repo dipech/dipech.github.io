@@ -1,25 +1,5 @@
 {
   "posts": {
-    "how-to-write-business-logic": {
-      "title": "How to write business logic",
-      "preview": "It's sometimes tough to start writing code after getting a task and planning what to do. For this case I have a trick helps me to do that. Let me get you through it...",
-      "logo": "how-to-write-business-logic/logo.jpg",
-      "text": "how-to-write-business-logic/text.md",
-      "dateCreated": "17.05.2020",
-      "dateUpdated": "07.10.2020",
-      "tags": [
-        "Tips and Tricks"
-      ]
-    },
-    "software-engineering-principles-practices-and-methodologies": {
-      "title": "Software engineering principles, practices, and methodologies",
-      "preview": "A brief overview of common principles, practices, and methodologies",
-      "logo": "se-principles/logo.png",
-      "text": "se-principles/text.md",
-      "dateCreated": "04.10.2020",
-      "dateUpdated": null,
-      "tags": []
-    },
     "java-related-technologies-overview": {
       "title": "Java-related technologies overview",
       "preview": "A brief overview of java technologies which I've ever faced with",
@@ -63,7 +43,9 @@
       "text": "java-questions-basic/text.md",
       "dateCreated": "07.10.2020",
       "dateUpdated": null,
-      "tags": []
+      "tags": [
+        "Java"
+      ]
     },
     "java-questions-advanced": {
       "title": "Java interview questions (advanced)",
@@ -72,7 +54,9 @@
       "text": "java-questions-advanced/text.md",
       "dateCreated": "07.10.2020",
       "dateUpdated": null,
-      "tags": []
+      "tags": [
+        "Java"
+      ]
     },
     "java-collections-questions": {
       "title": "Java collections interview questions",
@@ -81,7 +65,9 @@
       "text": "java-collections-questions/text.md",
       "dateCreated": "07.10.2020",
       "dateUpdated": null,
-      "tags": []
+      "tags": [
+        "Java"
+      ]
     },
     "java-concurrency-questions": {
       "title": "Java concurrency interview questions",
@@ -90,7 +76,9 @@
       "text": "java-concurrency-questions/text.md",
       "dateCreated": "07.10.2020",
       "dateUpdated": null,
-      "tags": []
+      "tags": [
+        "Java"
+      ]
     },
     "java-persistence-questions": {
       "title": "Java concurrency interview questions",
@@ -99,7 +87,9 @@
       "text": "java-persistence-questions/text.md",
       "dateCreated": "07.10.2020",
       "dateUpdated": null,
-      "tags": []
+      "tags": [
+        "Java"
+      ]
     },
     "interview-questions": {
       "title": "Interview questions",
@@ -109,6 +99,26 @@
       "dateCreated": "07.10.2020",
       "dateUpdated": null,
       "tags": []
+    },
+    "software-engineering-principles-practices-and-methodologies": {
+      "title": "Software engineering principles, practices, and methodologies",
+      "preview": "A brief overview of common principles, practices, and methodologies",
+      "logo": "se-principles/logo.png",
+      "text": "se-principles/text.md",
+      "dateCreated": "04.10.2020",
+      "dateUpdated": null,
+      "tags": []
+    },
+    "how-to-write-business-logic": {
+      "title": "How to write business logic",
+      "preview": "It's sometimes tough to start writing code after getting a task and planning what to do. For this case I have a trick helps me to do that. Let me get you through it...",
+      "logo": "how-to-write-business-logic/logo.jpg",
+      "text": "how-to-write-business-logic/text.md",
+      "dateCreated": "17.05.2020",
+      "dateUpdated": "07.10.2020",
+      "tags": [
+        "Tips and Tricks"
+      ]
     }
   }
 }
