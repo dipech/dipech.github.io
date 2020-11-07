@@ -2,14 +2,113 @@
   "posts": {
     "how-to-write-business-logic": {
       "title": "How to write business logic",
-      "preview": "It's sometimes very hard to start writing code after getting a task and planning what to do. For this case I have a trick helps me to do that. Let me describe it for you...",
+      "preview": "It's sometimes tough to start writing code after getting a task and planning what to do. For this case I have a trick helps me to do that. Let me get you through it...",
       "logo": "how-to-write-business-logic/logo.jpg",
       "text": "how-to-write-business-logic/text.md",
       "dateCreated": "17.05.2020",
+      "dateUpdated": "07.10.2020",
       "tags": [
-        "development",
-        "OOP"
+        "Tips and Tricks"
       ]
+    },
+    "software-engineering-principles-practices-and-methodologies": {
+      "title": "Software engineering principles, practices, and methodologies",
+      "preview": "A brief overview of common principles, practices, and methodologies",
+      "logo": "se-principles/logo.png",
+      "text": "se-principles/text.md",
+      "dateCreated": "04.10.2020",
+      "dateUpdated": null,
+      "tags": []
+    },
+    "java-related-technologies-overview": {
+      "title": "Java-related technologies overview",
+      "preview": "A brief overview of java technologies which I've ever faced with",
+      "logo": "java-technologies/logo.png",
+      "text": "java-technologies/text.md",
+      "dateCreated": "07.10.2020",
+      "dateUpdated": null,
+      "tags": []
+    },
+    "algorithms": {
+      "title": "Algorithms",
+      "preview": "Let's walk through some basic algorithms",
+      "logo": "algorithms/logo.png",
+      "text": "algorithms/text.md",
+      "dateCreated": "07.10.2020",
+      "dateUpdated": null,
+      "tags": []
+    },
+    "data-structures": {
+      "title": "Data structures",
+      "preview": "Let's walk through some basic data structures",
+      "logo": "data-structures/logo.png",
+      "text": "data-structures/text.md",
+      "dateCreated": "07.10.2020",
+      "dateUpdated": null,
+      "tags": []
+    },
+    "software-design-patterns": {
+      "title": "Software design patterns",
+      "preview": "Let's walk through widely used software design patterns",
+      "logo": "software-design-patterns/logo.png",
+      "text": "software-design-patterns/text.md",
+      "dateCreated": "07.10.2020",
+      "dateUpdated": null,
+      "tags": []
+    },
+    "java-questions-basic": {
+      "title": "Java interview questions (basic)",
+      "preview": "A collection of basic java interview questions and answers",
+      "logo": "java-questions-basic/logo.png",
+      "text": "java-questions-basic/text.md",
+      "dateCreated": "07.10.2020",
+      "dateUpdated": null,
+      "tags": []
+    },
+    "java-questions-advanced": {
+      "title": "Java interview questions (advanced)",
+      "preview": "A collection of advanced java interview questions and answers",
+      "logo": "java-questions-advanced/logo.png",
+      "text": "java-questions-advanced/text.md",
+      "dateCreated": "07.10.2020",
+      "dateUpdated": null,
+      "tags": []
+    },
+    "java-collections-questions": {
+      "title": "Java collections interview questions",
+      "preview": "A list of java collections interview questions and answers",
+      "logo": "java-collections-questions/logo.png",
+      "text": "java-collections-questions/text.md",
+      "dateCreated": "07.10.2020",
+      "dateUpdated": null,
+      "tags": []
+    },
+    "java-concurrency-questions": {
+      "title": "Java concurrency interview questions",
+      "preview": "A list of java concurrency interview questions and answers",
+      "logo": "java-concurrency-questions/logo.png",
+      "text": "java-concurrency-questions/text.md",
+      "dateCreated": "07.10.2020",
+      "dateUpdated": null,
+      "tags": []
+    },
+    "java-persistence-questions": {
+      "title": "Java concurrency interview questions",
+      "preview": "A collection of java persistence interview questions and answers",
+      "logo": "java-persistence-questions/logo.png",
+      "text": "java-persistence-questions/text.md",
+      "dateCreated": "07.10.2020",
+      "dateUpdated": null,
+      "tags": []
+    },
+    "interview-questions": {
+      "title": "Interview questions",
+      "preview": "Not related to any language interview questions",
+      "logo": "interview-questions/logo.png",
+      "text": "interview-questions/text.md",
+      "dateCreated": "07.10.2020",
+      "dateUpdated": null,
+      "tags": []
     }
   }
 }

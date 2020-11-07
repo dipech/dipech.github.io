@@ -3,7 +3,8 @@
         <c-preloader v-if="!loaded"/>
         <div v-if="loaded">
             <div class="col-12" v-for="(post, postKeyword) in posts">
-                <c-post-preview :post="post" :postKeyword="postKeyword" :key="postKeyword"/>
+                <c-post-preview :post="post" :postKeyword="postKeyword" :key="postKeyword"
+                                :class="{ 'mb-3': !isLast(postKeyword) }"/>
             </div>
         </div>
     </div>
@@ -38,6 +39,11 @@
 
         get loaded() {
             return this.blog;
+        }
+
+        isLast(postKeyword:string) {
+            let keywords = Object.keys(this.posts);
+            return keywords[keywords.length - 1] === postKeyword;
         }
 
     }
