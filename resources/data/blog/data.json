@@ -7,7 +7,9 @@
       "text": "java-technologies/text.md",
       "dateCreated": "07.10.2020",
       "dateUpdated": null,
-      "tags": []
+      "tags": [
+        "Java"
+      ]
     },
     "algorithms": {
       "title": "Algorithms",
@@ -96,6 +98,15 @@
       "preview": "Not related to any language interview questions",
       "logo": "interview-questions/logo.png",
       "text": "interview-questions/text.md",
+      "dateCreated": "07.10.2020",
+      "dateUpdated": null,
+      "tags": []
+    },
+    "interview-tasks": {
+      "title": "Interview tasks",
+      "preview": "Some collection of interview questions I faced with",
+      "logo": "interview-tasks/logo.png",
+      "text": "interview-tasks/text.md",
       "dateCreated": "07.10.2020",
       "dateUpdated": null,
       "tags": []

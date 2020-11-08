@@ -1,9 +1,39 @@
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+## QuickSort
 
-## Donec sit amet faucibus mauris
+To be done
 
-Aliquam erat volutpat.
+--------------------
 
-## Aenean a elit in massa dapibus commodo
+## Insertion Sort
 
-In interdum nibh ut ante tempus, sit amet tincidunt quam scelerisque.
+To be done
+
+--------------------
+
+## Bubble Sort
+
+To be done
+
+--------------------
+
+## Reverse a linked list
+
+To be done
+
+--------------------
+
+## Reverse a binary tree
+
+To be done
+
+--------------------
+
+## Depth First Search
+
+To be done
+
+--------------------
+
+## Breadth First Search
+
+To be done
