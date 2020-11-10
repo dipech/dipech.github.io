@@ -1,30 +1,58 @@
 ## 1. Methods in `Object` class.
 
-- **equals**: Метод для сравнения объектов. По-умолчанию сравнивает значения ссылок, что зачастую не является приемлемой бизнес-логикой для данного объекта.
-- **hashCode**: Возвращает хэш-код - число, которое сопоставляется с данным объектом. Нужно в том числе для правильной работы классов стандартной библиотеки (например: hashMap).
-- **clone**: Копирует объект путём копирования области памяти. *Внимание! Для ссылочных типов, соответственно, скопируется значение ссылки, по-этому не происходит глубокого копирования объекта!*
-- **finalize**: Вызывается когда GC удаляет объект. Внутри метода нужно удалять какие-нибудь данные внутри объекта, но делать это не рекоммендуется, т.к. эта обязанность полностью лежит на GC.
-- **getClass**: Возвращает объект с информацией о классе объекта.
-- **toString**: Преобразует объект в строку.
-- **registerNatives**: Метод для регистрации нативных функций с указанными именами, а не по стандарту.
-- **notify**, **notifyAll**, **wait**: Методы, нужные для синхронизации в многопоточных приложениях. Потеряли актуальность с версии 1.5, т.к. появились высокоуровневые конструкции, которые позволяют реализовывать синхронизацию без этих методов. *Подробное описание в комментариях, т.к. знать нужно, но использовать вряд ли придётся.*
+```
+public boolean equals(Object obj);
+```
+
+This method is used to determine equality of two objects. By default, it compares values of references (is a given object the same). 
+Should be overridden in most cases.
+
+```
+public native int hashCode();
+```
+
+Returns a number (a hash code value) for an object. Widely used in collections, `HashMap` including.
+
+```
+protected native Object clone() throws CloneNotSupportedException;
+```
+
+Creates and returns a copy of this object.
+**Warning:** it doesn't really clone non-primitive types, it just copies a reference value. You may want to override this method and implement a real copying of non-primitive types.
+
+```
+public String toString();
+```
+
+Returns a string representation of the object.
+
+```
+protected void finalize() throws Throwable;
+```
+
+Called by the garbage collector on an object when garbage collection determines that there are no more references to the object.
+It is supposed to remove some objects here, but it isn't recommended using this method, because it is a work entirely for GC.
+
+**There are some other methods in `Object`:**
+- `registerNatives`: Registers native functions for class Object whatever it means. It can be useful for giving custom names for native functions which will be registered.
+- `notify`, `notifyAll`, `wait`: These've lost their actuality since Java 1.5 because now we have simpler and more powerful synchronization abstractions.
 
 --------------------
 
 ## 2. Is Java pass-by-reference or pass-by-value?
 
-Java **всегда** передаёт параметры **по значению**.
-Если подан **примитивный тип** - копируется и передаётся его значение.
-Если подан **объект** - копируется и передаётся **значение ссылки** на объект в куче.
+Java is always pass-by-value. Though there is a tricky point:
+- For primitive types, values are copied.
+- For non-primitive types, values of references to objects inside a heap are copied.
 
 --------------------
 
 ## 3. What is JDK, JRE, JVM? What is a compiler?
 
-- **JDK** (*Java Development Kit*) – комплект разработчика приложений на языке Java, включает в себя **JRE**, и прочие вещи, нужные для разработки: компилятор **javac**, jar архиватор, генератор javadoc, и кучу всего еще.
-- **JRE** (*Java Runtime Environment*) – это совокупность **JVM** и **библиотек Java** классов, **необходимая для выполнения программ**, написанных на языке Java.
-- **JVM** (*Java Development Kit*) – виртуальная машина, выполняющая **байт-код Java**.
-- **Compiler** – to be done.
+- **JDK** (*Java Development Kit*): A bunch of tools forms an environment for developing java applications. It includes **JRE**, compiler javac, jar archiver, javadoc generator, and so on and so forth.
+- **JRE** (*Java Runtime Environment*): Consists of **JVM** and java libraries, which are required for running programs written in java.
+- **JVM** (*Java Development Kit*): This is a virtual machine which able to execute java programs by running their bytecode instructions.
+- **Compiler**: This is a tool which compiles java source code into a bytecode.
 
 --------------------
 
