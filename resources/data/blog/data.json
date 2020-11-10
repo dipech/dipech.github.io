@@ -1,15 +1,25 @@
 {
   "posts": {
-    "java-related-technologies-overview": {
-      "title": "Java-related technologies overview",
-      "preview": "A brief overview of java technologies which I've ever faced with",
-      "logo": "java-technologies/logo.png",
-      "text": "java-technologies/text.md",
-      "dateCreated": "07.10.2020",
+    "algoexpert-challenge": {
+      "title": "AlgoExpert challenge",
+      "preview": "Getting all the presented in algoexpert.io questions done",
+      "logo": "algoexpert-challenge/logo.png",
+      "text": "algoexpert-challenge/text.md",
+      "dateCreated": "10.10.2020",
       "dateUpdated": null,
       "tags": [
-        "Java"
+        "Java",
+        "Algorithms"
       ]
+    },
+    "systemsexpert-challenge": {
+      "title": "SystemsExpert challenge",
+      "preview": "Getting all the presented in systemsexpert.io questions done",
+      "logo": "systemsexpert-challenge/logo.png",
+      "text": "systemsexpert-challenge/text.md",
+      "dateCreated": "10.10.2020",
+      "dateUpdated": null,
+      "tags": []
     },
     "algorithms": {
       "title": "Algorithms",
@@ -28,6 +38,26 @@
       "dateCreated": "07.10.2020",
       "dateUpdated": null,
       "tags": []
+    },
+    "systems-fundamentals": {
+      "title": "Systems fundamentals",
+      "preview": "Let's walk through some basic systems concepts",
+      "logo": "systems-fundamentals/logo.svg",
+      "text": "systems-fundamentals/text.md",
+      "dateCreated": "11.10.2020",
+      "dateUpdated": null,
+      "tags": []
+    },
+    "java-related-technologies-overview": {
+      "title": "Java-related technologies overview",
+      "preview": "A brief overview of java technologies which I've ever faced with",
+      "logo": "java-technologies/logo.png",
+      "text": "java-technologies/text.md",
+      "dateCreated": "07.10.2020",
+      "dateUpdated": null,
+      "tags": [
+        "Java"
+      ]
     },
     "software-design-patterns": {
       "title": "Software design patterns",
