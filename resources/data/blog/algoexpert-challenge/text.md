@@ -1,4 +1,15 @@
-## [#1][Easy] Nth Fibonacci
+I've decided to improve my skills of solving algorithmic questions and writing code without an IDE.
+I found many services like leetcode, but decided to stick with algoexpert.io.
+Here I'm publishing my solutions of questions I faced there. Every solution I published is written 
+before opening any tips, hints, ready solutions, etc.
+So, my way of practicing looks like that:
+- Pick a question.
+- Read a prompt.
+- Write one working solution.
+- Write one or two other solutions with solving the task in different ways and trying to improve time and space complexities.
+- Read hints, watch a video explanation, analyse their code.      
+
+## [Easy] Nth Fibonacci
 
 > Write a function that takes in an integer n and returns the nth Fibonacci number.
 
@@ -87,7 +98,7 @@ class Program {
 
 --------------------
 
-## [#16][Medium] River Sizes
+## [Medium] River Sizes
 
 > Write a function that returns an array of the sizes of all rivers represented in the input matrix.
 
@@ -258,3 +269,130 @@ class Program {
 ```
   
 </details>
+
+
+--------------------
+
+## [Hard] Largest Range
+
+> Write a function that takes in an array of integers and returns an array of length 2 representing the largest range 
+> of integers contained in that array.
+
+<details>
+  <summary>A dirty solution using sorting (not a good solution)</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n*log(n)) | O(n) |
+
+```
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+class Program {
+    public static int[] largestRange(int[] array) {
+        if (array.length == 1) {
+            return new int[]{array[0], array[0]};
+        }
+        // O(n*log(n)), can I do it better?
+        List<Integer> sorted = IntStream.of(array).boxed().sorted().collect(Collectors.toList());
+        int rangeStart = sorted.get(0);
+        int rangeFinish = rangeStart;
+        int largestRangeStart = 0, largestRangeFinish = 0;
+        for (int index = 1; index < sorted.size(); index++) {
+            int current = sorted.get(index);
+            boolean isRangeKeeped = current == rangeFinish || current == rangeFinish + 1;
+            if (isRangeKeeped) {
+                rangeFinish = current;
+            }
+            if (calcRangeLength(rangeStart, rangeFinish) >
+                calcRangeLength(largestRangeStart, largestRangeFinish)) {
+                largestRangeStart = rangeStart;
+                largestRangeFinish = rangeFinish;
+            }
+            if (!isRangeKeeped) {
+                rangeStart = rangeFinish = current;
+            }
+        }
+        return new int[]{largestRangeStart, largestRangeFinish};
+    }
+
+    private static int calcRangeLength(int rangeStart, int rangeFinish) {
+        return rangeFinish - rangeStart;
+    }
+}
+```
+
+</details>
+
+<details>
+  <summary>A far better solution with using a hashmap of visited numbers</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n) | O(n) |
+
+```
+import java.util.HashMap;
+import java.util.Map;
+
+class Program {
+    private static final Map<Integer, Boolean> numbers = new HashMap<>();
+
+    public static int[] largestRange(int[] array) {
+        numbers.clear();
+        int maxNumber = array[0];
+        for (int number : array) {
+            numbers.put(number, false);
+            if (maxNumber < number) {
+                maxNumber = number;
+            }
+        }
+        Integer first = null, last = null;
+        for (int number : numbers.keySet()) {
+            if (isVisited(number)) {
+                continue;
+            }
+            int currFirst = number, currLast = number;
+            for (int i = number + 1; i <= maxNumber; i++) {
+                if (hasNumber(i)) {
+                    currLast = i;
+                    visitNumber(i);
+                } else {
+                    break;
+                }
+            }
+            if (first == null || rangeSize(currFirst, currLast) >
+                rangeSize(first, last)) {
+                first = currFirst;
+                last = currLast;
+            }
+        }
+        return new int[]{first, last};
+    }
+
+    private static boolean hasNumber(int number) {
+        return numbers.containsKey(number);
+    }
+
+    private static boolean isVisited(int number) {
+        return numbers.containsKey(number) && numbers.get(number);
+    }
+
+    private static void visitNumber(int number) {
+        if (numbers.containsKey(number)) {
+            numbers.put(number, true);
+        }
+    }
+
+    private static int rangeSize(int first, int last) {
+        return last - first;
+    }
+}
+```
+  
+</details>
+
+_My thoughts:_ Their solution is really smart. Traversing a range in two directions is a good approach. 
+I'm traversing it from left to right. 
