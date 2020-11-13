@@ -337,7 +337,6 @@ class Program {
   
 </details>
 
-
 --------------------
 
 ## [Hard] Largest Range
@@ -462,4 +461,71 @@ class Program {
 </details>
 
 _My thoughts:_ Their solution is really smart. Traversing a range in two directions is a good approach. 
-I'm traversing it from left to right. 
+I'm only traversing it from left to right. 
+
+--------------------
+
+## [Hard] Shift Linked List
+
+> Write a function that takes in the head of a Singly Linked List and an integer `k`, 
+> shifts the list in place (i.e., doesn't create a brand-new list) by `k` positions, and returns its new head.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n) | O(1) |
+
+```
+import java.util.*;
+import java.lang.Math;
+
+class Program {
+    public static LinkedList shiftLinkedList(LinkedList head, int k) {
+        int listSize = 1;
+        LinkedList tail = head;
+        while (tail.next != null) {
+            tail = tail.next;
+            listSize++;
+        }
+        int realK = transformK(k, listSize);
+        if (realK == 0 || realK == listSize) {
+            return head;
+        }
+        tail.next = head;
+        LinkedList newTail = head;
+        for (int i = 0; i < listSize - realK - 1; i++) {
+            newTail = newTail.next;
+        }
+        LinkedList newHead = newTail.next;
+        newTail.next = null;
+        return newHead;
+    }
+
+    // Transform negative K values into positive values.
+    // Also transform these values to be in a range [0 ; listSize - 1].
+    private static int transformK(int k, int listSize) {
+        boolean isPositive = k > 0;
+        int sign = isPositive ? -1 : 1;
+        int scaleFactor = (int) Math.abs(Math.floor(k / (float) listSize));
+        int scaledK = k + sign * listSize * scaleFactor;
+        return isPositive ? scaledK : scaledK + listSize;
+    }
+
+    static class LinkedList {
+        public int value;
+        public LinkedList next;
+
+        public LinkedList(int value) {
+            this.value = value;
+            next = null;
+        }
+    }
+}
+```
+
+</details>
+
+_My thoughts:_ Argh! How can I be so stupid? I was so close to this way of calculation a transformed `K`:
+```int offset = Math.abs(k) % listSize```
