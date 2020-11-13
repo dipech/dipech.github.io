@@ -7,7 +7,9 @@ So, my way of practicing looks like that:
 - Read a prompt.
 - Write one working solution.
 - Write one or two other solutions with solving the task in different ways and trying to improve time and space complexities.
-- Read hints, watch a video explanation, analyse their code.      
+- Read hints, watch a video explanation, analyse their code.
+
+--------------------
 
 ## [Easy] Nth Fibonacci
 
@@ -90,6 +92,71 @@ class Program {
             index++;
         }
         return current;
+    }
+}
+```
+  
+</details>
+
+--------------------
+
+## [Easy] Validate Subsequence
+
+> Given two non-empty arrays of integers, write a function that determines whether the second array 
+> is a subsequence of the first one.
+
+<details>
+  <summary>Queue-based solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n) | O(n) |
+
+```
+import java.util.*;
+
+class Program {
+    public static boolean isValidSubsequence(List<Integer> array, List<Integer> sequence) {
+        Queue<Integer> queue = new LinkedList<>(sequence);
+        for (int value : array) {
+            if (queue.peek() == value) {
+                queue.poll();
+            }
+            if (queue.size() == 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+```
+
+Note: It is possible to avoid using an additional collection (queue), but I wanted to avoid modifying an original list.
+  
+</details>
+
+<details>
+  <summary>Variable base solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n) | O(1) |
+
+```
+import java.util.*;
+
+class Program {
+    public static boolean isValidSubsequence(List<Integer> array, List<Integer> sequence) {
+        int currSeqIndex = 0;
+        for (int value : array) {
+            if (sequence.get(currSeqIndex) == value) {
+                currSeqIndex++;
+            }
+            if (currSeqIndex == sequence.size()) {
+                return true;
+            }
+        }
+        return false;
     }
 }
 ```
