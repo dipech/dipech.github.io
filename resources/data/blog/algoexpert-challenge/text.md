@@ -165,6 +165,102 @@ class Program {
 
 --------------------
 
+## [Easy] Two Number Sum
+
+> Write a function that takes in a non-empty array of distinct integers, and an integer representing a target sum. 
+> If any two numbers in the input array sum up to the target sum, the function should return them in an array, in any
+> order. If no two numbers sum up to the target sum, the function should return an empty array.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n) | O(n) |
+
+```
+import java.util.*;
+
+class Program {
+    private static final Set<Integer> set = new HashSet<>();
+
+    public static int[] twoNumberSum(int[] array, int targetSum) {
+        set.clear();
+        for (int number : array) {
+            set.add(number);
+        }
+        for (int number1 : array) {
+            int number2 = targetSum - number1;
+            if (set.contains(number2) && number2 != number1) {
+                return new int[]{number1, number2};
+            }
+        }
+        return new int[0];
+    }
+}
+```
+
+*P.S.* This solution isn't ideal, but it passes all the test cases. It won't work if we have twin numbers.
+It's better to keep not only numbers, but indices too. So, here we need a map instead of a set. 
+Then we can rewrite a condition like that: `map.containsKey(number2) && number1Idx != map.get(number2)`. 
+  
+</details>
+
+--------------------
+
+## [Easy] Find Closest Value in BST
+
+> Write a function that takes in a Binary Search Tree (BST), and a target integer value and returns the closest value 
+> to that target value contained in the BST.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n*log(n)) | O(1) |
+
+```
+class Program {
+    public static int findClosestValueInBst(BST tree, int target) {
+        BST curr = tree;
+        int closest = curr.value;
+        do {
+            if (target < curr.value) {
+                curr = curr.left;
+            } else {
+                curr = curr.right;
+            }
+            if (isCloser(curr, closest, target)) {
+                closest = curr.value;
+            }
+        } while (curr != null);
+        return closest;
+    }
+
+    private static boolean isCloser(BST node, int current, int target) {
+        return node != null && Math.abs(target - node.value) < Math.abs(target - current);
+    }
+
+    static class BST {
+        public int value;
+        public BST left;
+        public BST right;
+
+        public BST(int value) {
+            this.value = value;
+        }
+    }
+}
+```
+  
+</details>
+
+_My thoughts:_ It needs to think more carefully, I did many mistakes with this task before I see green light. 
+Check an algorithm step-by-step using a paper and a pencil. 
+
+--------------------
+
 ## [Medium] River Sizes
 
 > Write a function that returns an array of the sizes of all rivers represented in the input matrix.
