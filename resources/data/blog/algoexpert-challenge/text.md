@@ -216,9 +216,10 @@ Then we can rewrite a condition like that: `map.containsKey(number2) && number1I
 <details>
   <summary>Solution</summary>
 
-| Time complexity | Space complexity |
-| :-------------: | :--------------: |
-| O(n*log(n)) | O(1) |
+|                 | Time complexity | Space complexity |
+| :-------------: | :-------------: | :--------------: |
+|     Average     | O(log(n)) | O(1) |
+|      Worst      | O(n) | O(1) |
 
 ```
 class Program {
