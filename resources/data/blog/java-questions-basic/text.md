@@ -62,38 +62,31 @@ Java is always pass-by-value. Though there is a tricky point:
 public boolean equals(Object obj);
 ```
 
-Equals проверяет эквивалентность двух объектов. Необходимо переопределять, чтобы сравнивались поля объекта. По-умолчанию сравниваются ссылки на объект (указывают ли ссылки на объекты на один и тот же объект в куче).
+Checks if two objects are equal. It compares objects' references by default (do these variables point to the same object in heap?).
+It often needs to override this method to achieve expected behavior. 
 
 ```java
 public native int hashCode();
 ```
 
-HashCode — это int (max: 2^32) результат работы метода, которому в качестве входного параметра передан объект. Этот метод реализован таким образом, что для одного и того-же входного объекта, хеш-код всегда будет одинаковым. Вполне возможна ситуация, что хеш-коды разных объектов могут совпасть.
+Returns a number (a hash) for this object. It has `int` type (2^32 possible values). This method must return exact the same hash for the same object, but it's allowed to have the same hash for different objects.
 
-**Вкратце самое главное:**
+_Again:_
+- If hashes of two objects are different, that means that these objects **are different**.
+- If hashes of two objects are equal, that means that these objects **maybe different**, but **maybe not**.
 
-- Если **hashCode различаются**, то входные объекты **гарантированно различаются**.
-- Если **hashCode равны**, то входные объекты **не всегда равны**.
+**`equals` contracts**:
 
-**Контракты equals**:
+- `x.equals(null) == false`.
+- `x.equals(x) == true`.
+- `x.equals(y) == x.equals(y)` (always the same result for the same object).
+- `x.equals(y) == y.equals(x)`.
+- IF `x.equals(y)` AND `y.equals(z)` THEN `x.equals(z)`.
 
-- **x.equals(null) == false**:
-При сравнении с null метод всегда должен возвращать false.
-- **x.equals(x) == true**:
-Объект должен быть идентичен самому себе.
-- **x.equals(y) == x.equals(y)**:
-Результат equals не должен меняться при отсуствии изменений.
-- **x.equals(y) == y.equals(x)**:
-Если первый объект **equals** второму, то и второй должен быть **equals** первому.
-- **ЕСЛИ x.equals(y) == true И y.equals(z) == true ТО x.equals(z);**:
-Должна соблюдаться транзитивность идентичности объектов.
+**`hashCode` contracts**:
 
-**Контракты hashCode**:
-
-- **ЕСЛИ x.equals(y) ТО x.hashCode() == y.hashCode();**:
-Если объекты **equals**, то их **hashCode** обязательно должны быть равны (однако, не всегда верно обратное).
-- **x.hashCode() == x.hashCode()**:
-Результат **hashCode** не должен меняться при отсутствии изменений.
+- `x.hashCode() == x.hashCode()` (always the same result for the same object):
+- IF `x.equals(y)` THEN `x.hashCode() == y.hashCode()`.
 
 --------------------
 
