@@ -1,3 +1,8 @@
+**Data Structures** are a way of organizing and managing data. Any data structure consists of:
+- Pieces of data.
+- Relations between them.
+- Operations you might perform on them. 
+
 ## List
 
 To be done

@@ -262,6 +262,80 @@ Check an algorithm step-by-step using a paper and a pencil.
 
 --------------------
 
+## [Easy] Branch Sums
+
+> Write a function that takes in a Binary Tree and returns a list of its branch sums ordered from leftmost 
+> branch sum to rightmost branch sum.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n) | O(n) |
+
+Where `n` – binary tree's nodes count.
+
+```
+import java.util.*;
+
+class Program {
+
+    public static List<Integer> branchSums(BinaryTree root) {
+        List<Integer> result = new ArrayList<>();
+        Deque<BinaryTreeHolder> stack = new ArrayDeque<>();
+        stack.addFirst(new BinaryTreeHolder(root, root.value));
+        do {
+            BinaryTreeHolder current = stack.removeFirst();
+            BinaryTree right = current.node.right;
+            BinaryTree left = current.node.left;
+            boolean isFinal = right == null && left == null;
+            if (isFinal) {
+                result.add(current.sum);
+            }
+            if (right != null) {
+                stack.addFirst(new BinaryTreeHolder(
+                    right, current.sum + right.value
+                ));
+            }
+            if (left != null) {
+                stack.addFirst(new BinaryTreeHolder(
+                    left, current.sum + left.value
+                ));
+            }
+        } while (stack.size() > 0);
+        return result;
+    }
+
+    public static class BinaryTreeHolder {
+        public BinaryTree node;
+        public int sum;
+
+        BinaryTreeHolder(BinaryTree node, int sum) {
+            this.node = node;
+            this.sum = sum;
+        }
+    }
+
+    public static class BinaryTree {
+        int value;
+        BinaryTree left;
+        BinaryTree right;
+
+        BinaryTree(int value) {
+            this.value = value;
+            this.left = null;
+            this.right = null;
+        }
+    }
+
+}
+```
+  
+</details>
+
+--------------------
+
 ## [Medium] River Sizes
 
 > Write a function that returns an array of the sizes of all rivers represented in the input matrix.
