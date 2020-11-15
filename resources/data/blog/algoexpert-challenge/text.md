@@ -334,6 +334,59 @@ class Program {
   
 </details>
 
+
+--------------------
+
+## [Easy] Node Depths
+
+> Write a function that takes in a Binary Tree and returns the sum of its nodes' depths.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n) | O(h) |
+
+Where `n` – binary tree's nodes count, `h` – binary tree height.
+
+```
+class Program {
+    private static int nodeDepths;
+
+    public static int nodeDepths(BinaryTree root) {
+        nodeDepths = 0;
+        calcNodeDepths(root, 1);
+        return nodeDepths;
+    }
+
+    private static void calcNodeDepths(BinaryTree node, int level) {
+        if (node.left != null) {
+            nodeDepths += level;
+            calcNodeDepths(node.left, level + 1);
+        }
+        if (node.right != null) {
+            nodeDepths += level;
+            calcNodeDepths(node.right, level + 1);
+        }
+    }
+
+    static class BinaryTree {
+        int value;
+        BinaryTree left;
+        BinaryTree right;
+
+        public BinaryTree(int value) {
+            this.value = value;
+            left = null;
+            right = null;
+        }
+    }
+}
+```
+
+</details>
+
 --------------------
 
 ## [Medium] River Sizes
