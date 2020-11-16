@@ -436,6 +436,114 @@ class Program {
 
 --------------------
 
+## [Easy] Bubble Sort
+
+> Write a function that takes in an array of integers and returns a sorted version of that array. 
+> Use the Bubble Sort algorithm to sort the array.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n^2) | O(1) |
+
+```
+class Program {
+    public static int[] bubbleSort(int[] array) {
+        boolean isSorted;
+        do {
+            isSorted = true;
+            for (int i = 0; i < array.length - 1; i++) {
+                if (array[i] > array[i + 1]) {
+                    int tmp = array[i];
+                    array[i] = array[i + 1];
+                    array[i + 1] = tmp;
+                    isSorted = false;
+                }
+            }
+        } while (!isSorted);
+        return array;
+    }
+}
+```
+
+</details>
+
+<details>
+  <summary>More optimal solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n^2) | O(1) |
+
+```
+class Program {
+    public static int[] bubbleSort(int[] array) {
+        boolean isSorted;
+        int sortedCount = 0;
+        do {
+            isSorted = true;
+            for (int i = 0; i < array.length - 1 - sortedCount; i++) {
+                if (array[i] > array[i + 1]) {
+                    int tmp = array[i];
+                    array[i] = array[i + 1];
+                    array[i + 1] = tmp;
+                    isSorted = false;
+                }
+            }
+            sortedCount++;
+        } while (!isSorted);
+        return array;
+    }
+}
+```
+
+</details>
+
+_My thoughts:_ I've never thought about a little optimization by remembering how many elements are in correct places 
+(see `sortedCount` in my second solution).
+
+--------------------
+
+## [Easy] Binary Search
+
+> Write a function that takes in a sorted array of integers as well as a target integer. 
+> The function should use the Binary Search algorithm to determine if the target integer is contained in the array 
+> and should return its index if it is, otherwise -1.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(log(n)) | O(1) |
+
+```
+class Program {
+    public static int binarySearch(int[] array, int target) {
+        int leftIndex = 0, rightIndex = array.length - 1;
+        do {
+            int middleIndex = (leftIndex + rightIndex) / 2;
+            int middle = array[middleIndex];
+            if (target == middle) {
+                return middleIndex;
+            }
+            if (target < middle) {
+                rightIndex = middleIndex - 1;
+            } else {
+                leftIndex = middleIndex + 1;
+            }
+        } while (leftIndex <= rightIndex);
+        return -1;
+    }
+}
+```
+
+</details>
+
+--------------------
+
 ## [Medium] River Sizes
 
 > Write a function that returns an array of the sizes of all rivers represented in the input matrix.
