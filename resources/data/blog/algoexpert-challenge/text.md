@@ -648,6 +648,48 @@ class Program {
 
 --------------------
 
+## [Easy] Insertion Sort
+
+> Write a function that takes in an array of integers and returns a sorted version of that array. 
+> Use the Insertion Sort algorithm to sort the array.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n^2) | O(1) |
+
+```
+class Program {
+    public static int[] insertionSort(int[] array) {
+        if (array.length < 2) {
+            return array;
+        }
+        for (int i = 1; i < array.length; i++) {
+            if (array[i - 1] < array[i]) {
+                continue;
+            }
+            int index = i;
+            do {
+                swap(array, index, --index);
+            } while (index > 0 && array[index - 1] > array[index]);
+        }
+        return array;
+    }
+
+    private static void swap(int[] array, int index1, int index2) {
+        int tmp = array[index1];
+        array[index1] = array[index2];
+        array[index2] = tmp;
+    }
+}
+```
+
+</details>
+
+--------------------
+
 ## [Medium] River Sizes
 
 > Write a function that returns an array of the sizes of all rivers represented in the input matrix.
