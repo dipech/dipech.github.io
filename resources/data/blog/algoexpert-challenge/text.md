@@ -544,6 +544,110 @@ class Program {
 
 --------------------
 
+## [Easy] Product Sum
+
+> Write a function that takes in a "special" array and returns its product sum. A "special" array is a non-empty array 
+> that contains either integers or other "special" arrays. The product sum of a "special" array is the sum of 
+> its elements, where "special" arrays inside it are summed themselves and then multiplied by their level of depth.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n) | O(a) |
+
+Where `n` - total elements count (arrays, sub-arrays, sub-sub-... and its children included), `a` - total arrays count.
+
+```
+import java.util.*;
+
+class Program {
+    public static int productSum(List<Object> array) {
+        return calcProductSum(array, 1);
+    }
+
+    private static int calcProductSum(List<Object> array, int level) {
+        int result = 0;
+        for (Object item : array) {
+            if (isArray(item)) {
+                result += level * calcProductSum((ArrayList) item, level + 1);
+            } else {
+                result += level * (int) item;
+            }
+        }
+        return result;
+    }
+
+    private static boolean isArray(Object object) {
+        return object instanceof ArrayList;
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Easy] Find Three Largest Numbers
+
+> Write a function that takes in an array of at least three integers and, without sorting the input array, returns 
+> a sorted array of the three largest integers in the input array.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n) | O(1) |
+
+```
+import java.util.*;
+
+class Program {
+    private final static int MAX = 3;
+
+    public static int[] findThreeLargestNumbers(int[] array) {
+        List<Integer> largest = new ArrayList<>(MAX);
+        for (int i = 0; i < MAX; i++) {
+            largest.add(null);
+        }
+        for (int number : array) {
+            addToLargestIfPossible(largest, number);
+        }
+        return new int[]{largest.get(0), largest.get(1), largest.get(2)};
+    }
+
+    private static void addToLargestIfPossible(List<Integer> largest, int number) {
+        int index = MAX - 1;
+        do {
+            Integer current = largest.get(index);
+            if (isGreaterOrEqual(number, current)) {
+                shiftNumbersDown(largest, index);
+                largest.set(index, number);
+                return;
+            }
+            index--;
+        } while (index >= 0);
+    }
+
+    private static boolean isGreaterOrEqual(int number, Integer current) {
+        return current == null || number >= current;
+    }
+
+    private static void shiftNumbersDown(List<Integer> largest, int index) {
+        for (int i = 1; i <= index; i++) {
+            largest.set(i - 1, largest.get(i));
+        }
+        largest.set(index, null);
+    }
+}
+```
+
+</details>
+
+--------------------
+
 ## [Medium] River Sizes
 
 > Write a function that returns an array of the sizes of all rivers represented in the input matrix.
