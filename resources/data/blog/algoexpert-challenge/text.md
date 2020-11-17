@@ -690,6 +690,155 @@ class Program {
 
 --------------------
 
+## [Easy] Selection Sort
+
+> Write a function that takes in an array of integers and returns a sorted version of that array. 
+> Use the Selection Sort algorithm to sort the array.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n^2) | O(1) |
+
+```
+class Program {
+    public static int[] selectionSort(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            int smallest = array[i], smallestIndex = i;
+            for (int j = i + 1; j < array.length; j++) {
+                if (smallest > array[j]) {
+                    smallest = array[j];
+                    smallestIndex = j;
+                }
+            }
+            if (smallestIndex != i) {
+                swap(array, i, smallestIndex);
+            }
+        }
+        return array;
+    }
+
+    private static void swap(int[] array, int index1, int index2) {
+        int tmp = array[index1];
+        array[index1] = array[index2];
+        array[index2] = tmp;
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Easy] Palindrome Check
+
+> Write a function that takes in a non-empty string and that returns a boolean representing whether 
+> the string is a palindrome.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n)* | O(1) |
+
+`*` – n / 2 actually...
+
+```
+class Program {
+    public static boolean isPalindrome(String str) {
+        if (str.length() < 2) {
+            return true;
+        }
+        for (int i = 0; i < str.length() / 2; i++) {
+            if (str.charAt(i) != str.charAt(str.length() - 1 - i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Easy] Caesar Cipher Encryptor
+
+> Given a non-empty string of lowercase letters and a non-negative integer representing a key, write a function 
+> that returns a new string obtained by shifting every letter in the input string by k positions in the alphabet, 
+> where k is the key.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n) | O(n) |
+
+```
+import java.util.HashMap;
+import java.util.Map;
+
+class Program {
+    private static Integer symbolsCount;
+    private static Map<Character, Integer> symbolToIndex;
+    private static Map<Integer, Character> indexToSymbol;
+
+    public static String caesarCypherEncryptor(String str, int key) {
+        init();
+        if (key == 0 || shiftIndex(0, key) == 0) {
+            return str;
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            int index = symbolToIndex.get(ch);
+            int shiftedIndex = shiftIndex(index, key);
+            char shiftedChar = indexToSymbol.get(shiftedIndex);
+            sb.append(shiftedChar);
+        }
+        return sb.toString();
+    }
+
+    private static int shiftIndex(int index, int key) {
+        int offset = calcOffset(key);
+        return (index + offset) % symbolsCount;
+    }
+
+    private static int calcOffset(int key) {
+        int offset = Math.abs(key) % symbolsCount;
+        return key > 0 ? offset : symbolsCount - offset;
+    }
+
+    private static void init() {
+        if (symbolsCount != null) {
+            return;
+        }
+        symbolToIndex = new HashMap<>();
+        indexToSymbol = new HashMap<>();
+        char[] characters = new char[]{
+            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
+            'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
+            'u', 'v', 'w', 'x', 'y', 'z'
+        };
+        symbolsCount = characters.length;
+        for (int i = 0; i < symbolsCount; i++) {
+            char ch = characters[i];
+            symbolToIndex.put(ch, i);
+            indexToSymbol.put(i, ch);
+        }
+    }
+}
+```
+
+</details>
+
+--------------------
+
 ## [Medium] River Sizes
 
 > Write a function that returns an array of the sizes of all rivers represented in the input matrix.
