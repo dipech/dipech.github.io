@@ -839,6 +839,57 @@ class Program {
 
 --------------------
 
+## [Easy] Run-Length Encoding
+
+> Write a function that takes in a non-empty string and returns its run-length encoding.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n) | O(1) |
+
+```
+class Program {
+    public String runLengthEncoding(String string) {
+        int accumulator = 0;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < string.length(); i++) {
+            boolean isLast = i == string.length() - 1;
+            char current = string.charAt(i);
+            accumulator++;
+            boolean isEqualToNext = !isLast && current == string.charAt(i + 1);
+            if (!isEqualToNext) {
+                sb.append(encodeChar(current, accumulator));
+                accumulator = 0;
+            }
+        }
+        return sb.toString();
+    }
+
+    private static String encodeChar(char ch, int n) {
+        StringBuilder sb = new StringBuilder();
+        int nPrev;
+        do {
+            nPrev = n;
+            if (n > 9) {
+                sb.append(9);
+                n -= 9;
+            } else {
+                sb.append(n);
+            }
+            sb.append(ch);
+        } while (nPrev > 9);
+        return sb.toString();
+    }
+}
+```
+
+</details>
+
+--------------------
+
 ## [Medium] River Sizes
 
 > Write a function that returns an array of the sizes of all rivers represented in the input matrix.
