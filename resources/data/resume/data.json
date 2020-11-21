@@ -128,10 +128,10 @@
       "startDate": "09.2019",
       "endDate": null,
       "duties": [
-        "Cut monolith into microservices.",
-        "Development of new functionality.",
-        "Improvement of existing functionality.",
-        "Software design, automation."
+        "Implemented a few huge modules of a system.",
+        "Created lots of different tools to automate and harmonize data flows.",
+        "Fixed tons of bugs, made thousands of little improvements across the whole product.",
+        "Built from scratch a dozen and half intentionally vulnerable Java projects as a half-time employee of another team in the company (hacktory.ai)."
       ],
       "technologies": [
         "Spring Boot (Java)",
@@ -145,7 +145,8 @@
         "Groovy",
         "Teamcity",
         "Bash",
-        "Yii (PHP)"
+        "Yii (PHP)",
+        "VueJS"
       ]
     },
     {

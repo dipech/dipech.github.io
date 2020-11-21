@@ -92,20 +92,17 @@ _Again:_
 
 ## 5. How can I get access for private fields and methods?
 
-Извне класса напрямую нет, только если через **Reflection** поменять модификатор поля или метода, что, конечно же, **абсолютно не рекомендуется делать**, т.к. это нарушает основной принцип **ООП** - **инкапсуляцию**.
+You cannot do it directly, of course. But you can use Reflection API to achieve it (it's better to avoid it).
 
 --------------------
 
 ## 6. When doesn't `finally` block execute?
 
-Блок **finally никогда не выполнится** только в этих ситуациях:
+`finally` always executes, but there are some exceptions:
+- `System.exit()` has been called inside `try` or `catch`.
+- Caught fatal error like `OutOfMemoryError` or `StackOverflowError`.
 
-- В коде до блока **finally** будет вызван **System.exit()** (например: в блоке **try** или **catch**).
-- Критическая ошибка JVM (**OutOfMemoryError**, **StackOverflowError**).
-
-Во всех остальных случаях блок `finally` выполнится всегда!
-
-Блок `finally` всё равно выполнится, например, даже если в блоке `catch` будет выброшено исключение.
+P.S. Yes, `finally` executes even if we have `throw` inside `catch` block.
 
 --------------------
 
@@ -117,13 +114,9 @@ To be done.
 
 ## 8. What're the differences between interfaces and abstract classes?
 
-**Абстрактный класс** - это класс, у которого не реализован один или несколько методов.
-
-**Интерфейс** - это абстрактный класс, у которого ни один метод не реализован, все они публичные и нет переменных класса.
-
-**Абстрактный класс нужен**, когда нужно семейство классов, у которых есть много общего. Конечно, можно применить и интерфейс, но тогда нужно будет писать много идентичного кода.
-
-**Интерфейс нужен** обычно когда описывается только интерфейс (sic!). Например, один класс хочет дать другому возможность доступа к некоторым своим методам, но не хочет себя «раскрывать». По-этому он просто реализует интерфейс.
+**Abstract class** is a class which may have one or more not implemented methods. **Interface** is like an abstract 
+class which have only not implemented methods, all them are public, and there aren't any fields.
+You can implement multiple interfaces, but cannot extend multiple abstract classes at once.
 
 --------------------
 
