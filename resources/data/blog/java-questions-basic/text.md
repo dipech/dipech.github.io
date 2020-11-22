@@ -122,25 +122,22 @@ You can implement multiple interfaces, but cannot extend multiple abstract class
 
 ## 9. Explain `super` and `this`.
 
-**this** - ключевое слово, при помощи которого можно ссылаться на поля и методы текущего класса.
-**super** - ключевое слово, при помощи которого можно ссылаться на поля и методы суперкласса.
+`this` is a keyword you can use to point to fields and methods of a current class.
+`super` is a keyword you can use to point to fields and methods of a superclass.
 
-**Особенности:**
-
-- Это не статические переменные, их нельзя использовать в статическом контексте.
-- Могут использоваться внутри конструкторов для вызова других конструкторов.
-- Нельзя присвоить новое значение, потому что **final**.
+**Additional details:**
+- You cannot refer it in a static context.
+- Can be used inside constructors to call other constructors.
+- They're final, you cannot modify it.
 
 --------------------
 
 ## 10. Can we handle `Error` exceptions?
 
-**Error** – класс исключений, связанных с неуправляемыми сбоями в работе программы. Например: **StackOverflowError** или **OutOfMemoryError**.
+**Error** is a class of exceptions which used when your program faced with unmanageable failures like `StackOverflowError` or `OutOfMemoryError`.
+You can handle it, but your program behavior is undefined, so you shouldn't do that. 
 
-**Хэндлить их не нужно, т.к. не гарантируется работа программы,  произошел неуправляемый программный сбой.**
-Но вроде как можно.
-
-**P.S.** Вроде как какие-то либы хэндлят **LinkageErrors**, это одно из Error-исключений, которое можно перехватить.
+**P.S.** Some libraries handle `LinkageError`, but in most cases, you don't need it.
 
 --------------------
 

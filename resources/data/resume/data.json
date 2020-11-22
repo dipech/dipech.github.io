@@ -162,12 +162,12 @@
       "startDate": "10.2017",
       "endDate": "06.2020",
       "duties": [
-        "Development of the system from scratch with Symfony framework.",
-        "Development of a multi-threaded system for performing users tasks.",
-        "Managing all the infrastructure, CI/CD, deployment, updating.",
-        "Development of rich interactive UI.",
-        "Integrations with other systems.",
-        "Rich administrative panel with many unique functions."
+        "Created the entire system from scratch.",
+        "Implemented a multi-processing subsystem for running users' tasks.",
+        "Managed all the infrastructural duties, like configuring the server, setting up CI/CD, automating deployment process, and so on and so forth.",
+        "Made rich, interactive, user-friendly UI.",
+        "Implemented lots of integrations with other systems like social networks, external marketing tools, etc.",
+        "Created an unique, powerful administrative panel."
       ],
       "technologies": [
         "Symfony (PHP + MySQL)",
