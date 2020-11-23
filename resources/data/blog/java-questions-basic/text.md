@@ -143,7 +143,8 @@ You can handle it, but your program behavior is undefined, so you shouldn't do t
 
 ## 11. Explain `overload` and `override`.
 
-**Overload** – создание метода с **тем же именем** и **тем же возвращаемым значением**, но с **другим набором входящих параметров**.
+Overloading is all about creating a new method with the same name and the same return type of some another menthod,
+but with different set of input parameters.
 
 ```java
 public class Test {
@@ -161,13 +162,14 @@ public class Test {
 }
 ```
 
-**Override** – переопределение уже **существующего метода** (в родительском классе).
+Overriding is reimplementing a method of base class in current class to have different behaviour.
 
 ```java
 public class Test {
 
     private String test;
 
+    // Overriding Object::toString()
     @Override
     public String toString() {
         return "test=" + test;
@@ -176,22 +178,24 @@ public class Test {
 }
 ```
 
-В данном примере мы переопределяем метод `Object::toString`. Все классы неявно наследуют класс `Object`.
-
 --------------------
 
 ## 12. Explain `String`, `StringBuilder`, `StringBuffer`, `StringPool`.
 
-**Строка является неизменной и финализированной в Java, поэтому все наши манипуляции со строкой всегда будут создавать новую строку.**
+`String` is a set of characters. Strings are immutable in Java, so concatenating strings is ineffective because 
+it causes creating a brand-new string by copying original strings, it is `O(N)` operation.
 
-Для более эффективной манипуляции со строками есть 2 класса:
+There're at least two classes provide ways to work with strings effectively:
+- `StringBuilder`: Faster than `StringBuffer`, but thread-unsafe.
+- `StringBuffer`: Slower than `StringBuilder`, but thread-safe.
 
-- **StringBuilder:** Быстрее чем *StringBuffer*, используется в однопоточном окружении, т.к. **потоконебезопасен**.
-- **StringBuffer:** Медленнее чем *StringBuilder*, но зато **потокобезопасен**.
-
-**StringPool** – это **набор строк, хранимый в Heap**, позволяющий **оптимизировать** работу со строками. Это возможно только благодаря неизменяемости строк в Java.
-
-Т.к. строки неизменяемы, то при создании новой строки при помощи кавычек будет искаться такая же строка в пуле. Если строка будет найдена - будет возвращена ссылка на объект в пуле, иначе строка будет сначала занесена в пул. При этом, чтобы сработала эта оптимизация, не нужно создавать строки через оператор new. Или нужно использовать метод **String::intern**, чтобы форсировать поиск и использование уже существующего в StringPool объекта с таким же значением строки.
+**StringPool** is a set of strings stored in Heap and used to optimize work with strings.
+It used by Java in this way:
+- If you create a string by using quotes, Java lookup the StringPool at first. If we already have such string 
+then Java just returns this object to you. If not then it creates a new object in Heap inside StringPool 
+then returns it to you.
+- This optimization doesn't work with strings created using `new` operator.
+- To force using this optimization use `String::intern`.
 
 --------------------
 

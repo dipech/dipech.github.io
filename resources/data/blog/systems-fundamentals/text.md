@@ -27,4 +27,45 @@ request then the server, after some processing, returns needed data.
 
 This is how the Internet works!
 
-   
+## Network protocols
+
+At first, what a protocol is? A protocol is a set of rules for an interaction between two parties. 
+Network protocols are using by machines (servers, clients) for communication with each other.
+There're many network protocols, but main for us are:
+- IP.
+- TCP.
+- HTTP.
+
+**IP**
+
+IP = Internet Protocol. The whole Internet built upon IP.
+
+IP Packet is a small amount of information that being sent over network. It's made of bytes and consists of
+two main parts: a header and the data. A header contains a lot of useful information such as the IP address of a source
+machine, the destination IP address, the total size of the packet, the version of a protocol (v4 or v6). 
+IP packets is 2^16 bytes. This isn't enough to fix an average size image. So, how do we send cats images and videos 
+through the Internet? TCP is a solution of this problem.
+
+[ IP_HEADER | PAYLOAD ]
+
+**TCP**
+
+TCP = Transmission Control Protocol. This protocol built on top of IP.
+
+TCP splits the data into pieces, sends these pieces by using TCP packets, manages delivery and ordering.
+
+TCP cuts a little part of the data part of a IP packet to store TCP header:
+
+[ IP_HEADER | [TCP_HEADER | PAYLOAD] ]
+
+TCP header contains at least an index of the data piece.
+
+**HTTP**
+
+HTTP = Hyper Text Transfer Protocol. This protocol built on top of TCP.
+Clients make HTTP requests and get HTTP responses from servers.
+
+A HTTP request has lots of useful fields such as host, port, method, headers, body.
+A HTTP response has status code has fields such as status code, headers, body.
+HTTP simplifies interaction between clients and servers by providing lots of 
+useful possibilities to built business logic on top of that.

@@ -188,11 +188,11 @@
       "startDate": "01.2017",
       "endDate": "11.2020",
       "duties": [
-        "Development of all the functions from scratch with Laravel framework.",
-        "Development of all the basic functions of an online shopping website.",
-        "Automatic importing of products from different suppliers.",
-        "Unique catalogue mechanism.",
-        "Rich and powerful administration panel."
+        "Created the entire system from scratch.",
+        "Implemented fast and robust mechanism of importing products from different vendors.",
+        "Developed two-ways integration with CRM.",
+        "Made lots of tricky optimizations (SQL, caching) to achieve faster working speed on not so powerful VPS.",
+        "Created a handy admin panel for administrators and sales managers."
       ],
       "technologies": [
         "Laravel (PHP + MySQL)",
