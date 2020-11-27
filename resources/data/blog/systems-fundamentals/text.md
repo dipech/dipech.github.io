@@ -99,7 +99,7 @@ We can measure availability as how much time as system is operational in percent
 When we talk about availability we use a term "Nines". If system is available 99% of all time then we says that
 the system has two nines availability.
 
-High availability means 5+ nines. For instance lets calc unavailability in seconds per year for typical nines:
+High Availability (HA) means 5+ nines. For instance lets calc unavailability in seconds per year for typical nines:
 - 2 nines = 99% = ~90 hours per year.
 - 3 nines = 99.9% = ~9 hours per year.
 - 4 nines = 99.99% = ~1 hour per year.
@@ -110,3 +110,29 @@ It means that a service explicitly guarantees a level of availability (uptime fo
 
 **SLO** stands for Service Level Objective (a part of SLA). SLA consists of SLO, and it's nothing other than a specific
 numbers in SLA, for instance, numbers of error you might face using a service, or guaranteed uptime, etc.
+
+Designing a system, you have to ask yourself what parts of the system are critical and should have HA.
+
+## Redundancy
+
+This is a technique of duplicating or even multiplication of some part of the system to increase reliability.
+We can use Load Balancers to distribute the load between services. You also can have multiple load balancers.
+
+Redundancy can be passive and active. Passive redundancy (or just redundancy) is about making multiple copies of 
+a service and split traffic between them. Active redundancy is when these services also provide information about their
+overload factors, so the load balancer can send traffic to less overloaded instances.
+
+## Caching
+
+Caching is used to speed up a system (in other words, to reduce latency of a system). Caching is a technique of storing 
+data  in the location where we able to access it faster. We also can use caching to reduce reading the same data 
+by multiple services.
+
+Summarizing. Cache can be used:
+- To avoid performing of multiple HTTP requests (especially for static content).
+- To avoid calling computationally long operations multiple times.
+- To prevent execution operations which are performed a huge amount of times.
+
+Write-through cache – write data to cache and to DB at the same time.
+Write-back cache - update only cache, and then, after some time or by an event, update DB.
+
