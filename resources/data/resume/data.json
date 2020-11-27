@@ -1,6 +1,6 @@
 {
   "user": {
-    "about": "I've been developing since 2010. Freelancer, Founder, Developer. In love with clean-code. I've built from scratch several large projects and quite many medium-sized projects. Constantly improving my skills. I love odd humor, such as puns :)",
+    "about": "I've been developing since 2010. Freelancer, Founder, Developer. In love with clean-code. I've built from scratch several large projects and quite many medium-sized projects. Constantly improving my skills. I love odd humor, bicycles building (in spare time, of course), sport.",
     "specialization": "Web (Java and PHP) Developer",
     "photo": "photo.jpg",
     "firstName": "Dmitry",
@@ -215,9 +215,9 @@
       "startDate": "07.2017",
       "endDate": "09.2018",
       "duties": [
-        "Development of a data exchange module that works with the most used formats (CSV, XLSX, YML, CommerceML), provides many options for end-users (manual/semi-automatic/automatic run mode, automatic data downloading, logging, reports sending, etc).",
-        "Improving and rewriting the CMS kernel while working on major version of CMS (6.0).",
-        "CMS integration with Yandex.Delivery."
+        "Implemented an entire CMS module, it imports and exports the e-commerce data between the CMS and other systems.",
+        "Took participate in seriously improving the kernel during working on the next big version of the system.",
+        "Integrated the system with Yandex.Delivery."
       ],
       "technologies": [
         "PHP",
@@ -240,10 +240,9 @@
       "startDate": "11.2015",
       "endDate": "05.2017",
       "duties": [
-        "Different business logic development for different web-projects.",
-        "NetCat CMS modules development.",
-        "Websites optimisations, business logic optimisations.",
-        "Exchanges with different systems like 1C, Yandex.Market and other sites and systems."
+        "Created many different web-projects with different business-logic.",
+        "Developed several modules for NetCat CMS.",
+        "Implemented tons of API integrations and data exchanges with different systems (1C, Yandex.Market, custom external APIs, etc)."
       ],
       "technologies": [
         "NetCat (PHP + MySQL)",

@@ -69,3 +69,44 @@ A HTTP request has lots of useful fields such as host, port, method, headers, bo
 A HTTP response has status code has fields such as status code, headers, body.
 HTTP simplifies interaction between clients and servers by providing lots of 
 useful possibilities to built business logic on top of that.
+
+## Latency and Throughput
+
+These two terms are two of the most important measures of the performance of a system.
+
+Latency stands for how long it takes data to traverse the system. For example, latency of a request means 
+how long it takes a request to go from a client to a server and the back to the client.
+There could be many things that can be measured in the term of latency. We should know about an order of magnitude.
+For example, reading some data from memory can take hundreds of microseconds, but reading some data from HDD can take
+tens of thousands of microseconds.
+
+Latency is measured in time. For example: the request took 1 second.
+
+Throughput stands for how much work a machine can perform in a given period (how much data can be transferred 
+from one point of a system to another part of the system in a given amount of time).
+
+Throughput is measured in operations per time unit. For example: the given server can handle 
+2000 requests per second (2000 RPS).
+
+You cannot make predictions about latency by measured throughput or about throughput by measured latency.
+They aren't necessarily correlated.
+
+## Availability
+
+Availability means how resistant a system to failures. Multiple things can fail: servers, databases, other workers, etc.
+We can measure availability as how much time as system is operational in percents.
+
+When we talk about availability we use a term "Nines". If system is available 99% of all time then we says that
+the system has two nines availability.
+
+High availability means 5+ nines. For instance lets calc unavailability in seconds per year for typical nines:
+- 2 nines = 99% = ~90 hours per year.
+- 3 nines = 99.9% = ~9 hours per year.
+- 4 nines = 99.99% = ~1 hour per year.
+- 5 nines = 99.999% = ~ 5 minutes per year.
+
+**SLA** stands for Service Level Agreement (agreement between a service provider and end-users of this service).
+It means that a service explicitly guarantees a level of availability (uptime for instance).
+
+**SLO** stands for Service Level Objective (a part of SLA). SLA consists of SLO, and it's nothing other than a specific
+numbers in SLA, for instance, numbers of error you might face using a service, or guaranteed uptime, etc.

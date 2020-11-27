@@ -201,81 +201,73 @@ then returns it to you.
 
 ## 13. Explain static and dynamic linking.
 
-**Раннее (статическое) связывание** – это когда компилятор на этапе компиляции может определить какой метод какого класса он должен вызвать. В примере выше **заранее известно**, что `cat` является объектом класса `Cat`, соответственно, вызов будет привязан к методу `Cat.voice`.
+**Static linking** is a process in compile time when a linked content is copied into the primary binary and 
+becomes a single binary.
+**Dynamic linking** is a process in runtime when a linked content is loaded. This technic allows upgrading 
+linked binary without recompiling a primary one, and allows to have a single shared copy.
 
-```java
-Cat cat = new Cat();
-cat.voice();
-```
-
-**Позднее (динамическое) связывание** – это когда компилятор на этапе компиляции не в состоянии определить какой метод какого класса он должен вызвать. В примере выше переменная `animal` может быть объектом или `Animal` или `Cat`, соответственно, **JVM** будет на лету **определять какой метод нужно вызвать**.
-
-```java
-Animal animal = new Cat();
-animal.voice();
-```
+JVM always do dynamic linking, there is no static linking.
 
 --------------------
 
 ## 14. JVM memory model.
 
-**Память состоит из:**
-
-- Стека (на каждый поток).
-- Кучи.
-- PermGen (до java8) или Metaspace (java 8+).
+Java memory model consists of:
+- Stacks (one for each thread).
+- Heap.
+- PermGen (<1.8) или Metaspace (since 1.8).
 
 ### 14.1. Stack
 
-На каждый поток выделяется свой стек. Стек работает по схеме LIFO.
-В стеке хранятся вызовы методов и значения примитивных типов данных и значения ссылок на объектвы в куче.
+Each thread has his own stack. Stack is LIFO and contains methods calls, variables of primitive types, 
+references' values of objects in Heap.
 
 ### 14.2. Heap
 
-Память, в которой хранятся объекты. Эту память периодически подчищает сборщик мусора, удаляет неиспользуемые объекты.
-Область делится на несколько частей с целью оптимизации работы сборщика мусора: Eden (новые объекты), Survivor (те объекты, что пережили хотя бы 1 сбор мусора), Old (долгоживущие объекты).
-В куче также хранится *StringPool*.
+This is a memory space where objects live in. Heap is periodically cleaned by Garbage Collector.
+Heap consists of several spaces:
+- New generation:
+    - Eden (where new objects live).
+    - Survivor (where objects, which "survived" after garbage collection, live).
+- Old generation (where long-lived objects live).
+- StringPool (where strings live).
+- PermGen/Metaspace (where meta information about an application live).
 
 ### 14.3. PermGen (< 1.8)
 
-Особая область кучи, хранящаяся отдельно от основной памяти кучи.
-Память, где хранится метаинформация: информация о классах (и их методах), пул констант, статические методы, переменные примитивных типов и ссылки на статические объекты.
-Также тут хранится данные о байт-коде и JIT-информация.
+This is a part of Heap where metadata lives. It consists of information about classes and their methods, constants pool,
+static methods, references to static objects. It has a fixed size.
 
 ### 14.4. Metaspace (since 1.8)
 
-Основное отличие в том, что Metaspace автоматически увеличивается в размере по мере необходимости, а PermGen имеет фиксированный размер.
-Также сборщик мусора теперь автоматически очищает данные о неиспользуемых классах при достижении указанного максимального размера Metaspace.
+Metaspace is almost identical to PermGem, but it has dynamic size which is better.
+Garbage collector now cleans the data about unused classes if metaspace reach max size.
 
 --------------------
 
 ## 15. How does Garbage collector work?
 
-- **Stack:** LIFO, создается по одному на поток, содержит переменные – ссылки на объекты в куче.
-- **Heap:** Здесь создаются объекты в памяти, на них ссылаются ссылки из *Stack*. Делится на несколько частей – **Old Generation** и **New Generation**. **New Generation** делится на 2 части – **Eden** и **Survivor**.
-- **Eden:** Здесь живут новые объекты.
-- **Survivor:** Здесь живут объекты, хотя бы 1 раз пережившие сбор мусора.
-- **Old Generation**: Сюда перемещаются объекты,  живущие какое-то время в **Survivor**.
+- **Stack:** LIFO, each thread has a stack where references to objects in heap live.
+- **Heap:** Objects are living here. There in stacks can be references to these objects.
+- There are **Old Generation**, **New Generation** (**Eden** and **Survivor**) spaces in Heap, read about it in 14.2
 
-Сборщик мусора смотрит на объекты в **Eden**. Те объекты, на которые нет ссылок - удаляет, а те, на которые есть - переносит в **Survivor**.
-Тоже самое происходит и с **Survivor** и **Old Gen**, только реже и при достижении каких-либо условий.
-Если в процессе сбора мусора будет не хватать памяти - будет выброшено исключение **OutOfMemoryException**.
+Garbage collector looks for objects without references in Eden. If there are such objects then GC removes it.
+The same way GC does with Survivor and Old Gen but with less frequency.
+If no heap space is available then `OutOfMemoryException` will be thrown.
 
 --------------------
 
 ## 16. What are annotations and how does it work?
 
-**Annotation** – возможность языка добавлять метаданные в код.
+Annotations allow you to add meta information into code. We can add annotations to classes, methods, fields 
+or even to variables (it's a very seldom case though).
+It's used for code analysis, during compilation time or runtime.
 
-Используются для анализа кода, компиляции или выполнения.
-Аннотированы могут быть классы, отдельные методы или поля, и даже переменные.
+An annotation can be configured by using there annotations:
+- `@Target`: Where the annotation can be applied, like `TYPE`, `FIELD`, `METHOD`, `PARAMETER`, `LOCAL_VARIABLE`, etc.
+- `@Retention`: When you able to use the annotation, like at compile time (`CLASS`) or at runtime (`RUNTIME`).
 
-**Аннотацию можно настраивать аннотациями:**
-
-- **@Target:** Где можно применять аннотации (класс, метод, поле, переменная, и т.д.).
-- **@Retention:** Когда будет доступна аннотация (этап компиляции или рантайм, и т.д.).
-
-Общая схема: `public @interface AnnotationName`
+Common scheme: `public @interface AnnotationName`
 
 ```
 @Target(ElementType.METHOD)
@@ -285,7 +277,7 @@ public @interface Test {
 }
 ```
 
-Необходимо написать анализатор, который через Reflection вытягивает нужную информацию и выполяет нужную логику.
+Next, you need to write code for parsing using `Reflection`. Example:
 
 ```java
 public class TestAnnotationAnalyzer {
@@ -311,7 +303,7 @@ public class TestAnnotationAnalyzer {
 
 ## 17. How many singleton instances can be in JVM?
 
-В каждом **classloader** может быть свой собственный инстанс **Singletone**.
+You can have one singleton instance per classloader. You can have multiple classloaders.
 
 --------------------
 
