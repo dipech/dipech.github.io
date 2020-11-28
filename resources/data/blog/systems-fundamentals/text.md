@@ -206,3 +206,75 @@ in the case when we add new or remove existent servers.
 **Rendezvous Hashing** is a technique by which you calculate a score value of each server for each client, 
 client's request will go to a server with the highest score value. 
 
+## Relational Databases
+
+We can distinguish databases by using the property "relation".
+
+There are two types of databases in common:
+- Relational / SQL-based databases.
+- Non-relational / NoSQL databases.
+
+Relational databases store data in a tabular-like structure, and we able to query the data using SQL, 
+which stands for standardised query language.
+
+SQL databases must use ACID transactions:
+- `A`: atomicity – if a transaction consists of multiple suboperations, then these multiple operations 
+must be considered as a single unit. If all the suboperations passed, then the transaction passed. 
+If one of the suboperation failed, then the entire transaction failed.
+- `C`: consistency – no one transaction can bring the data to a stale state. If one of the suboperation failed, 
+then the changes in the data must be reverted to an original state.
+- `I`: isolation - the changes after parallel transactions must be the same as if these transactions are executed 
+sequentially.
+- `D`: durability - any committed transactions is written to non-volatile storage. It cannot be undone by power loss 
+or any other kind of crash.
+
+Database index is a tool which allows you to find data in relational databases faster. 
+For instance, if you have a column with numbers, and you have millions of rows, you'll find 
+the largest value in the column in O(N) time. But, if you have an index upon the column, then you can find 
+the largest value in the column in O(1) time.
+
+It takes additional space and reduces the speed of writing data because you also need to update indices. 
+But, it increases the speed of reading data.
+
+## Non-relational databases
+
+Non-relational database (NoSQL database) is a key-value store behaves like hash-table. 
+KV stores often used for caching, storing configurations, etc.
+
+Different realisations of key-value stores behave differently. Some key-value stores can guarantee strong consistency, 
+while other can guarantee eventual consistency.
+
+> Popular solutions might be: DynamoDB, Etcd, Redis, ZooKeeper
+
+## Specialized Storage Paradigms
+
+### Blob store
+
+Blob is an arbitrary piece of unstructured data like an image file, a video file, some binary data, etc. 
+Usually you access the data by the name of the blob. It's usually slower that Key-Value stores, but it can handle
+huge pieces of data, even gigabytes.
+
+> Google Cloud Storage, Amazon S3
+
+### Time Series store
+
+These databases optimized for storing and analyzing time-indexed data. Common use cases are monitoring and logging.
+
+> InfluxDB, Prometheus, Graphite
+
+### Graph store
+
+Graph databases are built on top of graph data model. Data entries can have explicitly defined relationships.
+These graph databases can perform operations on deeply connected data very fast. It's a preferred way of working with
+data which has multiple levels of relations.
+
+Cypher is a query language for graph databases.  
+
+> Neo4j
+
+### Spatial store
+
+When we need to store spatial data like locations on a map (latitudes and longitudes).
+Databases of this kind rely on spatial indices.
+
+Quadtree is a tree data structure most commonly used to index two-dimensional spatial data.
