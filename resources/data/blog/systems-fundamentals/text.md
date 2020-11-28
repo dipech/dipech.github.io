@@ -136,3 +136,73 @@ Summarizing. Cache can be used:
 Write-through cache – write data to cache and to DB at the same time.
 Write-back cache - update only cache, and then, after some time or by an event, update DB.
 
+## Proxies
+
+**Forward Proxy** (or just Proxy) is a server that sits between a client (or a set of clients) 
+and a server (or a set of clients). Forward proxies act on behalf of clients.
+
+Forward Proxy Scheme:
+`C` –> `FP` -> `S` –> `FP` –> `C`
+
+Often used to mask the real IP address of a client.
+
+**Reverse Proxy**, on the other hand, acts on behalf of a server. Clients think that they communicate with the server
+but in reality they communicate with the RP (and see the RP IP address).
+
+Reverse Proxy Scheme:
+`C` –> `RP` -> `S` –> `RP` –> `C`
+
+This scheme is similar to the scheme above but means different things.
+
+Reverse Proxies much more useful in context of System Design. They can be used for:
+- Filtering out unwanted requests (real servers won't deal with filtered).
+- Logging requests, gathering metrics.
+- Caching, especially for static HTML pages.
+- Load balancing requests between a set of servers.
+
+> Nginx can be used as a reverse proxy and load balancer.
+ 
+## Load Balancer
+
+Load balancer is a server that sits between a set of clients and a set of servers, and balancing requests 
+from the clients to the servers in a balanced way.
+DNS also can act like a load balancer by providing different IP addresses on the same request.
+
+Hardware Load Balancers are literally dedicated machines. Their sole purpose is obvious. Software Load Balancers are 
+just software, and they have much more options. 
+
+Server-selection strategies:
+- Randomly.
+- Round-robin: send traffic by using some order, for instance, servers' numbers: 1, 2, 3, 4, 5, 1, 2, etc.
+- Weighted round-robin: you still follow the order, but if one server has bigger weight that others then it gets 
+more requests in total.
+- Based on performance (on load): a load balancer performs a health-check requests on the servers to know how much 
+traffic a server is handling in a given time, how long a server is taking to respond, how many resources are used. Based
+on gathered information the load balancer solves which server will handle the following request.
+- IP-based server-selection strategy: IP addresses of clients are being hashed to get a number of a server to map 
+this client to. It can be useful if servers cache information, and it's important to show the same cached results 
+to the same client.
+- Path-based server-selection strategy: "/pay" requests go to one set of servers, "/download" requests go to another
+set of servers, and so on and so forth.
+
+Very important point is you can have multiple load balancers, moreover you can have multiple load balancers used 
+different server-selection strategies.
+ 
+## Hashing
+
+Hashing is a process of transforming an arbitrary piece of data into a fixed size value, typically to a number.
+Hashing, for instance, is used in IP-based server-selection strategy, when clients' IP addresses hashed into numbers, 
+then mod operator applied to get indices of the servers to route to. One remark is we cannot use mod operator 
+if we change numbers of servers, because we'll get clients routed to different servers 
+(not to the same servers they have been routed before). This is where Consistent Hashing and Rendezvous Hashing 
+come to play.
+
+**Consistent Hashing** is a technique by which you place servers and clients on a range on numbers, for instance [0-360],
+and client's request redirects to the closest server to "the right" (imagine circle with clients and servers on it).
+A value from range calculates as `hash(IP) % rangeLength`. Each server can have multiple locations on the range 
+(these servers are getting more traffic than others). This technique minimizes clients shifting to other servers 
+in the case when we add new or remove existent servers.
+
+**Rendezvous Hashing** is a technique by which you calculate a score value of each server for each client, 
+client's request will go to a server with the highest score value. 
+
