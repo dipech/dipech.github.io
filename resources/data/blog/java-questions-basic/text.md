@@ -309,7 +309,7 @@ You can have one singleton instance per classloader. You can have multiple class
 
 ## 18. What is lambda function?
 
-Лямбда-выражение – это анонимная функция.
+Lambdas are just a short-form of anonymous functions.
 
 ```java
 (int a, int b) -> {  return a + b; }
@@ -319,7 +319,7 @@ You can have one singleton instance per classloader. You can have multiple class
 () -> { return 3.1415 };
 ```
 
-Каждую лямбду можно сопоставить подходящему функциональному интерфейсу:
+Each lambda could be mapped to suitable functional interface:
 
 ```java
 Runnable runnable = () -> System.out.println("hello world");
@@ -330,9 +330,10 @@ BiConsumer<Integer, String> biConsumer = (Integer x, String y) -> System.out.pri
 
 ## 19. Stream API.
 
-**Stream API** - это новый способ работать со структурами данных в функциональном стиле. Чаще всего с помощью **stream** работают с коллекциями, но на самом деле этот механизм может использоваться для самых различных данных.
+This is a way of manipulating data in a functional manner. Available since 1.8.
+Often used to work with collections.
 
-Например, суммирование всех нечётных чисел без помощи Stream API:
+Compare examples:
 
 ```
 Integer oddSum = 0; 
@@ -341,40 +342,31 @@ for (Integer value : valuesCollection) {
 		oddSum += value;
 	}
 }
-```
 
-При помощи Stream API:
+// or
 
-```java
 Integer oddSum = valuesCollection.stream()
     .filter(v -> v % 2 != 0)
     .reduce((v1, v2) -> v1 + v2)
     .orElse(0);
 ```
 
-Одно из преимуществ, что такой код теперь можно просто распараллелить, заменив `stream()` на `parallelStream()`.
+It also possible to run this code in parallel streams by replacing `stream()` with `parallelStream()`.
 
-В Stream API все методы делятся на 2 типа:
+All the methods in Stream API can accumulate changes or terminate (performing of accumulated changes):
 
-- **Конвеерные:** Работают также, как паттерн Builder - накапливают изменения. Возвращают измененный stream. Примеры: **filter**, **skip**, **limit**, **sorted**.
-- **Терминальные:** Только после вызова терминального метода происходит выполнение всех операций. Возвращает уже данные (не stream). Примеры: **collect**, **count**, **min/max**, **forEach**, **toArray**, **reduce**.
+- Accumulate: filter, skip, limit, sorted** (returns `Stream`).
+- Terminate: collect, count, min/max, forEach, toArray, reduce (returns some result or performs some actions).
 
 Examples:
 ```
-List<String> collection = Arrays.asList(
-    "a1", "a2", "a3", "a1");
+List<String> collection = Arrays.asList("a1", "a2", "a3", "a1");
 
-// Вернуть количество вхождений объекта «a1»
 collection.stream().filter(«a1»::equals).count(); // 2
 
-// Вернуть последний элемент коллекции или "empty", 
-// если коллекция пуста
-collection.stream().skip(collection.size() - 1).findAny()
-    .orElse("empty"); // "a1"
+collection.stream().skip(collection.size() - 1).findAny().orElse("empty"); // "a1"
 
-// Найти элемент в коллекции равный "a3" или кинуть ошибку
-collection.stream().filter("a3"::equals)
-    .findFirst().get(); // "a3"
+collection.stream().filter("a3"::equals).findFirst().get(); // "a3"
 ```
 
 --------------------
