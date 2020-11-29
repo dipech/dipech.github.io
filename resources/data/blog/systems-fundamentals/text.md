@@ -278,3 +278,36 @@ When we need to store spatial data like locations on a map (latitudes and longit
 Databases of this kind rely on spatial indices.
 
 Quadtree is a tree data structure most commonly used to index two-dimensional spatial data.
+
+## Replication and Sharding
+
+Systems performance often depends on its databases' performance, because databases are critical to a system.
+
+Replica is nothing more than just another database stands next to main database. Main database handles all the 
+read/write operations and updates the replica according to it. If main database goes down, the replica takes over 
+and now becomes the new main database. After fallen one is recovered, it will be updated from the replica, then they
+will swap their roles again.
+
+If you want to have the replica capable to replace the main while it's down, then you need to have the replica
+be always absolutely the same as the main database. In this scenario we use synchronous updating mode.
+
+You can update the replica asynchronously, but it can be unacceptable for many cases. 
+You can have many replicas at the same time. If you have tons of data then you need to sync this data between
+all the replicas. That can be unacceptable. This is where sharding coming to play.
+
+Sharding is a technique of partitioning the data across multiple database servers. We split our main database into
+a bunch of little databases. Shards is a data partitions. You can shard on different levels. You can store some tables
+in one shard, other tables in another shard. Moreover, you can store specific rows of a table in different shards by 
+custom logic. Or you can store the dat according to a region. Some piece of data is stored in a shard in North America, 
+another piece of data is stored in a shard in Europe, and so on and so forth.
+
+You can have this splitting logic in your application server, but it's better to have a reverse proxy, which is
+working on behalf of shards, consists of splitting logic and redirects the data to a suitable shard. 
+That reverse proxy can consist the splitting logic based on consistent hashing.   
+
+
+
+
+
+
+
