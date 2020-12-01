@@ -305,9 +305,33 @@ You can have this splitting logic in your application server, but it's better to
 working on behalf of shards, consists of splitting logic and redirects the data to a suitable shard. 
 That reverse proxy can consist the splitting logic based on consistent hashing.   
 
+## Leader Election
 
+With the leader election, if you have a group of servers which are in charge of doing the same thing, instead of doing
+the same thing which is not what you want to do multiple times (for instance: debit/credit operations), leader election
+has the servers to select the leader who alone will do that action.
+Other servers are doing nothing until the leader is fallen. If the leader goes down, then one of the rest services 
+become a new leader.
+The real difficulty is in distributed machines and their communication. To achieve leader election 
+we can use Consensus Algorithms. This group of algorithms allow a group of nodes to reach consensus or to agree 
+on some single data value. One of such algorithm is Paxos & Raft. These algorithms are immensely tough, and 
+you don't need to implement it by yourself. You probably will use some third-party service that uses 
+one of these algorithms under the hood.
 
+Etcd/ZooKeeper are highly available and strongly consistent systems, Etcd implements Raft Consensus Algorithm 
+for leader election.
 
+To implement leader election we're going to have a key-value pair in Etcd where key 
+is a fixed key like "who-is-the-leader", and the value could be an IP address of the leader machine. 
 
+> ZooKeeper is a highly available key-value store. It's often used to store important configurations 
+> or to perform leader election.
 
+> Etcd also can be used for the same purposes.
 
+## Peer-To-Peer networks
+
+This technique can be useful for sharing huge amount of data between a large set of machines.
+For example, we have to share one 5Gb file from one machine to one thousand of machines. 
+The network throughput is 5Gbps. If we do it naively (by sharing to one by one machine), it will take a thousand seconds.
+ 
