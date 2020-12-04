@@ -373,20 +373,12 @@ collection.stream().filter("a3"::equals).findFirst().get(); // "a3"
 
 ## 20. Multiple Inheritance.
 
-Multiple Inheritance is a feature of object oriented concept, where a class can inherit properties of more than one parent class.
-
-В Java нет множественного наследования классов, однако есть множественное наследование интерфейсов.
+Multiple Inheritance is a feature of object oriented concept, where a class can inherit properties of more than one 
+parent class. There is no multiple classes inheritance in Java, but there is multiple interfaces inheritance.
 
 --------------------
 
 ## 21. Fields initialization order.
-
-1. Статические элементы родителя
-2. Статические элементы наследника
-3. Глобальные переменные родителя
-4. Конструктор родителя
-5. Глобальные переменные наследника
-6. Конструктор наследника
 
 ```java
 public class Example {
@@ -411,19 +403,18 @@ public class Example {
 
 ## 22. Functional interfaces.
 
-**Функциональный интерфейс** – это интерфейс, содержащий только один метод. 
-There are predefined functional interfaces in Java. Let's take a look at a part of these.
+Functional interfaces are interfaces with only one method in it. There are several predefined functional interfaces in Java.
 
-Runnable - Выполняет что-то, не принимая и не возвращая аргументов
 ```
 public interface Runnable {
     public void run();
 }
+
 ...
+
 () -> System.out.println("Echo from Runnable!")
 ```
 
-Predicate - Проверяет некоторое условие по операнду
 ```
 public interface Predicate<T> {
     boolean test(T t);
@@ -434,7 +425,6 @@ public interface Predicate<T> {
 (o) -> return o.isOk()
 ```
 
-Function<T,R> - Преобразует операнд и возвращает значение другого типа
 ```
 public interface Function<T, R> {
     R apply(T t);
@@ -445,7 +435,6 @@ public interface Function<T, R> {
 (intVal) -> return String.valueOf(intVal)
 ```
 
-Consumer<T> - Выполняет действие над объектом, ничего не возвращая
 ```
 public interface Consumer<T> {
     void accept(T t);
@@ -456,7 +445,6 @@ public interface Consumer<T> {
 (obj) -> System.out.println(obj)
 ```
 
-Supplier<T> - Не принимает ничего, но возвращает объект
 ```
 public interface Supplier<T> {
     T get();
@@ -467,7 +455,6 @@ public interface Supplier<T> {
 () -> return new Integer(random.nextInt());
 ```
 
-BinaryOperator - выполняет операции над двумя операндами
 ```
 public interface BinaryOperator<T> {
     T apply(T t1, T t2);
@@ -478,7 +465,6 @@ public interface BinaryOperator<T> {
 (o1, o2) -> return o1 + o2
 ```
 
-UnaryOperator - Выполняет операции над одним операндом
 ```
 public interface UnaryOperator<T> {
     T apply(T t);
@@ -493,21 +479,19 @@ public interface UnaryOperator<T> {
 
 ## 23. Exceptions: checked, unchecked.
 
-- **checked (проверяемые):** - это исключения, которые должны быть обработаны блоком *catch* или должны описываться в сигнатуре метода, иначе программа не скомпилируется. **Наследуются от Exception** (см. вложение).
-- **unchecked (непроверяемые):** - это исключения, которые могут необрабатываться и быть неописанными в сигнатуре метода. **Наследуются от Throwable, Error и RuntimeException** (см. вложение).
+- **checked** exceptions are exceptions inherited from `Exception`. These exceptions must be handled or 
+passed up through by `throws` method signature.
+- **unchecked** exceptions are exceptions inherited from `RuntimeException`, `Throwable` or `Error`. 
+You can leave these exceptions unhandled, you may write no `throws` keyword either.
 
-К **checked** относятся исключения:
-- *IOException* (Например: файл не найден).
-- *SQLException* (Например: соединения нет).
-- И другие.
+**checked** exceptions examples:
+- *IOException* (for instance: file not found).
+- *SQLException* (for instance: no connection).
 
-К **unchecked** относятся исключения:
-- *ArithmeticException* (Например: деление на ноль).
-- *IndexOutOfBoundsException* (Например: выход за границы массива).
-- *StackOverflowError* (стек переполнен).
-- И другие.
-
-Как уже было сказано, обработка данных исключений не обязательная, в том числе потому, что это достаточно частые операции (каждый раз оборачивать в `try { ... } catch { ... }` любой код обращения к массиву, например), и в таком случае код стал бы нечитаемый.
+**unchecked** exceptions examples:
+- *ArithmeticException* (for instance: division by zero).
+- *IndexOutOfBoundsException*.
+- *StackOverflowError*.
 
 ![](/resources/data/blog/java-questions-basic/exceptions-tree.png)
 
@@ -515,10 +499,10 @@ public interface UnaryOperator<T> {
 
 ## 24. List access modifiers.
 
-- **public**: Доступно всем классам из всех пакетов.
-- **protected**: Доступно текущему классу и его наследникам из всех пакетов.
-- **default**: Доступно текущему классу и его наследникам из текущего пакета.
-- **private**: Доступны только в рамках текущего класса.
+- **public**: Any class has access to the current class.
+- **protected**: The current class and inheritors have access.
+- **default**: The current class and inheritors from the same package have access.
+- **private**: Only the current class has access.
 
 ![](/resources/data/blog/java-questions-basic/access-modifiers.jpg)
 

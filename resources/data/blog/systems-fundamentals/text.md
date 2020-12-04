@@ -332,6 +332,158 @@ is a fixed key like "who-is-the-leader", and the value could be an IP address of
 ## Peer-To-Peer networks
 
 This technique can be useful for sharing huge amount of data between a large set of machines.
+
 For example, we have to share one 5Gb file from one machine to one thousand of machines. 
 The network throughput is 5Gbps. If we do it naively (by sharing to one by one machine), it will take a thousand seconds.
- 
+
+The main idea of peer-to-peer networks is splitting data into small pieces and sending them to target machines, then 
+target machines talk to each other and gather missing pieces from other machines and share already downloaded pieces 
+with other machines either.
+
+How do peers know about each other? There are at least two main approaches:
+- Centralised way (by using Tracker): we have a machine known as Tracker, that machine has all the information about pieces 
+and their locations, and coordinates machines' downloading.
+- Decentralised way (by using Gossip Protocol): we have no central machine, each peer communicates with other peers 
+and shares an information it already has, like "peer 5th has 16th and 585th pieces, peer 9th has 2-4th pieces, ...".
+
+Peer-To-Peer networks often operate having distributed hash table what peers contain what pieces of data.
+
+> Further reading: Gossip (Epidemic) Protocol, Distributed Hash Table (DHT), Uber's Kraken P2P system.
+
+## Polling and Streaming
+
+By using polling, a client is issuing data from a server following a set interval. For example, client fetches data 
+every X seconds. But polling has limitations streaming technique is free from. If you want to get data updates 
+instantly then you probably need to use streaming. 
+
+Streaming technique allows you to fetch regularly changing data regularly in effective manner, not by sending 
+HTTP requests all the time, because it is too expensive for this kind of tasks. A client using streaming opens 
+a long-lived connection with a server (typically it's done by using sockets).
+
+A socket basically is a file on your computer you can write to and read from to communicate with another computer 
+during a long-lived connection.
+
+## Configuration
+
+Configuration is a set of settings which configure an application behavior. It can be any type, but typically it's just
+json or yaml files, or a set of key-value pairs.
+
+So, configurations can be two types:
+- Static.
+- Dynamic.
+
+### Static configurations
+
+Configurations of this type are typically stored along with an application or bundled inside the application.
+It often needs to reload an app or even rebuild and redeploy the app to apply changes.
+It's safer, because we can detect mistakes during code review or testing, but you cannot instantly view the results of 
+changes in the config. 
+
+### Dynamic configurations
+
+Configurations of this type are typically stored in some external store such as ZooKeeper, Etcd, Redis, etc...
+You can instantly see the results right after changing the value of a setting, but the app may fail if you have no
+prevalidation/premoderation before saving a value. You may also need some protection to restrict access 
+for unauthorised users. In fact, you need to have an external store, and you need to create an additional application 
+to CRUD and validate config values and control access by using ACL.
+
+## Rate limiting
+
+DOS stands for denial-of-service attack and means that some computer is trying to get your service down by sending
+as many as possible requests at a time. We can use rate limiting to prevent DOS.
+
+DDOS stands for distributed DOS. It's much harder to defend against this type of attacks.
+
+Rate Limiting means we take control of how many actions (or requests) can be handled in a given amount of time by some
+service. For example, we can limit POST "/login" requests up to 10 per minute. If we send 11th request to this endpoint
+in less than 1 minute then we get an error in response. We can limit accessing particular endpoints, or we can limit 
+access for users based on different user's parameters like IP address, region, permissions, and so on and so forth.
+
+We can store data needed for rate limiting in memory. If we have redundancy then we need to use shared storage 
+for this data. Redis, for example, which often used for this task.
+
+We also can build more complex logic of rate limiting, for instance, tier-based rate limiting. 
+
+This is some example of tier-based rate limiting:
+- Tier 1: Max 3 operations per second
+- Tier 2: Max 10 operations per 30 seconds
+- Tier 3: Max 50 operations per minute
+
+## Logging, Monitoring, Alerting
+
+Logging is important, especially in large distributed systems. There are many prebuilt systems to manage logs.
+
+Two the most popular logging formats:
+- Syslog.
+- Json.
+
+How we can gather metrics:
+- By parsing logs.
+- By additional logging directly into Time-series DB.
+
+In many systems we can configure alerts by given conditions. For example, send an alert if we have little space on disk, 
+or if our requests process too long.
+
+> Google Stackdriver, ELK, Graylog
+
+## Publish/Subscribe pattern
+
+Publishers are entities that send messages into Topics. Topics are channels where messages are stored until being 
+consumed by Subscribers. Subscribers are entities that consume messages from Topics.
+Publishers don't communicate with Subscribers directly, and vice versa is also true.
+Messages just represent some form of data relevant for Subscribers. It might be text data or blobs or any type of 
+structured data.
+
+Systems implemented that pattern might (or event must) have the following characteristics:
+- At-least-once delivery.
+- Persistent storage.
+- Messages ordering.
+- Messages replayability.
+
+It needs to keep in mind that "at-least-once" delivery means that each message can be received multiple times.
+You probably might want to have your operations to be idempotent. But if your operations aren't idempotent it also 
+can be ok. It relies on your requirements.
+
+Idempotent operation is an operation you can perform one or multiple times and get the same result. So, the result 
+isn't depended on how many times the operation has been performed.
+
+> Apache Kafka, Google Cloud Pub/Sub
+
+## MapReduce
+
+MapReduce is a way to process immensely large datasets in a distributes setting effectively, quickly and 
+in a fault-tolerant manner.
+
+How does it work? In the beginning, we have our dataset spread across multiple machines. For example, we split out data 
+into 100 pieces of data and put it into 100 machines.
+The first step is named **Map**. During this step all chunks of data map into key-value pairs by applying defined 
+**map function**.
+The second step is named **Shuffle**. During this step key-value pairs are reorganized such that pair of the same key
+are routed to the same machine in the final step.
+The second step is named **Reduce**. During this step shuffled key-value pairs transform into meaningful data by 
+applying defined **reduce function**.
+
+The final chain looks like that:
+Data -> Data chunks -> Sets of Key-Value pairs -> Shuffled sets -> Reduce sets -> Final result.
+
+Important notes:
+- Dealing with MapReduce, we're working with Distributed File System (DFS).
+- Having in use some implementation of MapReduce, engineers need to take care only of "map" and "reduce" functions, 
+input data and output results.
+- Chunks are processed locally (where it resides). They don't move to any special place to be processed.
+- Key-value pairs are important.
+- To be a fault-tolerant system, MapReduce implementations re-perform failed operations. That means that map and reduce
+functions should be idempotent.
+
+A Distributed File System is an abstraction over a cluster of machines that allows them to act like 
+one large file system. DFSs take care of replication and availability of data in a distributed setting.
+
+> Hadoop is a framework that also supports MapReduce jobs.
+
+## Security and HTTPS
+
+
+
+## API design
+
+
