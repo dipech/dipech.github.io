@@ -482,8 +482,37 @@ one large file system. DFSs take care of replication and availability of data in
 
 ## Security and HTTPS
 
+HTTP is a plain-text protocol. Any well-trained hacker able to hijack your packets and read/modify it.
+It's called MITM-attack (Man In The Middle).
+HTTPS is secure HTTP. HTTPS uses encryptions to achieve secure connections.
 
+Any encryption can be symmetric and asymmetric. A symmetric encryption is a type of encryption that relies on 
+symmetric key algorithms. You need a single key to both encrypt and decrypt some data. It's faster that asymmetric 
+encryption algorithms. Downside is that the key must be both at the client and the server.
 
-## API design
+Asymmetric algorithms rely on 2 keys. This pair of keys generated together (private and public keys). 
+They're mathematically bound. If you encrypt a message with a public key then the message can only be decrypted with 
+the private key.
 
+Public keys can be shared on public but private keys must be kept in safe.
 
+TLS stands for Transport Layer Security. HTTP runs over TLS and known as HTTPS.
+
+TLS handshake happens when a client, and a server are establishing connection. A client sends a random set of bytes 
+(client's hello = chello) to a server, then the server also sends a random set of bytes (server's hello = shello) 
+to the client plus a SSL certificate (which is a public key). Client validates the SSL certificate by checking the sign.
+Then the client sends the premaster secret (a random set of bytes), but this time the data is encrypted 
+using received SSL certificate. The server decrypts encrypted premaster secret. 
+Now the client and the server have 3 things: chello, shello, premaster secret.
+Using these things they now can generate session keys (symmetric encryption keys). These keys are going to be used only
+during created session.
+
+SSL stands for Secure Sockets Layer. SSL Certificates are certificates that are granted from trusted third-party, 
+called Certificate Authority (CA).
+A SSL Certificate consists of:
+- Server's public key.
+- Info about the server.
+- Proves that this server is the server you want to communicate with.
+- A hash built on top of all the information in the certificate signed with public key of the authority.
+
+Any client can validate the SSL certificate with the certificate's sign. 
