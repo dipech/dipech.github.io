@@ -293,7 +293,7 @@ be always absolutely the same as the main database. In this scenario we use sync
 
 You can update the replica asynchronously, but it can be unacceptable for many cases. 
 You can have many replicas at the same time. If you have tons of data then you need to sync this data between
-all the replicas. That can be unacceptable. This is where sharding coming to play.
+all the replicas. That can be unacceptable. This is where sharding comes into to play.
 
 Sharding is a technique of partitioning the data across multiple database servers. We split our main database into
 a bunch of little databases. Shards is a data partitions. You can shard on different levels. You can store some tables
@@ -484,7 +484,7 @@ one large file system. DFSs take care of replication and availability of data in
 
 HTTP is a plain-text protocol. Any well-trained hacker able to hijack your packets and read/modify it.
 It's called MITM-attack (Man In The Middle).
-HTTPS is secure HTTP. HTTPS uses encryptions to achieve secure connections.
+HTTPS is secure HTTP. HTTPS uses encryption to achieve secure connections.
 
 Any encryption can be symmetric and asymmetric. A symmetric encryption is a type of encryption that relies on 
 symmetric key algorithms. You need a single key to both encrypt and decrypt some data. It's faster that asymmetric 
