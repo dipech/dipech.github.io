@@ -510,14 +510,13 @@ You can leave these exceptions unhandled, you may write no `throws` keyword eith
 
 ## 25. Can we manage Garbage Collector?
 
-Просто вызывай **System.gc();**.
-Однако, JVM не гарантирует реальный вызов GC.
+Execute `System.gc();` but it doesn't guarantee you that **GC** will be invoked.
 
 --------------------
 
 ## 26. How can we avoid lack of default parameters in Java?
 
-В Java нет параметров по-умолчанию. Для **конструирования объектов** используется паттерн **Builder**, а для **методов** используются методы, вызывающие друг-друга:
+We can achieve it by using **Builder** pattern and by methods and constructors overloading.
 
 ```java
 Random random = new Random();
@@ -539,25 +538,20 @@ int sum() {
 
 ## 27. What are the differences between static and non-static inner classes?
 
-Внутренний **не статический класс** имеет доступ **ко всем** полям и методам внешнего класса (не статическим и статическим).
-Внутренний **статический класс** имеет доступ к **статическим** полям и методам внешнего класса.
-Внутренний статический класс имеет смысл использовать тогда, когда нам не нужен доступ к полям внешнего класса, однако по смыслу внутренний класс должен быть внутри внешнего.
+Inner non static class can access all the methods and fields of a containing class.
+Inner static class can access only static methods and fields of a containing class.
 
 --------------------
 
 ## 28. What are generics?
 
-**Дженерики** - это параметризованные типы. С их помощью можно объявлять классы, интерфейсы и методы, где тип данных указан в виде параметра.
+Gererics are parameterised types. You can use a parameter (`T`, `K`, `ANY` literally any) 
+instead of a concrete type (`String`, `Integer`, `SomeClass`, etc). You can use it for interfaces, classes, 
+their methods (I/O variables' types), fields. 
+It provides type safety.
 
 ```
 class Example<T> { ... }
-
 ...
-
 Example<String> example = new Example<>();
 ```
-
-**Используются для написания логики, при этом не привязываясь к конкретным типам.**
-Например, можно определить базовый абстрактный класс **Storage<T>**, и определить операции над классом. 
-Параметром будет являться ключ доступа к элементу хранилища (тип параметра определяем в наследниках). 
-Ключом может быть *Integer*, *String*, *File*, или даже объект бизнес-логики, который мы храним в этом самом *Storage*.
