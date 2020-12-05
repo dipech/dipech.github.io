@@ -48,6 +48,15 @@
       "dateUpdated": null,
       "tags": []
     },
+    "behavioral-interview-questions": {
+      "title": "Behavioral interview questions",
+      "preview": "Let's walk through some basic behavioral interview questions",
+      "logo": "behavioral-interview-questions/logo.svg",
+      "text": "behavioral-interview-questions/text.md",
+      "dateCreated": "05.12.2020",
+      "dateUpdated": null,
+      "tags": []
+    },
     "java-related-technologies-overview": {
       "title": "Java-related technologies overview",
       "preview": "A brief overview of java technologies which I've ever faced with",
