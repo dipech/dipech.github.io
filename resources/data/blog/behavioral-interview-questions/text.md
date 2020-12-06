@@ -30,23 +30,64 @@ Be not too vague, not too short, and not throw too many details, don't ramble fr
 
 ## Low performer
 
-to be done.
+> Imagine you had a low performer on your team. How would you handle the situation? 
+> What would you do to help them?
+
+It needs to ask for clarification what does it actually mean. Why they're low performers?
+Do they do too few bug fixes? Do they have too few features done? Do they leave many bugs after?
+Do they have failed at something once, or do they fail repeatedly doing the same mistakes?
+
+It also needs to clarify what causes these faults. You need to identify the issue. Identify the cause of 
+low performance. Maybe tasks are too hard for they level? Maybe some external dependencies block they?
+
+If we determined that they are low performers indeed, then the simplest way is to help him. 
+Give him constructive feedback. Be available to answer questions. Document their succeeded and failed efforts of 
+improving performance over a time. Gather feedback from the rest of a team.
+
+Only if you did your best to handle this situation then delegate this problem to the manager.
 
 ## Team conflict
 
-to be done.
+> Describe a time when there was a conflict within your team. How did you help resolve the conflict? 
+> Did you do anything to prevent it in the future?
+
+Try to find good intents in actions of conflicted people. Try to find common ground with each side.
+Communication is the key to success in preventing and settling down such situations.
 
 ## Interest in company
+
+> Why do you want to work at ...?
+
+- The excited stack of technology.
+- Company specific features.
+- 
 
 to be done.
 
 ## Strong disagreement
 
-to be done.
+> Describe a time when you strongly disagreed with a coworker about an engineering decision.
+> How did you go about making the final decision? What did you do after the decision was made?
 
+Approximate algorithm to tackle this:
+- Try to dig deep. To really understand all the ideas your opponent has. Why they came to the conclusion that hey came to?
+- Then try to overview, look at the ideas from a higher level. From project or company level, for example.
+- If once the decision was made, then commit to it and follow it like it was your decision.
+- Remember: don't attack people, attack their ideas, but be respectful.
+
+To describe:
 - safe'o'clock charts rendering system.
 
 ## Sudden onboarding
+
+> Imagine you and your team are in the middle of a major project at work, with many moving parts, complicated context,
+> a lot of work, etc.. A new software engineer joins your team, and you're tasked with onboarding them.
+> What would you do?
+
+- Have a proper documentation in place.
+- Make myself 99.9% available to this new engineer for answering questions they have.
+- Carefully pick very-very simple bugs to start with. Then give it a couple tasks larger. Then again.
+It shouldn't be critical parts of the project. The main idea is to let the new teammate get used to the code base.  
 
 to be done.
 
