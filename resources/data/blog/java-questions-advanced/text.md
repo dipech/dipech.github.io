@@ -69,9 +69,11 @@ UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
 
 `@RestController` == `@Controller` + `@ResponseBody`.
 
---------------------
+`@ResponseBody` is an annotation used to specify that the endpoint returns an object in some text
+representation (json, for instance). If you want to get JSON, you probably would use 
+`MappingJacksonHttpMessageConverter` to achieve that.
 
-Аннотация `@ResponseBody` используется для того, чтобы сделать возвращаемый объект (напр. `Order` или `UserTo`) **содержимым тела ответа**, который `MappingJacksonHttpMessageConverter` вернёт в формате **JSON**.
+--------------------
 
 ## 6. IO/NIO Streams
 
@@ -90,8 +92,9 @@ ApplicationContext - это интерфейс в пакете org.springframewo
 
 ## 8. Java EE and Spring.
 
-**Java EE** – это набор **спецификаций**, который в совокупности определяет **полнофункциональный Enterprise Application Framework**.
+Java EE is a set of specifications determines fully-featured enterprise application framework.
 
-Т.к. **Java EE** – это набор **спецификаций**, то есть **конкретные реализации** данного набора спецификаций, например: JBoss, Glassfish, Weblogic.
+There are concrete realisations of these specifications, such as JBoss, Glassfish, Weblogic.
 
-**Spring** – это фреймворк, у которого много модулей, некоторые из которых соответствуют спецификациям **Java EE**, но большинство всё же нет.
+Although Spring has many modules implement some Java EE specifications, some modules don't.
+So, we cannot consider Spring as a Java EE implementation.

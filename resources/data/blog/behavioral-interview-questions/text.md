@@ -93,15 +93,25 @@ to be done.
 
 ## Work distribution
 
+> How would you go about distributing work for a project across a team of software engineers?
+> If you've led a project in the past, describe what you did.
+
 to be done.
 
 ## Past mistake
 
+> Describe a time when you made a mistake. How did you deal with the repercussions of the mistake?
+> What lessons did you learn from the mistake?
+
 to be done.
 
 - Netcat exchange module: inconsistency of the result with the technical task.
+- How I deleted alifba.
 
 ## Challenging project
+
+> Describe a challenging project that you worked on. Why was it challenging? What was your role in the project?
+> How did you deal with the various difficulties of the project?
 
 to be done.
 
@@ -109,9 +119,15 @@ to be done.
 
 ## Production outage
 
+> Describe a time when you had to deal with an outage at work. How did you handle the situation?
+> What steps did you take after the issue was resolved?
+
 to be done.
 
 ## Tough feedback
+
+> How do you think about receiving and giving feedback? Describe a time when you received tough feedback and/or 
+> a time when you gave tough feedback. How did you react to it? How did you give it?
 
 to be done.
 
@@ -119,8 +135,14 @@ to be done.
 
 ## Strengths and improvements
 
+> What aspects of software engineering do you think you're very good at? What about areas where you'd like to improve?
+> How do you plan on improving?
+
 to be done.
 
 ## Comfort zone
+
+> Describe a time when you went out of your comfort zone. Why did you do it?
+> What lessons did you learn from the experience?
 
 to be done.
