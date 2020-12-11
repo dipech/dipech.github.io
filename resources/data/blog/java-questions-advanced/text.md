@@ -1,22 +1,16 @@
 ## 1. What is Spring Boot?
 
-**Spring Boot** – это фреймворк, упрощающий создания приложений на основе Spring.
-Далее рассмотрены плюсы использования **Spring Boot**.
+Spring Boot is a framework that helps programmers to create Spring applications.
 
-- Упрощает управление зависимостями: Spring Boot **неявно** упаковывает необходимые сторонние зависимости для каждого типа приложения на основе Spring и предоставляет их посредством так называемых **starter-пакетов** (*spring-boot-starter-web*, *spring-boot-starter-data-jpa* и т.д.)
-
-Например, если вы хотите начать использовать **Spring Data JPA** для доступа к базе данных, просто включите в свой проект зависимость **spring-boot-starter-data-jpa**. Если вы хотите создать **Spring web-приложение**, просто добавьте зависимость **spring-boot-starter-web**.
-
-Spring Boot собирает все общие зависимости и определяет их в одном месте, что позволяет разработчикам просто использовать их, вместо того, чтобы изобретать колесо каждый раз, когда они создают новое приложение.
-Кроме того, Spring Boot позволяет **уменьшить размер POM-файла**, т.к. зависимости сокрыты в стартер паках.
-
-- Автоматическая конфигурация приложения: Spring Boot позволяет **автоматически конфигурировать приложение** – **подключает важные бины**. Например, если вы добавите **spring-boot-starter-web**, Spring Boot автоматически сконфигурирует такие зарегистрированные бины, как **DispatcherServlet, ResourceHandlers, MessageSource**.
-Если вы используете **spring-boot-starter-jdbc**, Spring Boot автоматически регистрирует бины **DataSource, EntityManagerFactory, TransactionManager** и считывает информацию для подключения к базе данных из файла **application.properties**.
-
-- Встроенный Web-сервер:  Каждое Spring Boot web-приложение включает встроенный web-сервер.
-Разработчикам теперь не надо беспокоиться о настройке контейнера сервлетов и развертывании приложения на нем. Теперь приложение может запускаться само, как исполняемый jar-файл с использованием встроенного сервера.
-Boot поддерживает новую аннотацию **@SpringBootApplication**, которая эквивалентна использованию **@Configuration**, **@EnableAutoConfiguration** и **@ComponentScan** с их атрибутами по умолчанию.
-Таким образом, вам просто нужно создать класс, аннотированный с помощью **@SpringBootApplication**, а Spring Boot включит автоматическую настройку и отсканирует ваши ресурсы в текущем пакете.
+Benefits of using Spring Boot:
+- It makes spring's dependencies management easier by using "starter" dependencies.
+These dependencies (like `spring-boot-starter-data-jpa`, `spring-boot-starter-web`, etc) contain 
+classes with auto-configurations which implicitly configure your application to start with an optimal app configuration.
+- By using autoconfiguration, Spring automatically registers all necessary beans into your application 
+and makes further configuration easier (for instance, if you have `spring-boot-starter-jdbc` then you have 
+`DataSource`, `EntityManagerFactory`, `TransactionManager` beans already injected. You just need to specify connection 
+data in `application.properties` file).
+- It contains an embedded web server, so you don't have to set up an application server.
 
 --------------------
 
@@ -31,31 +25,25 @@ Boot поддерживает новую аннотацию **@SpringBootApplica
 
 ## 3. How does Spring Security work?
 
-Ключевые объекты контекста Spring Security:
+There're some main classes:
 
-- SecurityContextHolder, в нем содержится информация о текущем контексте безопасности приложения, который включает в себя подробную информацию о пользователе(Principal) работающем в настоящее время с приложением. По умолчанию SecurityContextHolder используетThreadLocal для хранения такой информации, что означает, что контекст безопасности всегда доступен для методов исполняющихся в том же самом потоке. Для того что бы изменить стратегию хранения этой информации можно воспользоваться статическим методом класса SecurityContextHolder.setStrategyName(String strategy). Более подробно SecurityContextHolder
-- SecurityContext, содержит объект Authentication и в случае необходимости информацию системы безопасности, связанную с запросом от пользователя.
-- Authentication представляет пользователя (Principal) с точки зрения Spring Security.
-- GrantedAuthority отражает разрешения выданные пользователю в масштабе всего приложения, такие разрешения (как правило называются «роли»), например ROLE_ANONYMOUS, ROLE_USER, ROLE_ADMIN.
-- UserDetails предоставляет необходимую информацию для построения объекта Authentication из DAO объектов приложения или других источников данных системы безопасности. Объект UserDetailsсодержит имя пользователя, пароль, флаги: isAccountNonExpired, isAccountNonLocked, isCredentialsNonExpired, isEnabled и Collection — прав (ролей) пользователя.
-- UserDetailsService, используется чтобы создать UserDetails объект путем реализации единственного метода этого интерфейса
+- `SecurityContextHolder` is a helper class which provides `SecurityContext`. It stores the data in a ThreadLocal by default.
+- `SecurityContext` is used to store the details of the currently authenticated user. It contains `Authentication`.
+- `Authentication` represents the token for an authentication request.
+- `GrantedAuthority` is a permission that can be given to a user (like DELETE_ACCOUNT, CREATE_USER). 
+There're also roles, which are just authorities with the prefix `ROLE_`, like ROLE_ANONYMOUS, ROLE_USER, ROLE_ADMIN.
+- `UserDetails` provides core user information.
+- `UserDetailsService` searches user by username and returns fully configured `UserDetails` object.
 
-```java
-UserDetails loadUserByUsername(String username) throws UsernameNotFoundException; 
-```
-
-Позволяет получить из источника данных объект пользователя и сформировать из него объект UserDetails который будет использоваться контекстом Spring Security.
-
-Аутентификация:
-
-1. Пользователю будет предложено войти в систему предоставив имя (логин или email) и пароль. Имя пользователя и пароль объединяются в экземпляр класса UsernamePasswordAuthenticationToken(экземпляр интерфейса Authentication) после чего он передается экземпляру AuthenticationManager для проверки.
-2. В случае если пароль не соответствует имени пользователя будет выброшено исключение BadCredentialsException с сообщением “Bad Credentials”.
-3. Если аутентификация прошла успешно возвращает полностью заполненный экземпляр Authentication.
-4. Для пользователя устанавливается контекст безопасности путем вызова метода SecurityContextHolder.getContext().setAuthentication(…), куда передается объект который вернул AuthenticationManager.
+An authentication process looks like that:
+- User inputs his username and password. These are combined into `UsernamePasswordAuthenticationToken` and passed 
+to `AuthenticationManager` for verification.
+- If the verification fails then `BadCredentialsException` will be thrown.
+- Otherwise, `Authentication` will be composed and set into `SecurityContext`.
 
 --------------------
 
-## 4. Which annotations does Spring use to register classes in Spring Context?
+## 4. Which annotations does Spring use for registering classes in Spring Context?
 
 - `@Component`
 - `@Service`
@@ -83,10 +71,11 @@ To be done.
 
 ## 7. How does Spring Context work?
 
-ApplicationContext - это интерфейс в пакете org.springframework.context, он имеет несколько реализаций, и ClassPathXmlApplicationContext является одним из них.
-Бины сканируются (указаны в XML, Java конфиге или аннотации+указан сканер аннотаций). Попадают во внутреннюю мапу объектов.
-Если нужен бин - его можно достать из контекста спринга (по классу или ключевому слову).
-При этом спринг бин заинжектит все нужные зависимости сами выдаст готовый бин.
+`ApplicationContext` is an interface which has several implementations. `ClassPathXmlApplicationContext` is one of them.
+Beans, after being scanned (by looking for XML, Java or Annotation configs), are put into internal beans map. 
+If you need some bean, and the bean is presented  in AppContext, then you able to get the bean from it by using class or keyword. 
+Typically, it's done by using Dependency Injection. 
+Just declare a bean as an input parameter for the constructor and Spring will automatically inject it.
 
 --------------------
 

@@ -60,9 +60,6 @@ Communication is the key to success in preventing and settling down such situati
 
 - The excited stack of technology.
 - Company specific features.
-- 
-
-to be done.
 
 ## Strong disagreement
 
@@ -75,7 +72,7 @@ Approximate algorithm to tackle this:
 - If once the decision was made, then commit to it and follow it like it was your decision.
 - Remember: don't attack people, attack their ideas, but be respectful.
 
-To describe:
+To be done:
 - safe'o'clock charts rendering system.
 
 ## Sudden onboarding
@@ -89,48 +86,48 @@ To describe:
 - Carefully pick very-very simple bugs to start with. Then give it a couple tasks larger. Then again.
 It shouldn't be critical parts of the project. The main idea is to let the new teammate get used to the code base.  
 
-to be done.
-
 ## Work distribution
 
 > How would you go about distributing work for a project across a team of software engineers?
 > If you've led a project in the past, describe what you did.
 
-to be done.
+You need to find a balance between:
+- Criticality of parts of a project (assign the most capable engineers to work with the most difficult things).
+- Engineers' personal preferences (e.g. someone would like to work on some part of the project). To make sure people are 
+happy with the project.
+- Engineers' careers trajectories.
 
 ## Past mistake
 
 > Describe a time when you made a mistake. How did you deal with the repercussions of the mistake?
 > What lessons did you learn from the mistake?
 
-to be done.
-
+to be done:
 - Netcat exchange module: inconsistency of the result with the technical task.
-- How I deleted alifba.
+- How I deleted an entrire website (alifba).
 
 ## Challenging project
 
 > Describe a challenging project that you worked on. Why was it challenging? What was your role in the project?
 > How did you deal with the various difficulties of the project?
 
-to be done.
-
+to be done:
 - Multiprocessing multistep oktarget task execution system.
+- A difficult CUDA algorithm to be implemented.
 
 ## Production outage
 
 > Describe a time when you had to deal with an outage at work. How did you handle the situation?
 > What steps did you take after the issue was resolved?
 
-to be done.
+To be done
 
 ## Tough feedback
 
 > How do you think about receiving and giving feedback? Describe a time when you received tough feedback and/or 
 > a time when you gave tough feedback. How did you react to it? How did you give it?
 
-to be done.
-
+to be done:
 - Not for a person, but for a system module: netcat cms integration tools.
 
 ## Strengths and improvements
