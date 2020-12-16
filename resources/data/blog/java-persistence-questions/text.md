@@ -6,9 +6,8 @@ To be done.
 
 ## 2. Which exceptions rollback a transaction?
 
-Spring **автоматически откатывает** транзакции для **unchecked** исключений (*RuntimeXXX*).
-Это поведение **по-умолчанию**.
-Но **можно настроить** при помощи атрибута **rollBackFor** аннотации `@Transactional`.
+Spring automatically rollbacks unchecked exceptions. This is a default behavior.
+You can adjust the behavior with `rollBackFor` attribute of `@Transactional` annotation.
 
 --------------------
 
@@ -73,6 +72,7 @@ To be done.
 
 ## 7. Differences between `em.persist` and `em.merge`.
 
+`persist`
 persist: Использует присланный **entity**, и любые изменения после **em.persist** будут учтены в транзакции.
 
 merge: Делает копию присланного **entity**, по-этому изменения в **entity** после **em.merge** не будут учитываться в транзакции.

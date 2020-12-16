@@ -1,29 +1,28 @@
 ## 1. Describe main interfaces and classes.
 
-`List` – Упорядоченный список, доступ элементов осуществляется по индексу.
+`List` is a set of elements which can be accessible by their index.
 
-Основные реализации:
-- **ArrayList** - Реализация на основе массива.
-- **LinkedList** - Реализация на основе связного списка.
-- **Vector** - Deprecated. 
-- **Stack** - Работает по LIFO, потокобезопасен.
+Main implementations:
+- `ArrayList**.
+- `LinkedList**.
+- `Vector` (Deprecated). 
+- `Stack` (LIFO).
 
-`Set` – Неупорядоченный набор уникальных объектов. Внутри set может быть только один элемент со значением null.
+`Set` is an unordered set of elements. There could be only one element with `null` value.
 
-Основные реализации:
-- **HashSet** - Реализация на основе хеш-таблицы. Быстрый - *O(1)*, но порядок элементов не определен.
-- **LinkedHashSet** - Как HashSet, только гарантируется порядок элементов. В среднем производительность между HashSet и TreeSet.
-- **TreeSet** - Реализация на основе бинарного дерева. Медленнее - *O(logN)*, но гарантирует порядок элементов.
+Main implementations:
+- `HashSet` - Hash-table based implementation. The main feature is speed – *O(1)*. Elements order isn't guaranteed.
+- `LinkedHashSet` - Like `HashSet` but keeps track of elements order. The main feature is insertion order. 
+Elements order is guaranteed.
+- `TreeSet` - Binary tree based implementation. The main feature is sorting. Doesn't allow null values. 
+Slower than other - *O(logN)*. Elements order is guaranteed.
 
-Queue и Deque – Коллекция, предназначенная для хранения элементов в порядке, нужном для обработки.
+`Queue`, `Deque` are collections which store items in a specific order. `Deque` is a double-ended queue.
 
-**Queue** - это однонаправленная очередь, а **Deque** - двунаправленная очередь.
 - **FIFO:** ```Queue<Integer> queue = new LinkedList<>();```
 - **LIFO:** ```Queue<Integer> queue = Collections.asLifoQueue(new ArrayDeque<>());```
 
-`Map` – Сопоставляет один набор объектов другому набору объектов.
-
-Ключи уникальные, значение - не уникальные.
+`Map` maps one set of values (keys) to another set of values. Keys must be unique, values may not be unique. 
 
 Основные реализации:
 - **HashMap** - Реализация на основе хэш-таблицы. Быстро - O(logN), порядок не определен.
@@ -37,30 +36,24 @@ Queue и Deque – Коллекция, предназначенная для х�
 
 ## 2. `ArrayList` vs `LinkedList`.
 
-ArrayList – Построен на базе **массива**.
-Элементы располагаются **подряд**, у каждого элемента есть **индекс**.
-Автоматически расширяется когда возникает необходимость, а также можно самому выделить место под элементы, если заранее известно сколько нужно при помощи метода **ensureCapacity()**.
-Если фактически заполнено меньше ячеек массива чем реально выделено, то можно оптимизировать хранилище по памяти при помощи метода **trimToSize()**.
+`ArrayList` is built on top of an array. Elements are placed back to back, each element has his own index.
+`ArrayList` automatically expands when it needs. You may manually allocate enough space for elements by using
+`ensureCapacity(int minCapacity)` method. If there are a lot less elements than array's capacity 
+then you may want to rebalance the array by using `trimToSize()` method.
 
-LinkedList – Построен на базе **списка**.
-Каждый элемент списка имеет **ссылку** на **предыдущий** и **следующий** элементы списка.
-**Весит** больше, т.к. на каждый элемент хранится ссылка.
+`LinkedList` is built on top of a list. Each element has a reference to previous and next elements.
+`ArrayList` consumes more memory to store the same amount of elements (because of stored references).
 
-Разница во временной сложности алгоритмов добавления, обновления, удаления элементов данных коллекций, а также в итоговом размере хранения, **подробности во вложении**.
+The key difference is in the complexity of operations you may want to perform on these data structures.
 
-ArrayList:
-- Если нужен произвольный доступ к элементам.
-- Если не нужно вставлять элементы в середину списка, а только в конец.
-- Когда важно экономить память (т.к. LinkedList ещё хранит на каждый элемент по две ссылки - на предыдущий и следующий элементы).
-- Иногда может сыграть на руку оптимизация процессора (если массив целиком влезет в кэш процессора).
-
-LinkedList:
-- Если нужно часто добавлять элементы в коллекцию, причём не обязательно в начало или в конец.
-- Если нужно часто удалять элементы из коллекции, причём заранее имеется ссылка на элемент коллекции.
-
-Итого:
-- Нужны быстрые **get(index)** / **set(index, val)** - выбрать нужно **ArrayList**.
-- Нужны быстрые **add(index, val)** / **remove(index)** в середину коллекции - выбирать нужно **LinkedList**.
+There're some recommendations:
+- Use `ArrayList` if:
+  - You frequently access elements in a random manner.
+  - You add new elements mostly in the end of the array (inserting in the beginning causes O(N) time complexity).
+  - Less size does matter for some particular cases.
+- Use `LinkedList` if:
+  - You add elements mostly in the beginning of the array (these operations).
+  - You delete elements in case you already have references to them (to not to lose time traversing the list).
 
 --------------------
 
