@@ -1254,6 +1254,57 @@ class Program {
 
 --------------------
 
+## [Medium] Breadth-first Search
+
+> Implement the breadthFirstSearch method on the Node class, which takes in an empty array, traverses the tree
+> using the Breadth-first Search approach (specifically navigating the tree from left to right), 
+> stores all of the nodes' names in the input array, and returns it.
+
+<details>
+  <summary>Solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n) | O(n) |
+
+Where `n` - nodes count.
+
+```
+import java.util.*;
+
+class Program {
+    static class Node {
+        String name;
+        List<Node> children = new ArrayList<>();
+
+        public Node(String name) {
+            this.name = name;
+        }
+
+        public List<String> breadthFirstSearch(List<String> array) {
+            Queue<Node> queue = new LinkedList<>();
+            queue.add(this);
+            do {
+                Node node = queue.remove();
+                array.add(node.name);
+                queue.addAll(node.children);
+            } while (queue.size() > 0);
+            return array;
+        }
+
+        public Node addChild(String name) {
+            Node child = new Node(name);
+            children.add(child);
+            return this;
+        }
+    }
+}
+```
+  
+</details>
+
+--------------------
+
 ## [Hard] Largest Range
 
 > Write a function that takes in an array of integers and returns an array of length 2 representing the largest range 
