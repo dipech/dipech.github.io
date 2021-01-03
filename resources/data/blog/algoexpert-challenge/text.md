@@ -1135,6 +1135,70 @@ class Program {
 
 --------------------
 
+## [Medium] Move Element To End
+
+> You're given an array of integers and an integer. Write a function that moves all instances of that integer 
+> in the array to the end of the array and returns the array.
+
+<details>
+  <summary>Solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n) | O(1) |
+
+```
+import java.util.*;
+
+class Program {
+    public static List<Integer> moveElementToEnd(List<Integer> array, int toMove) {
+        Integer minIndex = null, maxIndex = null;
+        Boolean canBeSwapped = null;
+        do {
+            minIndex = targetNumberIndexFromLeft(array, toMove, minIndex);
+            maxIndex = otherNumberIndexFromRight(array, toMove, maxIndex);
+            canBeSwapped = minIndex != null && maxIndex != null && minIndex < maxIndex;
+            if (canBeSwapped) {
+                swap(array, minIndex, maxIndex);
+                minIndex++;
+                maxIndex--;
+            }
+        } while (canBeSwapped);
+        return array;
+    }
+
+    private static Integer targetNumberIndexFromLeft(List<Integer> array, int target, Integer minIndex) {
+        int min = minIndex != null ? minIndex : 0;
+        for (int i = min; i < array.size(); i++) {
+            if (array.get(i) == target) {
+                return i;
+            }
+        }
+        return null;
+    }
+
+    private static Integer otherNumberIndexFromRight(List<Integer> array, int target, Integer maxIndex) {
+        int max = maxIndex != null ? maxIndex : array.size() - 1;
+        for (int i = max; i >= 0; i--) {
+            if (array.get(i) != target) {
+                return i;
+            }
+        }
+        return null;
+    }
+
+    private static void swap(List<Integer> array, int index1, int index2) {
+        int tmp = array.get(index1);
+        array.set(index1, array.get(index2));
+        array.set(index2, tmp);
+    }
+}
+```
+  
+</details>
+
+--------------------
+
 ## [Hard] Largest Range
 
 > Write a function that takes in an array of integers and returns an array of length 2 representing the largest range 
