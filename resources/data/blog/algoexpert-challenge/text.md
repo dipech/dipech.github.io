@@ -1064,6 +1064,77 @@ class Program {
 
 --------------------
 
+## [Medium] Spiral Traverse
+
+> Write a function that takes in an n x m two-dimensional array (that can be square-shaped when n == m)
+> and returns a one-dimensional array of all the array's elements in spiral order.
+
+<details>
+  <summary>Solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(w*h) | O(w*h) |
+
+```
+import java.util.*;
+
+class Program {
+    public static List<Integer> spiralTraverse(int[][] array) {
+        List<Integer> result = new ArrayList<>();
+        int rowCurrent = 0, colCurrent = 0;
+        int rowMin = 0, colMin = 0, rowMax = array.length - 1, colMax = array[0].length - 1;
+        do {
+            // top left -> top right
+            for (int col = colMin; col <= colMax; col++) {
+                result.add(array[rowCurrent][col]);
+            }
+            rowMin++;
+            colCurrent = colMax;
+            if (isNeedToStop(rowMin, rowMax, colMin, colMax)) {
+                break;
+            }
+            // top right -> bottom right
+            for (int row = rowMin; row <= rowMax; row++) {
+                result.add(array[row][colCurrent]);
+            }
+            colMax--;
+            rowCurrent = rowMax;
+            if (isNeedToStop(rowMin, rowMax, colMin, colMax)) {
+                break;
+            }
+            // bottom right -> bottom left
+            for (int col = colMax; col >= colMin; col--) {
+                result.add(array[rowCurrent][col]);
+            }
+            rowMax--;
+            colCurrent = colMin;
+            if (isNeedToStop(rowMin, rowMax, colMin, colMax)) {
+                break;
+            }
+            // bottom left -> top left
+            for (int row = rowMax; row >= rowMin; row--) {
+                result.add(array[row][colCurrent]);
+            }
+            colMin++;
+            rowCurrent = rowMin;
+            if (isNeedToStop(rowMin, rowMax, colMin, colMax)) {
+                break;
+            }
+        } while (true);
+        return result;
+    }
+
+    private static boolean isNeedToStop(int rowMin, int rowMax, int colMin, int colMax) {
+        return rowMin > rowMax || colMin > colMax;
+    }
+}
+```
+  
+</details>
+
+--------------------
+
 ## [Hard] Largest Range
 
 > Write a function that takes in an array of integers and returns an array of length 2 representing the largest range 

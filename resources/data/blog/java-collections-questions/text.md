@@ -121,7 +121,7 @@ There're some recommendations:
 
 ## 7. How to remove duplicates from a collection?
 
-Use `Set`, don't use cycles (this is a common mistake):
+Just use `Set` (`HashSet`):
 
 ```java
 List<Integer> valuesWithDuplicates = List.of(1, 2, 2, 3, 3, 3);
