@@ -1199,6 +1199,61 @@ class Program {
 
 --------------------
 
+## [Medium] Invert Binary Tree
+
+> Write a function that takes in a Binary Tree and inverts it. In other words, the function should swap every left 
+> node in the tree for its corresponding right node.
+
+<details>
+  <summary>Solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n) | O(n) |
+
+Where `n` - nodes count.
+
+```
+import java.util.*;
+
+class Program {
+    public static void invertBinaryTree(BinaryTree tree) {
+        Queue<BinaryTree> queue = new LinkedList<>();
+        queue.add(tree);
+        do {
+            BinaryTree node = queue.remove();
+            swapLeftAndRight(node);
+            if (node.left != null) {
+                queue.add(node.left);
+            }
+            if (node.right != null) {
+                queue.add(node.right);
+            }
+        } while (queue.size() > 0);
+    }
+
+    private static void swapLeftAndRight(BinaryTree node) {
+        BinaryTree tmp = node.left;
+        node.left = node.right;
+        node.right = tmp;
+    }
+
+    static class BinaryTree {
+        public int value;
+        public BinaryTree left;
+        public BinaryTree right;
+
+        public BinaryTree(int value) {
+            this.value = value;
+        }
+    }
+}
+```
+  
+</details>
+
+--------------------
+
 ## [Hard] Largest Range
 
 > Write a function that takes in an array of integers and returns an array of length 2 representing the largest range 
