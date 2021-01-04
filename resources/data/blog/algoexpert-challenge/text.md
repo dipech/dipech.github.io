@@ -1320,8 +1320,6 @@ class Program {
 | :-------------: | :--------------: |
 | O(n) | O(1) |
 
-Where `n` - nodes count.
-
 ```
 import java.util.*;
 
@@ -1361,8 +1359,6 @@ class Program {
     }
 }
 ```
-  
-</details>
 
 > Note: It is possible to solve this problem in one iteration over the array:
 > 1) We can return an index (or null) of the first different element starting from index 1, then
@@ -1371,6 +1367,33 @@ class Program {
 > 2) We can use only one `for` loop.
 >
 > I left it as is, because it's more visually clean solution.
+
+<details>
+  <summary>Solution based on their solution (I was inspired by it, so elegant it was)</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n) | O(1) |
+
+```
+class Program {
+    public static boolean isMonotonic(int[] array) {
+        boolean isIncreasing = false;
+        boolean isDecreasing = false;
+        for (int i = 0; i < array.length - 1; i++) {
+            if (array[i] < array[i + 1]) {
+                isIncreasing = true;
+            }
+            if (array[i] > array[i + 1]) {
+                isDecreasing = true;
+            }
+        }
+        return !isIncreasing || !isDecreasing;
+    }
+}
+```
+  
+</details>
 
 --------------------
 
