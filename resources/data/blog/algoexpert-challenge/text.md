@@ -1364,6 +1364,14 @@ class Program {
   
 </details>
 
+> Note: It is possible to solve this problem in one iteration over the array:
+> 1) We can return an index (or null) of the first different element starting from index 1, then
+>    determine if numbers decrease or increase, then iterate starting from that index till the end 
+>    and check for monotonic.
+> 2) We can use only one `for` loop.
+>
+> I left it as is, because it's more visually clean solution.
+
 --------------------
 
 ## [Hard] Largest Range
