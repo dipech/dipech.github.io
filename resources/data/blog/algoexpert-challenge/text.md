@@ -1305,6 +1305,67 @@ class Program {
 
 --------------------
 
+## [Medium] Monotonic array
+
+> Write a function that takes in an array of integers and returns a boolean representing whether the array is monotonic.
+> An array is said to be monotonic if its elements, from left to right, are entirely non-increasing or entirely non-decreasing.
+> Non-increasing elements aren't necessarily exclusively decreasing; they simply don't increase. 
+> Similarly, non-decreasing elements aren't necessarily exclusively increasing; they simply don't decrease. 
+> Note that empty arrays and arrays of one element are monotonic.
+
+<details>
+  <summary>Solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n) | O(1) |
+
+Where `n` - nodes count.
+
+```
+import java.util.*;
+
+class Program {
+    public static boolean isMonotonic(int[] array) {
+        if (array.length <= 1) {
+            return true;
+        }
+        Boolean isIncrease = detectNumbersGrowDirection(array);
+        if (isIncrease == null) {
+            return true;
+        }
+        for (int i = 0; i < array.length - 1; i++) {
+            int current = array[i];
+            int next = array[i + 1];
+            boolean badCase1 = isIncrease && current > next;
+            boolean badCase2 = !isIncrease && current < next;
+            if (badCase1 || badCase2) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // true - numbers increase
+    // false - numbers decrease
+    // null - all numbers are the same value
+    private static Boolean detectNumbersGrowDirection(int[] array) {
+        int first = array[0];
+        for (int i = 1; i < array.length; i++) {
+            int next = array[i];
+            if (next != first) {
+                return next > first;
+            }
+        }
+        return null;
+    }
+}
+```
+  
+</details>
+
+--------------------
+
 ## [Hard] Largest Range
 
 > Write a function that takes in an array of integers and returns an array of length 2 representing the largest range 
