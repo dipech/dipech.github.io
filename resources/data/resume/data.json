@@ -1,6 +1,6 @@
 {
   "user": {
-    "about": "I've been developing since 2010. Freelancer, Founder, Developer. In love with clean-code. I've built from scratch several large projects and quite many medium-sized projects. Constantly improving my skills. I love odd humor, such as puns :)",
+    "about": "I've been developing since 2010. Freelancer, Founder, Developer. In love with clean-code. I've built from scratch several large projects and quite many medium-sized projects. Constantly improving my skills. I love odd humor, bicycles building (in spare time, of course), sport.",
     "specialization": "Web (Java and PHP) Developer",
     "photo": "photo.jpg",
     "firstName": "Dmitry",
@@ -10,14 +10,24 @@
     "location": "Saint-Petersburg",
     "contacts": [
       {
-        "type": "phone",
-        "value": "+7 (903) 375-13-87",
-        "icon": "icons/phone.png"
+        "type": "link",
+        "value": "https://t.me/dipech",
+        "icon": "icons/telegram.svg"
+      },
+      {
+        "type": "link",
+        "value": "https://wa.me/+79033751387",
+        "icon": "icons/whatsup.svg"
       },
       {
         "type": "email",
         "value": "dmitry.pechkovsky@gmail.com",
         "icon": "icons/envelope.png"
+      },
+      {
+        "type": "phone",
+        "value": "+7 (903) 375-13-87",
+        "icon": "icons/phone.png"
       },
       {
         "type": "link",
@@ -28,11 +38,6 @@
         "type": "link",
         "value": "http://linkedin.com/in/dipech",
         "icon": "icons/linkedin.ico"
-      },
-      {
-        "type": "link",
-        "value": "https://vk.com/dmitry.pechkovsky",
-        "icon": "icons/vk.png"
       }
     ]
   },
@@ -128,10 +133,10 @@
       "startDate": "09.2019",
       "endDate": null,
       "duties": [
-        "Cut monolith into microservices.",
-        "Development of new functionality.",
-        "Improvement of existing functionality.",
-        "Software design, automation."
+        "Implemented a few huge modules of a system.",
+        "Created lots of different tools to automate and harmonize data flows.",
+        "Fixed tons of bugs, made thousands of little improvements across the whole product.",
+        "Built from scratch a dozen and half intentionally vulnerable Java projects as a half-time employee of another team in the company (hacktory.ai)."
       ],
       "technologies": [
         "Spring Boot (Java)",
@@ -145,7 +150,8 @@
         "Groovy",
         "Teamcity",
         "Bash",
-        "Yii (PHP)"
+        "Yii (PHP)",
+        "VueJS"
       ]
     },
     {
@@ -161,12 +167,12 @@
       "startDate": "10.2017",
       "endDate": "06.2020",
       "duties": [
-        "Development of the system from scratch with Symfony framework.",
-        "Development of a multi-threaded system for performing users tasks.",
-        "Managing all the infrastructure, CI/CD, deployment, updating.",
-        "Development of rich interactive UI.",
-        "Integrations with other systems.",
-        "Rich administrative panel with many unique functions."
+        "Created the entire system from scratch.",
+        "Implemented a multi-processing subsystem for running users' tasks.",
+        "Managed all the infrastructural duties, like configuring the server, setting up CI/CD, automating deployment process, and so on and so forth.",
+        "Made rich, interactive, user-friendly UI.",
+        "Implemented lots of integrations with other systems like social networks, external marketing tools, etc.",
+        "Created an unique, powerful administrative panel."
       ],
       "technologies": [
         "Symfony (PHP + MySQL)",
@@ -185,13 +191,13 @@
       "employmentType": "freelance",
       "location": "Russia, Makhachkala",
       "startDate": "01.2017",
-      "endDate": "11.2020",
+      "endDate": "12.2020",
       "duties": [
-        "Development of all the functions from scratch with Laravel framework.",
-        "Development of all the basic functions of an online shopping website.",
-        "Automatic importing of products from different suppliers.",
-        "Unique catalogue mechanism.",
-        "Rich and powerful administration panel."
+        "Created the entire system from scratch.",
+        "Implemented fast and robust mechanism of importing products from different vendors.",
+        "Developed two-ways integration with CRM.",
+        "Made lots of tricky optimizations (SQL, caching) to achieve faster working speed on not so powerful VPS.",
+        "Created a handy admin panel for administrators and sales managers."
       ],
       "technologies": [
         "Laravel (PHP + MySQL)",
@@ -214,9 +220,9 @@
       "startDate": "07.2017",
       "endDate": "09.2018",
       "duties": [
-        "Development of a data exchange module that works with the most used formats (CSV, XLSX, YML, CommerceML), provides many options for end-users (manual/semi-automatic/automatic run mode, automatic data downloading, logging, reports sending, etc).",
-        "Improving and rewriting the CMS kernel while working on major version of CMS (6.0).",
-        "CMS integration with Yandex.Delivery."
+        "Implemented an entire CMS module, it imports and exports the e-commerce data between the CMS and other systems.",
+        "Took participate in seriously improving the kernel during working on the next big version of the system.",
+        "Integrated the system with Yandex.Delivery."
       ],
       "technologies": [
         "PHP",
@@ -239,10 +245,9 @@
       "startDate": "11.2015",
       "endDate": "05.2017",
       "duties": [
-        "Different business logic development for different web-projects.",
-        "NetCat CMS modules development.",
-        "Websites optimisations, business logic optimisations.",
-        "Exchanges with different systems like 1C, Yandex.Market and other sites and systems."
+        "Created many different web-projects with different business-logic.",
+        "Developed several modules for NetCat CMS.",
+        "Implemented tons of API integrations and data exchanges with different systems (1C, Yandex.Market, custom external APIs, etc)."
       ],
       "technologies": [
         "NetCat (PHP + MySQL)",

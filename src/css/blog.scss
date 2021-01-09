@@ -1,0 +1,32 @@
+.post {
+  .text {
+    code {
+      color: #555555;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background-color: #a9a9a92e;
+    }
+    pre {
+      padding: 20px;
+      background-color: #8080801f;
+      code {
+        color: #555555;
+        padding: 0;
+        border-radius: 0;
+        background-color: transparent;
+      }
+    }
+    img {
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+      height: auto;
+    }
+    blockquote {
+      display: block;
+      padding-left: 10px;
+      color: var(--gray);
+      border-left: 5px solid #666C757D;
+    }
+  }
+}

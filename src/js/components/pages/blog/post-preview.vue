@@ -5,7 +5,7 @@
         </div>
         <div class="card-body">
             <!--suppress HtmlUnknownTarget -->
-            <c-image :src="logoUrl(post.logo)" class="logo" alt="Logo" :zoomable="false"/>
+            <c-image :src="logoUrl(post.logo)" class="logo mr-4" alt="Logo" :zoomable="false"/>
             <small>Posted on <b>{{ post.dateCreated }}</b></small>
             <div>
                 <small>

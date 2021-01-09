@@ -1,9 +1,12 @@
 <template>
-    <div class="row">
+    <div>
         <c-preloader v-if="!loaded"/>
         <div v-if="loaded">
-            <div class="col-12" v-for="(post, postKeyword) in posts">
-                <c-post-preview :post="post" :postKeyword="postKeyword" :key="postKeyword"/>
+            <div class="row">
+                <div class="col-12" v-for="(post, postKeyword) in posts">
+                    <c-post-preview :post="post" :postKeyword="postKeyword" :key="postKeyword"
+                                    :class="{ 'mb-3': !isLast(postKeyword) }"/>
+                </div>
             </div>
         </div>
     </div>
@@ -33,11 +36,23 @@
         }
 
         get posts() {
-            return this.blog.posts;
+            let posts: any = {};
+            for (let postKeyword in this.blog.posts) {
+                let post = this.blog.posts[postKeyword];
+                if (post.isPublished) {
+                    posts[postKeyword] = post;
+                }
+            }
+            return posts;
         }
 
         get loaded() {
             return this.blog;
+        }
+
+        isLast(postKeyword: string) {
+            let keywords = Object.keys(this.posts);
+            return keywords[keywords.length - 1] === postKeyword;
         }
 
     }
