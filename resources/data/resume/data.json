@@ -10,14 +10,24 @@
     "location": "Saint-Petersburg",
     "contacts": [
       {
-        "type": "phone",
-        "value": "+7 (903) 375-13-87",
-        "icon": "icons/phone.png"
+        "type": "link",
+        "value": "https://t.me/dipech",
+        "icon": "icons/telegram.svg"
+      },
+      {
+        "type": "link",
+        "value": "https://wa.me/+79033751387",
+        "icon": "icons/whatsup.svg"
       },
       {
         "type": "email",
         "value": "dmitry.pechkovsky@gmail.com",
         "icon": "icons/envelope.png"
+      },
+      {
+        "type": "phone",
+        "value": "+7 (903) 375-13-87",
+        "icon": "icons/phone.png"
       },
       {
         "type": "link",
@@ -28,11 +38,6 @@
         "type": "link",
         "value": "http://linkedin.com/in/dipech",
         "icon": "icons/linkedin.ico"
-      },
-      {
-        "type": "link",
-        "value": "https://vk.com/dmitry.pechkovsky",
-        "icon": "icons/vk.png"
       }
     ]
   },

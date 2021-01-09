@@ -7,7 +7,7 @@
         <h2>{{ user.lastName }} {{ user.firstName }} {{ user.middleName }}</h2>
         <div>
             <b>{{ user.specialization }}</b><br>
-            {{ ages }} years old. Currently living in {{ user.location }}.
+            {{ ages }} years old. {{ user.location }}.
         </div>
         <div class="mt-2">
             <div v-for="contact in user.contacts">
