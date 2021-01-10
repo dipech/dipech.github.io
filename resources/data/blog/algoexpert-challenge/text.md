@@ -1397,6 +1397,64 @@ class Program {
 
 --------------------
 
+## [Medium] Validate BST
+
+> Write a function that takes in a potentially invalid Binary Search Tree (BST) and returns a boolean representing 
+> whether the BST is valid.
+
+<details>
+  <summary>Solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n) | O(n) |
+
+Where `n` - nodes count.
+
+```
+import java.util.*;
+
+class Program {
+    public static boolean validateBst(BST tree) {
+        return isValid(tree, null, null);
+    }
+
+    private static boolean isValid(BST current, BST leftParent, BST rightParent) {
+        BST left = current.left;
+        if (left != null) {
+            boolean isValidForCurrent = left.value < current.value;
+            boolean isValidForLeftParent = leftParent == null || left.value >= leftParent.value;
+            if (!isValidForCurrent || !isValidForLeftParent || !isValid(left, leftParent, current)) {
+                return false;
+            }
+        }
+        BST right = current.right;
+        if (right != null) {
+            boolean isValidForCurrent = right.value >= current.value;
+            boolean isValidForRightParent = rightParent == null || right.value < rightParent.value;
+            if (!isValidForCurrent || !isValidForRightParent || !isValid(right, current, rightParent)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    static class BST {
+        public int value;
+        public BST left;
+        public BST right;
+
+        public BST(int value) {
+            this.value = value;
+        }
+    }
+}
+```
+  
+</details>
+
+--------------------
+
 ## [Hard] Largest Range
 
 > Write a function that takes in an array of integers and returns an array of length 2 representing the largest range 
