@@ -1455,6 +1455,91 @@ class Program {
 
 --------------------
 
+## [Medium] The smallest Difference
+
+> Write a function that takes in two non-empty arrays of integers, finds the pair of numbers (one from each array) 
+> whose absolute difference is closest to zero, and returns an array containing these two numbers, with the number from
+> the first array in the first position.
+
+<details>
+  <summary>Naive solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n*m) | O(1) |
+
+```
+class Program {
+    public static int[] smallestDifference(int[] arrayOne, int[] arrayTwo) {
+        if (arrayOne.length == 0 || arrayTwo.length == 0) {
+            throw new RuntimeException("Invalid input");
+        }
+        Integer min = null, one = null, two = null;
+        for (int i = 0; i < arrayOne.length; i++) {
+            for (int j = 0; j < arrayTwo.length; j++) {
+                int current = distance(arrayOne[i], arrayTwo[j]);
+                if (min == null || current < min) {
+                    min = current;
+                    one = arrayOne[i];
+                    two = arrayTwo[j];
+                }
+            }
+        }
+        return new int[]{one, two};
+    }
+
+    private static int distance(int a, int b) {
+        return Math.abs(a - b);
+    }
+}
+```
+  
+</details>
+
+<details>
+  <summary>More optimal solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n*log(n) + m*log(m)) | O(1) |
+
+```
+import java.util.*;
+
+class Program {
+    public static int[] smallestDifference(int[] arrayOne, int[] arrayTwo) {
+        Arrays.sort(arrayOne);
+        Arrays.sort(arrayTwo);
+        int pointerOne = 0, pointerTwo = 0;
+        Integer minDistance = null, resultValueOne = null, resultValueTwo = null;
+        do {
+            int valueOne = arrayOne[pointerOne];
+            int valueTwo = arrayTwo[pointerTwo];
+            int distance = distance(valueOne, valueTwo);
+            if (minDistance == null || distance < minDistance) {
+                minDistance = distance;
+                resultValueOne = valueOne;
+                resultValueTwo = valueTwo;
+            }
+            if (valueOne < valueTwo) {
+                pointerOne++;
+            } else {
+                pointerTwo++;
+            }
+        } while (minDistance != 0 && pointerOne < arrayOne.length && pointerTwo < arrayTwo.length);
+        return new int[]{resultValueOne, resultValueTwo};
+    }
+
+    private static int distance(int a, int b) {
+        return Math.abs(a - b);
+    }
+}
+```
+  
+</details>
+
+--------------------
+
 ## [Hard] Largest Range
 
 > Write a function that takes in an array of integers and returns an array of length 2 representing the largest range 
