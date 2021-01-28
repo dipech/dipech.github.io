@@ -1575,6 +1575,70 @@ class Program {
 
 --------------------
 
+## [Medium] First duplicate value
+
+> Given an array of integers between 1 and n, inclusive, where n is the length of the array, write a function 
+> that returns the first integer that appears more than once (when the array is read from left to right).
+
+<details>
+  <summary>HashSet solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n) | O(n) |
+
+```
+import java.util.*;
+
+class Program {
+
+    public int firstDuplicateValue(int[] array) {
+        Set<Integer> visited = new HashSet<>();
+        for (int value : array) {
+            if (visited.contains(value)) {
+                return value;
+            }
+            visited.add(value);
+        }
+        return -1;
+    }
+    
+}
+```
+  
+</details>
+
+<details>
+  <summary>Optimal solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n) | O(1) |
+
+```
+import java.util.*;
+
+class Program {
+
+    public int firstDuplicateValue(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            int value = Math.abs(array[i]);
+            int index = value - 1;
+            if (array[index] < 0) {
+                return value;
+            }
+            array[index] *= -1;
+        }
+        return -1;
+    }
+    
+}
+```
+  
+</details>
+
+--------------------
+
 ## [Hard] Largest Range
 
 > Write a function that takes in an array of integers and returns an array of length 2 representing the largest range 
