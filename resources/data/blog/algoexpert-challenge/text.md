@@ -1639,6 +1639,117 @@ class Program {
 
 --------------------
 
+## [Medium] Permutations
+
+> Write a function that takes in an array of unique integers and returns an array of all permutations 
+> of those integers in no particular order.
+
+<details>
+  <summary>My first solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n * n!) | O(n^2 * n!) |
+
+```
+import java.util.*;
+
+class Program {
+
+    public static List<List<Integer>> getPermutations(List<Integer> array) {
+        if (array.size() == 0) {
+            return new ArrayList<>();
+        }
+        if (array.size() == 1) {
+            return Arrays.asList(Arrays.asList(array.get(0)));
+        }
+        return permutate(array);
+    }
+
+    private static List<List<Integer>> permutate(List<Integer> array) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (array.size() == 2) {
+            result.add(Arrays.asList(array.get(0), array.get(1)));
+            result.add(Arrays.asList(array.get(1), array.get(0)));
+        } else {
+            for (int i = 0; i < array.size(); i++) {
+                int value = array.get(i);
+                List<Integer> exceptValue = getArrayExceptValue(array, i);
+                for (List<Integer> permutated : permutate(exceptValue)) {
+                    result.add(combineNumbers(value, permutated));
+                }
+            }
+        }
+        return result;
+    }
+
+    private static List<Integer> getArrayExceptValue(List<Integer> array, int index) {
+        List<Integer> result = new ArrayList<>(array);
+        result.remove(index);
+        return result;
+    }
+
+    private static List<Integer> combineNumbers(int value, List<Integer> array) {
+        List<Integer> result = new ArrayList<>();
+        result.add(value);
+        result.addAll(array);
+        return result;
+    }
+    
+}
+```
+  
+</details>
+
+<details>
+  <summary>Optimal solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n * n!) | O(n * n!) |
+
+```
+import java.util.*;
+
+class Program {
+    
+    public static List<List<Integer>> getPermutations(List<Integer> array) {
+        if (array.size() == 0) {
+            return new ArrayList<>();
+        }
+        if (array.size() == 1) {
+            return Arrays.asList(Arrays.asList(array.get(0)));
+        }
+        List<List<Integer>> result = new ArrayList<>();
+        permutate(0, array, result);
+        return result;
+    }
+
+    private static void permutate(int index, List<Integer> array, List<List<Integer>> result) {
+        if (index == array.size() - 1) {
+            result.add(new ArrayList<>(array));
+            return;
+        }
+        for (int i = index; i < array.size(); i++) {
+            swap(array, i, index);
+            permutate(index + 1, array, result);
+            swap(array, i, index);
+        }
+    }
+
+    private static void swap(List<Integer> array, int index1, int index2) {
+        int tmp = array.get(index1);
+        array.set(index1, array.get(index2));
+        array.set(index2, tmp);
+    }
+
+}
+```
+  
+</details>
+
+--------------------
+
 ## [Hard] Largest Range
 
 > Write a function that takes in an array of integers and returns an array of length 2 representing the largest range 
