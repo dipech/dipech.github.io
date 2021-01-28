@@ -890,6 +890,41 @@ class Program {
 
 --------------------
 
+## [Easy] Minimum Waiting Time
+
+> You're given a non-empty array of positive integers representing the amounts of time that specific queries take 
+> to execute. Only one query can be executed at a time, but the queries can be executed in any order.
+> Write a function that returns the minimum amount of total waiting time for all of the queries.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n * log(n)) | O(1) |
+
+```
+import java.util.Arrays;
+
+class Program {
+
+    public int minimumWaitingTime(int[] queries) {
+        Arrays.sort(queries);
+        int totalWaitingTime = 0, accumulator = 0;
+        for (int i = 0; i < queries.length - 1; i++) {
+            accumulator += queries[i];
+            totalWaitingTime += accumulator;
+        }
+        return totalWaitingTime;
+    }
+    
+}
+```
+
+</details>
+
+--------------------
+
 ## [Medium] River Sizes
 
 > Write a function that returns an array of the sizes of all rivers represented in the input matrix.
