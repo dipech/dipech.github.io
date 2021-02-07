@@ -1885,6 +1885,124 @@ class Program {
 
 --------------------
 
+## [Medium] Longest Peak
+
+> Write a function that takes in an array of integers and returns the length of the longest peak in the array.
+> A peak is defined as adjacent integers in the array that are strictly increasing until they reach a tip
+> (the highest value in the peak), at which point they become strictly decreasing.
+> At least three integers are required to form a peak.
+
+<details>
+  <summary>My first solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(1) |
+
+```
+class Program {
+
+    public static int longestPeak(int[] array) {
+        if (array.length < 3) {
+            return 0;
+        }
+        int longest = 0;
+        boolean isGoUp = true;
+        Integer start = null, finish = null;
+        int i = 0;
+        do {
+            boolean isLast = i == array.length - 1;
+            boolean reset = false;
+            if (start == null) {
+                if (isLast || array[i] >= array[i + 1]) {
+                    i++;
+                    continue;
+                }
+                start = i;
+                isGoUp = true;
+            } else {
+                if (isGoUp) {
+                    if (isLast || array[i] == array[i + 1]) {
+                        reset = true;
+                    }
+                    if (!isLast && array[i] > array[i + 1]) {
+                        isGoUp = false;
+                    }
+                } else {
+                    if (array[i - 1] > array[i]) {
+                        finish = i;
+                    }
+                    if (!isLast && array[i] < array[i + 1]) {
+                        reset = true;
+                        i--;
+                    }
+                }
+            }
+            if (start != null && finish != null) {
+                int current = finish - start + 1;
+                longest = Math.max(longest, current);
+            }
+            if (reset) {
+                isGoUp = true;
+                start = finish = null;
+            }
+            i++;
+        } while (i < array.length);
+        return longest;
+    }
+}
+```
+  
+</details>
+
+<details>
+  <summary>My second solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(1) |
+
+```
+class Program {
+
+    public static int longestPeak(int[] array) {
+        int longest = 0;
+        for (int i = 1; i < array.length - 1; i++) {
+            if (isPeakTop(array, i)) {
+                longest = Math.max(longest, calcPeakLength(array, i));
+            }
+        }
+        return longest;
+    }
+
+    private static boolean isPeakTop(int[] array, int index) {
+        return array[index - 1] < array[index] && array[index] > array[index + 1];
+    }
+
+    private static int calcPeakLength(int[] array, int topIndex) {
+        int start = topIndex - 1, finish = topIndex + 1;
+        boolean canExpand = false;
+        do {
+            canExpand = false;
+            if (start > 0 && array[start - 1] < array[start]) {
+                start--;
+                canExpand = true;
+            }
+            if (finish < array.length - 1 && array[finish] > array[finish + 1]) {
+                finish++;
+                canExpand = true;
+            }
+        } while (canExpand);
+        return finish - start + 1;
+    }
+}
+
+```
+  
+</details>
+
+--------------------
+
 ## [Hard] Largest Range
 
 > Write a function that takes in an array of integers and returns an array of length 2 representing the largest range 
