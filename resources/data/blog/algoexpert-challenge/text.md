@@ -2003,6 +2003,125 @@ class Program {
 
 --------------------
 
+## [Medium] Array Of Products
+
+> Write a function that takes in a non-empty array of integers and returns an array of the same length,
+> where each element in the output array is equal to the product of every other number in the input array.
+> In other words, the value at output[i] is equal to the product of every number in the input array other than input[i].
+> Note that you're expected to solve this problem without using division.
+
+<details>
+  <summary>Solution 1</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N^2) | O(N) |
+
+```
+class Program {
+
+    public int[] arrayOfProducts(int[] array) {
+        int[] result = new int[array.length];
+        for (int i = 0; i < array.length; i++) {
+            result[i] = 1;
+            for (int j = 0; j < array.length; j++) {
+                if (i != j) {
+                    result[i] *= array[j];
+                }
+            }
+        }
+        return result;
+    }
+}
+```
+  
+</details>
+
+<details>
+  <summary>Solution 2</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(N) |
+
+```
+class Program {
+
+    public int[] arrayOfProducts(int[] array) {
+        int[] result = new int[array.length];
+        int total = 1, zeroesCount = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == 0) {
+                zeroesCount++;
+                continue;
+            }
+            total *= array[i];
+        }
+        for (int i = 0; i < array.length; i++) {
+            int value = 0;
+            if (zeroesCount == 0) {
+                value = (int) (total * Math.pow(array[i], -1));
+            } else if (zeroesCount == 1 && array[i] == 0) {
+                value = total;
+            }
+            result[i] = value;
+        }
+        return result;
+    }
+}
+```
+  
+</details>
+
+<details>
+  <summary>Solution 3</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(N) |
+
+```
+class Program {
+    public int[] arrayOfProducts(int[] array) {
+        int[] result = new int[array.length];
+        int[] left = new int[array.length];
+        int[] right = new int[array.length];
+        fillLeftProducts(array, left);
+        fillRightProducts(array, right);
+        calcResult(result, left, right);
+        return result;
+    }
+
+    private static void fillLeftProducts(int[] array, int[] left) {
+        left[0] = 1;
+        int sum = 1;
+        for (int i = 0; i < array.length - 1; i++) {
+            sum *= array[i];
+            left[i + 1] = sum;
+        }
+    }
+
+    private static void fillRightProducts(int[] array, int[] right) {
+        right[array.length - 1] = 1;
+        int sum = 1;
+        for (int i = array.length - 1; i > 0; i--) {
+            sum *= array[i];
+            right[i - 1] = sum;
+        }
+    }
+
+    private static void calcResult(int[] result, int[] left, int[] right) {
+        for (int i = 0; i < result.length; i++) {
+            result[i] = left[i] * right[i];
+        }
+    }
+}
+```
+  
+</details>
+
+--------------------
+
 ## [Hard] Largest Range
 
 > Write a function that takes in an array of integers and returns an array of length 2 representing the largest range 
