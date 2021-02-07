@@ -1798,6 +1798,93 @@ class Program {
 
 --------------------
 
+## [Medium] Three Number Sum
+
+> Write a function that takes in a non-empty array of distinct integers and an integer representing a target sum.
+> The function should find all triplets in the array that sum up to the target sum and return a two-dimensional
+> array of all these triplets. The numbers in each triplet should be ordered in ascending order, and the triplets
+> themselves should be ordered in ascending order with respect to the numbers they hold.
+> If no three numbers sum up to the target sum, the function should return an empty array.
+
+<details>
+  <summary>My first solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N^4*log(N)) | O(N) |
+
+```
+import java.util.*;
+
+class Program {
+
+    public static List<Integer[]> threeNumberSum(int[] array, int targetSum) {
+        Arrays.sort(array);
+        List<Integer[]> result = new ArrayList<>();
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array.length; j++) {
+                for (int k = 0; k < array.length; k++) {
+                    if (i > j || j > k) {
+                        continue;
+                    }
+                    if (array[i] == array[j] || array[j] == array[k]) {
+                        continue;
+                    }
+                    if (array[i] + array[j] + array[k] == targetSum) {
+                        result.add(new Integer[]{array[i], array[j], array[k]});
+                    }
+                }
+            }
+        }
+        return result;
+    }
+}
+
+```
+  
+</details>
+
+<details>
+  <summary>My second solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N^2*log(N)) | O(N) |
+
+```
+import java.util.*;
+
+class Program {
+
+    public static List<Integer[]> threeNumberSum(int[] array, int targetSum) {
+        Arrays.sort(array);
+        List<Integer[]> result = new ArrayList<>();
+        for (int i = 0; i < array.length - 2; i++) {
+            int pointer1 = i + 1, pointer2 = array.length - 1;
+            do {
+                int value1 = array[pointer1], value2 = array[pointer2];
+                int sum = array[i] + value1 + value2;
+                if (sum == targetSum) {
+                    result.add(new Integer[]{array[i], value1, value2});
+                    pointer1++;
+                }
+                if (sum < targetSum) {
+                    pointer1++;
+                } else {
+                    pointer2--;
+                }
+            } while (pointer1 < pointer2);
+        }
+        return result;
+    }
+}
+
+```
+  
+</details>
+
+--------------------
+
 ## [Hard] Largest Range
 
 > Write a function that takes in an array of integers and returns an array of length 2 representing the largest range 
