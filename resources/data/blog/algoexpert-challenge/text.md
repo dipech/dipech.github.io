@@ -925,6 +925,54 @@ class Program {
 
 --------------------
 
+## [Easy] Remove Duplicates From Linked List
+
+> You're given the head of a Singly Linked List whose nodes are in sorted order with respect to their values. 
+> Write a function that returns a modified version of the Linked List that doesn't contain any nodes with duplicate values. 
+> The Linked List should be modified in place (i.e., you shouldn't create a brand new list), and the modified
+> Linked List should still have its nodes sorted with respect to their values.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(1) |
+
+```
+class Program {
+    
+    public static class LinkedList {
+        public int value;
+        public LinkedList next;
+
+        public LinkedList(int value) {
+            this.value = value;
+            this.next = null;
+        }
+    }
+
+    public LinkedList removeDuplicatesFromLinkedList(LinkedList linkedList) {
+        LinkedList current = linkedList;
+        do {
+            LinkedList next = current.next;
+            while (next != null && next.value == current.value) {
+                next = next.next;
+            }
+            current.next = next;
+            current = current.next;
+        } while (current != null);
+        return linkedList;
+    }
+
+}
+
+```
+
+</details>
+
+--------------------
+
 ## [Medium] River Sizes
 
 > Write a function that returns an array of the sizes of all rivers represented in the input matrix.
