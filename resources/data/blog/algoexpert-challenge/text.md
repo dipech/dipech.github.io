@@ -2122,6 +2122,131 @@ class Program {
 
 --------------------
 
+## [Medium] BST Construction
+
+> Write a BST class for a Binary Search Tree. The class should support:
+> Inserting values with the insert method.
+> Removing values with the remove method; this method should only remove the first instance of a given value.
+> Searching for values with the contains method.
+
+<details>
+  <summary>Solution 1</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N*log(N)) | O(1) |
+
+```
+class Program {
+    static class BST {
+        public int value;
+        public BST left;
+        public BST right;
+
+        public BST(int value) {
+            this.value = value;
+        }
+
+        public BST insert(int value) {
+            BST node = this;
+            Boolean hasMore;
+            do {
+                hasMore = false;
+                if (node.left != null && value < node.value) {
+                    node = node.left;
+                    hasMore = true;
+                } else if (node.right != null && value >= node.value) {
+                    node = node.right;
+                    hasMore = true;
+                }
+            } while (hasMore);
+            if (value < node.value) {
+                node.left = new BST(value);
+            } else {
+                node.right = new BST(value);
+            }
+            return this;
+        }
+
+        public boolean contains(int value) {
+            BST node = this;
+            Boolean hasMore;
+            do {
+                if (value == node.value) {
+                    return true;
+                }
+                hasMore = false;
+                if (node.left != null && value < node.value) {
+                    node = node.left;
+                    hasMore = true;
+                } else if (node.right != null && value > node.value) {
+                    node = node.right;
+                    hasMore = true;
+                }
+            } while (hasMore);
+            return false;
+        }
+
+        public BST remove(int value) {
+            BST node = this, parent = null;
+            Boolean hasMore;
+            do {
+                if (value == node.value) {
+                    doRemove(node, parent);
+                }
+                hasMore = false;
+                parent = node;
+                if (node.left != null && value < node.value) {
+                    node = node.left;
+                    hasMore = true;
+                } else if (node.right != null && value > node.value) {
+                    node = node.right;
+                    hasMore = true;
+                }
+            } while (hasMore);
+            return this;
+        }
+
+        private void doRemove(BST node, BST parent) {
+            if (node.left == null && node.right == null) {
+                if (parent != null) {
+                    if (node.value < parent.value) {
+                        parent.left = null;
+                    } else {
+                        parent.right = null;
+                    }
+                }
+                return;
+            }
+            if (node.left != null && node.right == null) {
+                node.value = node.left.value;
+                node.left = node.left.left;
+                return;
+            }
+            if (node.right != null && node.left == null) {
+                node.value = node.right.value;
+                node.right = node.right.right;
+                return;
+            }
+            BST smallestParent = node;
+            BST smallest = node.right;
+            while (smallest.left != null) {
+                smallestParent = smallest;
+                smallest = smallest.left;
+            }
+            ;
+            node.value = smallest.value;
+            doRemove(smallest, smallestParent);
+        }
+
+    }
+}
+```
+  
+</details>
+
+--------------------
+
 ## [Hard] Largest Range
 
 > Write a function that takes in an array of integers and returns an array of length 2 representing the largest range 
