@@ -890,6 +890,89 @@ class Program {
 
 --------------------
 
+## [Easy] Minimum Waiting Time
+
+> You're given a non-empty array of positive integers representing the amounts of time that specific queries take 
+> to execute. Only one query can be executed at a time, but the queries can be executed in any order.
+> Write a function that returns the minimum amount of total waiting time for all of the queries.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n * log(n)) | O(1) |
+
+```
+import java.util.Arrays;
+
+class Program {
+
+    public int minimumWaitingTime(int[] queries) {
+        Arrays.sort(queries);
+        int totalWaitingTime = 0, accumulator = 0;
+        for (int i = 0; i < queries.length - 1; i++) {
+            accumulator += queries[i];
+            totalWaitingTime += accumulator;
+        }
+        return totalWaitingTime;
+    }
+    
+}
+```
+
+</details>
+
+--------------------
+
+## [Easy] Remove Duplicates From Linked List
+
+> You're given the head of a Singly Linked List whose nodes are in sorted order with respect to their values. 
+> Write a function that returns a modified version of the Linked List that doesn't contain any nodes with duplicate values. 
+> The Linked List should be modified in place (i.e., you shouldn't create a brand new list), and the modified
+> Linked List should still have its nodes sorted with respect to their values.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(1) |
+
+```
+class Program {
+    
+    public static class LinkedList {
+        public int value;
+        public LinkedList next;
+
+        public LinkedList(int value) {
+            this.value = value;
+            this.next = null;
+        }
+    }
+
+    public LinkedList removeDuplicatesFromLinkedList(LinkedList linkedList) {
+        LinkedList current = linkedList;
+        do {
+            LinkedList next = current.next;
+            while (next != null && next.value == current.value) {
+                next = next.next;
+            }
+            current.next = next;
+            current = current.next;
+        } while (current != null);
+        return linkedList;
+    }
+
+}
+
+```
+
+</details>
+
+--------------------
+
 ## [Medium] River Sizes
 
 > Write a function that returns an array of the sizes of all rivers represented in the input matrix.
@@ -1390,6 +1473,1864 @@ class Program {
         }
         return !isIncreasing || !isDecreasing;
     }
+}
+```
+  
+</details>
+
+--------------------
+
+## [Medium] Validate BST
+
+> Write a function that takes in a potentially invalid Binary Search Tree (BST) and returns a boolean representing 
+> whether the BST is valid.
+
+<details>
+  <summary>Solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n) | O(n) |
+
+Where `n` - nodes count.
+
+```
+import java.util.*;
+
+class Program {
+    public static boolean validateBst(BST tree) {
+        return isValid(tree, null, null);
+    }
+
+    private static boolean isValid(BST current, BST leftParent, BST rightParent) {
+        BST left = current.left;
+        if (left != null) {
+            boolean isValidForCurrent = left.value < current.value;
+            boolean isValidForLeftParent = leftParent == null || left.value >= leftParent.value;
+            if (!isValidForCurrent || !isValidForLeftParent || !isValid(left, leftParent, current)) {
+                return false;
+            }
+        }
+        BST right = current.right;
+        if (right != null) {
+            boolean isValidForCurrent = right.value >= current.value;
+            boolean isValidForRightParent = rightParent == null || right.value < rightParent.value;
+            if (!isValidForCurrent || !isValidForRightParent || !isValid(right, current, rightParent)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    static class BST {
+        public int value;
+        public BST left;
+        public BST right;
+
+        public BST(int value) {
+            this.value = value;
+        }
+    }
+}
+```
+  
+</details>
+
+--------------------
+
+## [Medium] The smallest Difference
+
+> Write a function that takes in two non-empty arrays of integers, finds the pair of numbers (one from each array) 
+> whose absolute difference is closest to zero, and returns an array containing these two numbers, with the number from
+> the first array in the first position.
+
+<details>
+  <summary>Naive solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n*m) | O(1) |
+
+```
+class Program {
+    public static int[] smallestDifference(int[] arrayOne, int[] arrayTwo) {
+        if (arrayOne.length == 0 || arrayTwo.length == 0) {
+            throw new RuntimeException("Invalid input");
+        }
+        Integer min = null, one = null, two = null;
+        for (int i = 0; i < arrayOne.length; i++) {
+            for (int j = 0; j < arrayTwo.length; j++) {
+                int current = distance(arrayOne[i], arrayTwo[j]);
+                if (min == null || current < min) {
+                    min = current;
+                    one = arrayOne[i];
+                    two = arrayTwo[j];
+                }
+            }
+        }
+        return new int[]{one, two};
+    }
+
+    private static int distance(int a, int b) {
+        return Math.abs(a - b);
+    }
+}
+```
+  
+</details>
+
+<details>
+  <summary>More optimal solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n*log(n) + m*log(m)) | O(1) |
+
+```
+import java.util.*;
+
+class Program {
+    public static int[] smallestDifference(int[] arrayOne, int[] arrayTwo) {
+        Arrays.sort(arrayOne);
+        Arrays.sort(arrayTwo);
+        int pointerOne = 0, pointerTwo = 0;
+        Integer minDistance = null, resultValueOne = null, resultValueTwo = null;
+        do {
+            int valueOne = arrayOne[pointerOne];
+            int valueTwo = arrayTwo[pointerTwo];
+            int distance = distance(valueOne, valueTwo);
+            if (minDistance == null || distance < minDistance) {
+                minDistance = distance;
+                resultValueOne = valueOne;
+                resultValueTwo = valueTwo;
+            }
+            if (valueOne < valueTwo) {
+                pointerOne++;
+            } else {
+                pointerTwo++;
+            }
+        } while (minDistance != 0 && pointerOne < arrayOne.length && pointerTwo < arrayTwo.length);
+        return new int[]{resultValueOne, resultValueTwo};
+    }
+
+    private static int distance(int a, int b) {
+        return Math.abs(a - b);
+    }
+}
+```
+  
+</details>
+
+--------------------
+
+## [Medium] First duplicate value
+
+> Given an array of integers between 1 and n, inclusive, where n is the length of the array, write a function 
+> that returns the first integer that appears more than once (when the array is read from left to right).
+
+<details>
+  <summary>HashSet solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n) | O(n) |
+
+```
+import java.util.*;
+
+class Program {
+
+    public int firstDuplicateValue(int[] array) {
+        Set<Integer> visited = new HashSet<>();
+        for (int value : array) {
+            if (visited.contains(value)) {
+                return value;
+            }
+            visited.add(value);
+        }
+        return -1;
+    }
+    
+}
+```
+  
+</details>
+
+<details>
+  <summary>Optimal solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n) | O(1) |
+
+```
+import java.util.*;
+
+class Program {
+
+    public int firstDuplicateValue(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            int value = Math.abs(array[i]);
+            int index = value - 1;
+            if (array[index] < 0) {
+                return value;
+            }
+            array[index] *= -1;
+        }
+        return -1;
+    }
+    
+}
+```
+  
+</details>
+
+--------------------
+
+## [Medium] Permutations
+
+> Write a function that takes in an array of unique integers and returns an array of all permutations 
+> of those integers in no particular order.
+
+<details>
+  <summary>My first solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n * n!) | O(n^2 * n!) |
+
+```
+import java.util.*;
+
+class Program {
+
+    public static List<List<Integer>> getPermutations(List<Integer> array) {
+        if (array.size() == 0) {
+            return new ArrayList<>();
+        }
+        if (array.size() == 1) {
+            return Arrays.asList(Arrays.asList(array.get(0)));
+        }
+        return permutate(array);
+    }
+
+    private static List<List<Integer>> permutate(List<Integer> array) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (array.size() == 2) {
+            result.add(Arrays.asList(array.get(0), array.get(1)));
+            result.add(Arrays.asList(array.get(1), array.get(0)));
+        } else {
+            for (int i = 0; i < array.size(); i++) {
+                int value = array.get(i);
+                List<Integer> exceptValue = getArrayExceptValue(array, i);
+                for (List<Integer> permutated : permutate(exceptValue)) {
+                    result.add(combineNumbers(value, permutated));
+                }
+            }
+        }
+        return result;
+    }
+
+    private static List<Integer> getArrayExceptValue(List<Integer> array, int index) {
+        List<Integer> result = new ArrayList<>(array);
+        result.remove(index);
+        return result;
+    }
+
+    private static List<Integer> combineNumbers(int value, List<Integer> array) {
+        List<Integer> result = new ArrayList<>();
+        result.add(value);
+        result.addAll(array);
+        return result;
+    }
+    
+}
+```
+  
+</details>
+
+<details>
+  <summary>Optimal solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(n * n!) | O(n * n!) |
+
+```
+import java.util.*;
+
+class Program {
+    
+    public static List<List<Integer>> getPermutations(List<Integer> array) {
+        if (array.size() == 0) {
+            return new ArrayList<>();
+        }
+        if (array.size() == 1) {
+            return Arrays.asList(Arrays.asList(array.get(0)));
+        }
+        List<List<Integer>> result = new ArrayList<>();
+        permutate(0, array, result);
+        return result;
+    }
+
+    private static void permutate(int index, List<Integer> array, List<List<Integer>> result) {
+        if (index == array.size() - 1) {
+            result.add(new ArrayList<>(array));
+            return;
+        }
+        for (int i = index; i < array.size(); i++) {
+            swap(array, i, index);
+            permutate(index + 1, array, result);
+            swap(array, i, index);
+        }
+    }
+
+    private static void swap(List<Integer> array, int index1, int index2) {
+        int tmp = array.get(index1);
+        array.set(index1, array.get(index2));
+        array.set(index2, tmp);
+    }
+
+}
+```
+  
+</details>
+
+--------------------
+
+## [Medium] Three Number Sum
+
+> Write a function that takes in a non-empty array of distinct integers and an integer representing a target sum.
+> The function should find all triplets in the array that sum up to the target sum and return a two-dimensional
+> array of all these triplets. The numbers in each triplet should be ordered in ascending order, and the triplets
+> themselves should be ordered in ascending order with respect to the numbers they hold.
+> If no three numbers sum up to the target sum, the function should return an empty array.
+
+<details>
+  <summary>My first solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N^4*log(N)) | O(N) |
+
+```
+import java.util.*;
+
+class Program {
+
+    public static List<Integer[]> threeNumberSum(int[] array, int targetSum) {
+        Arrays.sort(array);
+        List<Integer[]> result = new ArrayList<>();
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array.length; j++) {
+                for (int k = 0; k < array.length; k++) {
+                    if (i > j || j > k) {
+                        continue;
+                    }
+                    if (array[i] == array[j] || array[j] == array[k]) {
+                        continue;
+                    }
+                    if (array[i] + array[j] + array[k] == targetSum) {
+                        result.add(new Integer[]{array[i], array[j], array[k]});
+                    }
+                }
+            }
+        }
+        return result;
+    }
+}
+
+```
+  
+</details>
+
+<details>
+  <summary>My second solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N^2*log(N)) | O(N) |
+
+```
+import java.util.*;
+
+class Program {
+
+    public static List<Integer[]> threeNumberSum(int[] array, int targetSum) {
+        Arrays.sort(array);
+        List<Integer[]> result = new ArrayList<>();
+        for (int i = 0; i < array.length - 2; i++) {
+            int pointer1 = i + 1, pointer2 = array.length - 1;
+            do {
+                int value1 = array[pointer1], value2 = array[pointer2];
+                int sum = array[i] + value1 + value2;
+                if (sum == targetSum) {
+                    result.add(new Integer[]{array[i], value1, value2});
+                    pointer1++;
+                }
+                if (sum < targetSum) {
+                    pointer1++;
+                } else {
+                    pointer2--;
+                }
+            } while (pointer1 < pointer2);
+        }
+        return result;
+    }
+}
+
+```
+  
+</details>
+
+--------------------
+
+## [Medium] Longest Peak
+
+> Write a function that takes in an array of integers and returns the length of the longest peak in the array.
+> A peak is defined as adjacent integers in the array that are strictly increasing until they reach a tip
+> (the highest value in the peak), at which point they become strictly decreasing.
+> At least three integers are required to form a peak.
+
+<details>
+  <summary>My first solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(1) |
+
+```
+class Program {
+
+    public static int longestPeak(int[] array) {
+        if (array.length < 3) {
+            return 0;
+        }
+        int longest = 0;
+        boolean isGoUp = true;
+        Integer start = null, finish = null;
+        int i = 0;
+        do {
+            boolean isLast = i == array.length - 1;
+            boolean reset = false;
+            if (start == null) {
+                if (isLast || array[i] >= array[i + 1]) {
+                    i++;
+                    continue;
+                }
+                start = i;
+                isGoUp = true;
+            } else {
+                if (isGoUp) {
+                    if (isLast || array[i] == array[i + 1]) {
+                        reset = true;
+                    }
+                    if (!isLast && array[i] > array[i + 1]) {
+                        isGoUp = false;
+                    }
+                } else {
+                    if (array[i - 1] > array[i]) {
+                        finish = i;
+                    }
+                    if (!isLast && array[i] < array[i + 1]) {
+                        reset = true;
+                        i--;
+                    }
+                }
+            }
+            if (start != null && finish != null) {
+                int current = finish - start + 1;
+                longest = Math.max(longest, current);
+            }
+            if (reset) {
+                isGoUp = true;
+                start = finish = null;
+            }
+            i++;
+        } while (i < array.length);
+        return longest;
+    }
+}
+```
+  
+</details>
+
+<details>
+  <summary>My second solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(1) |
+
+```
+class Program {
+
+    public static int longestPeak(int[] array) {
+        int longest = 0;
+        for (int i = 1; i < array.length - 1; i++) {
+            if (isPeakTop(array, i)) {
+                longest = Math.max(longest, calcPeakLength(array, i));
+            }
+        }
+        return longest;
+    }
+
+    private static boolean isPeakTop(int[] array, int index) {
+        return array[index - 1] < array[index] && array[index] > array[index + 1];
+    }
+
+    private static int calcPeakLength(int[] array, int topIndex) {
+        int start = topIndex - 1, finish = topIndex + 1;
+        boolean canExpand = false;
+        do {
+            canExpand = false;
+            if (start > 0 && array[start - 1] < array[start]) {
+                start--;
+                canExpand = true;
+            }
+            if (finish < array.length - 1 && array[finish] > array[finish + 1]) {
+                finish++;
+                canExpand = true;
+            }
+        } while (canExpand);
+        return finish - start + 1;
+    }
+}
+
+```
+  
+</details>
+
+--------------------
+
+## [Medium] Array Of Products
+
+> Write a function that takes in a non-empty array of integers and returns an array of the same length,
+> where each element in the output array is equal to the product of every other number in the input array.
+> In other words, the value at output[i] is equal to the product of every number in the input array other than input[i].
+> Note that you're expected to solve this problem without using division.
+
+<details>
+  <summary>Solution 1</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N^2) | O(N) |
+
+```
+class Program {
+
+    public int[] arrayOfProducts(int[] array) {
+        int[] result = new int[array.length];
+        for (int i = 0; i < array.length; i++) {
+            result[i] = 1;
+            for (int j = 0; j < array.length; j++) {
+                if (i != j) {
+                    result[i] *= array[j];
+                }
+            }
+        }
+        return result;
+    }
+}
+```
+  
+</details>
+
+<details>
+  <summary>Solution 2</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(N) |
+
+```
+class Program {
+
+    public int[] arrayOfProducts(int[] array) {
+        int[] result = new int[array.length];
+        int total = 1, zeroesCount = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == 0) {
+                zeroesCount++;
+                continue;
+            }
+            total *= array[i];
+        }
+        for (int i = 0; i < array.length; i++) {
+            int value = 0;
+            if (zeroesCount == 0) {
+                value = (int) (total * Math.pow(array[i], -1));
+            } else if (zeroesCount == 1 && array[i] == 0) {
+                value = total;
+            }
+            result[i] = value;
+        }
+        return result;
+    }
+}
+```
+  
+</details>
+
+<details>
+  <summary>Solution 3</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(N) |
+
+```
+class Program {
+    public int[] arrayOfProducts(int[] array) {
+        int[] result = new int[array.length];
+        int[] left = new int[array.length];
+        int[] right = new int[array.length];
+        fillLeftProducts(array, left);
+        fillRightProducts(array, right);
+        calcResult(result, left, right);
+        return result;
+    }
+
+    private static void fillLeftProducts(int[] array, int[] left) {
+        left[0] = 1;
+        int sum = 1;
+        for (int i = 0; i < array.length - 1; i++) {
+            sum *= array[i];
+            left[i + 1] = sum;
+        }
+    }
+
+    private static void fillRightProducts(int[] array, int[] right) {
+        right[array.length - 1] = 1;
+        int sum = 1;
+        for (int i = array.length - 1; i > 0; i--) {
+            sum *= array[i];
+            right[i - 1] = sum;
+        }
+    }
+
+    private static void calcResult(int[] result, int[] left, int[] right) {
+        for (int i = 0; i < result.length; i++) {
+            result[i] = left[i] * right[i];
+        }
+    }
+}
+```
+  
+</details>
+
+--------------------
+
+## [Medium] BST Construction
+
+> Write a BST class for a Binary Search Tree. The class should support:
+> Inserting values with the insert method.
+> Removing values with the remove method; this method should only remove the first instance of a given value.
+> Searching for values with the contains method.
+
+<details>
+  <summary>Solution 1</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N*log(N)) | O(1) |
+
+```
+class Program {
+    static class BST {
+        public int value;
+        public BST left;
+        public BST right;
+
+        public BST(int value) {
+            this.value = value;
+        }
+
+        public BST insert(int value) {
+            BST node = this;
+            Boolean hasMore;
+            do {
+                hasMore = false;
+                if (node.left != null && value < node.value) {
+                    node = node.left;
+                    hasMore = true;
+                } else if (node.right != null && value >= node.value) {
+                    node = node.right;
+                    hasMore = true;
+                }
+            } while (hasMore);
+            if (value < node.value) {
+                node.left = new BST(value);
+            } else {
+                node.right = new BST(value);
+            }
+            return this;
+        }
+
+        public boolean contains(int value) {
+            BST node = this;
+            Boolean hasMore;
+            do {
+                if (value == node.value) {
+                    return true;
+                }
+                hasMore = false;
+                if (node.left != null && value < node.value) {
+                    node = node.left;
+                    hasMore = true;
+                } else if (node.right != null && value > node.value) {
+                    node = node.right;
+                    hasMore = true;
+                }
+            } while (hasMore);
+            return false;
+        }
+
+        public BST remove(int value) {
+            BST node = this, parent = null;
+            Boolean hasMore;
+            do {
+                if (value == node.value) {
+                    doRemove(node, parent);
+                }
+                hasMore = false;
+                parent = node;
+                if (node.left != null && value < node.value) {
+                    node = node.left;
+                    hasMore = true;
+                } else if (node.right != null && value > node.value) {
+                    node = node.right;
+                    hasMore = true;
+                }
+            } while (hasMore);
+            return this;
+        }
+
+        private void doRemove(BST node, BST parent) {
+            if (node.left == null && node.right == null) {
+                if (parent != null) {
+                    if (node.value < parent.value) {
+                        parent.left = null;
+                    } else {
+                        parent.right = null;
+                    }
+                }
+                return;
+            }
+            if (node.left != null && node.right == null) {
+                node.value = node.left.value;
+                node.left = node.left.left;
+                return;
+            }
+            if (node.right != null && node.left == null) {
+                node.value = node.right.value;
+                node.right = node.right.right;
+                return;
+            }
+            BST smallestParent = node;
+            BST smallest = node.right;
+            while (smallest.left != null) {
+                smallestParent = smallest;
+                smallest = smallest.left;
+            }
+            ;
+            node.value = smallest.value;
+            doRemove(smallest, smallestParent);
+        }
+
+    }
+}
+```
+  
+</details>
+
+--------------------
+
+## [Medium] BST Traversal
+
+> Write three functions that take in a Binary Search Tree (BST) and an empty array, traverse the BST, 
+> add its nodes' values to the input array, and return that array.
+> The three functions should traverse the BST using the in-order, pre-order, and post-order
+> tree-traversal techniques, respectively.
+  
+<details>
+  <summary>Solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(N) |
+
+```
+import java.util.List;
+
+class Program {
+    public static List<Integer> inOrderTraverse(BST tree, List<Integer> array) {
+        if (tree.left != null) {
+            inOrderTraverse(tree.left, array);
+        }
+        array.add(tree.value);
+        if (tree.right != null) {
+            inOrderTraverse(tree.right, array);
+        }
+        return array;
+    }
+
+    public static List<Integer> preOrderTraverse(BST tree, List<Integer> array) {
+        array.add(tree.value);
+        if (tree.left != null) {
+            preOrderTraverse(tree.left, array);
+        }
+        if (tree.right != null) {
+            preOrderTraverse(tree.right, array);
+        }
+        return array;
+    }
+
+    public static List<Integer> postOrderTraverse(BST tree, List<Integer> array) {
+        if (tree.left != null) {
+            postOrderTraverse(tree.left, array);
+        }
+        if (tree.right != null) {
+            postOrderTraverse(tree.right, array);
+        }
+        array.add(tree.value);
+        return array;
+    }
+
+    static class BST {
+        public int value;
+        public BST left;
+        public BST right;
+
+        public BST(int value) {
+            this.value = value;
+        }
+    }
+}
+```
+  
+</details>
+
+--------------------
+
+## [Medium] Min Height BST
+
+> Write a function that takes in a non-empty sorted array of distinct integers, constructs a BST from the integers,
+> and returns the root of the BST. The function should minimize the height of the BST.
+  
+<details>
+  <summary>Solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(N) |
+
+```
+import java.util.List;
+
+class Program {
+    public static BST minHeightBst(List<Integer> array) {
+        return build(array, 0, array.size() - 1);
+    }
+
+    private static BST build(List<Integer> array, int minIndex, int maxIndex) {
+        if (minIndex == maxIndex) {
+            return new BST(array.get(minIndex));
+        }
+        if (minIndex > maxIndex) {
+            return null;
+        }
+        int middleIndex = (maxIndex + minIndex) / 2;
+        BST node = new BST(array.get(middleIndex));
+        node.left = build(array, minIndex, middleIndex - 1);
+        node.right = build(array, middleIndex + 1, maxIndex);
+        return node;
+    }
+
+    static class BST {
+        public int value;
+        public BST left;
+        public BST right;
+
+        public BST(int value) {
+            this.value = value;
+            left = null;
+            right = null;
+        }
+
+        public void insert(int value) {
+            if (value < this.value) {
+                if (left == null) {
+                    left = new BST(value);
+                } else {
+                    left.insert(value);
+                }
+            } else {
+                if (right == null) {
+                    right = new BST(value);
+                } else {
+                    right.insert(value);
+                }
+            }
+        }
+    }
+}
+```
+  
+</details>
+
+--------------------
+
+## [Medium] Binary Tree Diameter
+
+> Write a function that takes in a Binary Tree and returns its diameter. The diameter of a binary tree is defined
+> as the length of its longest path, even if that path doesn't pass through the root of the tree.
+  
+<details>
+  <summary>Solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(h) |
+
+Where `h` is the height of the tree.
+
+```
+import java.util.*;
+
+class Program {
+    // This is an input class. Do not edit.
+    static class BinaryTree {
+        public int value;
+        public BinaryTree left = null;
+        public BinaryTree right = null;
+
+        public BinaryTree(int value) {
+            this.value = value;
+        }
+    }
+
+    public int binaryTreeDiameter(BinaryTree tree) {
+        Queue<BinaryTree> queue = new LinkedList<>();
+        queue.add(tree);
+        boolean isRoot = true;
+        int longest = 0;
+        do {
+            BinaryTree node = queue.remove();
+            if ((node.left != null && node.right != null) || isRoot) {
+                longest = Math.max(longest, calculateDiameter(node));
+            }
+            if (node.left != null) {
+                queue.add(node.left);
+            }
+            if (node.right != null) {
+                queue.add(node.right);
+            }
+            isRoot = false;
+        } while (queue.size() > 0);
+        return longest;
+    }
+
+    private int calculateDiameter(BinaryTree node) {
+        int lengthLeft = node.left != null ? calcLongestPath(1, node.left) : 0;
+        int lengthRight = node.right != null ? calcLongestPath(1, node.right) : 0;
+        return lengthLeft + lengthRight;
+    }
+
+    private int calcLongestPath(int level, BinaryTree node) {
+        int leftLevel = level;
+        if (node.left != null) {
+            leftLevel = calcLongestPath(level + 1, node.left);
+        }
+        int rightLevel = level;
+        if (node.right != null) {
+            rightLevel = calcLongestPath(level + 1, node.right);
+        }
+        return Math.max(leftLevel, rightLevel);
+    }
+
+}
+```
+  
+</details>
+
+--------------------
+
+## [Medium] Find Successor
+
+> Write a function that takes in a Binary Tree (where nodes have an additional pointer to their parent node)
+> as well as a node contained in that tree and returns the given node's successor.
+> A node's successor is the next node to be visited (immediately after the given node) when traversing its tree using
+> the in-order tree-traversal technique. A node has no successor if it's the last node to be visited
+> in the in-order traversal.
+  
+<details>
+  <summary>Solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(N) |
+
+```
+class Program {
+    // This is an input class. Do not edit.
+    static class BinaryTree {
+        public int value;
+        public BinaryTree left = null;
+        public BinaryTree right = null;
+        public BinaryTree parent = null;
+
+        public BinaryTree(int value) {
+            this.value = value;
+        }
+    }
+
+    private Boolean isSuccessorNext;
+    private BinaryTree successor;
+
+    public BinaryTree findSuccessor(BinaryTree tree, BinaryTree node) {
+        isSuccessorNext = false;
+        successor = null;
+        doFindSuccessor(tree, node);
+        return successor;
+    }
+
+    private void doFindSuccessor(BinaryTree node, BinaryTree target) {
+        if (node == null) {
+            return;
+        }
+        doFindSuccessor(node.left, target);
+        if (isSuccessorNext) {
+            successor = node;
+            isSuccessorNext = false;
+        } else if (node.equals(target)) {
+            isSuccessorNext = true;
+        }
+        doFindSuccessor(node.right, target);
+    }
+}
+```
+  
+</details>
+
+--------------------
+
+## [Medium] Max Subset Sum No Adjacent
+
+> Write a function that takes in an array of positive integers and returns the maximum sum of non-adjacent elements
+> in the array.
+  
+<details>
+  <summary>Solution 1</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N*log(N)) | O(N) |
+
+```
+import java.util.*;
+
+class Program {
+
+    private static class Holder implements Comparable<Holder> {
+        public int value;
+        public int index;
+
+        public Holder(int value, int index) {
+            this.value = value;
+            this.index = index;
+        }
+
+        public int compareTo(Holder holder) {
+            return this.value - holder.value;
+        }
+    }
+
+    public static int maxSubsetSumNoAdjacent(int[] array) {
+        if (array.length == 0) {
+            return 0;
+        }
+        if (array.length == 1) {
+            return array[0];
+        }
+        if (array.length == 2) {
+            return Math.max(array[0], array[1]);
+        }
+        List<Holder> holders = new ArrayList<>();
+        for (int i = 0; i < array.length; i++) {
+            holders.add(new Holder(array[i], i));
+        }
+        Collections.sort(holders, Collections.reverseOrder());
+        return Math.max(
+            calcTotalByStartingIndex(holders, 0),
+            calcTotalByStartingIndex(holders, 1)
+        );
+    }
+
+    private static int calcTotalByStartingIndex(List<Holder> holders, int minIndex) {
+        int total = 0;
+        Set<Integer> picked = new HashSet<>();
+        for (int i = minIndex; i < holders.size(); i++) {
+            Holder holder = holders.get(i);
+            if (picked.contains(holder.index - 1) || picked.contains(holder.index + 1)) {
+                continue;
+            }
+            picked.add(holder.index);
+            total += holder.value;
+        }
+        return total;
+    }
+}
+```
+  
+</details>
+  
+<details>
+  <summary>Solution 2</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(1) |
+
+```
+class Program {
+
+    public static int maxSubsetSumNoAdjacent(int[] array) {
+        if (array.length == 0) {
+            return 0;
+        }
+        if (array.length == 1) {
+            return array[0];
+        }
+        if (array.length == 2) {
+            return Math.max(array[0], array[1]);
+        }
+        return calculate(array);
+    }
+
+    private static int calculate(int[] array) {
+        int result = 0;
+        int sum1 = array[0], sum2 = Math.max(array[0], array[1]);
+        for (int i = 2; i < array.length; i++) {
+            int value = array[i];
+            result = Math.max(value + sum1, sum2);
+            sum1 = sum2;
+            sum2 = result;
+        }
+        return result;
+    }
+}
+```
+  
+</details>
+
+--------------------
+
+## [Medium] Single Cycle Check
+
+> You're given an array of integers where each integer represents a jump of its value in the array. 
+> For instance, the integer 2 represents a jump of two indices forward in the array; the integer -3 represents
+> a jump of three indices backward in the array.
+> If a jump spills past the array's bounds, it wraps over to the other side.
+> For instance, a jump of -1 at index 0 brings us to the last index in the array. Similarly, a jump of 1 at
+> the last index in the array brings us to index 0.
+> Write a function that returns a boolean representing whether the jumps in the array form a single cycle.
+> A single cycle occurs if, starting at any index in the array and following the jumps, every element in the array
+> is visited exactly once before landing back on the starting index.
+
+<details>
+  <summary>Solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(1) |
+
+```
+class Program {
+
+    public static boolean hasSingleCycle(int[] array) {
+        int index = 0, counter = 0;
+        while (counter < array.length) {
+            if (counter > 0 && index == 0) {
+                return false;
+            }
+            counter++;
+            index = calcNextIndex(index, array);
+        }
+        return index == 0;
+    }
+
+    private static int calcNextIndex(int currentIndex, int[] array) {
+        int jump = array[currentIndex];
+        int newIndex = currentIndex + jump;
+        int size = array.length;
+        int shift = Math.abs(newIndex) % size;
+        if (shift == 0) {
+            return 0;
+        }
+        return newIndex >= 0 ? shift : size - shift;
+    }
+
+}
+```
+  
+</details>
+
+--------------------
+
+## [Medium] Remove Islands
+
+> You're given a two-dimensional array (a matrix) of potentially unequal height and width containing only 0s and 1s.
+> The matrix represents a two-toned image, where each 1 represents black and each 0 represents white.
+> An island is defined as any number of 1s that are horizontally or vertically adjacent (but not diagonally adjacent)
+> and that don't touch the border of the image. In other words, a group of horizontally or vertically adjacent
+> 1s isn't an island if any of those 1s are in the first row, last row, first column, or last column of the input matrix.
+> Note that an island can twist. In other words, it doesn't have to be a straight vertical line or a straight
+> horizontal line; it can be L-shaped, for example.
+> You can think of islands as patches of black that don't touch the border of the two-toned image.
+> Write a function that returns a modified version of the input matrix, where all of the islands are removed.
+> You remove an island by replacing it with 0s.
+
+<details>
+  <summary>Solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(wh) | O(wh) |
+
+```
+class Program {
+
+    public int[][] removeIslands(int[][] matrix) {
+        replaceNonIslandsWithNumber(matrix, 1, 2);
+        removeIsland(matrix);
+        replaceNonIslandsWithNumber(matrix, 2, 1);
+        return matrix;
+    }
+
+    private static void replaceNonIslandsWithNumber(int[][] matrix, int search, int replace) {
+        int rowsCount = matrix.length;
+        int colsCount = matrix[0].length;
+        for (int row = 0; row < rowsCount; row++) {
+            replaceAdjacentNumbers(matrix, row, 0, search, replace);
+            replaceAdjacentNumbers(matrix, row, colsCount - 1, search, replace);
+        }
+        for (int col = 0; col < colsCount; col++) {
+            replaceAdjacentNumbers(matrix, 0, col, search, replace);
+            replaceAdjacentNumbers(matrix, rowsCount - 1, col, search, replace);
+        }
+    }
+
+    private static void replaceAdjacentNumbers(int[][] matrix, int row, int col, int search, int replace) {
+        if (!isInBounds(matrix, row, col) || matrix[row][col] != search) {
+            return;
+        }
+        matrix[row][col] = replace;
+        replaceAdjacentNumbers(matrix, row - 1, col, search, replace);
+        replaceAdjacentNumbers(matrix, row + 1, col, search, replace);
+        replaceAdjacentNumbers(matrix, row, col - 1, search, replace);
+        replaceAdjacentNumbers(matrix, row, col + 1, search, replace);
+    }
+
+    private static boolean isInBounds(int[][] matrix, int row, int col) {
+        return row >= 0 && row < matrix.length && col >= 0 && col < matrix[0].length;
+    }
+
+    private static void removeIsland(int[][] matrix) {
+        for (int row = 1; row < matrix.length - 1; row++) {
+            for (int col = 1; col < matrix[0].length - 1; col++) {
+                if (matrix[row][col] == 1) {
+                    matrix[row][col] = 0;
+                }
+            }
+        }
+    }
+
+}
+```
+  
+</details>
+
+--------------------
+
+## [Medium] Cycle In Graph
+
+> You're given a list of edges representing an unweighted, directed graph with at least one node.
+> Write a function that returns a boolean representing whether the given graph contains a cycle.
+
+<details>
+  <summary>Solution 1</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N^2) | O(N^2) |
+
+```
+import java.util.*;
+
+class Program {
+
+    public boolean cycleInGraph(int[][] edges) {
+        for (int node = 0; node < edges.length; node++) {
+            Set<Integer> visited = new HashSet<>();
+            if (hasCycle(edges, node, visited)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean hasCycle(int[][] edges, int node, Set<Integer> visited) {
+        if (visited.contains(node)) {
+            return true;
+        }
+        visited.add(node);
+        for (int ref : edges[node]) {
+            if (hasCycle(edges, ref, new HashSet<>(visited))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+}
+```
+  
+</details>
+
+<details>
+  <summary>Solution 2</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(v + e) | O(v) |
+
+```
+import java.util.*;
+
+class Program {
+
+    private final static int WHITE = 0;
+    private final static int GRAY = 1;
+    private final static int BLACK = 2;
+
+    public boolean cycleInGraph(int[][] edges) {
+        int[] statuses = new int[edges.length];
+        Arrays.fill(statuses, WHITE);
+        for (int node = 0; node < edges.length; node++) {
+            if (statuses[node] != WHITE) {
+                continue;
+            }
+            if (hasCycle(edges, statuses, node)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean hasCycle(int[][] edges, int[] statuses, int node) {
+        if (statuses[node] == GRAY) {
+            return true;
+        }
+        statuses[node] = GRAY;
+        for (int ref : edges[node]) {
+            if (hasCycle(edges, statuses, ref)) {
+                return true;
+            }
+        }
+        statuses[node] = BLACK;
+        return false;
+    }
+
+}
+```
+  
+</details>
+
+--------------------
+
+## [Medium] Remove Kth Node From End
+
+> Write a function that takes in the head of a Singly Linked List and an integer k and removes the kth node from
+> the end of the list.
+> The removal should be done in place, meaning that the original data structure should be mutated
+> (no new structure should be created).
+
+<details>
+  <summary>Solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(1) |
+
+```
+class Program {
+
+    public static void removeKthNodeFromEnd(LinkedList head, int k) {
+        int size = 0;
+        LinkedList current = head;
+        while (current != null) {
+            size++;
+            current = current.next;
+        }
+        int indexToRemove = size - k;
+        if (indexToRemove == 0) {
+            head.value = head.next.value;
+            head.next = head.next.next;
+            return;
+        }
+        LinkedList prev = head;
+        for (int i = 0; i < indexToRemove - 1; i++) {
+            prev = prev.next;
+        }
+        prev.next = prev.next.next;
+    }
+
+    static class LinkedList {
+        int value;
+        LinkedList next = null;
+
+        public LinkedList(int value) {
+            this.value = value;
+        }
+    }
+}
+```
+  
+</details>
+
+--------------------
+
+## [Medium] Min Max Stack Construction
+
+> Write a MinMaxStack class for a Min Max Stack. The class should support:
+> 1) Pushing and popping values on and off the stack.
+> 2) Peeking at the value at the top of the stack.
+> 3) Getting both the minimum and the maximum values in the stack at any given point in time.
+> All class methods, when considered independently, should run in constant time and with constant space.
+
+<details>
+  <summary>Solution (not optimal for `pop` case)</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(1) |
+
+```
+class Program {
+
+    private static class LinkedList {
+        public int value;
+        public LinkedList next = null;
+
+        public LinkedList(int value) {
+            this.value = value;
+        }
+    }
+
+    static class MinMaxStack {
+
+        private LinkedList head = null;
+        private Integer min = null;
+        private Integer max = null;
+
+        public int peek() {
+            ensureHasData();
+            return head.value;
+        }
+
+        public int pop() {
+            ensureHasData();
+            int value = head.value;
+            head = head.next;
+            if (head == null) {
+                min = max = null;
+            } else {
+                LinkedList current = head;
+                min = max = current.value;
+                do {
+                    min = Math.min(min, current.value);
+                    max = Math.max(max, current.value);
+                    current = current.next;
+                } while (current != null);
+            }
+            return value;
+        }
+
+        public void push(Integer number) {
+            if (head == null) {
+                head = new LinkedList(number);
+            } else {
+                LinkedList old = head;
+                head = new LinkedList(number);
+                head.next = old;
+            }
+            if (min == null || min > number) {
+                min = number;
+            }
+            if (max == null || max < number) {
+                max = number;
+            }
+        }
+
+        public int getMin() {
+            ensureHasData();
+            return min;
+        }
+
+        public int getMax() {
+            ensureHasData();
+            return max;
+        }
+
+        private void ensureHasData() {
+            if (head == null) {
+                throw new RuntimeException("No data exists");
+            }
+        }
+    }
+}
+```
+  
+</details>
+
+<details>
+  <summary>Optimal solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(1) | O(1) |
+
+```
+class Program {
+
+    private static class LinkedList {
+        public LinkedList next = null;
+        public int value;
+        public int min;
+        public int max;
+
+        public LinkedList(int value, int min, int max) {
+            this.value = value;
+            this.min = min;
+            this.max = max;
+        }
+    }
+
+    static class MinMaxStack {
+
+        private LinkedList head = null;
+
+        public int peek() {
+            ensureHasData();
+            return head.value;
+        }
+
+        public int pop() {
+            ensureHasData();
+            int value = head.value;
+            head = head.next;
+            return value;
+        }
+
+        public void push(Integer number) {
+            if (head == null) {
+                head = new LinkedList(number, number, number);
+                return;
+            }
+            LinkedList old = head;
+            int newMin = Math.min(number, old.min);
+            int newMax = Math.max(number, old.max);
+            head = new LinkedList(number, newMin, newMax);
+            head.next = old;
+        }
+
+        public int getMin() {
+            ensureHasData();
+            return head.min;
+        }
+
+        public int getMax() {
+            ensureHasData();
+            return head.max;
+        }
+
+        private void ensureHasData() {
+            if (head == null) {
+                throw new RuntimeException("No data exists");
+            }
+        }
+    }
+}
+```
+  
+</details>
+
+--------------------
+
+## [Medium] Balanced Brackets
+
+> Write a function that takes in a string made up of brackets ((, [, {, ), ], and }) and other optional characters. 
+> The function should return a boolean representing whether the string is balanced with regards to brackets.
+ 
+
+<details>
+  <summary>Solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(N) |
+
+```
+import java.util.*;
+
+class Program {
+
+    private static final List<Character> openingBrackets = Arrays.asList(
+        '(', '[', '{'
+    );
+
+    private static final List<Character> closingBrackets = Arrays.asList(
+        ')', ']', '}'
+    );
+
+    public static boolean balancedBrackets(String str) {
+        Stack<Character> stack = new Stack<>();
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            if (!isBracket(ch)) {
+                continue;
+            }
+            if (isOpeningBracket(ch)) {
+                stack.push(ch);
+                continue;
+            }
+            if (stack.size() == 0) {
+                return false;
+            }
+            char openingBracket = stack.pop();
+            char closingBracket = getClosingBracket(openingBracket);
+            if (ch != closingBracket) {
+                return false;
+            }
+        }
+        return stack.size() == 0;
+    }
+
+    private static boolean isBracket(char ch) {
+        return isOpeningBracket(ch) || isClosingBracket(ch);
+    }
+
+    private static boolean isOpeningBracket(char ch) {
+        return openingBrackets.stream().anyMatch(c -> c == ch);
+    }
+
+    private static boolean isClosingBracket(char ch) {
+        return closingBrackets.stream().anyMatch(c -> c == ch);
+    }
+
+    private static char getClosingBracket(char ch) {
+        for (int i = 0; i < openingBrackets.size(); i++) {
+            if (openingBrackets.get(i) == ch) {
+                return closingBrackets.get(i);
+            }
+        }
+        throw new RuntimeException("Could not find closing bracket");
+    }
+}
+```
+  
+</details>
+
+--------------------
+
+## [Medium] Longest Palindromic Substring
+
+> Write a function that, given a string, returns its longest palindromic substring.
+> A palindrome is defined as a string that's written the same forward and backward. 
+> Note that single-character strings are palindromes.
+> You can assume that there will only be one longest palindromic substring.
+
+<details>
+  <summary>Solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(N) |
+
+```
+class Program {
+
+    public static String longestPalindromicSubstring(String str) {
+        if (str.length() == 1) {
+            return str;
+        }
+        String longest = "";
+        for (int i = 0; i < str.length() - 1; i++) {
+            if (str.charAt(i) == str.charAt(i + 1)) {
+                String palindrom = expandPalindrom(str, i, i + 1);
+                if (longest.length() < palindrom.length()) {
+                    longest = palindrom;
+                }
+            }
+            if (i > 0 && str.charAt(i - 1) == str.charAt(i + 1)) {
+                String palindrom = expandPalindrom(str, i);
+                if (longest.length() < palindrom.length()) {
+                    longest = palindrom;
+                }
+            }
+        }
+        return longest;
+    }
+
+    // For instance: "yyyabcbaxxx", c - center
+    private static String expandPalindrom(String str, int center) {
+        return expandPalindrom(str, center - 1, center + 1);
+    }
+
+    // For instance: "yyyabccbaxxx", cc - left and right
+    private static String expandPalindrom(String str, int left, int right) {
+        while (
+            left > 0 && right < str.length() - 1 &&
+                str.charAt(left - 1) == str.charAt(right + 1)
+        ) {
+            left--;
+            right++;
+        }
+        return str.substring(left, right + 1);
+    }
+}
+```
+  
+</details>
+
+--------------------
+
+## [Medium] Group Anagrams
+
+> Write a function that takes in an array of strings and groups anagrams together.
+> Anagrams are strings made up of exactly the same letters, where order doesn't matter. 
+> For example, "cinema" and "iceman" are anagrams; similarly, "foo" and "ofo" are anagrams.
+> Your function should return a list of anagram groups in no particular order.
+
+<details>
+  <summary>Solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(W*L) | O(W*L) |
+
+Where `W` is the words count, `L` is the length of the longest word.
+
+```
+import java.util.*;
+
+class Program {
+
+    public static List<List<String>> groupAnagrams(List<String> words) {
+        Map<Integer, List<String>> result = new HashMap<>();
+        words.forEach(word -> {
+            int weight = calcWeight(word);
+            result.putIfAbsent(weight, new ArrayList<>());
+            result.get(weight).add(word);
+        });
+        return new ArrayList<>(result.values());
+    }
+
+    // It wouldn't work for super large words (because of integer overflow).
+    // But it works for all the test cases, so it's fine.
+    private static int calcWeight(String word) {
+        int result = 1;
+        for (int i = 0; i < word.length(); i++) {
+            result *= (int) word.charAt(i);
+        }
+        return result;
+    }
+
+}
+```
+  
+</details>
+
+--------------------
+
+## [Medium] Valid IP Addresses
+
+> You're given a string of length 12 or smaller, containing only digits. Write a function that returns all the
+> possible IP addresses that can be created by inserting three .s in the string.
+> An IP address is a sequence of four positive integers that are separated by .s, where each individual integer
+> is within the range 0 - 255, inclusive.
+> An IP address isn't valid if any of the individual integers contains leading 0s. For example, "192.168.0.1" is a
+> valid IP address, but "192.168.00.1" and "192.168.0.01" aren't, because they contain "00" and 01, respectively.
+> Another example of a valid IP address is "99.1.1.10"; conversely, "991.1.1.0" isn't valid, because "991" is greater
+> than 255. Your function should return the IP addresses in string format and in no particular order.
+> If no valid IP addresses can be created from the string, your function should return an empty list.
+
+<details>
+  <summary>Solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(1) | O(1) |
+
+```
+import java.util.*;
+
+class Program {
+
+    public ArrayList<String> validIPAddresses(String input) {
+        if (!isInputValid(input)) {
+            return new ArrayList<String>();
+        }
+        ArrayList<String> result = new ArrayList<String>();
+        fill(result, input);
+        return result;
+    }
+
+    private boolean isInputValid(String input) {
+        return input.length() >= 4 && input.length() <= 12;
+    }
+
+    private void fill(List<String> result, String input) {
+        int max = input.length();
+        for (int p1 = 0; p1 < max - 3; p1++) {
+            for (int p2 = 1; p2 < max - 2; p2++) {
+                for (int p3 = 2; p3 < max - 1; p3++) {
+                    if (p1 < p2 && p2 < p3) {
+                        try {
+                            result.add(makeIpAddress(input, p1, p2, p3));
+                        } catch (RuntimeException e) {
+                            System.out.println(e.getMessage());
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private String makeIpAddress(String input, int p1, int p2, int p3) {
+        String seg1 = input.substring(0, p1 + 1);
+        String seg2 = input.substring(p1 + 1, p2 + 1);
+        String seg3 = input.substring(p2 + 1, p3 + 1);
+        String seg4 = input.substring(p3 + 1);
+        validateSegment(seg1);
+        validateSegment(seg2);
+        validateSegment(seg3);
+        validateSegment(seg4);
+        return seg1 + "." + seg2 + "." + seg3 + "." + seg4;
+    }
+
+    private void validateSegment(String segment) {
+        if (segment.startsWith("0") && segment.length() > 1) {
+            throw new RuntimeException("Wrong number");
+        }
+        int number = Integer.parseInt(segment);
+        if (number > 255) {
+            throw new RuntimeException("Large number");
+        }
+    }
+
 }
 ```
   
