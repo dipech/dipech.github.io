@@ -2382,6 +2382,81 @@ class Program {
 
 --------------------
 
+## [Medium] Binary Tree Diameter
+
+> Write a function that takes in a Binary Tree and returns its diameter. The diameter of a binary tree is defined
+> as the length of its longest path, even if that path doesn't pass through the root of the tree.
+  
+<details>
+  <summary>Solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(h) |
+
+Where `h` is the height of the tree.
+
+```
+import java.util.*;
+
+class Program {
+    // This is an input class. Do not edit.
+    static class BinaryTree {
+        public int value;
+        public BinaryTree left = null;
+        public BinaryTree right = null;
+
+        public BinaryTree(int value) {
+            this.value = value;
+        }
+    }
+
+    public int binaryTreeDiameter(BinaryTree tree) {
+        Queue<BinaryTree> queue = new LinkedList<>();
+        queue.add(tree);
+        boolean isRoot = true;
+        int longest = 0;
+        do {
+            BinaryTree node = queue.remove();
+            if ((node.left != null && node.right != null) || isRoot) {
+                longest = Math.max(longest, calculateDiameter(node));
+            }
+            if (node.left != null) {
+                queue.add(node.left);
+            }
+            if (node.right != null) {
+                queue.add(node.right);
+            }
+            isRoot = false;
+        } while (queue.size() > 0);
+        return longest;
+    }
+
+    private int calculateDiameter(BinaryTree node) {
+        int lengthLeft = node.left != null ? calcLongestPath(1, node.left) : 0;
+        int lengthRight = node.right != null ? calcLongestPath(1, node.right) : 0;
+        return lengthLeft + lengthRight;
+    }
+
+    private int calcLongestPath(int level, BinaryTree node) {
+        int leftLevel = level;
+        if (node.left != null) {
+            leftLevel = calcLongestPath(level + 1, node.left);
+        }
+        int rightLevel = level;
+        if (node.right != null) {
+            rightLevel = calcLongestPath(level + 1, node.right);
+        }
+        return Math.max(leftLevel, rightLevel);
+    }
+
+}
+```
+  
+</details>
+
+--------------------
+
 ## [Hard] Largest Range
 
 > Write a function that takes in an array of integers and returns an array of length 2 representing the largest range 
