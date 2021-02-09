@@ -2679,6 +2679,665 @@ class Program {
 
 --------------------
 
+## [Medium] Remove Islands
+
+> You're given a two-dimensional array (a matrix) of potentially unequal height and width containing only 0s and 1s.
+> The matrix represents a two-toned image, where each 1 represents black and each 0 represents white.
+> An island is defined as any number of 1s that are horizontally or vertically adjacent (but not diagonally adjacent)
+> and that don't touch the border of the image. In other words, a group of horizontally or vertically adjacent
+> 1s isn't an island if any of those 1s are in the first row, last row, first column, or last column of the input matrix.
+> Note that an island can twist. In other words, it doesn't have to be a straight vertical line or a straight
+> horizontal line; it can be L-shaped, for example.
+> You can think of islands as patches of black that don't touch the border of the two-toned image.
+> Write a function that returns a modified version of the input matrix, where all of the islands are removed.
+> You remove an island by replacing it with 0s.
+
+<details>
+  <summary>Solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(wh) | O(wh) |
+
+```
+class Program {
+
+    public int[][] removeIslands(int[][] matrix) {
+        replaceNonIslandsWithNumber(matrix, 1, 2);
+        removeIsland(matrix);
+        replaceNonIslandsWithNumber(matrix, 2, 1);
+        return matrix;
+    }
+
+    private static void replaceNonIslandsWithNumber(int[][] matrix, int search, int replace) {
+        int rowsCount = matrix.length;
+        int colsCount = matrix[0].length;
+        for (int row = 0; row < rowsCount; row++) {
+            replaceAdjacentNumbers(matrix, row, 0, search, replace);
+            replaceAdjacentNumbers(matrix, row, colsCount - 1, search, replace);
+        }
+        for (int col = 0; col < colsCount; col++) {
+            replaceAdjacentNumbers(matrix, 0, col, search, replace);
+            replaceAdjacentNumbers(matrix, rowsCount - 1, col, search, replace);
+        }
+    }
+
+    private static void replaceAdjacentNumbers(int[][] matrix, int row, int col, int search, int replace) {
+        if (!isInBounds(matrix, row, col) || matrix[row][col] != search) {
+            return;
+        }
+        matrix[row][col] = replace;
+        replaceAdjacentNumbers(matrix, row - 1, col, search, replace);
+        replaceAdjacentNumbers(matrix, row + 1, col, search, replace);
+        replaceAdjacentNumbers(matrix, row, col - 1, search, replace);
+        replaceAdjacentNumbers(matrix, row, col + 1, search, replace);
+    }
+
+    private static boolean isInBounds(int[][] matrix, int row, int col) {
+        return row >= 0 && row < matrix.length && col >= 0 && col < matrix[0].length;
+    }
+
+    private static void removeIsland(int[][] matrix) {
+        for (int row = 1; row < matrix.length - 1; row++) {
+            for (int col = 1; col < matrix[0].length - 1; col++) {
+                if (matrix[row][col] == 1) {
+                    matrix[row][col] = 0;
+                }
+            }
+        }
+    }
+
+}
+```
+  
+</details>
+
+--------------------
+
+## [Medium] Cycle In Graph
+
+> You're given a list of edges representing an unweighted, directed graph with at least one node.
+> Write a function that returns a boolean representing whether the given graph contains a cycle.
+
+<details>
+  <summary>Solution 1</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N^2) | O(N^2) |
+
+```
+import java.util.*;
+
+class Program {
+
+    public boolean cycleInGraph(int[][] edges) {
+        for (int node = 0; node < edges.length; node++) {
+            Set<Integer> visited = new HashSet<>();
+            if (hasCycle(edges, node, visited)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean hasCycle(int[][] edges, int node, Set<Integer> visited) {
+        if (visited.contains(node)) {
+            return true;
+        }
+        visited.add(node);
+        for (int ref : edges[node]) {
+            if (hasCycle(edges, ref, new HashSet<>(visited))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+}
+```
+  
+</details>
+
+<details>
+  <summary>Solution 2</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(v + e) | O(v) |
+
+```
+import java.util.*;
+
+class Program {
+
+    private final static int WHITE = 0;
+    private final static int GRAY = 1;
+    private final static int BLACK = 2;
+
+    public boolean cycleInGraph(int[][] edges) {
+        int[] statuses = new int[edges.length];
+        Arrays.fill(statuses, WHITE);
+        for (int node = 0; node < edges.length; node++) {
+            if (statuses[node] != WHITE) {
+                continue;
+            }
+            if (hasCycle(edges, statuses, node)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean hasCycle(int[][] edges, int[] statuses, int node) {
+        if (statuses[node] == GRAY) {
+            return true;
+        }
+        statuses[node] = GRAY;
+        for (int ref : edges[node]) {
+            if (hasCycle(edges, statuses, ref)) {
+                return true;
+            }
+        }
+        statuses[node] = BLACK;
+        return false;
+    }
+
+}
+```
+  
+</details>
+
+--------------------
+
+## [Medium] Remove Kth Node From End
+
+> Write a function that takes in the head of a Singly Linked List and an integer k and removes the kth node from
+> the end of the list.
+> The removal should be done in place, meaning that the original data structure should be mutated
+> (no new structure should be created).
+
+<details>
+  <summary>Solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(1) |
+
+```
+class Program {
+
+    public static void removeKthNodeFromEnd(LinkedList head, int k) {
+        int size = 0;
+        LinkedList current = head;
+        while (current != null) {
+            size++;
+            current = current.next;
+        }
+        int indexToRemove = size - k;
+        if (indexToRemove == 0) {
+            head.value = head.next.value;
+            head.next = head.next.next;
+            return;
+        }
+        LinkedList prev = head;
+        for (int i = 0; i < indexToRemove - 1; i++) {
+            prev = prev.next;
+        }
+        prev.next = prev.next.next;
+    }
+
+    static class LinkedList {
+        int value;
+        LinkedList next = null;
+
+        public LinkedList(int value) {
+            this.value = value;
+        }
+    }
+}
+```
+  
+</details>
+
+--------------------
+
+## [Medium] Min Max Stack Construction
+
+> Write a MinMaxStack class for a Min Max Stack. The class should support:
+> 1) Pushing and popping values on and off the stack.
+> 2) Peeking at the value at the top of the stack.
+> 3) Getting both the minimum and the maximum values in the stack at any given point in time.
+> All class methods, when considered independently, should run in constant time and with constant space.
+
+<details>
+  <summary>Solution (not optimal for `pop` case)</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(1) |
+
+```
+class Program {
+
+    private static class LinkedList {
+        public int value;
+        public LinkedList next = null;
+
+        public LinkedList(int value) {
+            this.value = value;
+        }
+    }
+
+    static class MinMaxStack {
+
+        private LinkedList head = null;
+        private Integer min = null;
+        private Integer max = null;
+
+        public int peek() {
+            ensureHasData();
+            return head.value;
+        }
+
+        public int pop() {
+            ensureHasData();
+            int value = head.value;
+            head = head.next;
+            if (head == null) {
+                min = max = null;
+            } else {
+                LinkedList current = head;
+                min = max = current.value;
+                do {
+                    min = Math.min(min, current.value);
+                    max = Math.max(max, current.value);
+                    current = current.next;
+                } while (current != null);
+            }
+            return value;
+        }
+
+        public void push(Integer number) {
+            if (head == null) {
+                head = new LinkedList(number);
+            } else {
+                LinkedList old = head;
+                head = new LinkedList(number);
+                head.next = old;
+            }
+            if (min == null || min > number) {
+                min = number;
+            }
+            if (max == null || max < number) {
+                max = number;
+            }
+        }
+
+        public int getMin() {
+            ensureHasData();
+            return min;
+        }
+
+        public int getMax() {
+            ensureHasData();
+            return max;
+        }
+
+        private void ensureHasData() {
+            if (head == null) {
+                throw new RuntimeException("No data exists");
+            }
+        }
+    }
+}
+```
+  
+</details>
+
+<details>
+  <summary>Optimal solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(1) | O(1) |
+
+```
+class Program {
+
+    private static class LinkedList {
+        public LinkedList next = null;
+        public int value;
+        public int min;
+        public int max;
+
+        public LinkedList(int value, int min, int max) {
+            this.value = value;
+            this.min = min;
+            this.max = max;
+        }
+    }
+
+    static class MinMaxStack {
+
+        private LinkedList head = null;
+
+        public int peek() {
+            ensureHasData();
+            return head.value;
+        }
+
+        public int pop() {
+            ensureHasData();
+            int value = head.value;
+            head = head.next;
+            return value;
+        }
+
+        public void push(Integer number) {
+            if (head == null) {
+                head = new LinkedList(number, number, number);
+                return;
+            }
+            LinkedList old = head;
+            int newMin = Math.min(number, old.min);
+            int newMax = Math.max(number, old.max);
+            head = new LinkedList(number, newMin, newMax);
+            head.next = old;
+        }
+
+        public int getMin() {
+            ensureHasData();
+            return head.min;
+        }
+
+        public int getMax() {
+            ensureHasData();
+            return head.max;
+        }
+
+        private void ensureHasData() {
+            if (head == null) {
+                throw new RuntimeException("No data exists");
+            }
+        }
+    }
+}
+```
+  
+</details>
+
+--------------------
+
+## [Medium] Balanced Brackets
+
+> Write a function that takes in a string made up of brackets ((, [, {, ), ], and }) and other optional characters. 
+> The function should return a boolean representing whether the string is balanced with regards to brackets.
+ 
+
+<details>
+  <summary>Solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(N) |
+
+```
+import java.util.*;
+
+class Program {
+
+    private static final List<Character> openingBrackets = Arrays.asList(
+        '(', '[', '{'
+    );
+
+    private static final List<Character> closingBrackets = Arrays.asList(
+        ')', ']', '}'
+    );
+
+    public static boolean balancedBrackets(String str) {
+        Stack<Character> stack = new Stack<>();
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            if (!isBracket(ch)) {
+                continue;
+            }
+            if (isOpeningBracket(ch)) {
+                stack.push(ch);
+                continue;
+            }
+            if (stack.size() == 0) {
+                return false;
+            }
+            char openingBracket = stack.pop();
+            char closingBracket = getClosingBracket(openingBracket);
+            if (ch != closingBracket) {
+                return false;
+            }
+        }
+        return stack.size() == 0;
+    }
+
+    private static boolean isBracket(char ch) {
+        return isOpeningBracket(ch) || isClosingBracket(ch);
+    }
+
+    private static boolean isOpeningBracket(char ch) {
+        return openingBrackets.stream().anyMatch(c -> c == ch);
+    }
+
+    private static boolean isClosingBracket(char ch) {
+        return closingBrackets.stream().anyMatch(c -> c == ch);
+    }
+
+    private static char getClosingBracket(char ch) {
+        for (int i = 0; i < openingBrackets.size(); i++) {
+            if (openingBrackets.get(i) == ch) {
+                return closingBrackets.get(i);
+            }
+        }
+        throw new RuntimeException("Could not find closing bracket");
+    }
+}
+```
+  
+</details>
+
+--------------------
+
+## [Medium] Longest Palindromic Substring
+
+> Write a function that, given a string, returns its longest palindromic substring.
+> A palindrome is defined as a string that's written the same forward and backward. 
+> Note that single-character strings are palindromes.
+> You can assume that there will only be one longest palindromic substring.
+
+<details>
+  <summary>Solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(N) |
+
+```
+class Program {
+
+    public static String longestPalindromicSubstring(String str) {
+        if (str.length() == 1) {
+            return str;
+        }
+        String longest = "";
+        for (int i = 0; i < str.length() - 1; i++) {
+            if (str.charAt(i) == str.charAt(i + 1)) {
+                String palindrom = expandPalindrom(str, i, i + 1);
+                if (longest.length() < palindrom.length()) {
+                    longest = palindrom;
+                }
+            }
+            if (i > 0 && str.charAt(i - 1) == str.charAt(i + 1)) {
+                String palindrom = expandPalindrom(str, i);
+                if (longest.length() < palindrom.length()) {
+                    longest = palindrom;
+                }
+            }
+        }
+        return longest;
+    }
+
+    // For instance: "yyyabcbaxxx", c - center
+    private static String expandPalindrom(String str, int center) {
+        return expandPalindrom(str, center - 1, center + 1);
+    }
+
+    // For instance: "yyyabccbaxxx", cc - left and right
+    private static String expandPalindrom(String str, int left, int right) {
+        while (
+            left > 0 && right < str.length() - 1 &&
+                str.charAt(left - 1) == str.charAt(right + 1)
+        ) {
+            left--;
+            right++;
+        }
+        return str.substring(left, right + 1);
+    }
+}
+```
+  
+</details>
+
+--------------------
+
+## [Medium] Group Anagrams
+
+> Write a function that takes in an array of strings and groups anagrams together.
+> Anagrams are strings made up of exactly the same letters, where order doesn't matter. 
+> For example, "cinema" and "iceman" are anagrams; similarly, "foo" and "ofo" are anagrams.
+> Your function should return a list of anagram groups in no particular order.
+
+<details>
+  <summary>Solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(W*L) | O(W*L) |
+
+Where `W` is the words count, `L` is the length of the longest word.
+
+```
+import java.util.*;
+
+class Program {
+
+    public static List<List<String>> groupAnagrams(List<String> words) {
+        Map<Integer, List<String>> result = new HashMap<>();
+        words.forEach(word -> {
+            int weight = calcWeight(word);
+            result.putIfAbsent(weight, new ArrayList<>());
+            result.get(weight).add(word);
+        });
+        return new ArrayList<>(result.values());
+    }
+
+    // It wouldn't work for super large words (because of integer overflow).
+    // But it works for all the test cases, so it's fine.
+    private static int calcWeight(String word) {
+        int result = 1;
+        for (int i = 0; i < word.length(); i++) {
+            result *= (int) word.charAt(i);
+        }
+        return result;
+    }
+
+}
+```
+  
+</details>
+
+--------------------
+
+## [Medium] Valid IP Addresses
+
+> You're given a string of length 12 or smaller, containing only digits. Write a function that returns all the
+> possible IP addresses that can be created by inserting three .s in the string.
+> An IP address is a sequence of four positive integers that are separated by .s, where each individual integer
+> is within the range 0 - 255, inclusive.
+> An IP address isn't valid if any of the individual integers contains leading 0s. For example, "192.168.0.1" is a
+> valid IP address, but "192.168.00.1" and "192.168.0.01" aren't, because they contain "00" and 01, respectively.
+> Another example of a valid IP address is "99.1.1.10"; conversely, "991.1.1.0" isn't valid, because "991" is greater
+> than 255. Your function should return the IP addresses in string format and in no particular order.
+> If no valid IP addresses can be created from the string, your function should return an empty list.
+
+<details>
+  <summary>Solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(1) | O(1) |
+
+```
+import java.util.*;
+
+class Program {
+
+    public ArrayList<String> validIPAddresses(String input) {
+        if (!isInputValid(input)) {
+            return new ArrayList<String>();
+        }
+        ArrayList<String> result = new ArrayList<String>();
+        fill(result, input);
+        return result;
+    }
+
+    private boolean isInputValid(String input) {
+        return input.length() >= 4 && input.length() <= 12;
+    }
+
+    private void fill(List<String> result, String input) {
+        int max = input.length();
+        for (int p1 = 0; p1 < max - 3; p1++) {
+            for (int p2 = 1; p2 < max - 2; p2++) {
+                for (int p3 = 2; p3 < max - 1; p3++) {
+                    if (p1 < p2 && p2 < p3) {
+                        try {
+                            result.add(makeIpAddress(input, p1, p2, p3));
+                        } catch (RuntimeException e) {
+                            System.out.println(e.getMessage());
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private String makeIpAddress(String input, int p1, int p2, int p3) {
+        String seg1 = input.substring(0, p1 + 1);
+        String seg2 = input.substring(p1 + 1, p2 + 1);
+        String seg3 = input.substring(p2 + 1, p3 + 1);
+        String seg4 = input.substring(p3 + 1);
+        validateSegment(seg1);
+        validateSegment(seg2);
+        validateSegment(seg3);
+        validateSegment(seg4);
+        return seg1 + "." + seg2 + "." + seg3 + "." + seg4;
+    }
+
+    private void validateSegment(String segment) {
+        if (segment.startsWith("0") && segment.length() > 1) {
+            throw new RuntimeException("Wrong number");
+        }
+        int number = Integer.parseInt(segment);
+        if (number > 255) {
+            throw new RuntimeException("Large number");
+        }
+    }
+
+}
+```
+  
+</details>
+
+--------------------
+
 ## [Hard] Largest Range
 
 > Write a function that takes in an array of integers and returns an array of length 2 representing the largest range 
