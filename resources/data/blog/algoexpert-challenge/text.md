@@ -2247,6 +2247,73 @@ class Program {
 
 --------------------
 
+## [Medium] BST Traversal
+
+> Write three functions that take in a Binary Search Tree (BST) and an empty array, traverse the BST, 
+> add its nodes' values to the input array, and return that array.
+> The three functions should traverse the BST using the in-order, pre-order, and post-order
+> tree-traversal techniques, respectively.
+  
+<details>
+  <summary>Solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(N) |
+
+```
+import java.util.List;
+
+class Program {
+    public static List<Integer> inOrderTraverse(BST tree, List<Integer> array) {
+        if (tree.left != null) {
+            inOrderTraverse(tree.left, array);
+        }
+        array.add(tree.value);
+        if (tree.right != null) {
+            inOrderTraverse(tree.right, array);
+        }
+        return array;
+    }
+
+    public static List<Integer> preOrderTraverse(BST tree, List<Integer> array) {
+        array.add(tree.value);
+        if (tree.left != null) {
+            preOrderTraverse(tree.left, array);
+        }
+        if (tree.right != null) {
+            preOrderTraverse(tree.right, array);
+        }
+        return array;
+    }
+
+    public static List<Integer> postOrderTraverse(BST tree, List<Integer> array) {
+        if (tree.left != null) {
+            postOrderTraverse(tree.left, array);
+        }
+        if (tree.right != null) {
+            postOrderTraverse(tree.right, array);
+        }
+        array.add(tree.value);
+        return array;
+    }
+
+    static class BST {
+        public int value;
+        public BST left;
+        public BST right;
+
+        public BST(int value) {
+            this.value = value;
+        }
+    }
+}
+```
+  
+</details>
+
+--------------------
+
 ## [Hard] Largest Range
 
 > Write a function that takes in an array of integers and returns an array of length 2 representing the largest range 
