@@ -2314,6 +2314,74 @@ class Program {
 
 --------------------
 
+## [Medium] Min Height BST
+
+> Write a function that takes in a non-empty sorted array of distinct integers, constructs a BST from the integers,
+> and returns the root of the BST. The function should minimize the height of the BST.
+  
+<details>
+  <summary>Solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(N) |
+
+```
+import java.util.List;
+
+class Program {
+    public static BST minHeightBst(List<Integer> array) {
+        return build(array, 0, array.size() - 1);
+    }
+
+    private static BST build(List<Integer> array, int minIndex, int maxIndex) {
+        if (minIndex == maxIndex) {
+            return new BST(array.get(minIndex));
+        }
+        if (minIndex > maxIndex) {
+            return null;
+        }
+        int middleIndex = (maxIndex + minIndex) / 2;
+        BST node = new BST(array.get(middleIndex));
+        node.left = build(array, minIndex, middleIndex - 1);
+        node.right = build(array, middleIndex + 1, maxIndex);
+        return node;
+    }
+
+    static class BST {
+        public int value;
+        public BST left;
+        public BST right;
+
+        public BST(int value) {
+            this.value = value;
+            left = null;
+            right = null;
+        }
+
+        public void insert(int value) {
+            if (value < this.value) {
+                if (left == null) {
+                    left = new BST(value);
+                } else {
+                    left.insert(value);
+                }
+            } else {
+                if (right == null) {
+                    right = new BST(value);
+                } else {
+                    right.insert(value);
+                }
+            }
+        }
+    }
+}
+```
+  
+</details>
+
+--------------------
+
 ## [Hard] Largest Range
 
 > Write a function that takes in an array of integers and returns an array of length 2 representing the largest range 
