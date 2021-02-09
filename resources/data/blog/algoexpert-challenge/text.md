@@ -2516,6 +2516,117 @@ class Program {
 
 --------------------
 
+## [Medium] Max Subset Sum No Adjacent
+
+> Write a function that takes in an array of positive integers and returns the maximum sum of non-adjacent elements
+> in the array.
+  
+<details>
+  <summary>Solution 1</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N*log(N)) | O(N) |
+
+```
+import java.util.*;
+
+class Program {
+
+    private static class Holder implements Comparable<Holder> {
+        public int value;
+        public int index;
+
+        public Holder(int value, int index) {
+            this.value = value;
+            this.index = index;
+        }
+
+        public int compareTo(Holder holder) {
+            return this.value - holder.value;
+        }
+    }
+
+    public static int maxSubsetSumNoAdjacent(int[] array) {
+        if (array.length == 0) {
+            return 0;
+        }
+        if (array.length == 1) {
+            return array[0];
+        }
+        if (array.length == 2) {
+            return Math.max(array[0], array[1]);
+        }
+        List<Holder> holders = new ArrayList<>();
+        for (int i = 0; i < array.length; i++) {
+            holders.add(new Holder(array[i], i));
+        }
+        Collections.sort(holders, Collections.reverseOrder());
+        return Math.max(
+            calcTotalByStartingIndex(holders, 0),
+            calcTotalByStartingIndex(holders, 1)
+        );
+    }
+
+    private static int calcTotalByStartingIndex(List<Holder> holders, int minIndex) {
+        int total = 0;
+        Set<Integer> picked = new HashSet<>();
+        for (int i = minIndex; i < holders.size(); i++) {
+            Holder holder = holders.get(i);
+            if (picked.contains(holder.index - 1) || picked.contains(holder.index + 1)) {
+                continue;
+            }
+            picked.add(holder.index);
+            total += holder.value;
+        }
+        return total;
+    }
+}
+```
+  
+</details>
+  
+<details>
+  <summary>Solution 2</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(1) |
+
+```
+class Program {
+
+    public static int maxSubsetSumNoAdjacent(int[] array) {
+        if (array.length == 0) {
+            return 0;
+        }
+        if (array.length == 1) {
+            return array[0];
+        }
+        if (array.length == 2) {
+            return Math.max(array[0], array[1]);
+        }
+        return calculate(array);
+    }
+
+    private static int calculate(int[] array) {
+        int result = 0;
+        int sum1 = array[0], sum2 = Math.max(array[0], array[1]);
+        for (int i = 2; i < array.length; i++) {
+            int value = array[i];
+            result = Math.max(value + sum1, sum2);
+            sum1 = sum2;
+            sum2 = result;
+        }
+        return result;
+    }
+}
+```
+  
+</details>
+
+--------------------
+
 ## [Hard] Largest Range
 
 > Write a function that takes in an array of integers and returns an array of length 2 representing the largest range 
