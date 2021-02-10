@@ -1443,6 +1443,8 @@ class Program {
 }
 ```
 
+</details>
+
 > Note: It is possible to solve this problem in one iteration over the array:
 > 1) We can return an index (or null) of the first different element starting from index 1, then
 >    determine if numbers decrease or increase, then iterate starting from that index till the end 
