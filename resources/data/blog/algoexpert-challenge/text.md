@@ -3255,6 +3255,259 @@ class Program {
 
 --------------------
 
+## [Medium] Tournament Winner
+
+> There's an algorithms tournament taking place in which teams of programmers compete against each other to solve
+> algorithmic problems as fast as possible. Teams compete in a round robin, where each team faces off against
+> all other teams. Only two teams compete against each other at a time, and for each competition, one team
+> is designated the home team, while the other team is the away team. In each competition there's always one
+> winner and one loser; there are no ties. A team receives 3 points if it wins and 0 points if it loses.
+> The winner of the tournament is the team that receives the most amount of points.
+> Given an array of pairs representing the teams that have competed against each other and an array containing
+> the results of each competition, write a function that returns the winner of the tournament. The input arrays
+> are named competitions and results, respectively. The competitions array has elements in the
+> form of [homeTeam, awayTeam], where each team is a string of at most 30 characters representing the name of the team.
+> The results array contains information about the winner of each corresponding competition in the competitions array.
+> Specifically, results[i] denotes the winner of competitions[i], where a 1 in the results array means that the home
+> team in the corresponding competition won and a 0 means that the away team won.
+> It's guaranteed that exactly one team will win the tournament and that each team will compete against all other
+> teams exactly once. It's also guaranteed that the tournament will always have at least two teams.
+
+<details>
+  <summary>Solution</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(C) | O(T) |
+
+Where `T` - number of teams, `C` - number of competitions.
+
+```
+import java.util.*;
+
+class Program {
+
+    private static final int WIN_POINTS = 3;
+
+    public String tournamentWinner(ArrayList<ArrayList<String>> competitions, ArrayList<Integer> results) {
+        Map<String, Integer> scores = new HashMap<>();
+        for (int i = 0; i < results.size(); i++) {
+            int winnerIndex = 1 - results.get(i);
+            String winner = competitions.get(i).get(winnerIndex);
+            scores.putIfAbsent(winner, 0);
+            scores.put(winner, scores.get(winner) + WIN_POINTS);
+        }
+        Integer highestScore = null;
+        String winner = null;
+        for (Map.Entry<String, Integer> entry : scores.entrySet()) {
+            if (highestScore == null || highestScore < entry.getValue()) {
+                highestScore = entry.getValue();
+                winner = entry.getKey();
+            }
+        }
+        return winner;
+    }
+}
+```
+  
+</details>
+
+--------------------
+
+## [Medium] Non-Constructible Change
+
+> Given an array of positive integers representing the values of coins in your possession, write a function that
+> returns the minimum amount of change (the minimum sum of money) that you cannot create. The given coins can have
+> any positive integer value and aren't necessarily unique (i.e., you can have multiple coins of the same value).
+> For example, if you're given coins = [1, 2, 5], the minimum amount of change that you can't create is 4.
+> If you're given no coins, the minimum amount of change that you can't create is 1.
+
+<details>
+  <summary>Solution 1</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N^2*log(N)) | O(1) |
+
+```
+import java.util.*;
+
+class Program {
+
+    public int nonConstructibleChange(int[] coins) {
+        if (coins.length == 0) {
+            return 1;
+        }
+        int sum = 0;
+        for (int i = 0; i < coins.length; i++) {
+            sum += coins[i];
+        }
+        Arrays.sort(coins);
+        for (int number = 1; number < sum; number++) {
+            if (!isConstructible(number, coins)) {
+                return number;
+            }
+        }
+        return sum + 1;
+    }
+
+    // coins must be sorted
+    private boolean isConstructible(int number, int[] coins) {
+        for (int i = coins.length - 1; i > -1; i--) {
+            int coin = coins[i];
+            if (number < coin) {
+                // This algorithm can be improved by applying binary search
+                // for searching the starting coin
+                continue;
+            }
+            number -= coin;
+            if (number == 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+```
+
+</details>
+
+<details>
+  <summary>Solution 2</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N*log(N)) | O(1) |
+
+```
+import java.util.*;
+
+class Program {
+
+    public int nonConstructibleChange(int[] coins) {
+        Arrays.sort(coins);
+        int sum = 0;
+        for (int coin : coins) {
+            if (sum + 1 < coin) {
+                return sum + 1;
+            }
+            sum += coin;
+        }
+        return sum + 1;
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Medium] Class Photos
+
+> It's photo day at the local school, and you're the photographer assigned to take class photos.
+> The class that you'll be photographing has an even number of students, and all these students are wearing red
+> or blue shirts. In fact, exactly half of the class is wearing red shirts, and the other half is wearing blue shirts.
+> You're responsible for arranging the students in two rows before taking the photo. Each row should contain the
+> same number of the students and should adhere to the following guidelines:
+> All students wearing red shirts must be in the same row.
+> All students wearing blue shirts must be in the same row.
+> Each student in the back row must be strictly taller than the student directly in front of them in the front row.
+> You're given two input arrays: one containing the heights of all the students with red shirts and another
+> one containing the heights of all the students with blue shirts. These arrays will always have the same length,
+> and each height will be a positive integer. Write a function that returns whether or not a class photo that follows
+> the stated guidelines can be taken.
+> Note: you can assume that each class has at least 2 students.
+
+<details>
+  <summary>Solution 1</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N*log(N)) | O(1) |
+
+```
+import java.util.*;
+
+class Program {
+
+    public boolean classPhotos(ArrayList<Integer> redShirtHeights, ArrayList<Integer> blueShirtHeights) {
+        int size = redShirtHeights.size();
+        int redMin = redShirtHeights.get(0);
+        int blueMin = blueShirtHeights.get(0);
+        for (int i = 1; i < size; i++) {
+            redMin = Math.min(redMin, redShirtHeights.get(i));
+            blueMin = Math.min(blueMin, blueShirtHeights.get(i));
+        }
+        if (redMin == blueMin) {
+            return false;
+        }
+        ArrayList<Integer> taller = redMin > blueMin ? redShirtHeights : blueShirtHeights;
+        ArrayList<Integer> shorter = redMin < blueMin ? redShirtHeights : blueShirtHeights;
+        for (int t = 0; t < size; t++) {
+            int tVal = taller.get(t);
+            // Candidate is the tallest between shorter that smaller than tVal
+            Integer sCandidate = null;
+            for (int s = 0; s < size; s++) {
+                int sVal = shorter.get(s);
+                if (sVal == 0 || sVal >= tVal) {
+                    continue;
+                }
+                if (sCandidate == null || shorter.get(sCandidate) < sVal) {
+                    sCandidate = s;
+                }
+            }
+            if (sCandidate == null) {
+                return false;
+            }
+            shorter.set(sCandidate, 0);
+        }
+        return true;
+    }
+}
+```
+
+</details>
+
+<details>
+  <summary>Solution 2</summary>
+  
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N*log(N)) | O(1) |
+
+```
+import java.util.*;
+
+class Program {
+
+    public boolean classPhotos(ArrayList<Integer> redShirtHeights,
+                               ArrayList<Integer> blueShirtHeights) {
+        Collections.sort(redShirtHeights);
+        Collections.sort(blueShirtHeights);
+        int redMin = redShirtHeights.get(0);
+        int blueMin = blueShirtHeights.get(0);
+        if (redMin == blueMin) {
+            return false;
+        }
+        ArrayList<Integer> taller = redMin > blueMin ? redShirtHeights : blueShirtHeights;
+        ArrayList<Integer> shorter = redMin < blueMin ? redShirtHeights : blueShirtHeights;
+        int size = redShirtHeights.size();
+        for (int i = 1; i < size; i++) {
+            int t = taller.get(i);
+            int s = shorter.get(i);
+            if (t < s) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+```
+
+</details>
+
+--------------------
+
 ## [Medium] Valid IP Addresses
 
 > You're given a string of length 12 or smaller, containing only digits. Write a function that returns all the
