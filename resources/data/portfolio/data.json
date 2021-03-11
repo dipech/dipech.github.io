@@ -254,8 +254,39 @@
         "instruments": [
           "Docker",
           "PostgreSQL",
+          "Nginx (as a reverse proxy)",
           "Amazon Polly (TextToSpeech)",
           "IBM Translator"
+        ],
+        "frameworks": [
+          "Spring Boot",
+          "VueJS"
+        ]
+      }
+    },
+    "adhunterpro": {
+      "name": "AdHunterPro",
+      "description": "TikTok ads parser.",
+      "year": 2020,
+      "text": "adhunterpro/text.md",
+      "logo": "adhunterpro/logo.png",
+      "gallery": [
+        "adhunterpro/1.png",
+        "adhunterpro/2.png"
+      ],
+      "link": "https://adhunter.pro/#/ads",
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "Java",
+          "Javascript",
+          "SQL"
+        ],
+        "instruments": [
+          "Docker",
+          "PostgreSQL",
+          "Nginx (as a reverse proxy)",
+          "Grafana"
         ],
         "frameworks": [
           "Spring Boot",
