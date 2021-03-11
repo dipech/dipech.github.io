@@ -4145,7 +4145,7 @@ class Program {
 
 --------------------
 
-## [Sum of Linked Lists] Sum of Linked Lists
+## [Medium] Sum of Linked Lists
 
 > You're given two Linked Lists of potentially unequal length. Each Linked List represents a non-negative integer, 
 > where each node in the Linked List is a digit of that integer, and the first node in each Linked List always 
@@ -4207,6 +4207,45 @@ class Program {
         }
         if (isOverflow) {
             current.next = new LinkedList(1);
+        }
+        return result;
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Medium] Powerset
+
+> Write a function that takes in an array of unique integers and returns its powerset. 
+> The powerset P(X) of a set X is the set of all subsets of X. 
+> For example, the powerset of [1,2] is [[], [1], [2], [1,2]]. 
+> Note that the sets in the powerset do not need to be in any particular order.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N * 2^N) | O(N * 2^N) |
+
+```
+import java.util.*;
+
+class Program {
+    public static List<List<Integer>> powerset(List<Integer> array) {
+        List<List<Integer>> result = new ArrayList<>();
+        result.add(new ArrayList<>());
+        for (int number : array) {
+            List<List<Integer>> accum = new ArrayList<>();
+            for (List<Integer> set : result) {
+                List<Integer> newSet = new ArrayList<>(set);
+                newSet.add(number);
+                accum.add(newSet);
+            }
+            result.addAll(accum);
         }
         return result;
     }
