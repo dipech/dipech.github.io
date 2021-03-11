@@ -993,7 +993,7 @@ import java.util.*;
 
 class Program {
     public boolean generateDocument(String characters, String document) {
-        Map<Character, Integer> chars = buildAvaiableCharsMap(characters);
+        Map<Character, Integer> chars = buildAvailableCharsMap(characters);
         for (int i = 0; i < document.length(); i++) {
             char ch = document.charAt(i);
             if (!chars.containsKey(ch)) {
@@ -1008,7 +1008,7 @@ class Program {
         return true;
     }
 
-    private Map<Character, Integer> buildAvaiableCharsMap(String characters) {
+    private Map<Character, Integer> buildAvailableCharsMap(String characters) {
         Map<Character, Integer> chars = new HashMap<>();
         for (int i = 0; i < characters.length(); i++) {
             char ch = characters.charAt(i);
