@@ -133,10 +133,10 @@
       "startDate": "09.2019",
       "endDate": null,
       "duties": [
-        "Implemented a few huge modules of a system.",
+        "Implemented a few huge modules of the main software I worked on.",
         "Created lots of different tools to automate and harmonize data flows.",
         "Fixed tons of bugs, made thousands of little improvements across the whole product.",
-        "Built from scratch a dozen and half intentionally vulnerable Java projects as a half-time employee of another team in the company (hacktory.ai)."
+        "Built from scratch a dozen and a half intentionally vulnerable Java projects as a half-time employee of another team in the company (hacktory.ai)."
       ],
       "technologies": [
         "Spring Boot (Java)",
