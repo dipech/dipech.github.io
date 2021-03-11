@@ -3644,6 +3644,45 @@ class Program {
 
 --------------------
 
+## [Medium] Number Of Ways To Make Change
+
+> Given an array of distinct positive integers representing coin denominations and a single non-negative 
+> integer n representing a target amount of money, write a function that returns the number of ways to make 
+> change for that target amount using the given coin denominations.
+> Note that an unlimited amount of coins is at your disposal.
+
+<details>
+  <summary>Solution 1</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N*C)) | O(N) |
+
+```
+import java.util.*;
+
+class Program {
+    public static int numberOfWaysToMakeChange(int n, int[] coins) {
+        Arrays.sort(coins);
+        int[] ways = new int[n + 1];
+        Arrays.fill(ways, 0);
+        ways[0] = 1;
+        for (int coin : coins) {
+            for (int number = 1; number <= n; number++) {
+                if (number >= coin) {
+                    ways[number] += ways[number - coin];
+                }
+            }
+        }
+        return ways[n];
+    }
+}
+```
+
+</details>
+
+--------------------
+
 ## [Hard] Largest Range
 
 > Write a function that takes in an array of integers and returns an array of length 2 representing the largest range 
