@@ -4145,6 +4145,78 @@ class Program {
 
 --------------------
 
+## [Sum of Linked Lists] Sum of Linked Lists
+
+> You're given two Linked Lists of potentially unequal length. Each Linked List represents a non-negative integer, 
+> where each node in the Linked List is a digit of that integer, and the first node in each Linked List always 
+> represents the least significant digit of the integer. Write a function that returns the head of a new Linked List 
+> that represents the sum of the integers represented by the two input Linked Lists.
+> Note: your function must create and return a new Linked List, and you're not allowed to modify either of the input 
+> Linked Lists.
+
+<details>
+  <summary>Solution 1</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(MAX(LENGTH(LL1),LENGTH(LL2))) | O(MAX(LENGTH(LL1),LENGTH(LL2))) |
+
+```
+class Program {
+    // This is an input class. Do not edit.
+    public static class LinkedList {
+        public int value;
+        public LinkedList next;
+
+        public LinkedList(int value) {
+            this.value = value;
+            this.next = null;
+        }
+    }
+
+    public LinkedList sumOfLinkedLists(LinkedList linkedListOne, LinkedList linkedListTwo) {
+        LinkedList a = linkedListOne;
+        LinkedList b = linkedListTwo;
+        LinkedList result = null, current = null;
+        boolean isOverflow = false;
+        while (a != null || b != null) {
+            int sum = 0;
+            if (a != null) {
+                sum += a.value;
+                a = a.next;
+            }
+            if (b != null) {
+                sum += b.value;
+                b = b.next;
+            }
+            if (isOverflow) {
+                sum++;
+                isOverflow = false;
+            }
+            if (sum > 9) {
+                isOverflow = true;
+                sum -= 10;
+            }
+            if (result == null) {
+                result = new LinkedList(sum);
+                current = result;
+                continue;
+            }
+            current.next = new LinkedList(sum);
+            current = current.next;
+        }
+        if (isOverflow) {
+            current.next = new LinkedList(1);
+        }
+        return result;
+    }
+}
+```
+
+</details>
+
+--------------------
+
 ## [Hard] Largest Range
 
 > Write a function that takes in an array of integers and returns an array of length 2 representing the largest range 
