@@ -973,6 +973,57 @@ class Program {
 
 --------------------
 
+## [Easy] Generate Document
+
+> You're given a string of available characters and a string representing a document that you need to generate. 
+> Write a function that determines if you can generate the document using the available characters. 
+> If you can generate the document, your function should return true; otherwise, it should return false.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(CH + DOC) | O(CH) |
+
+Where CH is characters length and DOC is document length
+
+```
+import java.util.*;
+
+class Program {
+    public boolean generateDocument(String characters, String document) {
+        Map<Character, Integer> chars = buildAvaiableCharsMap(characters);
+        for (int i = 0; i < document.length(); i++) {
+            char ch = document.charAt(i);
+            if (!chars.containsKey(ch)) {
+                return false;
+            }
+            int available = chars.get(ch);
+            if (available == 0) {
+                return false;
+            }
+            chars.put(ch, available - 1);
+        }
+        return true;
+    }
+
+    private Map<Character, Integer> buildAvaiableCharsMap(String characters) {
+        Map<Character, Integer> chars = new HashMap<>();
+        for (int i = 0; i < characters.length(); i++) {
+            char ch = characters.charAt(i);
+            chars.putIfAbsent(ch, 0);
+            chars.computeIfPresent(ch, (key, val) -> val + 1);
+        }
+        return chars;
+    }
+}
+```
+
+</details>
+
+--------------------
+
 ## [Medium] River Sizes
 
 > Write a function that returns an array of the sizes of all rivers represented in the input matrix.
