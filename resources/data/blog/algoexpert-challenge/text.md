@@ -3961,6 +3961,190 @@ class Program {
 
 --------------------
 
+## [Medium] Linked List Construction
+
+> Write a DoublyLinkedList class that has a head and a tail, both of which point to either a linked list 
+> Node or None / null. The class should support:
+> Setting the head and tail of the linked list.
+> Inserting nodes before and after other nodes as well as at given positions (the position of the head node is 1).
+> Removing given nodes and removing nodes with given values.
+> Searching for nodes with given values.
+
+<details>
+  <summary>Solution</summary>
+
+```
+class Program {
+    static class DoublyLinkedList {
+        public Node head;
+        public Node tail;
+
+        // Space: O( 1 )
+        // Time: O( 1 )
+
+        public void setHead(Node node) {
+            if (!isStandalone(node)) {
+                remove(node);
+            }
+            node.next = head;
+            if (head != null) {
+                head.prev = node;
+            }
+            head = node;
+            if (tail == null) {
+                tail = head;
+            }
+        }
+
+        // Space: O( 1 )
+        // Time: O( 1 )
+
+        public void setTail(Node node) {
+            if (!isStandalone(node)) {
+                remove(node);
+            }
+            node.prev = tail;
+            if (tail != null) {
+                tail.next = node;
+            }
+            tail = node;
+            if (head == null) {
+                head = tail;
+            }
+        }
+
+        // Space: O( 1 )
+        // Time: O( 1 )
+
+        public void insertBefore(Node node, Node nodeToInsert) {
+            if (!isStandalone(nodeToInsert)) {
+                remove(nodeToInsert);
+            }
+            Node prev = node.prev;
+            node.prev = nodeToInsert;
+            nodeToInsert.next = node;
+            nodeToInsert.prev = prev;
+            if (prev != null) {
+                prev.next = nodeToInsert;
+            } else {
+                head = nodeToInsert;
+            }
+        }
+
+        // Space: O( 1 )
+        // Time: O( 1 )
+
+        public void insertAfter(Node node, Node nodeToInsert) {
+            if (!isStandalone(nodeToInsert)) {
+                remove(nodeToInsert);
+            }
+            Node next = node.next;
+            node.next = nodeToInsert;
+            nodeToInsert.prev = node;
+            nodeToInsert.next = next;
+            if (next != null) {
+                next.prev = nodeToInsert;
+            } else {
+                tail = nodeToInsert;
+            }
+        }
+
+        // Space: O( 1 )
+        // Time: O( N )
+
+        public void insertAtPosition(int position, Node nodeToInsert) {
+            if (!isStandalone(nodeToInsert)) {
+                remove(nodeToInsert);
+                position = Math.max(1, position - 1);
+            }
+            if (head == null) {
+                head = tail = nodeToInsert;
+                return;
+            }
+            int counter = 1;
+            Node current = head;
+            while (current != null) {
+                if (counter == position) {
+                    insertBefore(current, nodeToInsert);
+                    return;
+                }
+                current = current.next;
+                counter++;
+            }
+            insertAfter(tail, nodeToInsert);
+        }
+
+        // Space: O( 1 )
+        // Time: O( N )
+
+        public void removeNodesWithValue(int value) {
+            Node current = head;
+            while (current != null) {
+                if (current.value == value) {
+                    Node tmp = current.next;
+                    remove(current);
+                    current = tmp;
+                    continue;
+                }
+                current = current.next;
+            }
+        }
+
+        // Space: O( 1 )
+        // Time: O( 1 )
+
+        public void remove(Node node) {
+            Node prev = node.prev;
+            Node next = node.next;
+            if (prev != null) {
+                prev.next = next;
+            } else {
+                head = next;
+            }
+            if (next != null) {
+                next.prev = prev;
+            } else {
+                tail = prev;
+            }
+            node.next = node.prev = null;
+        }
+
+        // Space: O( 1 )
+        // Time: O( N )
+
+        public boolean containsNodeWithValue(int value) {
+            Node current = head;
+            while (current != null) {
+                if (current.value == value) {
+                    return true;
+                }
+                current = current.next;
+            }
+            return false;
+        }
+
+        private boolean isStandalone(Node node) {
+            return node.prev == null && node.next == null;
+        }
+
+    }
+
+    static class Node {
+        public int value;
+        public Node prev;
+        public Node next;
+
+        public Node(int value) {
+            this.value = value;
+        }
+    }
+}
+```
+
+</details>
+
+--------------------
+
 ## [Hard] Largest Range
 
 > Write a function that takes in an array of integers and returns an array of length 2 representing the largest range 
