@@ -3813,6 +3813,154 @@ class Program {
 
 --------------------
 
+## [Medium] Min Heap Construction
+
+> Implement a MinHeap class that supports:
+> Building a Min Heap from an input array of integers.
+> Inserting integers in the heap.
+> Removing the heap's minimum / root value.
+> Peeking at the heap's minimum / root value.
+> Sifting integers up and down the heap, which is to be used when inserting and removing values.
+> Note that the heap should be represented in the form of an array.
+
+<details>
+  <summary>Solution</summary>
+
+```
+import java.util.*;
+
+class Program {
+
+    // Note for readers:
+    // This class is dumb, but the template of it was given to me by AlgoExpert.
+    // I see no reason to pass "array" into "buildHeap" method as well as
+    // I see no reason to pass "endIndex" and "heap" into siftDown method, etc.
+    // But modifying this class leads us to fail compilation.
+
+    static class MinHeap {
+        List<Integer> heap = new ArrayList<Integer>();
+
+        public MinHeap(List<Integer> array) {
+            heap = buildHeap(array);
+        }
+
+        public List<Integer> buildHeap(List<Integer> array) {
+            heap = array;
+            doBuildHeap();
+            return array;
+        }
+
+        // Space: O( 1 )
+        // Time: O( N )
+
+        private void doBuildHeap() {
+            for (int index = heap.size() - 1; index > 0; index -= 2) {
+                siftDown(getParentIndex(index), heap.size() - 1, heap);
+            }
+        }
+
+        // Space: O( 1 )
+        // Time: O( log(N) )
+
+        public void siftDown(int currentIndex, int endIndex, List<Integer> heap) {
+            int size = heap.size();
+            int current = heap.get(currentIndex);
+            int leftChildIndex = getLeftChildIndex(currentIndex);
+            int rightChildIndex = getRightChildIndex(currentIndex);
+            if (!hasIndex(leftChildIndex) && !hasIndex(rightChildIndex)) {
+                return;
+            }
+            int leftChild = heap.get(leftChildIndex);
+            if (!hasIndex(rightChildIndex)) {
+                if (current > leftChild) {
+                    swap(currentIndex, leftChildIndex);
+                    siftDown(leftChildIndex, heap.size() - 1, heap);
+                }
+                return;
+            }
+            int rightChild = heap.get(rightChildIndex);
+            if (current <= leftChild && current <= rightChild) {
+                return;
+            }
+            if (leftChild < rightChild) {
+                swap(leftChildIndex, currentIndex);
+                siftDown(leftChildIndex, heap.size() - 1, heap);
+                return;
+            }
+            swap(rightChildIndex, currentIndex);
+            siftDown(rightChildIndex, heap.size() - 1, heap);
+        }
+
+        // Space: O( 1 )
+        // Time: O( log(N) )
+
+        public void siftUp(int currentIndex, List<Integer> heap) {
+            if (currentIndex == 0) {
+                return;
+            }
+            int parentIndex = getParentIndex(currentIndex);
+            if (heap.get(parentIndex) <= heap.get(currentIndex)) {
+                return;
+            }
+            swap(parentIndex, currentIndex);
+            siftUp(parentIndex, heap);
+        }
+
+        // Space: O( 1 )
+        // Time: O( 1 )
+
+        public int peek() {
+            return heap.get(0);
+        }
+
+        // Space: O( 1 )
+        // Time: O( log(N) )
+
+        public int remove() {
+            swap(0, heap.size() - 1);
+            int value = heap.remove(heap.size() - 1);
+            siftDown(0, heap.size() - 1, heap);
+            return value;
+        }
+
+        // Space: O( 1 )
+        // Time: O( log(N) )
+
+        public void insert(int value) {
+            heap.add(value);
+            siftUp(heap.size() - 1, heap);
+        }
+
+        private int getParentIndex(int index) {
+            return (int) Math.floor((index - 1) / 2.0);
+        }
+
+        private int getLeftChildIndex(int index) {
+            return 2 * index + 1;
+        }
+
+        private int getRightChildIndex(int index) {
+            return getLeftChildIndex(index) + 1;
+        }
+
+        private void swap(int index1, int index2) {
+            int tmp = heap.get(index1);
+            heap.set(index1, heap.get(index2));
+            heap.set(index2, tmp);
+        }
+
+        public boolean hasIndex(int index) {
+            return index > -1 && index < heap.size();
+        }
+
+    }
+}
+```
+
+</details>
+
+--------------------
+
 ## [Hard] Largest Range
 
 > Write a function that takes in an array of integers and returns an array of length 2 representing the largest range 
