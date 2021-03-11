@@ -3683,6 +3683,60 @@ class Program {
 
 --------------------
 
+## [Medium] Min Number Of Coins For Change
+
+> Given an array of positive integers representing coin denominations and a single non-negative integer n 
+> representing a target amount of money, write a function that returns the smallest number of coins needed to make 
+> change for (to sum up to) that target amount using the given coin denominations.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N*D) | O(N) |
+
+```
+import java.util.*;
+
+class Program {
+    public static int minNumberOfCoinsForChange(int n, int[] denoms) {
+        Arrays.sort(denoms);
+        if (n == 0) {
+            return 0;
+        }
+        if (n < denoms[0]) {
+            return -1;
+        }
+        int[] minNumbers = new int[n + 1];
+        Arrays.fill(minNumbers, 0);
+        for (int denom : denoms) {
+            for (int number = denom; number <= n; number++) {
+                int currentMinNumber = minNumbers[number];
+                int minNumberForNumber = minNumbers[number - denom];
+                if (minNumberForNumber > 0 || number - denom == 0) {
+                    minNumberForNumber++;
+                }
+                int resultMinNumber = 0;
+                if (currentMinNumber > 0 && minNumberForNumber > 0) {
+                    resultMinNumber = Math.min(currentMinNumber, minNumberForNumber);
+                } else if (currentMinNumber > 0) {
+                    resultMinNumber = currentMinNumber;
+                } else if (minNumberForNumber > 0) {
+                    resultMinNumber = minNumberForNumber;
+                }
+                minNumbers[number] = resultMinNumber;
+            }
+        }
+        return minNumbers[n] > 0 ? minNumbers[n] : -1;
+    }
+}
+```
+
+</details>
+
+--------------------
+
 ## [Hard] Largest Range
 
 > Write a function that takes in an array of integers and returns an array of length 2 representing the largest range 
