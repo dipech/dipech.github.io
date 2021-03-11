@@ -226,9 +226,46 @@
         ]
       }
     },
+    "listeneng": {
+      "name": "ListenEng",
+      "description": "A progressive way of learning english.",
+      "year": 2020,
+      "text": "listeneng/text.md",
+      "logo": "listeneng/logo.svg",
+      "gallery": [
+        "listeneng/1.png",
+        "listeneng/2.png",
+        "listeneng/3.png",
+        "listeneng/4.png",
+        "listeneng/5.png",
+        "listeneng/6.png",
+        "listeneng/7.png",
+        "listeneng/8.png",
+        "listeneng/9.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "Java",
+          "Javascript",
+          "SQL"
+        ],
+        "instruments": [
+          "Docker",
+          "PostgreSQL",
+          "Amazon Polly (TextToSpeech)",
+          "IBM Translator"
+        ],
+        "frameworks": [
+          "Spring Boot",
+          "VueJS"
+        ]
+      }
+    },
     "hacktory-projects": {
       "name": "Hacktory Java Projects",
-      "description": "16 intentionally vulnerable Java web projects",
+      "description": "16 intentionally vulnerable Java web projects.",
       "year": 2020,
       "text": "hacktory-projects/text.md",
       "logo": "hacktory-projects/logo.png",
