@@ -4683,3 +4683,62 @@ class Program {
 </details>
 
 --------------------
+
+## [Hard] Quick Sort
+
+> Write a function that takes in an array of integers and returns a sorted version of that array. 
+> Use the Quick Sort algorithm to sort the array.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N*Log(N)) | O(N*Log(N)) |
+
+```
+class Program {
+    public static int[] quickSort(int[] array) {
+        sort(array, 0, array.length - 1);
+        return array;
+    }
+
+    private static void sort(int[] array, int left, int right) {
+        if (right <= left) {
+            return;
+        }
+        int pivot = left, val = array[pivot];
+        int ptrLeft = left + 1, ptrRight = right;
+        while (ptrLeft <= ptrRight) {
+            if (array[ptrLeft] > val && array[ptrRight] < val) {
+                swap(array, ptrLeft, ptrRight);
+            }
+            if (array[ptrLeft] <= val) {
+                ptrLeft++;
+            }
+            if (array[ptrRight] >= val) {
+                ptrRight--;
+            }
+        }
+        swap(array, pivot, ptrRight);
+        // Sort shorter subarray first
+        if (ptrRight - left < right - ptrRight) {
+            sort(array, left, ptrRight - 1);
+            sort(array, ptrRight + 1, right);
+        } else {
+            sort(array, ptrRight + 1, right);
+            sort(array, left, ptrRight - 1);
+        }
+    }
+
+    private static void swap(int[] array, int i, int j) {
+        int tmp = array[i];
+        array[i] = array[j];
+        array[j] = tmp;
+    }
+}
+```
+
+</details>
+
+--------------------
