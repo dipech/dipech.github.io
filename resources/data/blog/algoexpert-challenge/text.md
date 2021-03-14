@@ -4256,6 +4256,56 @@ class Program {
 
 --------------------
 
+## [Medium] Staircase Traversal
+
+> You're given two positive integers representing the height of a staircase and the maximum number of steps that you 
+> can advance up the staircase at a time. Write a function that returns the number of ways in which you can 
+> climb the staircase.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(H*MS) | O(H) |
+
+```
+import java.util.*;
+
+class Program {
+    private final Map<Integer, Integer> memo = new HashMap<>();
+
+    public int staircaseTraversal(int height, int maxSteps) {
+        memo.clear();
+        return calc(height, maxSteps);
+    }
+
+    private int calc(int height, int maxSteps) {
+        if (height <= 0) {
+            return 0;
+        }
+        if (memo.containsKey(height)) {
+            return memo.get(height);
+        }
+        if (height <= maxSteps) {
+            int result = (int) Math.pow(2, height - 1);
+            memo.put(height, result);
+            return result;
+        }
+        int result = 0;
+        for (int i = 1; i <= maxSteps; i++) {
+            result += calc(height - i, maxSteps);
+        }
+        memo.put(height, result);
+        return result;
+    }
+}
+```
+
+</details>
+
+--------------------
+
 ## [Hard] Largest Range
 
 > Write a function that takes in an array of integers and returns an array of length 2 representing the largest range 
