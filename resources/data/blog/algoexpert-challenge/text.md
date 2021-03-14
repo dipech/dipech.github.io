@@ -4387,6 +4387,66 @@ class Program {
 
 --------------------
 
+## [Medium] Reverse Words In String
+
+> Write a function that takes in a string of words separated by one or more whitespaces and returns a string that has 
+> these words in reverse order. For example, given the string "tim is great", 
+> your function should return "great is tim".
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(N) |
+
+```
+class Program {
+    public String reverseWordsInString(String string) {
+        if (string.length() == 0) {
+            return string;
+        }
+        char[] input = string.toCharArray();
+        char[] output = new char[string.length()];
+        reverseWords(input, output);
+        return String.valueOf(output);
+    }
+
+    private void reverseWords(char[] input, char[] output) {
+        int inputPointer = 0;
+        while (inputPointer < input.length) {
+            int wordLength = calcLength(input, inputPointer);
+            int outputPointer = input.length - inputPointer - wordLength;
+            System.arraycopy(input, inputPointer, output, outputPointer, wordLength);
+            inputPointer += wordLength;
+        }
+    }
+
+    private int calcLength(char[] input, int start) {
+        boolean isWhitespace = isWhitespace(input, start);
+        int finish = start;
+        while (finish + 1 < input.length && isSameKind(input, start, finish + 1)) {
+            finish++;
+        }
+        return finish - start + 1;
+    }
+
+    private boolean isSameKind(char[] input, int index1, int index2) {
+        boolean isWs1 = isWhitespace(input, index1);
+        boolean isWs2 = isWhitespace(input, index2);
+        return (isWs1 && isWs2) || (!isWs1 && !isWs2);
+    }
+
+    private boolean isWhitespace(char[] input, int index) {
+        return input[index] == ' ';
+    }
+}
+```
+
+</details>
+
+--------------------
+
 ## [Hard] Largest Range
 
 > Write a function that takes in an array of integers and returns an array of length 2 representing the largest range 
