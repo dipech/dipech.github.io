@@ -4742,3 +4742,93 @@ class Program {
 </details>
 
 --------------------
+
+## [Hard] Heap Sort
+
+> Write a function that takes in an array of integers and returns a sorted version of that array. 
+> Use the Heap Sort algorithm to sort the array.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N*log(N)) | O(1) |
+
+```
+class Program {
+    private static Integer heapSize = null;
+
+    public static int[] heapSort(int[] array) {
+        if (array.length == 1) {
+            return array;
+        }
+        heapSize = array.length;
+        buildHeap(array);
+        while (heapSize > 2) {
+            swap(array, 0, heapSize - 1);
+            heapSize--;
+            siftDown(array, 0);
+        }
+        swap(array, 0, 1);
+        return array;
+    }
+
+    private static void buildHeap(int[] array) {
+        int firstParentFromEndIndex = (array.length - 2) / 2;
+        for (int i = firstParentFromEndIndex; i >= 0; i--) {
+            siftDown(array, i);
+        }
+    }
+
+    private static void siftDown(int[] array, int index) {
+        int current = array[index];
+        int leftChildIndex = getLeftChild(index);
+        int rightChildIndex = getRightChild(index);
+        if (!hasIndex(leftChildIndex) && !hasIndex(rightChildIndex)) {
+            return;
+        }
+        int left = array[leftChildIndex];
+        if (!hasIndex(rightChildIndex)) {
+            if (left > current) {
+                swap(array, index, leftChildIndex);
+                siftDown(array, leftChildIndex);
+            }
+            return;
+        }
+        int right = array[rightChildIndex];
+        if (current > left && current > right) {
+            return;
+        }
+        if (left > right) {
+            swap(array, index, leftChildIndex);
+            siftDown(array, leftChildIndex);
+            return;
+        }
+        swap(array, index, rightChildIndex);
+        siftDown(array, rightChildIndex);
+    }
+
+    private static void swap(int[] array, int i, int j) {
+        int tmp = array[i];
+        array[i] = array[j];
+        array[j] = tmp;
+    }
+
+    private static int getLeftChild(int index) {
+        return 2 * index + 1;
+    }
+
+    private static int getRightChild(int index) {
+        return getLeftChild(index) + 1;
+    }
+
+    private static boolean hasIndex(int index) {
+        return index > -1 && index < heapSize;
+    }
+}
+```
+
+</details>
+
+--------------------
