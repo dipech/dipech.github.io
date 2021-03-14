@@ -4306,6 +4306,87 @@ class Program {
 
 --------------------
 
+## [Medium] Three Number Sort
+
+> You're given an array of integers and another array of three distinct integers. The first array is guaranteed to only 
+> contain integers that are in the second array, and the second array represents a desired order for the integers in the 
+> first array. For example, a second array of [x, y, z] represents a desired order of [x, x, ..., x, y, y, ..., y, z, z, ..., z] in the first array.
+
+Write a function that sorts the first array according to the desired order in the second array.
+
+<details>
+  <summary>Solution 1</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(1) |
+
+```
+class Program {
+
+    public int[] threeNumberSort(int[] array, int[] order) {
+        moveNumbersToHead(array, order[0]);
+        moveNumbersToTail(array, order[2]);
+        return array;
+    }
+
+    private void moveNumbersToHead(int[] array, int number) {
+        int pointer = 0;
+        while (pointer < array.length - 1) {
+            if (array[pointer] == number) {
+                pointer++;
+                continue;
+            }
+            Integer targetPointer = null;
+            for (int i = pointer + 1; i < array.length; i++) {
+                if (array[i] == number) {
+                    targetPointer = i;
+                    break;
+                }
+            }
+            if (targetPointer == null) {
+                return;
+            }
+            swap(array, pointer, targetPointer);
+            pointer++;
+        }
+    }
+
+    private void moveNumbersToTail(int[] array, int number) {
+        int pointer = array.length - 1;
+        while (pointer > 0) {
+            if (array[pointer] == number) {
+                pointer--;
+                continue;
+            }
+            Integer targetPointer = null;
+            for (int i = pointer - 1; i >= 0; i--) {
+                if (array[i] == number) {
+                    targetPointer = i;
+                    break;
+                }
+            }
+            if (targetPointer == null) {
+                return;
+            }
+            swap(array, pointer, targetPointer);
+            pointer--;
+        }
+    }
+
+    private void swap(int[] array, int i1, int i2) {
+        int tmp = array[i1];
+        array[i1] = array[i2];
+        array[i2] = tmp;
+    }
+
+}
+```
+
+</details>
+
+--------------------
+
 ## [Hard] Largest Range
 
 > Write a function that takes in an array of integers and returns an array of length 2 representing the largest range 
