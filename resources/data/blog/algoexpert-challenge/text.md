@@ -1,10 +1,10 @@
 I've decided to improve my skills of solving algorithmic questions and writing code without an IDE.
-I found many services like leetcode, but decided to stick with algoexpert.io.
-Here I'm publishing my solutions of questions I faced there. Every solution I published is written 
+I found many services like LeetCode, but decided to stick with algoexpert.io.
+Here I publish my solutions for questions I faced there. Every solution I published is written 
 before opening any tips, hints, ready solutions, etc.
-So, my way of practicing looks like that:
+My way of practicing looks like that:
 - Pick a question.
-- Read a prompt.
+- Read the prompt.
 - Write one working solution.
 - Write one or two other solutions with solving the task in different ways and trying to improve time and space complexities.
 - Read hints, watch a video explanation, analyse their code.
@@ -96,6 +96,48 @@ class Program {
 }
 ```
   
+</details>
+
+--------------------
+
+## [Easy] Sorted Squared Array
+
+> Write a function that takes in a non-empty array of integers that are sorted in ascending order and 
+> returns a new array of the same length with the squares of the original integers also sorted in ascending order.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(N) |
+
+```
+class Program {
+    public int[] sortedSquaredArray(int[] array) {
+        int[] result = new int[array.length];
+        int resultIndex = array.length - 1;
+        int pLeft = 0, pRight = array.length - 1;
+        while (pLeft <= pRight) {
+            if (pLeft == pRight) {
+                result[0] = array[pLeft] * array[pLeft];
+                break;
+            }
+            int left = array[pLeft] * array[pLeft];
+            int right = array[pRight] * array[pRight];
+            if (left > right) {
+                result[resultIndex--] = left;
+                pLeft++;
+            } else {
+                result[resultIndex--] = right;
+                pRight--;
+            }
+        }
+        return result;
+    }
+}
+```
+
 </details>
 
 --------------------

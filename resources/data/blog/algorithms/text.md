@@ -1,39 +1,32 @@
-## QuickSort
+## Sorted arrays
 
-To be done
+### Pointers approach
 
---------------------
+Define pointers on both sides of the array and move pointers towards each other:
+```
+int pLeft = 0, pRight = array.length - 1;
+while (pLeft < pRight) {
+    // Do something, then move one or both pointers
+    pLeft++;
+    pRight--;
+}
+```
 
-## Insertion Sort
+Note that it's better to go from outside to inside (approach 1):
 
-To be done
+```
+    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+     ^                          ^
+   pLeft                      pRight
+```
 
---------------------
+Rather than from inside to outside (approach 2):
 
-## Bubble Sort
+```
+    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+                 ^  ^
+             pLeft  pRight
+```
 
-To be done
-
---------------------
-
-## Reverse a linked list
-
-To be done
-
---------------------
-
-## Reverse a binary tree
-
-To be done
-
---------------------
-
-## Depth First Search
-
-To be done
-
---------------------
-
-## Breadth First Search
-
-To be done
+`Approach 1` is easier, because you don't need to calculate middle indices, and you don't need 
+to handle edge cases on borders as well.

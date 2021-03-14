@@ -1,7 +1,7 @@
 <template>
     <div>
-        <c-slider :auto-width="true" :mouse-drag="true" :loop="false" :gutter="15" :controls="false"
-                  :touch="true" :prevent-scroll-on-touch="true">
+        <c-slider :auto-width="true" :mouse-drag="true" :loop="false"
+                  :gutter="15" :controls="false" :touch="true">
             <div v-for="image in images">
                 <!--suppress HtmlUnknownTarget -->
                 <c-image :src="image.url" class="carousel-image" alt="Image!"/>
