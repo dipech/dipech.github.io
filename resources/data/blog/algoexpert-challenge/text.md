@@ -4635,5 +4635,51 @@ class Program {
 
 </details>
 
-_My thoughts:_ Argh! How can I be so stupid? I was so close to this way of calculation a transformed `K`:
+_P.S.:_ Argh! How can I be so stupid? I was so close to this way of calculation a transformed `K`:
 ```int offset = Math.abs(k) % listSize```
+
+--------------------
+
+## [Hard] Reverse Linked List
+
+> Write a function that takes in the head of a Singly Linked List, reverses the list in place 
+> (i.e., doesn't create a brand new list), and returns its new head.
+> Each LinkedList node has an integer value as well as a next node pointing to the next node in the list or to 
+> None / null if it's the tail of the list. 
+> You can assume that the input Linked List will always have at least one node; in other words, the head will 
+> never be None / null.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(1) |
+
+```
+class Program {
+    public static LinkedList reverseLinkedList(LinkedList head) {
+        LinkedList curr = head, prev = null;
+        while (curr != null) {
+            LinkedList next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
+    }
+
+    static class LinkedList {
+        int value;
+        LinkedList next = null;
+
+        public LinkedList(int value) {
+            this.value = value;
+        }
+    }
+}
+```
+
+</details>
+
+--------------------
