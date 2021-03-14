@@ -35,11 +35,15 @@
             return this.$store.state[blogRes.key];
         }
 
+        get isAdminMode() {
+            return this.$store.state.isAdminMode;
+        }
+
         get posts() {
             let posts: any = {};
             for (let postKeyword in this.blog.posts) {
                 let post = this.blog.posts[postKeyword];
-                if (post.isPublished) {
+                if (post.isPublished || this.isAdminMode) {
                     posts[postKeyword] = post;
                 }
             }

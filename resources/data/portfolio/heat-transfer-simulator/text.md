@@ -1,4 +1,4 @@
-With this program you can simulate heat transfer on drawn area.
+With this program you can simulate heat transfer on a drawn area.
 
 **Abilities:**
 - Four types of calculations (CPU, GPU with CUDA).

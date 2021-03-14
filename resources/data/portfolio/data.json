@@ -150,7 +150,7 @@
     },
     "heat-transfer-simulator": {
       "name": "Heat Transfer Simulator",
-      "description": "Simulate heat transfer on drawn area.",
+      "description": "Simulate heat transfer on a drawn area.",
       "year": 2012,
       "text": "heat-transfer-simulator/text.md",
       "logo": "heat-transfer-simulator/logo.png",
@@ -223,6 +223,110 @@
           "OpenGL"
         ],
         "frameworks": [
+        ]
+      }
+    },
+    "listeneng": {
+      "name": "ListenEng",
+      "description": "A progressive way of learning english.",
+      "year": 2020,
+      "text": "listeneng/text.md",
+      "logo": "listeneng/logo.svg",
+      "gallery": [
+        "listeneng/1.png",
+        "listeneng/2.png",
+        "listeneng/3.png",
+        "listeneng/4.png",
+        "listeneng/5.png",
+        "listeneng/6.png",
+        "listeneng/7.png",
+        "listeneng/8.png",
+        "listeneng/9.png"
+      ],
+      "link": null,
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "Java",
+          "Javascript",
+          "SQL"
+        ],
+        "instruments": [
+          "Docker",
+          "PostgreSQL",
+          "Nginx (as a reverse proxy)",
+          "Amazon Polly (TextToSpeech)",
+          "IBM Translator"
+        ],
+        "frameworks": [
+          "Spring Boot",
+          "VueJS"
+        ]
+      }
+    },
+    "adhunterpro": {
+      "name": "AdHunterPro",
+      "description": "TikTok ads parser.",
+      "year": 2020,
+      "text": "adhunterpro/text.md",
+      "logo": "adhunterpro/logo.png",
+      "gallery": [
+        "adhunterpro/1.png",
+        "adhunterpro/2.png"
+      ],
+      "link": "https://adhunter.pro/#/ads",
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "Java",
+          "Javascript",
+          "SQL"
+        ],
+        "instruments": [
+          "Docker",
+          "PostgreSQL",
+          "Nginx (as a reverse proxy)",
+          "Grafana"
+        ],
+        "frameworks": [
+          "Spring Boot",
+          "VueJS"
+        ]
+      }
+    },
+    "hacktory-projects": {
+      "name": "Hacktory Java Projects",
+      "description": "16 intentionally vulnerable Java web projects.",
+      "year": 2020,
+      "text": "hacktory-projects/text.md",
+      "logo": "hacktory-projects/logo.png",
+      "gallery": [
+        "hacktory-projects/1.png",
+        "hacktory-projects/2.png",
+        "hacktory-projects/3.png",
+        "hacktory-projects/4.png",
+        "hacktory-projects/5.png",
+        "hacktory-projects/6.png",
+        "hacktory-projects/7.png",
+        "hacktory-projects/8.png"
+      ],
+      "link": "https://hacktory.ai/courses/java-security",
+      "technologies": {
+        "platform": "web",
+        "languages": [
+          "Java",
+          "Groovy",
+          "Javascript",
+          "SQL"
+        ],
+        "instruments": [
+          "Docker",
+          "MySQL"
+        ],
+        "frameworks": [
+          "Spring Boot",
+          "VueJS",
+          "Thymeleaf"
         ]
       }
     },

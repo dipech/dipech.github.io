@@ -24,8 +24,8 @@
       "tags": []
     },
     "algorithms": {
-      "title": "Algorithms",
-      "preview": "Let's walk through some basic algorithms",
+      "title": "Algorithms tips and tricks",
+      "preview": "There're some handy tips and tricks you may pay attention to",
       "logo": "algorithms/logo.png",
       "isPublished": false,
       "text": "algorithms/text.md",

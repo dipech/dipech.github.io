@@ -1,10 +1,10 @@
 I've decided to improve my skills of solving algorithmic questions and writing code without an IDE.
-I found many services like leetcode, but decided to stick with algoexpert.io.
-Here I'm publishing my solutions of questions I faced there. Every solution I published is written 
+I found many services like LeetCode, but decided to stick with algoexpert.io.
+Here I publish my solutions for questions I faced there. Every solution I published is written 
 before opening any tips, hints, ready solutions, etc.
-So, my way of practicing looks like that:
+My way of practicing looks like that:
 - Pick a question.
-- Read a prompt.
+- Read the prompt.
 - Write one working solution.
 - Write one or two other solutions with solving the task in different ways and trying to improve time and space complexities.
 - Read hints, watch a video explanation, analyse their code.
@@ -96,6 +96,48 @@ class Program {
 }
 ```
   
+</details>
+
+--------------------
+
+## [Easy] Sorted Squared Array
+
+> Write a function that takes in a non-empty array of integers that are sorted in ascending order and 
+> returns a new array of the same length with the squares of the original integers also sorted in ascending order.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(N) |
+
+```
+class Program {
+    public int[] sortedSquaredArray(int[] array) {
+        int[] result = new int[array.length];
+        int resultIndex = array.length - 1;
+        int pLeft = 0, pRight = array.length - 1;
+        while (pLeft <= pRight) {
+            if (pLeft == pRight) {
+                result[0] = array[pLeft] * array[pLeft];
+                break;
+            }
+            int left = array[pLeft] * array[pLeft];
+            int right = array[pRight] * array[pRight];
+            if (left > right) {
+                result[resultIndex--] = left;
+                pLeft++;
+            } else {
+                result[resultIndex--] = right;
+                pRight--;
+            }
+        }
+        return result;
+    }
+}
+```
+
 </details>
 
 --------------------
@@ -967,6 +1009,57 @@ class Program {
 
 }
 
+```
+
+</details>
+
+--------------------
+
+## [Easy] Generate Document
+
+> You're given a string of available characters and a string representing a document that you need to generate. 
+> Write a function that determines if you can generate the document using the available characters. 
+> If you can generate the document, your function should return true; otherwise, it should return false.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(CH + DOC) | O(CH) |
+
+Where CH is characters length and DOC is document length
+
+```
+import java.util.*;
+
+class Program {
+    public boolean generateDocument(String characters, String document) {
+        Map<Character, Integer> chars = buildAvailableCharsMap(characters);
+        for (int i = 0; i < document.length(); i++) {
+            char ch = document.charAt(i);
+            if (!chars.containsKey(ch)) {
+                return false;
+            }
+            int available = chars.get(ch);
+            if (available == 0) {
+                return false;
+            }
+            chars.put(ch, available - 1);
+        }
+        return true;
+    }
+
+    private Map<Character, Integer> buildAvailableCharsMap(String characters) {
+        Map<Character, Integer> chars = new HashMap<>();
+        for (int i = 0; i < characters.length(); i++) {
+            char ch = characters.charAt(i);
+            chars.putIfAbsent(ch, 0);
+            chars.computeIfPresent(ch, (key, val) -> val + 1);
+        }
+        return chars;
+    }
+}
 ```
 
 </details>
@@ -3593,6 +3686,809 @@ class Program {
 
 --------------------
 
+## [Medium] Number Of Ways To Make Change
+
+> Given an array of distinct positive integers representing coin denominations and a single non-negative 
+> integer n representing a target amount of money, write a function that returns the number of ways to make 
+> change for that target amount using the given coin denominations.
+> Note that an unlimited amount of coins is at your disposal.
+
+<details>
+  <summary>Solution 1</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N*C)) | O(N) |
+
+```
+import java.util.*;
+
+class Program {
+    public static int numberOfWaysToMakeChange(int n, int[] coins) {
+        Arrays.sort(coins);
+        int[] ways = new int[n + 1];
+        Arrays.fill(ways, 0);
+        ways[0] = 1;
+        for (int coin : coins) {
+            for (int number = 1; number <= n; number++) {
+                if (number >= coin) {
+                    ways[number] += ways[number - coin];
+                }
+            }
+        }
+        return ways[n];
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Medium] Min Number Of Coins For Change
+
+> Given an array of positive integers representing coin denominations and a single non-negative integer n 
+> representing a target amount of money, write a function that returns the smallest number of coins needed to make 
+> change for (to sum up to) that target amount using the given coin denominations.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N*D) | O(N) |
+
+```
+import java.util.*;
+
+class Program {
+    public static int minNumberOfCoinsForChange(int n, int[] denoms) {
+        Arrays.sort(denoms);
+        if (n == 0) {
+            return 0;
+        }
+        if (n < denoms[0]) {
+            return -1;
+        }
+        int[] minNumbers = new int[n + 1];
+        Arrays.fill(minNumbers, 0);
+        for (int denom : denoms) {
+            for (int number = denom; number <= n; number++) {
+                int currentMinNumber = minNumbers[number];
+                int minNumberForNumber = minNumbers[number - denom];
+                if (minNumberForNumber > 0 || number - denom == 0) {
+                    minNumberForNumber++;
+                }
+                int resultMinNumber = 0;
+                if (currentMinNumber > 0 && minNumberForNumber > 0) {
+                    resultMinNumber = Math.min(currentMinNumber, minNumberForNumber);
+                } else if (currentMinNumber > 0) {
+                    resultMinNumber = currentMinNumber;
+                } else if (minNumberForNumber > 0) {
+                    resultMinNumber = minNumberForNumber;
+                }
+                minNumbers[number] = resultMinNumber;
+            }
+        }
+        return minNumbers[n] > 0 ? minNumbers[n] : -1;
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Medium] Youngest Common Ancestor
+
+> You're given three inputs, all of which are instances of an AncestralTree class that have an ancestor property 
+> pointing to their youngest ancestor. The first input is the top ancestor in an ancestral tree (i.e., the only 
+> instance that has no ancestor--its ancestor property points to None / null), and the other two inputs are 
+> descendants in the ancestral tree.
+> Write a function that returns the youngest common ancestor to the two descendants.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(H) | O(H) |
+
+Where H is the height of the tree.
+
+```
+import java.util.*;
+
+class Program {
+
+    private static Set<AncestralTree> ancestors = new HashSet<>();
+
+    public static AncestralTree getYoungestCommonAncestor(
+        AncestralTree topAncestor,
+        AncestralTree descendantOne,
+        AncestralTree descendantTwo
+    ) {
+        ancestors.clear();
+        fillAncestors(descendantOne);
+        return findYoungestCommonAncestor(descendantTwo);
+    }
+
+    private static void fillAncestors(AncestralTree node) {
+        AncestralTree current = node;
+        while (current != null) {
+            ancestors.add(current);
+            current = current.ancestor;
+        }
+    }
+
+    private static AncestralTree findYoungestCommonAncestor(AncestralTree node) {
+        if (ancestors.contains(node)) {
+            return node;
+        }
+        AncestralTree current = node;
+        while (!ancestors.contains(current)) {
+            current = current.ancestor;
+        }
+        return current;
+    }
+
+    static class AncestralTree {
+        public char name;
+        public AncestralTree ancestor;
+
+        AncestralTree(char name) {
+            this.name = name;
+            this.ancestor = null;
+        }
+
+        // This method is for testing only.
+        void addAsAncestor(AncestralTree[] descendants) {
+            for (AncestralTree descendant : descendants) {
+                descendant.ancestor = this;
+            }
+        }
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Medium] Min Heap Construction
+
+> Implement a MinHeap class that supports:
+> Building a Min Heap from an input array of integers.
+> Inserting integers in the heap.
+> Removing the heap's minimum / root value.
+> Peeking at the heap's minimum / root value.
+> Sifting integers up and down the heap, which is to be used when inserting and removing values.
+> Note that the heap should be represented in the form of an array.
+
+<details>
+  <summary>Solution</summary>
+
+```
+import java.util.*;
+
+class Program {
+
+    // Note for readers:
+    // This class is dumb, but the template of it was given to me by AlgoExpert.
+    // I see no reason to pass "array" into "buildHeap" method as well as
+    // I see no reason to pass "endIndex" and "heap" into siftDown method, etc.
+    // But modifying this class leads us to fail compilation.
+
+    static class MinHeap {
+        List<Integer> heap = new ArrayList<Integer>();
+
+        public MinHeap(List<Integer> array) {
+            heap = buildHeap(array);
+        }
+
+        public List<Integer> buildHeap(List<Integer> array) {
+            heap = array;
+            doBuildHeap();
+            return array;
+        }
+
+        // Space: O( 1 )
+        // Time: O( N )
+
+        private void doBuildHeap() {
+            for (int index = heap.size() - 1; index > 0; index -= 2) {
+                siftDown(getParentIndex(index), heap.size() - 1, heap);
+            }
+        }
+
+        // Space: O( 1 )
+        // Time: O( log(N) )
+
+        public void siftDown(int currentIndex, int endIndex, List<Integer> heap) {
+            int size = heap.size();
+            int current = heap.get(currentIndex);
+            int leftChildIndex = getLeftChildIndex(currentIndex);
+            int rightChildIndex = getRightChildIndex(currentIndex);
+            if (!hasIndex(leftChildIndex) && !hasIndex(rightChildIndex)) {
+                return;
+            }
+            int leftChild = heap.get(leftChildIndex);
+            if (!hasIndex(rightChildIndex)) {
+                if (current > leftChild) {
+                    swap(currentIndex, leftChildIndex);
+                    siftDown(leftChildIndex, heap.size() - 1, heap);
+                }
+                return;
+            }
+            int rightChild = heap.get(rightChildIndex);
+            if (current <= leftChild && current <= rightChild) {
+                return;
+            }
+            if (leftChild < rightChild) {
+                swap(leftChildIndex, currentIndex);
+                siftDown(leftChildIndex, heap.size() - 1, heap);
+                return;
+            }
+            swap(rightChildIndex, currentIndex);
+            siftDown(rightChildIndex, heap.size() - 1, heap);
+        }
+
+        // Space: O( 1 )
+        // Time: O( log(N) )
+
+        public void siftUp(int currentIndex, List<Integer> heap) {
+            if (currentIndex == 0) {
+                return;
+            }
+            int parentIndex = getParentIndex(currentIndex);
+            if (heap.get(parentIndex) <= heap.get(currentIndex)) {
+                return;
+            }
+            swap(parentIndex, currentIndex);
+            siftUp(parentIndex, heap);
+        }
+
+        // Space: O( 1 )
+        // Time: O( 1 )
+
+        public int peek() {
+            return heap.get(0);
+        }
+
+        // Space: O( 1 )
+        // Time: O( log(N) )
+
+        public int remove() {
+            swap(0, heap.size() - 1);
+            int value = heap.remove(heap.size() - 1);
+            siftDown(0, heap.size() - 1, heap);
+            return value;
+        }
+
+        // Space: O( 1 )
+        // Time: O( log(N) )
+
+        public void insert(int value) {
+            heap.add(value);
+            siftUp(heap.size() - 1, heap);
+        }
+
+        private int getParentIndex(int index) {
+            return (int) Math.floor((index - 1) / 2.0);
+        }
+
+        private int getLeftChildIndex(int index) {
+            return 2 * index + 1;
+        }
+
+        private int getRightChildIndex(int index) {
+            return getLeftChildIndex(index) + 1;
+        }
+
+        private void swap(int index1, int index2) {
+            int tmp = heap.get(index1);
+            heap.set(index1, heap.get(index2));
+            heap.set(index2, tmp);
+        }
+
+        public boolean hasIndex(int index) {
+            return index > -1 && index < heap.size();
+        }
+
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Medium] Linked List Construction
+
+> Write a DoublyLinkedList class that has a head and a tail, both of which point to either a linked list 
+> Node or None / null. The class should support:
+> Setting the head and tail of the linked list.
+> Inserting nodes before and after other nodes as well as at given positions (the position of the head node is 1).
+> Removing given nodes and removing nodes with given values.
+> Searching for nodes with given values.
+
+<details>
+  <summary>Solution</summary>
+
+```
+class Program {
+    static class DoublyLinkedList {
+        public Node head;
+        public Node tail;
+
+        // Space: O( 1 )
+        // Time: O( 1 )
+
+        public void setHead(Node node) {
+            if (!isStandalone(node)) {
+                remove(node);
+            }
+            node.next = head;
+            if (head != null) {
+                head.prev = node;
+            }
+            head = node;
+            if (tail == null) {
+                tail = head;
+            }
+        }
+
+        // Space: O( 1 )
+        // Time: O( 1 )
+
+        public void setTail(Node node) {
+            if (!isStandalone(node)) {
+                remove(node);
+            }
+            node.prev = tail;
+            if (tail != null) {
+                tail.next = node;
+            }
+            tail = node;
+            if (head == null) {
+                head = tail;
+            }
+        }
+
+        // Space: O( 1 )
+        // Time: O( 1 )
+
+        public void insertBefore(Node node, Node nodeToInsert) {
+            if (!isStandalone(nodeToInsert)) {
+                remove(nodeToInsert);
+            }
+            Node prev = node.prev;
+            node.prev = nodeToInsert;
+            nodeToInsert.next = node;
+            nodeToInsert.prev = prev;
+            if (prev != null) {
+                prev.next = nodeToInsert;
+            } else {
+                head = nodeToInsert;
+            }
+        }
+
+        // Space: O( 1 )
+        // Time: O( 1 )
+
+        public void insertAfter(Node node, Node nodeToInsert) {
+            if (!isStandalone(nodeToInsert)) {
+                remove(nodeToInsert);
+            }
+            Node next = node.next;
+            node.next = nodeToInsert;
+            nodeToInsert.prev = node;
+            nodeToInsert.next = next;
+            if (next != null) {
+                next.prev = nodeToInsert;
+            } else {
+                tail = nodeToInsert;
+            }
+        }
+
+        // Space: O( 1 )
+        // Time: O( N )
+
+        public void insertAtPosition(int position, Node nodeToInsert) {
+            if (!isStandalone(nodeToInsert)) {
+                remove(nodeToInsert);
+                position = Math.max(1, position - 1);
+            }
+            if (head == null) {
+                head = tail = nodeToInsert;
+                return;
+            }
+            int counter = 1;
+            Node current = head;
+            while (current != null) {
+                if (counter == position) {
+                    insertBefore(current, nodeToInsert);
+                    return;
+                }
+                current = current.next;
+                counter++;
+            }
+            insertAfter(tail, nodeToInsert);
+        }
+
+        // Space: O( 1 )
+        // Time: O( N )
+
+        public void removeNodesWithValue(int value) {
+            Node current = head;
+            while (current != null) {
+                if (current.value == value) {
+                    Node tmp = current.next;
+                    remove(current);
+                    current = tmp;
+                    continue;
+                }
+                current = current.next;
+            }
+        }
+
+        // Space: O( 1 )
+        // Time: O( 1 )
+
+        public void remove(Node node) {
+            Node prev = node.prev;
+            Node next = node.next;
+            if (prev != null) {
+                prev.next = next;
+            } else {
+                head = next;
+            }
+            if (next != null) {
+                next.prev = prev;
+            } else {
+                tail = prev;
+            }
+            node.next = node.prev = null;
+        }
+
+        // Space: O( 1 )
+        // Time: O( N )
+
+        public boolean containsNodeWithValue(int value) {
+            Node current = head;
+            while (current != null) {
+                if (current.value == value) {
+                    return true;
+                }
+                current = current.next;
+            }
+            return false;
+        }
+
+        private boolean isStandalone(Node node) {
+            return node.prev == null && node.next == null;
+        }
+
+    }
+
+    static class Node {
+        public int value;
+        public Node prev;
+        public Node next;
+
+        public Node(int value) {
+            this.value = value;
+        }
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Medium] Sum of Linked Lists
+
+> You're given two Linked Lists of potentially unequal length. Each Linked List represents a non-negative integer, 
+> where each node in the Linked List is a digit of that integer, and the first node in each Linked List always 
+> represents the least significant digit of the integer. Write a function that returns the head of a new Linked List 
+> that represents the sum of the integers represented by the two input Linked Lists.
+> Note: your function must create and return a new Linked List, and you're not allowed to modify either of the input 
+> Linked Lists.
+
+<details>
+  <summary>Solution 1</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(MAX(LENGTH(LL1),LENGTH(LL2))) | O(MAX(LENGTH(LL1),LENGTH(LL2))) |
+
+```
+class Program {
+    // This is an input class. Do not edit.
+    public static class LinkedList {
+        public int value;
+        public LinkedList next;
+
+        public LinkedList(int value) {
+            this.value = value;
+            this.next = null;
+        }
+    }
+
+    public LinkedList sumOfLinkedLists(LinkedList linkedListOne, LinkedList linkedListTwo) {
+        LinkedList a = linkedListOne;
+        LinkedList b = linkedListTwo;
+        LinkedList result = null, current = null;
+        boolean isOverflow = false;
+        while (a != null || b != null) {
+            int sum = 0;
+            if (a != null) {
+                sum += a.value;
+                a = a.next;
+            }
+            if (b != null) {
+                sum += b.value;
+                b = b.next;
+            }
+            if (isOverflow) {
+                sum++;
+                isOverflow = false;
+            }
+            if (sum > 9) {
+                isOverflow = true;
+                sum -= 10;
+            }
+            if (result == null) {
+                result = new LinkedList(sum);
+                current = result;
+                continue;
+            }
+            current.next = new LinkedList(sum);
+            current = current.next;
+        }
+        if (isOverflow) {
+            current.next = new LinkedList(1);
+        }
+        return result;
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Medium] Powerset
+
+> Write a function that takes in an array of unique integers and returns its powerset. 
+> The powerset P(X) of a set X is the set of all subsets of X. 
+> For example, the powerset of [1,2] is [[], [1], [2], [1,2]]. 
+> Note that the sets in the powerset do not need to be in any particular order.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N * 2^N) | O(N * 2^N) |
+
+```
+import java.util.*;
+
+class Program {
+    public static List<List<Integer>> powerset(List<Integer> array) {
+        List<List<Integer>> result = new ArrayList<>();
+        result.add(new ArrayList<>());
+        for (int number : array) {
+            List<List<Integer>> accum = new ArrayList<>();
+            for (List<Integer> set : result) {
+                List<Integer> newSet = new ArrayList<>(set);
+                newSet.add(number);
+                accum.add(newSet);
+            }
+            result.addAll(accum);
+        }
+        return result;
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Medium] Staircase Traversal
+
+> You're given two positive integers representing the height of a staircase and the maximum number of steps that you 
+> can advance up the staircase at a time. Write a function that returns the number of ways in which you can 
+> climb the staircase.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(H*MS) | O(H) |
+
+```
+import java.util.*;
+
+class Program {
+    private final Map<Integer, Integer> memo = new HashMap<>();
+
+    public int staircaseTraversal(int height, int maxSteps) {
+        memo.clear();
+        return calc(height, maxSteps);
+    }
+
+    private int calc(int height, int maxSteps) {
+        if (height <= 0) {
+            return 0;
+        }
+        if (memo.containsKey(height)) {
+            return memo.get(height);
+        }
+        if (height <= maxSteps) {
+            int result = (int) Math.pow(2, height - 1);
+            memo.put(height, result);
+            return result;
+        }
+        int result = 0;
+        for (int i = 1; i <= maxSteps; i++) {
+            result += calc(height - i, maxSteps);
+        }
+        memo.put(height, result);
+        return result;
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Medium] Three Number Sort
+
+> You're given an array of integers and another array of three distinct integers. The first array is guaranteed to only 
+> contain integers that are in the second array, and the second array represents a desired order for the integers in the 
+> first array. For example, a second array of [x, y, z] represents a desired order of [x, x, ..., x, y, y, ..., y, z, z, ..., z] in the first array.
+
+Write a function that sorts the first array according to the desired order in the second array.
+
+<details>
+  <summary>Solution 1</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(1) |
+
+```
+class Program {
+
+    public int[] threeNumberSort(int[] array, int[] order) {
+        moveNumbersToHead(array, order[0]);
+        moveNumbersToTail(array, order[2]);
+        return array;
+    }
+
+    private void moveNumbersToHead(int[] array, int number) {
+        int pointer = 0;
+        while (pointer < array.length - 1) {
+            if (array[pointer] == number) {
+                pointer++;
+                continue;
+            }
+            Integer targetPointer = null;
+            for (int i = pointer + 1; i < array.length; i++) {
+                if (array[i] == number) {
+                    targetPointer = i;
+                    break;
+                }
+            }
+            if (targetPointer == null) {
+                return;
+            }
+            swap(array, pointer, targetPointer);
+            pointer++;
+        }
+    }
+
+    private void moveNumbersToTail(int[] array, int number) {
+        int pointer = array.length - 1;
+        while (pointer > 0) {
+            if (array[pointer] == number) {
+                pointer--;
+                continue;
+            }
+            Integer targetPointer = null;
+            for (int i = pointer - 1; i >= 0; i--) {
+                if (array[i] == number) {
+                    targetPointer = i;
+                    break;
+                }
+            }
+            if (targetPointer == null) {
+                return;
+            }
+            swap(array, pointer, targetPointer);
+            pointer--;
+        }
+    }
+
+    private void swap(int[] array, int i1, int i2) {
+        int tmp = array[i1];
+        array[i1] = array[i2];
+        array[i2] = tmp;
+    }
+
+}
+```
+
+</details>
+
+--------------------
+
+## [Medium] Reverse Words In String
+
+> Write a function that takes in a string of words separated by one or more whitespaces and returns a string that has 
+> these words in reverse order. For example, given the string "tim is great", 
+> your function should return "great is tim".
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(N) |
+
+```
+class Program {
+    public String reverseWordsInString(String string) {
+        if (string.length() == 0) {
+            return string;
+        }
+        char[] input = string.toCharArray();
+        char[] output = new char[string.length()];
+        reverseWords(input, output);
+        return String.valueOf(output);
+    }
+
+    private void reverseWords(char[] input, char[] output) {
+        int inputPointer = 0;
+        while (inputPointer < input.length) {
+            int wordLength = calcLength(input, inputPointer);
+            int outputPointer = input.length - inputPointer - wordLength;
+            System.arraycopy(input, inputPointer, output, outputPointer, wordLength);
+            inputPointer += wordLength;
+        }
+    }
+
+    private int calcLength(char[] input, int start) {
+        boolean isWhitespace = isWhitespace(input, start);
+        int finish = start;
+        while (finish + 1 < input.length && isSameKind(input, start, finish + 1)) {
+            finish++;
+        }
+        return finish - start + 1;
+    }
+
+    private boolean isSameKind(char[] input, int index1, int index2) {
+        boolean isWs1 = isWhitespace(input, index1);
+        boolean isWs2 = isWhitespace(input, index2);
+        return (isWs1 && isWs2) || (!isWs1 && !isWs2);
+    }
+
+    private boolean isWhitespace(char[] input, int index) {
+        return input[index] == ' ';
+    }
+}
+```
+
+</details>
+
+--------------------
+
 ## [Hard] Largest Range
 
 > Write a function that takes in an array of integers and returns an array of length 2 representing the largest range 
@@ -3781,5 +4677,200 @@ class Program {
 
 </details>
 
-_My thoughts:_ Argh! How can I be so stupid? I was so close to this way of calculation a transformed `K`:
+_P.S.:_ Argh! How can I be so stupid? I was so close to this way of calculation a transformed `K`:
 ```int offset = Math.abs(k) % listSize```
+
+--------------------
+
+## [Hard] Reverse Linked List
+
+> Write a function that takes in the head of a Singly Linked List, reverses the list in place 
+> (i.e., doesn't create a brand new list), and returns its new head.
+> Each LinkedList node has an integer value as well as a next node pointing to the next node in the list or to 
+> None / null if it's the tail of the list. 
+> You can assume that the input Linked List will always have at least one node; in other words, the head will 
+> never be None / null.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(1) |
+
+```
+class Program {
+    public static LinkedList reverseLinkedList(LinkedList head) {
+        LinkedList curr = head, prev = null;
+        while (curr != null) {
+            LinkedList next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
+    }
+
+    static class LinkedList {
+        int value;
+        LinkedList next = null;
+
+        public LinkedList(int value) {
+            this.value = value;
+        }
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Hard] Quick Sort
+
+> Write a function that takes in an array of integers and returns a sorted version of that array. 
+> Use the Quick Sort algorithm to sort the array.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N*Log(N)) | O(N*Log(N)) |
+
+```
+class Program {
+    public static int[] quickSort(int[] array) {
+        sort(array, 0, array.length - 1);
+        return array;
+    }
+
+    private static void sort(int[] array, int left, int right) {
+        if (right <= left) {
+            return;
+        }
+        int pivot = left, val = array[pivot];
+        int ptrLeft = left + 1, ptrRight = right;
+        while (ptrLeft <= ptrRight) {
+            if (array[ptrLeft] > val && array[ptrRight] < val) {
+                swap(array, ptrLeft, ptrRight);
+            }
+            if (array[ptrLeft] <= val) {
+                ptrLeft++;
+            }
+            if (array[ptrRight] >= val) {
+                ptrRight--;
+            }
+        }
+        swap(array, pivot, ptrRight);
+        // Sort shorter subarray first
+        if (ptrRight - left < right - ptrRight) {
+            sort(array, left, ptrRight - 1);
+            sort(array, ptrRight + 1, right);
+        } else {
+            sort(array, ptrRight + 1, right);
+            sort(array, left, ptrRight - 1);
+        }
+    }
+
+    private static void swap(int[] array, int i, int j) {
+        int tmp = array[i];
+        array[i] = array[j];
+        array[j] = tmp;
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Hard] Heap Sort
+
+> Write a function that takes in an array of integers and returns a sorted version of that array. 
+> Use the Heap Sort algorithm to sort the array.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N*log(N)) | O(1) |
+
+```
+class Program {
+    private static Integer heapSize = null;
+
+    public static int[] heapSort(int[] array) {
+        if (array.length == 1) {
+            return array;
+        }
+        heapSize = array.length;
+        buildHeap(array);
+        while (heapSize > 2) {
+            swap(array, 0, heapSize - 1);
+            heapSize--;
+            siftDown(array, 0);
+        }
+        swap(array, 0, 1);
+        return array;
+    }
+
+    private static void buildHeap(int[] array) {
+        int firstParentFromEndIndex = (array.length - 2) / 2;
+        for (int i = firstParentFromEndIndex; i >= 0; i--) {
+            siftDown(array, i);
+        }
+    }
+
+    private static void siftDown(int[] array, int index) {
+        int current = array[index];
+        int leftChildIndex = getLeftChild(index);
+        int rightChildIndex = getRightChild(index);
+        if (!hasIndex(leftChildIndex) && !hasIndex(rightChildIndex)) {
+            return;
+        }
+        int left = array[leftChildIndex];
+        if (!hasIndex(rightChildIndex)) {
+            if (left > current) {
+                swap(array, index, leftChildIndex);
+                siftDown(array, leftChildIndex);
+            }
+            return;
+        }
+        int right = array[rightChildIndex];
+        if (current > left && current > right) {
+            return;
+        }
+        if (left > right) {
+            swap(array, index, leftChildIndex);
+            siftDown(array, leftChildIndex);
+            return;
+        }
+        swap(array, index, rightChildIndex);
+        siftDown(array, rightChildIndex);
+    }
+
+    private static void swap(int[] array, int i, int j) {
+        int tmp = array[i];
+        array[i] = array[j];
+        array[j] = tmp;
+    }
+
+    private static int getLeftChild(int index) {
+        return 2 * index + 1;
+    }
+
+    private static int getRightChild(int index) {
+        return getLeftChild(index) + 1;
+    }
+
+    private static boolean hasIndex(int index) {
+        return index > -1 && index < heapSize;
+    }
+}
+```
+
+</details>
+
+--------------------

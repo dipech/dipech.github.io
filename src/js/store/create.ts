@@ -5,8 +5,13 @@ import Vue from "vue";
 
 export default function createStore() {
     return new Vuex.Store({
-        state: {},
+        state: {
+            isAdminMode: false
+        },
         mutations: {
+            setAdminMode(state: any, isAdminMode: boolean) {
+                state.isAdminMode = isAdminMode;
+            },
             ensureResourceIsLoaded(state: any, resource: ApiResource) {
                 if (state.hasOwnProperty(resource.key) && state[resource.key] !== null) {
                     return;
