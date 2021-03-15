@@ -13,6 +13,16 @@
         "Algorithms"
       ]
     },
+    "algorithms": {
+      "title": "Algorithms tips and tricks",
+      "preview": "There're some handy tips and tricks you may pay attention to",
+      "logo": "algorithms/logo.png",
+      "isPublished": false,
+      "text": "algorithms/text.md",
+      "dateCreated": "07.10.2020",
+      "dateUpdated": null,
+      "tags": []
+    },
     "systemsexpert-challenge": {
       "title": "SystemsExpert challenge",
       "preview": "Getting all the presented in systemsexpert.io questions done",
@@ -23,12 +33,12 @@
       "dateUpdated": null,
       "tags": []
     },
-    "algorithms": {
-      "title": "Algorithms tips and tricks",
+    "system-design": {
+      "title": "System Design tips and tricks",
       "preview": "There're some handy tips and tricks you may pay attention to",
-      "logo": "algorithms/logo.png",
+      "logo": null,
       "isPublished": false,
-      "text": "algorithms/text.md",
+      "text": "system-design/text.md",
       "dateCreated": "07.10.2020",
       "dateUpdated": null,
       "tags": []

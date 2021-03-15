@@ -3,7 +3,7 @@
         <c-preloader v-if="!loaded"/>
         <div v-if="loaded">
             <h1 class="mb-3">{{ post.title }}</h1>
-            <small>Posted on <b>{{ post.dateCreated }}</b></small>
+<!--            <small>Posted on <b>{{ post.dateCreated }}</b></small>-->
             &nbsp;&nbsp;
             <c-badge v-for="tag in post.tags" :key="tag">
                 {{ tag }}
@@ -11,9 +11,9 @@
             <div class="mt-2 mb-2 text">
                 <c-markdown :text="text"/>
             </div>
-            <template v-if="post.dateUpdated !== null">
-                <small class="text-secondary">Updated at <b>{{ post.dateUpdated }}</b></small>
-            </template>
+<!--            <template v-if="post.dateUpdated !== null">-->
+<!--                <small class="text-secondary">Updated at <b>{{ post.dateUpdated }}</b></small>-->
+<!--            </template>-->
         </div>
     </div>
 </template>
