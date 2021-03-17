@@ -43,6 +43,16 @@
       "dateUpdated": null,
       "tags": []
     },
+    "java-coding-interview-code-snippets": {
+      "title": "Java code snippets",
+      "preview": "A bunch of java snippets useful during coding interview sessions",
+      "logo": "java-coding-interview-code-snippets/logo.svg",
+      "isPublished": false,
+      "text": "java-coding-interview-code-snippets/text.md",
+      "dateCreated": null,
+      "dateUpdated": null,
+      "tags": []
+    },
     "data-structures": {
       "title": "Data structures",
       "preview": "Let's walk through some basic data structures",

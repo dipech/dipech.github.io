@@ -94,3 +94,15 @@ int calcIndex(int arraySize, int index, int jump) {
     return nextIndex >= 0 ? nextIndex : arraySize + nextIndex;
 }
 ```
+
+## Building a histogram
+
+```
+String text = "abbccc123";
+Map<Character, Integer> charsHist = new HashMap<>();
+for (int i = 0; i < text.length(); i++) {
+    char ch = text.charAt(i);
+    charsHist.putIfAbsent(ch, 0);
+    charsHist.computeIfPresent(ch, (key, val) -> val + 1);
+}
+```
