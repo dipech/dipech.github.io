@@ -106,3 +106,26 @@ for (int i = 0; i < text.length(); i++) {
     charsHist.computeIfPresent(ch, (key, val) -> val + 1);
 }
 ```
+
+## Expand from the middle
+
+In some questions you need to find a subarray in some bigger array. For instance, you need to find the longest 
+palindrome in a string. Or the longest peak in a heightmap data.
+The simplest way of doing it is to iterate over the array, find a peak/a middle of smth, then invoke expand function
+to determine the length of the subarray.
+
+For instance, we're given the array:
+```
+[3 1 0 5 10 12 13 15 18 17 4 2 1 0 -1 3]
+```
+
+Determine peaks ( O(N) ):
+```
+[3 1 0 5 10 8 12 13 15 18 17 4 2 1 0 -1 3 2]
+         ^             ^                ^
+```
+
+Then call smth like `int length = calcLength(array, centerIndex);`
+
+The same approach can be used for determining the longest palindrome.
+
