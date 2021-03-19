@@ -127,5 +127,16 @@ Determine peaks ( O(N) ):
 
 Then call smth like `int length = calcLength(array, centerIndex);`
 
-The same approach can be used for determining the longest palindrome.
+It does smth like that:
+```
+int pointerLeft = centerIndex, pointerRight = centerIndex;
+while (canGoLeft(pointerLeft)) {
+    pointerLeft--;
+}
+while (canGoRight(pointerRight)) {
+    pointerRight++;
+}
+int length = pointerRight - pointerLeft;
+```
 
+The same approach can be used for determining the longest palindrome.

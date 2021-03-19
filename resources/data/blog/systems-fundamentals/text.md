@@ -133,8 +133,18 @@ Summarizing. Cache can be used:
 - To avoid calling computationally long operations multiple times.
 - To prevent execution operations which are performed a huge amount of times.
 
+Where we can apply caching:
+- Client-side: save some data that has been received from a server.
+- Server-side: save some data that has been received from other servers.
+
+Server-side caching can be:
+- In-memory caching.
+- Using an external service like Redis or Memcached.
+
 Write-through cache – write data to cache and to DB at the same time.
 Write-back cache - update only cache, and then, after some time or by an event, update DB.
+
+> Don't forget about cache eviction policies.
 
 ## Proxies
 
