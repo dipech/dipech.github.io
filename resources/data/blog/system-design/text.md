@@ -1,6 +1,15 @@
 ## Common algorithm
 
-* **Gather requirements:** You may use the next section and pick questions from there.
+**1. Gather requirements**
+
+You may use the next section and pick questions to ask for.
+
+**2. Define the API** 
+
+It can be a list of actions you able to perform with the system, like: AddPost, GetPosts.
+You also may want to define signatures for them like: AddPost(userId, postData), GetPosts(userId), GetFeed(userId).
+
+**3. Design the system**
 
 ## Common questions to ask
 
@@ -21,6 +30,11 @@ You may think of caching the data by different caching techniques.
 If so, you may use Blob store for storing static content and CDNs to speed-up static content serving. 
 
 **How much data can be in the system?**
+
+If your system has a huge amount of data, then you can apply a sharding technique (carefully!).
+You can have your database sharded by users, for instance. 
+Or you may have the main data not sharded at all, but have sharded some post-processed data, optimized for some specific
+case.
 
 **What about security? Should we worried about it?**
 
@@ -63,6 +77,26 @@ Use path-based load balancing, for instance:
 * if path is like `/api/payment/**` then proxy pass the request to payment services load balancer.
 * if path is like `/api/user/**` then proxy pass the request to user services load balancer.
 
+**Are there any "in-memory" cache in any service for users?**
+
+Use hash-based load balancing, to guarantee caches using.
+
+**Do you need to have the system highly available?**
+
+Consider using Leader Election principle. It means you have a group of servers the same kind, one of the is the leader
+(server which performs actual work), the rest are untouched until the leader is failed.
+
+## What to do
+
+**After building a part of the system or the entire system**
+
+1) Determine what services do lots of jobs and consider splitting them into distinct services.
+  
+2) Try going step-by-step through entire system and imagine what happens if something goes wrong:
+* Packet loss / Network connection troubles.
+* Servers failure.
+* Etc.
+
 ## Stuff to think of by related topics
 
 **SQL Databases:**
@@ -82,6 +116,11 @@ Use path-based load balancing, for instance:
 **Key-Value storages:**
 - Etcd.
 - ZooKeeper.
+
+**Messaging systems:**
+- Google Pub/Sub.
+- Kafka.
+- RabbitMQ.
 
 
 
