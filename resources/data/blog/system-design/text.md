@@ -81,6 +81,16 @@ Use path-based load balancing, for instance:
 
 Use hash-based load balancing, to guarantee caches using.
 
+**Does the system need to be super fast whist having a data fits into the memory entirely?**
+
+You may use in-memory data structures and computations, which is very fast.
+To guarantee availability you might need to have at least two servers, one is the leader, 
+the rest servers are followers.
+
+**Do you need to have some sort of realtime interactions?**
+
+Use websocket connection.
+
 **Do you need to have the system highly available?**
 
 Consider using Leader Election principle. It means you have a group of servers the same kind, one of the is the leader
