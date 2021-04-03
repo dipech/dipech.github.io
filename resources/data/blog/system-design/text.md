@@ -86,6 +86,44 @@ Use hash-based load balancing, to guarantee caches using.
 Consider using Leader Election principle. It means you have a group of servers the same kind, one of the is the leader
 (server which performs actual work), the rest are untouched until the leader is failed.
 
+**Do you need to deal with logs? Analyse it?**
+
+Use distributed file-system (for instance, HDFS for Hadoop) and asynchronously process it with MapReduce.
+
+Example:
+We collect a huge amount of logs like that: 
+`{userId: "uid1", articleId: "aid1", event: "READ", ...}` 
+where event is ENUM {READ, LIKE, COMMENT}
+
+We store logs in HDFS and then we apply MapReduce here.
+
+Our Map function may map our data into something like that:
+```
+{
+    "uid1": [("aid1", "READ"), ("aid1", "LIKE"), ("aid2", "COMMENT"), ...],
+    "uid2": [("aid3", "READ"), ("aid4", "READ"), ...],
+    ...
+}
+```
+
+Then our Reduce function may use some kind of machine learning to rank articles by users actions 
+to build something like that:
+```
+{
+    "uid1": {
+        "aid1": 1,
+        "aid2": 0.85,
+        ...
+    },
+    "uid2": {
+        "aid3": 1,
+        "aid4": 0.25,
+        ...
+    },
+    ...
+}
+```
+
 ## What to do
 
 **After building a part of the system or the entire system**
