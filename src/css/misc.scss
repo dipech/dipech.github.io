@@ -1,0 +1,16 @@
+/* https://stackoverflow.com/a/4407335/5306599 */
+.not-selectable {
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  -khtml-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+
+/* https://stackoverflow.com/a/34635762/5306599 */
+.not-focusable, .not-focusable:focus {
+  outline: none !important;
+  -moz-outline-style: none !important;
+  box-shadow: 0 0 0 0 !important;
+}

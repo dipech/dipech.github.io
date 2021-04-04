@@ -189,9 +189,9 @@ more requests in total.
 - Based on performance (on load): a load balancer performs a health-check requests on the servers to know how much 
 traffic a server is handling in a given time, how long a server is taking to respond, how many resources are used. Based
 on gathered information the load balancer solves which server will handle the following request.
-- IP-based server-selection strategy: IP addresses of clients are being hashed to get a number of a server to map 
-this client to. It can be useful if servers cache information, and it's important to show the same cached results 
-to the same client.
+- Some-Value-Based server-selection strategy (IP or UserId, for instance): IP addresses of clients are being hashed to 
+get a number of a server to map this client to. It can be useful if servers cache information, 
+and it's important to show the same cached results to the same client.
 - Path-based server-selection strategy: "/pay" requests go to one set of servers, "/download" requests go to another
 set of servers, and so on and so forth.
 

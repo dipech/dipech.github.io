@@ -1,6 +1,6 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-light mt-3 mb-3"
-    :class="{ 'bg-light': !isAdminMode, 'bg-info': isAdminMode }">
+         :class="{ 'bg-light': !isAdminMode, 'bg-info': isAdminMode }">
         <router-link class="navbar-brand" to="/">
             <c-image src="resources/images/logo.png" class="logo" alt="Welcome!" :zoomable="false"/>
         </router-link>
@@ -48,7 +48,7 @@
 </script>
 
 <style scoped>
-    .logo {
-        max-height: 50px;
-    }
+.logo {
+    max-height: 50px;
+}
 </style>
