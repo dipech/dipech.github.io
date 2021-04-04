@@ -242,10 +242,6 @@ class Program {
 }
 ```
 
-*P.S.* This solution isn't ideal, but it passes all the test cases. It won't work if we have twin numbers.
-It's better to keep not only numbers, but indices too. So, here we need a map instead of a set. 
-Then we can rewrite a condition like that: `map.containsKey(number2) && number1Idx != map.get(number2)`. 
-  
 </details>
 
 --------------------
@@ -298,9 +294,6 @@ class Program {
 ```
   
 </details>
-
-_My thoughts:_ It needs to think more carefully, I did many mistakes with this task before I see green light. 
-Check an algorithm step-by-step using a paper and a pencil. 
 
 --------------------
 
@@ -543,9 +536,6 @@ class Program {
 
 </details>
 
-_My thoughts:_ I've never thought about a little optimization by remembering how many elements are in correct places 
-(see `sortedCount` in my second solution).
-
 --------------------
 
 ## [Easy] Binary Search
@@ -784,9 +774,7 @@ class Program {
 
 | Time complexity | Space complexity |
 | :-------------: | :--------------: |
-| O(n)* | O(1) |
-
-`*` – n / 2 actually...
+| O(N) | O(1) |
 
 ```
 class Program {
@@ -4609,9 +4597,6 @@ class Program {
 ```
   
 </details>
-
-_My thoughts:_ Their solution is really smart. Traversing a range in two directions is a good approach. 
-I'm only traversing it from left to right. 
 
 --------------------
 
