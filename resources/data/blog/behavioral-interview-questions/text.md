@@ -73,7 +73,8 @@ Approximate algorithm to tackle this:
 - Remember: don't attack people, attack their ideas, but be respectful.
 
 To be done:
-- safe'o'clock charts rendering system.
+- safe'o'clock charts rendering system (success story).
+- OKTarget monitorings development (failure story).
 
 ## Sudden onboarding
 
