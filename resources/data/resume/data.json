@@ -1,7 +1,7 @@
 {
   "user": {
-    "about": "I've been developing since 2010. Freelancer, Founder, Developer. In love with clean-code. I've built from scratch several large projects and quite many medium-sized projects. Constantly improving my skills. I love odd humor, bicycles building (in spare time, of course), sport.",
-    "specialization": "Java Backend Developer",
+    "about": "I've been programming since 2010. I'm a developer, founder, freelancer. In love with clean-code. I've built from scratch several large projects and quite many medium-sized projects. Constantly improving my skills. I love odd humor, building bicycles (in spare time, of course), sport, and cooking.",
+    "specialization": "Java Developer",
     "photo": "photo.jpg",
     "firstName": "Dmitry",
     "lastName": "Pechkovsky-Tsikorin",
@@ -49,20 +49,20 @@
     "Docker",
     "Git",
     "OOP (SOLID, GRASP)",
-    "PHP",
-    "Symfony",
-    "Laravel",
+    "CI/CD",
+    "VueJS",
+    "Webpack",
     "Unit Testing",
     "TDD",
     "SCSS",
-    "VueJS",
     "Jquery",
-    "CI/CD",
-    "Webpack",
     "SQL (MySQL, PostgreSQL)",
     "Bootstrap",
     "Redis",
-    "RabbitMQ"
+    "RabbitMQ",
+    "PHP",
+    "Symfony",
+    "Laravel"
   ],
   "languages": [
     {
@@ -134,9 +134,12 @@
       "startDate": "09.2019",
       "endDate": null,
       "duties": [
-        "Implemented a few huge modules of the main software I worked on.",
-        "Created lots of different tools to automate and harmonize data flows.",
-        "Fixed tons of bugs, made thousands of little improvements across the whole product.",
+        "Managed a small development team.",
+        "Created lots of monthly product releases.",
+        "Implemented a few huge modules of the main product I worked on.",
+        "Created lots of different tools to automate and harmonize the product's knowledge base.",
+        "Fixed tons of bugs, made hundreds of little improvements across the whole product.",
+        "Maintained the product infrastructure.",
         "Built from scratch a dozen and a half intentionally vulnerable Java projects as a half-time employee of another team in the company (hacktory.ai)."
       ],
       "technologies": [
@@ -144,6 +147,8 @@
         "Hibernate",
         "Postgres",
         "Docker",
+        "VueJS (JS and TypeScript)",
+        "Webpack",
         "Elasticsearch",
         "Logstash",
         "RabbitMQ",
@@ -151,8 +156,7 @@
         "Groovy",
         "Teamcity",
         "Bash",
-        "Yii (PHP)",
-        "VueJS"
+        "Yii (PHP)"
       ]
     },
     {
@@ -177,7 +181,7 @@
       ],
       "technologies": [
         "Symfony (PHP + MySQL)",
-        "JS (VueJS)",
+        "VueJS (JS)",
         "Linux (Docker + Gitlab CI)"
       ]
     },
@@ -202,7 +206,7 @@
       ],
       "technologies": [
         "Laravel (PHP + MySQL)",
-        "JS (VueJS)",
+        "VueJS (JS)",
         "Linux (Docker + Gitlab CI)",
         "Redis",
         "Spring Boot (internal tools)"

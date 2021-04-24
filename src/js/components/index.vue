@@ -23,7 +23,8 @@
     })
     export default class IndexComponent extends Vue {
 
-        private adminModeKey: string = "dipech";
+        // Gothic 1, hello!
+        private adminModeKey: string = "bmarvinb";
 
         private keycodes: string[] = [];
 
