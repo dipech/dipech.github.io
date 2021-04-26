@@ -1,12 +1,12 @@
 <template>
     <div class="card">
         <div class="card-header">
+            <c-badge v-if="!post.isPublished">DRAFT</c-badge>
             {{ post.title }}
         </div>
         <div class="card-body">
             <!--suppress HtmlUnknownTarget -->
             <c-image :src="logoUrl(post.logo)" class="logo mr-4" alt="Logo" :zoomable="false"/>
-<!--            <small>Posted on <b>{{ post.dateCreated }}</b></small>-->
             <div>
                 <small>
                     <c-badge v-for="tag in post.tags" :key="tag">
