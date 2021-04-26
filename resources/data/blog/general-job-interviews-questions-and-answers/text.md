@@ -3,10 +3,24 @@ Some links to gather ideas from:
 
 ## Tell me about yourself
 
-I've been programming for almost 12 years (since 2010) and working on enterprise-level solutions for almost 6 years. 
-I've created several large projects as an entrepreneur completely by myself from scratch.
+> https://www.indeed.com/career-advice/interviewing/tell-me-about-yourself-software-engineer
+
+I'm an experienced software engineer. I've been programming for almost 12 years (since 2010), 
+and I've almost 6 years of experience developing enterprise-level solutions.
+
+I've created several large projects completely by myself from scratch.
 I've experienced in both backend and frontend development using modern approaches.
-Working on interesting projects is my passion. I literally can't live without it.
+
+While working in Digital Security as a Lead Software Engineer,
+I've honed my analytical thinking and collaboration skills, 
+I'm able to understand business value. I also have experience in team management.
+
+Before my last position, I was a full-stack (mostly PHP) software developer, and an entrepreneur at the same time 
+for several years. It gave me self-discipline and stress-resistance and the ability to work remotely effectively.
+I've learnt what is responsibility, how to clearly convey thoughts.
+
+In the next 10 years, I'd like to move into a Chief Technology Officer role. 
+A position like this would let me gain more experience with project management and leadership.
 
 ------------------------------------------------------------------------------------------------------------------------
 
