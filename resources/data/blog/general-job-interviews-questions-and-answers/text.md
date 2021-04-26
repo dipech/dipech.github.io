@@ -3,7 +3,10 @@ Some links to gather ideas from:
 
 ## Tell me about yourself
 
-to be done
+I've been programming for almost 12 years (since 2010) and working on enterprise-level solutions for almost 6 years. 
+I've created several large projects as an entrepreneur completely by myself from scratch.
+I've experienced in both backend and frontend development using modern approaches.
+Working on interesting projects is my passion. I literally can't live without it.
 
 ------------------------------------------------------------------------------------------------------------------------
 
