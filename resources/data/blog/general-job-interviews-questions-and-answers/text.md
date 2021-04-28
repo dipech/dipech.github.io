@@ -26,7 +26,16 @@ A position like this would let me gain more experience with project management a
 
 ## How would you describe yourself?
 
-to be done
+> https://www.indeed.com/career-advice/interviewing/interview-question-how-would-you-describe-yourself
+
+I'm passionate about my work. I enjoy working on a product to make it better.
+I love solving problems. Solving problems is my second nature.
+
+I’m always looking for an opportunity to do better things, to become smarter than before, to achieve goals.
+In my previous role, I was promoted three times in less than two years.
+
+I'm also good at communication because I always try to eliminate any ambiguity. 
+I always give enough information to others to be understood correctly.
 
 ------------------------------------------------------------------------------------------------------------------------
 
