@@ -41,7 +41,35 @@ I always give enough information to others to be understood correctly.
 
 ## What makes you unique?
 
-to be done
+> https://blog.hubspot.com/marketing/what-makes-you-unique
+
+I have a bunch of positive personal qualities that might be useful for this role:
+
+**supportive, helpful and collaborative**
+
+No one can say anything bad about me. Every person I have been working with is thankful to me, 
+because I'm a good team player and also I'm a very supportive, helpful and collaborative guy.
+
+**hardworking, entrepreneurial**
+
+I'm growth-focused and unafraid of challenges. I'm very passionate about learning new things and mastering old skills.
+
+**problem-solver, reliable**
+
+I really can say from my experience that I'm a good problem solver.
+I always dig problems deep, explain things well, do my work thoroughly and carefully.
+
+> The process of building product's knowledge base used to require two people (one analyst and one programmer) and two days.
+> After my automatizations, it takes less than a day and only one analyst.
+
+> I was in charge of making the product releases. It happened every month and this process consists of multiple stages 
+> like building the product, packaging it, uploading, testing, writing news, and much more.
+> There were lots of manual work and undocumented things. 
+> So I created a fully fledged documentation for the entire process and automated it even more. 
+> I decreased the time this process consume two times at least.
+
+> These products were tightly coupled, and it was an unhealthy connection between them I might say.
+> I severely decreased that connection between the two products.
 
 ------------------------------------------------------------------------------------------------------------------------
 
