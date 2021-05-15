@@ -50,7 +50,7 @@
       "title": "Java code snippets",
       "preview": "A bunch of java snippets useful during coding interview sessions",
       "logo": "java-coding-interview-code-snippets/logo.svg",
-      "isPublished": false,
+      "isPublished": true,
       "text": "java-coding-interview-code-snippets/text.md",
       "dateCreated": null,
       "dateUpdated": null,

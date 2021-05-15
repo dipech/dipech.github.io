@@ -80,3 +80,7 @@ int value = stack.peek();
 int valueRemoved = stack.pop();
 if (stack.empty()) { ... }
 ```
+
+## Comparable
+
+
