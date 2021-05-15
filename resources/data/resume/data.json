@@ -85,6 +85,7 @@
     }
   ],
   "certificates": [
+    "certificates/algo-expert-cert.png",
     "certificates/systems-expert-cert.png",
     "certificates/basejava-cert.png",
     "certificates/topjava-cert.png"
