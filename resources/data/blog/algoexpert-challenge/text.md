@@ -11,6 +11,8 @@ My way of practicing looks like that:
 - Write one or two other solutions with solving the task in different ways and trying to improve time and space complexities.
 - Read hints, watch a video explanation, analyse their code.
 
+P.S. Not every solution is perfect, sometimes I was too lazy to improve my solution to get better Ospace or Otime.
+
 --------------------
 
 ## [Easy] Nth Fibonacci
@@ -18,7 +20,7 @@ My way of practicing looks like that:
 > Write a function that takes in an integer n and returns the nth Fibonacci number.
 
 <details>
-  <summary>Recursive solution</summary>
+  <summary>Solution 1</summary>
 
 | Time complexity | Space complexity |
 | :-------------: | :--------------: |
@@ -47,7 +49,7 @@ Fib(N) = Fib(N - 1) + Fib(N - 2) = ( Fib(N - 2) + Fib(N - 3) ) + ( Fib(N - 3) + 
 </details>
 
 <details>
-  <summary>Recursive solution with memoization</summary>
+  <summary>Solution 2</summary>
 
 | Time complexity | Space complexity |
 | :-------------: | :--------------: |
@@ -75,7 +77,7 @@ class Program {
 </details>
 
 <details>
-  <summary>Iterative solution</summary>
+  <summary>Solution 3</summary>
 
 | Time complexity | Space complexity |
 | :-------------: | :--------------: |
@@ -150,7 +152,7 @@ class Program {
 > is a subsequence of the first one.
 
 <details>
-  <summary>Queue-based solution</summary>
+  <summary>Solution 1</summary>
 
 | Time complexity | Space complexity |
 | :-------------: | :--------------: |
@@ -180,7 +182,7 @@ Note: It is possible to avoid using an additional collection (queue), but I want
 </details>
 
 <details>
-  <summary>Variable base solution</summary>
+  <summary>Solution 2</summary>
 
 | Time complexity | Space complexity |
 | :-------------: | :--------------: |
@@ -479,7 +481,7 @@ class Program {
 > Use the Bubble Sort algorithm to sort the array.
 
 <details>
-  <summary>Solution</summary>
+  <summary>Solution 1</summary>
 
 | Time complexity | Space complexity |
 | :-------------: | :--------------: |
@@ -508,7 +510,7 @@ class Program {
 </details>
 
 <details>
-  <summary>More optimal solution</summary>
+  <summary>Solution 2</summary>
 
 | Time complexity | Space complexity |
 | :-------------: | :--------------: |
@@ -1157,7 +1159,7 @@ class Program {
 > Write a function that returns an array of the sizes of all rivers represented in the input matrix.
 
 <details>
-  <summary>Recursive solution</summary>
+  <summary>Solution 1</summary>
   
 | Time complexity | Space complexity |
 | :-------------: | :--------------: |
@@ -1228,7 +1230,7 @@ class Program {
 </details>
 
 <details>
-  <summary>Iterative solution (queue-based)</summary>
+  <summary>Solution 2</summary>
   
 | Time complexity | Space complexity |
 | :-------------: | :--------------: |
@@ -1576,7 +1578,7 @@ class Program {
 > Note that empty arrays and arrays of one element are monotonic.
 
 <details>
-  <summary>Solution</summary>
+  <summary>Solution 1</summary>
   
 | Time complexity | Space complexity |
 | :-------------: | :--------------: |
@@ -1622,18 +1624,18 @@ class Program {
 }
 ```
 
-</details>
-
 > Note: It is possible to solve this problem in one iteration over the array:
 > 1) We can return an index (or null) of the first different element starting from index 1, then
->    determine if numbers decrease or increase, then iterate starting from that index till the end 
->    and check for monotonic.
+     >    determine if numbers decrease or increase, then iterate starting from that index till the end
+     >    and check for monotonic.
 > 2) We can use only one `for` loop.
 >
 > I left it as is, because it's more visually clean solution.
 
+</details>
+
 <details>
-  <summary>Solution based on their solution (I was inspired by it, so elegant it was)</summary>
+  <summary>Solution 2</summary>
   
 | Time complexity | Space complexity |
 | :-------------: | :--------------: |
@@ -1726,7 +1728,7 @@ class Program {
 > the first array in the first position.
 
 <details>
-  <summary>Naive solution</summary>
+  <summary>Solution 1</summary>
   
 | Time complexity | Space complexity |
 | :-------------: | :--------------: |
@@ -1761,7 +1763,7 @@ class Program {
 </details>
 
 <details>
-  <summary>More optimal solution</summary>
+  <summary>Solution 2</summary>
   
 | Time complexity | Space complexity |
 | :-------------: | :--------------: |
@@ -1810,7 +1812,7 @@ class Program {
 > that returns the first integer that appears more than once (when the array is read from left to right).
 
 <details>
-  <summary>HashSet solution</summary>
+  <summary>Solution 1</summary>
   
 | Time complexity | Space complexity |
 | :-------------: | :--------------: |
@@ -1838,7 +1840,7 @@ class Program {
 </details>
 
 <details>
-  <summary>Optimal solution</summary>
+  <summary>Solution 2</summary>
   
 | Time complexity | Space complexity |
 | :-------------: | :--------------: |
@@ -1874,7 +1876,7 @@ class Program {
 > of those integers in no particular order.
 
 <details>
-  <summary>My first solution</summary>
+  <summary>Solution 1</summary>
   
 | Time complexity | Space complexity |
 | :-------------: | :--------------: |
@@ -1931,7 +1933,7 @@ class Program {
 </details>
 
 <details>
-  <summary>Optimal solution</summary>
+  <summary>Solution 2</summary>
   
 | Time complexity | Space complexity |
 | :-------------: | :--------------: |
@@ -1988,7 +1990,7 @@ class Program {
 > If no three numbers sum up to the target sum, the function should return an empty array.
 
 <details>
-  <summary>My first solution</summary>
+  <summary>Solution 1</summary>
   
 | Time complexity | Space complexity |
 | :-------------: | :--------------: |
@@ -2026,7 +2028,7 @@ class Program {
 </details>
 
 <details>
-  <summary>My second solution</summary>
+  <summary>Solution 2</summary>
   
 | Time complexity | Space complexity |
 | :-------------: | :--------------: |
@@ -2074,7 +2076,7 @@ class Program {
 > At least three integers are required to form a peak.
 
 <details>
-  <summary>My first solution</summary>
+  <summary>Solution 1</summary>
   
 | Time complexity | Space complexity |
 | :-------------: | :--------------: |
@@ -2137,7 +2139,7 @@ class Program {
 </details>
 
 <details>
-  <summary>My second solution</summary>
+  <summary>Solution 2</summary>
   
 | Time complexity | Space complexity |
 | :-------------: | :--------------: |
@@ -2311,7 +2313,7 @@ class Program {
 > Searching for values with the contains method.
 
 <details>
-  <summary>Solution 1</summary>
+  <summary>Solution</summary>
   
 | Time complexity | Space complexity |
 | :-------------: | :--------------: |
@@ -3092,7 +3094,7 @@ class Program {
 > All class methods, when considered independently, should run in constant time and with constant space.
 
 <details>
-  <summary>Solution (not optimal for `pop` case)</summary>
+  <summary>Solution 1</summary>
   
 | Time complexity | Space complexity |
 | :-------------: | :--------------: |
@@ -3177,7 +3179,7 @@ class Program {
 </details>
 
 <details>
-  <summary>Optimal solution</summary>
+  <summary>Solution 2</summary>
   
 | Time complexity | Space complexity |
 | :-------------: | :--------------: |
@@ -3780,7 +3782,7 @@ class Program {
 > Note that an unlimited amount of coins is at your disposal.
 
 <details>
-  <summary>Solution 1</summary>
+  <summary>Solution</summary>
 
 | Time complexity | Space complexity |
 | :-------------: | :--------------: |
@@ -4283,7 +4285,7 @@ class Program {
 > Linked Lists.
 
 <details>
-  <summary>Solution 1</summary>
+  <summary>Solution</summary>
 
 | Time complexity | Space complexity |
 | :-------------: | :--------------: |
@@ -4443,7 +4445,7 @@ class Program {
 Write a function that sorts the first array according to the desired order in the second array.
 
 <details>
-  <summary>Solution 1</summary>
+  <summary>Solution</summary>
 
 | Time complexity | Space complexity |
 | :-------------: | :--------------: |
@@ -4961,7 +4963,7 @@ class Program {
 > move up or left in the graph.
 
 <details>
-  <summary>Solution 1</summary>
+  <summary>Solution</summary>
 
 | Time complexity | Space complexity |
 | :-------------: | :--------------: |
@@ -5467,7 +5469,7 @@ class Program {
 > of integers contained in that array.
 
 <details>
-  <summary>A dirty solution using sorting (not a good solution)</summary>
+  <summary>Solution 1</summary>
 
 | Time complexity | Space complexity |
 | :-------------: | :--------------: |
@@ -5515,7 +5517,7 @@ class Program {
 </details>
 
 <details>
-  <summary>A far better solution with using a hashmap of visited numbers</summary>
+  <summary>Solution 2</summary>
 
 | Time complexity | Space complexity |
 | :-------------: | :--------------: |
@@ -5644,10 +5646,10 @@ class Program {
 }
 ```
 
-</details>
-
 _P.S.:_ Argh! How can I be so stupid? I was so close to this way of calculation a transformed `K`:
 ```int offset = Math.abs(k) % listSize```
+
+</details>
 
 --------------------
 
@@ -5994,7 +5996,7 @@ class Program {
 > that all three nodes will be unique and will never be None / null. In other words, you'll be given valid input nodes.
 
 <details>
-  <summary>Solution 1</summary>
+  <summary>Solution</summary>
 
 | Time complexity | Space complexity |
 | :-------------: | :--------------: |
@@ -6970,7 +6972,7 @@ class Program {
 > Note that the linked list should be rearranged even if it doesn't have any nodes with value k.
 
 <details>
-  <summary>Solution 1</summary>
+  <summary>Solution</summary>
 
 | Time complexity | Space complexity |
 | :-------------: | :--------------: |
