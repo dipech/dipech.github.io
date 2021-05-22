@@ -1,3 +1,5 @@
+**UPD:** I've finally done it! You can see my certificate at the portfolio page.
+
 I've decided to improve my skills of solving algorithmic questions and writing code without an IDE.
 I found many services like LeetCode, but decided to stick with algoexpert.io.
 Here I publish my solutions for questions I faced there. Every solution I published is written 
@@ -1048,6 +1050,102 @@ class Program {
         return chars;
     }
 }
+```
+
+</details>
+
+--------------------
+
+## [Easy] Tandem Bicycle
+
+> A tandem bicycle is a bicycle that's operated by two people: person A and person B. Both people pedal the bicycle, 
+> but the person that pedals faster dictates the speed of the bicycle. So if person A pedals at a speed of 5, and
+> person B pedals at a speed of 4, the tandem bicycle moves at a speed of 5 (i.e., tandemSpeed = max(speedA, speedB)).
+> You're given two lists of positive integers: one that contains the speeds of riders wearing red shirts and one
+> that contains the speeds of riders wearing blue shirts. Each rider is represented by a single positive integer,
+> which is the speed that they pedal a tandem bicycle at. Both lists have the same length, meaning that there are
+> as many red-shirt riders as there are blue-shirt riders. Your goal is to pair every rider wearing a red shirt
+> with a rider wearing a blue shirt to operate a tandem bicycle.
+> Write a function that returns the maximum possible total speed or the minimum possible total speed of all of the
+> tandem bicycles being ridden based on an input parameter, fastest. If fastest = true, your function should return
+> the maximum possible total speed; otherwise it should return the minimum total speed.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N*log(N)) | O(1) |
+
+```
+import java.util.*;
+import java.util.stream.*;
+
+class Program {
+    public int tandemBicycle(int[] redShirtSpeeds, int[] blueShirtSpeeds, boolean fastest) {
+        // Let's assume we don't use extra memory here, because we got lists instead of arrays
+        List<Integer> reds = Arrays.stream(redShirtSpeeds)
+            .boxed()
+            .sorted()
+            .collect(Collectors.toList());
+        List<Integer> blues = Arrays.stream(blueShirtSpeeds)
+            .boxed()
+            .collect(Collectors.toList());
+        if (fastest) {
+            Collections.sort(blues, Collections.reverseOrder());
+        } else {
+            Collections.sort(blues);
+        }
+        int result = 0;
+        for (int i = 0; i < reds.size(); i++) {
+            result += Math.max(reds.get(i), blues.get(i));
+        }
+        return result;
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Easy] First Non-Repeating Character
+
+> Write a function that takes in a string of lowercase English-alphabet letters and returns the index of the string's
+> first non-repeating character.
+> The first non-repeating character is the first character in a string that occurs only once.
+> If the input string doesn't have any non-repeating characters, your function should return -1.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(1) |
+
+> Space O(1) because we can't get a Map with more than 26 chars. 
+
+```
+import java.util.*;
+
+class Program {
+    public int firstNonRepeatingCharacter(String string) {
+        Map<Character, Integer> hist = new HashMap<>();
+        for (int i = 0; i < string.length(); i++) {
+            char ch = string.charAt(i);
+            hist.putIfAbsent(ch, 0);
+            hist.computeIfPresent(ch, (key, val) -> val + 1);
+        }
+        for (int i = 0; i < string.length(); i++) {
+            char ch = string.charAt(i);
+            if (hist.get(ch) == 1) {
+                return i;
+            }
+        }
+        return -1;
+    }
+}
+
 ```
 
 </details>
@@ -4477,6 +4575,892 @@ class Program {
 
 --------------------
 
+## [Medium] Merge Overlapping Intervals
+
+> Write a function that takes in a non-empty array of arbitrary intervals, merges any overlapping intervals, 
+> and returns the new intervals in no particular order.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N*log(N)) | O(N) |
+
+```
+import java.util.*;
+
+class Program {
+    public int[][] mergeOverlappingIntervals(int[][] intervals) {
+        if (intervals.length <= 1) {
+            return intervals;
+        }
+        List<Interval> parsedIntervals = parseFromArrays(intervals);
+        List<Interval> mergedIntervals = mergeIntervals(parsedIntervals);
+        return convertToArrays(mergedIntervals);
+    }
+
+    private List<Interval> mergeIntervals(List<Interval> intervals) {
+        Collections.sort(intervals);
+        List<Interval> result = new ArrayList<>();
+        Interval curr = intervals.get(0);
+        for (int i = 1; i < intervals.size(); i++) {
+            Interval next = intervals.get(i);
+            if (isOverlapped(curr, next)) {
+                curr = merge(curr, next);
+            } else {
+                result.add(curr);
+                curr = next;
+            }
+            if (i == intervals.size() - 1) {
+                result.add(curr);
+            }
+        }
+        return result;
+    }
+
+    private boolean isOverlapped(Interval i1, Interval i2) {
+        boolean i1IsFirst = i1.compareTo(i2) <= 0;
+        Interval first = i1IsFirst ? i1 : i2;
+        Interval second = i1IsFirst ? i2 : i1;
+        return first.finish >= second.start;
+    }
+
+    private Interval merge(Interval i1, Interval i2) {
+        return new Interval(
+            Math.min(i1.start, i2.start),
+            Math.max(i1.finish, i2.finish)
+        );
+    }
+
+    private List<Interval> parseFromArrays(int[][] intervals) {
+        List<Interval> result = new ArrayList<>();
+        for (int i = 0; i < intervals.length; i++) {
+            result.add(new Interval(intervals[i][0], intervals[i][1]));
+        }
+        return result;
+    }
+
+    private int[][] convertToArrays(List<Interval> intervals) {
+        int[][] result = new int[intervals.size()][2];
+        for (int i = 0; i < intervals.size(); i++) {
+            result[i][0] = intervals.get(i).start;
+            result[i][1] = intervals.get(i).finish;
+        }
+        return result;
+    }
+
+    public class Interval implements Comparable<Interval> {
+        public int start;
+        public int finish;
+
+        public Interval(int start, int finish) {
+            this.start = start;
+            this.finish = finish;
+        }
+
+        public int compareTo(Interval o) {
+            return start - o.start;
+        }
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Medium] Find Kth Largest Value In BST
+
+> Write a function that takes in a Binary Search Tree (BST) and a positive integer k and returns the kth largest
+> integer contained in the BST.
+> You can assume that there will only be integer values in the BST and that k is less than or equal to the number
+> of nodes in the tree.
+> Also, for the purpose of this question, duplicate integers will be treated as distinct values. In other words,
+> the second largest value in a BST containing values {5, 7, 7} will be 7—not 5.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(H) | O(H+K) |
+
+```
+class Program {
+    private static int target = 0;
+    private static int counter = 0;
+    private static Integer result = null;
+
+    public int findKthLargestValueInBst(BST tree, int k) {
+        counter = 0;
+        target = k;
+        result = null;
+        find(tree);
+        return result;
+    }
+
+    private void find(BST node) {
+        if (result != null) {
+            return;
+        }
+        if (node.right != null) {
+            find(node.right);
+        }
+        counter++;
+        if (counter == target) {
+            result = node.value;
+            return;
+        }
+        if (node.left != null) {
+            find(node.left);
+        }
+    }
+
+    static class BST {
+        public int value;
+        public BST left = null;
+        public BST right = null;
+
+        public BST(int value) {
+            this.value = value;
+        }
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Medium] Reconstruct BST
+
+> Given a non-empty array of integers representing the pre-order traversal of a Binary Search Tree (BST),
+> write a function that creates the relevant BST and returns its root node.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N^2) | O(H) |
+
+```
+import java.util.*;
+
+class Program {
+
+    public BST reconstructBst(ArrayList<Integer> values) {
+        if (values.size() == 0) {
+            throw new RuntimeException("Values array is empty");
+        }
+        int root = values.get(0);
+        BST node = new BST(root);
+        if (values.size() == 1) {
+            return node;
+        }
+        reconstruct(node, values, 1, values.size() - 1);
+        return node;
+    }
+
+    private void reconstruct(BST node, ArrayList<Integer> values,
+                             int startIndex, int endIndex) {
+        boolean hasLeftChild = startIndex < values.size() && values.get(startIndex) < node.value;
+        Integer leftChildIndex = hasLeftChild ? startIndex : null;
+        Integer rightChildIndex = findRightChildIndex(node, values, startIndex, endIndex);
+        if (leftChildIndex == null && rightChildIndex == null) {
+            return;
+        }
+        if (leftChildIndex != null && rightChildIndex != null) {
+            node.left = new BST(values.get(leftChildIndex));
+            reconstruct(node.left, values, leftChildIndex + 1, rightChildIndex - 1);
+            node.right = new BST(values.get(rightChildIndex));
+            reconstruct(node.right, values, rightChildIndex + 1, endIndex);
+            return;
+        }
+        if (leftChildIndex != null) {
+            node.left = new BST(values.get(leftChildIndex));
+            reconstruct(node.left, values, leftChildIndex + 1, endIndex);
+        }
+        if (rightChildIndex != null) {
+            node.right = new BST(values.get(rightChildIndex));
+            reconstruct(node.right, values, rightChildIndex + 1, endIndex);
+        }
+    }
+
+    private Integer findRightChildIndex(BST node, ArrayList<Integer> values,
+                                        int startIndex, int endIndex) {
+        for (int i = startIndex; i <= endIndex; i++) {
+            if (node.value <= values.get(i)) {
+                return i;
+            }
+        }
+        return null;
+    }
+
+    static class BST {
+        public int value;
+        public BST left = null;
+        public BST right = null;
+
+        public BST(int value) {
+            this.value = value;
+        }
+    }
+
+}
+```
+
+</details>
+
+--------------------
+
+## [Medium] Height Balanced Binary Tree
+
+> You're given the root node of a Binary Tree. Write a function that returns true if this Binary Tree is height
+> balanced and false if it isn't.
+> A Binary Tree is height balanced if for each node in the tree, the difference between the height of its left
+> subtree and the height of its right subtree is at most 1.
+
+<details>
+  <summary>Solution 1</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N^2) | O(H) |
+
+```
+import java.util.*;
+
+class Program {
+
+    public boolean heightBalancedBinaryTree(BinaryTree tree) {
+        return isHeightBalanced(tree);
+    }
+
+    private boolean isHeightBalanced(BinaryTree node) {
+        int leftHeight = calcHeight(node.left);
+        int rightHeight = calcHeight(node.right);
+        if (Math.abs(leftHeight - rightHeight) > 1) {
+            return false;
+        }
+        if (node.left != null && !isHeightBalanced(node.left)) {
+            return false;
+        }
+        if (node.right != null && !isHeightBalanced(node.right)) {
+            return false;
+        }
+        return true;
+    }
+
+    private int calcHeight(BinaryTree node) {
+        if (node == null) {
+            return -1;
+        }
+        int maxHeight = 0;
+        Queue<TreeInfo> queue = new LinkedList<>();
+        queue.add(new TreeInfo(node, 0));
+        do {
+            TreeInfo ti = queue.remove();
+            if (maxHeight < ti.height) {
+                maxHeight = ti.height;
+            }
+            if (ti.tree.left != null) {
+                queue.add(new TreeInfo(ti.tree.left, ti.height + 1));
+            }
+            if (ti.tree.right != null) {
+                queue.add(new TreeInfo(ti.tree.right, ti.height + 1));
+            }
+        } while (queue.size() > 0);
+        return maxHeight;
+    }
+
+    public static class TreeInfo {
+        public BinaryTree tree;
+        public int height;
+
+        public TreeInfo(BinaryTree tree, int height) {
+            this.tree = tree;
+            this.height = height;
+        }
+    }
+
+    static class BinaryTree {
+        public int value;
+        public BinaryTree left = null;
+        public BinaryTree right = null;
+
+        public BinaryTree(int value) {
+            this.value = value;
+        }
+    }
+}
+```
+
+</details>
+
+<details>
+  <summary>Solution 2</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(N) |
+
+```
+class Program {
+
+    public boolean heightBalancedBinaryTree(BinaryTree tree) {
+        return getTreeInfo(tree).isBalanced;
+    }
+
+    private BinaryTreeInfo getTreeInfo(BinaryTree node) {
+        if (node == null) {
+            return new BinaryTreeInfo(node, -1, true);
+        }
+        BinaryTreeInfo leftInfo = getTreeInfo(node.left);
+        BinaryTreeInfo rightInfo = getTreeInfo(node.right);
+        int height = Math.max(leftInfo.height, rightInfo.height) + 1;
+        boolean isBalanced = leftInfo.isBalanced && rightInfo.isBalanced &&
+            Math.abs(leftInfo.height - rightInfo.height) < 2;
+        return new BinaryTreeInfo(node, height, isBalanced);
+    }
+
+    static class BinaryTree {
+        public int value;
+        public BinaryTree left = null;
+        public BinaryTree right = null;
+
+        public BinaryTree(int value) {
+            this.value = value;
+        }
+    }
+
+    static class BinaryTreeInfo {
+        public BinaryTree tree;
+        public boolean isBalanced;
+        public int height;
+
+        public BinaryTreeInfo(BinaryTree tree, int height, boolean isBalanced) {
+            this.tree = tree;
+            this.height = height;
+            this.isBalanced = isBalanced;
+        }
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Medium] Number Of Ways To Traverse Graph
+
+> You're given two positive integers representing the width and height of a grid-shaped, rectangular graph.
+> Write a function that returns the number of ways to reach the bottom right corner of the graph when starting
+> at the top left corner. Each move you take must either go down or right. In other words, you can never
+> move up or left in the graph.
+
+<details>
+  <summary>Solution 1</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(WH) | O(WH) |
+
+```
+class Program {
+    public int numberOfWaysToTraverseGraph(int rows, int cols) {
+        int[][] ways = new int[rows][cols];
+        ways[0][0] = 1;
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < cols; col++) {
+                if (row == 0 && col == 0) {
+                    continue;
+                }
+                int way = 0;
+                boolean canGoFromLeft = col > 0;
+                if (canGoFromLeft) {
+                    way += ways[row][col - 1];
+                }
+                boolean canGoFromTop = row > 0;
+                if (canGoFromTop) {
+                    way += ways[row - 1][col];
+                }
+                ways[row][col] = way;
+            }
+        }
+        return ways[rows - 1][cols - 1];
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Medium] Kadane's Algorithm
+
+> Write a function that takes in a non-empty array of integers and returns the maximum sum that can be obtained
+> by summing up all of the integers in a non-empty subarray of the input array. A subarray must only contain
+> adjacent numbers (numbers next to each other in the input array).
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(1) |
+
+```
+class Program {
+    public static int kadanesAlgorithm(int[] array) {
+        int sum = array[0], maxSum = sum;
+        for (int i = 1; i < array.length; i++) {
+            int number = array[i];
+            int keepSummingSum = sum + number;
+            int startOverSum = number;
+            sum = Math.max(keepSummingSum, startOverSum);
+            maxSum = Math.max(maxSum, sum);
+        }
+        return maxSum;
+    }
+}
+
+```
+
+</details>
+
+--------------------
+
+## [Medium] Task Assignment
+
+> You're given an integer k representing a number of workers and an array of positive integers representing durations
+> of tasks that must be completed by the workers. Specifically, each worker must complete two unique tasks and can
+> only work on one task at a time. The number of tasks will always be equal to 2k such that each worker always has
+> exactly two tasks to complete. All tasks are independent of one another and can be completed in any order.
+> Workers will complete their assigned tasks in parallel, and the time taken to complete all tasks will be equal to
+> the time taken to complete the longest pair of tasks (see the sample output for an explanation).
+> Write a function that returns the optimal assignment of tasks to each worker such that the tasks are completed as
+> fast as possible. Your function should return a list of pairs, where each pair stores the indices of the tasks that
+> should be completed by one worker. The pairs should be in the following format: [task1, task2], where the order of
+> task1 and task2 doesn't matter. Your function can return the pairs in any order. If multiple optimal assignments
+> exist, any correct answer will be accepted.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N*log(N)) | O(N) |
+
+```
+import java.util.*;
+
+class Program {
+    public ArrayList<ArrayList<Integer>> taskAssignment(int k, ArrayList<Integer> tasks) {
+        List<TaskInfo> tasksInfo = new ArrayList<>(tasks.size());
+        for (int i = 0; i < tasks.size(); i++) {
+            tasksInfo.add(new TaskInfo(i, tasks.get(i)));
+        }
+        Collections.sort(tasksInfo);
+        ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+        for (int i = 0; i < k; i++) {
+            ArrayList<Integer> pairs = new ArrayList<>();
+            pairs.add(tasksInfo.get(i).index);
+            pairs.add(tasksInfo.get(tasks.size() - 1 - i).index);
+            result.add(pairs);
+        }
+        return result;
+    }
+
+    public class TaskInfo implements Comparable<TaskInfo> {
+        public int index;
+        public int duration;
+
+        public TaskInfo(int index, int duration) {
+            this.index = index;
+            this.duration = duration;
+        }
+
+        public int compareTo(TaskInfo ti) {
+            return duration - ti.duration;
+        }
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Medium] Valid Starting City
+
+> Imagine you have a set of cities that are laid out in a circle, connected by a circular road that runs clockwise.
+> Each city has a gas station that provides gallons of fuel, and each city is some distance away from the next city.
+> You have a car that can drive some number of miles per gallon of fuel, and your goal is to pick a starting city
+> such that you can fill up your car with that city's fuel, drive to the next city, refill up your car with that 
+> city's fuel, drive to the next city, and so on and so forth until you return back to the starting city with 0
+> or more gallons of fuel left.
+> This city is called a valid starting city, and it's guaranteed that there will always be exactly one valid starting city.
+> For the actual problem, you'll be given an array of distances such that city i is distances[i] away from city i + 1.
+> Since the cities are connected via a circular road, the last city is connected to the first city. In other words,
+> the last distance in the distances array is equal to the distance from the last city to the first city.
+> You'll also be given an array of fuel available at each city, where fuel[i] is equal to the fuel available at city i.
+> The total amount of fuel available (from all cities combined) is exactly enough to travel to all cities.
+> Your fuel tank always starts out empty, and you're given a positive integer value for the number of miles
+> that your car can travel per gallon of fuel (miles per gallon, or MPG). You can assume that you will always
+> be given at least two cities.
+> Write a function that returns the index of the valid starting city.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(1) |
+
+```
+class Program {
+    public int validStartingCity(int[] distances, int[] fuel, int mpg) {
+        int remainingMiles = 0, minRemainingMiles = 0, validCityIndex = 0;
+        for (int i = 1; i < distances.length; i++) {
+            remainingMiles += fuel[i - 1] * mpg - distances[i - 1];
+            if (minRemainingMiles > remainingMiles) {
+                minRemainingMiles = remainingMiles;
+                validCityIndex = i;
+            }
+        }
+        return validCityIndex;
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Medium] Phone Number Mnemonics
+
+> Almost every digit is associated with some letters in the alphabet; this allows certain phone numbers to spell out
+> actual words. For example, the phone number 8464747328 can be written as timisgreat; similarly, the phone number
+> 2686463 can be written as antoine or as ant6463.
+> It's important to note that a phone number doesn't represent a single sequence of letters, but rather multiple
+> combinations of letters. For instance, the digit 2 can represent three different letters (a, b, and c).
+> A mnemonic is defined as a pattern of letters, ideas, or associations that assist in remembering something.
+> Companies oftentimes use a mnemonic for their phone number to make it easier to remember.
+> Given a stringified phone number of any non-zero length, write a function that returns all mnemonics
+> for this phone number, in any order.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N * 4^N) | O(N * 4^N) |
+
+```
+import java.util.*;
+
+class Program {
+    private static Map<Character, List<String>> assocs = null;
+
+    public ArrayList<String> phoneNumberMnemonics(String phoneNumber) {
+        ensureAssocsIsFilled();
+        ArrayList<String> result = new ArrayList<>();
+        for (int i = 0; i < phoneNumber.length(); i++) {
+            char digit = phoneNumber.charAt(i);
+            List<String> charsToAdd = assocs.get(digit);
+            ArrayList<String> resultNew = new ArrayList<>(result.size() * charsToAdd.size());
+            if (result.size() == 0) {
+                resultNew.addAll(charsToAdd);
+            } else {
+                for (String item : result) {
+                    for (String charToAdd : charsToAdd) {
+                        resultNew.add(item + charToAdd);
+                    }
+                }
+            }
+            result.clear();
+            result = resultNew;
+        }
+        return result;
+    }
+
+    private void ensureAssocsIsFilled() {
+        if (assocs != null) {
+            return;
+        }
+        fillAssocs();
+    }
+
+    private void fillAssocs() {
+        assocs = new HashMap<>();
+        assocs.put('0', Arrays.asList("0"));
+        assocs.put('1', Arrays.asList("1"));
+        assocs.put('2', Arrays.asList("a", "b", "c"));
+        assocs.put('3', Arrays.asList("d", "e", "f"));
+        assocs.put('4', Arrays.asList("g", "h", "i"));
+        assocs.put('5', Arrays.asList("j", "k", "l"));
+        assocs.put('6', Arrays.asList("m", "n", "o"));
+        assocs.put('7', Arrays.asList("p", "q", "r", "s"));
+        assocs.put('8', Arrays.asList("t", "u", "v"));
+        assocs.put('9', Arrays.asList("w", "x", "y", "z"));
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Medium] Search In Sorted Matrix
+
+> You're given a two-dimensional array (a matrix) of distinct integers and a target integer. Each row in the matrix 
+> is sorted, and each column is also sorted; the matrix doesn't necessarily have the same height and width.
+> Write a function that returns an array of the row and column indices of the target integer if it's contained in
+> the matrix, otherwise [-1, -1].
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(W+H) | O(1) |
+
+```
+class Program {
+    public static int[] searchInSortedMatrix(int[][] matrix, int target) {
+        int row = 0, col = matrix[0].length - 1;
+        do {
+            int value = matrix[row][col];
+            if (value == target) {
+                return new int[]{row, col};
+            }
+            if (value < target) {
+                row++;
+            } else {
+                col--;
+            }
+        } while (row < matrix.length && col >= 0);
+        return new int[]{-1, -1};
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Medium] Sunset Views
+
+> Given an array of buildings and a direction that all of the buildings face, return an array of the indices of the
+> buildings that can see the sunset.
+> A building can see the sunset if it's strictly taller than all of the buildings that come after it in the direction
+> that it faces.
+> The input array named buildings contains positive, non-zero integers representing the heights of the buildings.
+> A building at index i thus has a height denoted by buildings[i]. All of the buildings face the same direction,
+> and this direction is either east or west, denoted by the input string named direction, which will always
+> be equal to either "EAST" or "WEST". In relation to the input array, you can interpret these directions as right
+> for east and left for west.
+> Important note: the indices in the ouput array should be sorted in ascending order.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(N) |
+
+```
+import java.util.*;
+
+class Program {
+    private int size;
+    private String direction;
+
+    public ArrayList<Integer> sunsetViews(int[] buildings, String direction) {
+        size = buildings.length;
+        if (size == 0) {
+            return new ArrayList<>();
+        }
+        this.direction = direction;
+        ArrayList<Integer> result = new ArrayList<>();
+        int maxHeight = buildings[getIndex(0)];
+        result.add(getIndex(0));
+        if (size == 1) {
+            return result;
+        }
+        for (int i = 1; i < size; i++) {
+            int height = buildings[getIndex(i)];
+            if (maxHeight < height) {
+                maxHeight = height;
+                result.add(getIndex(i));
+            }
+        }
+        if (direction.equals("EAST")) {
+            Collections.reverse(result);
+        }
+        return result;
+    }
+
+    private int getIndex(int index) {
+        // direct order (SUN => ###)
+        if (direction.equals("WEST")) {
+            return index;
+        }
+        // reverse order (### <= SUN)
+        return size - 1 - index;
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Medium] Sort Stack
+
+> Write a function that takes in an array of integers representing a stack, recursively sorts the stack in place
+> (i.e., doesn't create a brand new array), and returns it.
+> The array must be treated as a stack, with the end of the array as the top of the stack. Therefore, you're only allowed to
+> Pop elements from the top of the stack by removing elements from the end of the array using the built-in .pop()
+> method in your programming language of choice.
+> Push elements to the top of the stack by appending elements to the end of the array using the built-in .append()
+> method in your programming language of choice.
+> Peek at the element on top of the stack by accessing the last element in the array.
+> You're not allowed to perform any other operations on the input array, including accessing elements
+> (except for the last element), moving elements, etc... You're also not allowed to use any other data structures,
+> and your solution must be recursive.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N^2) | O(N^2) |
+
+```
+import java.util.*;
+
+class Program {
+
+    public ArrayList<Integer> sortStack(ArrayList<Integer> array) {
+        if (array.size() < 2) {
+            return array;
+        }
+        for (int i = 0; i < array.size(); i++) {
+            int head = pop(array);
+            sort(array, head);
+        }
+        return array;
+    }
+
+    private void sort(ArrayList<Integer> array, int prevHead) {
+        if (array.size() == 0) {
+            append(array, prevHead);
+            return;
+        }
+        int currHead = pop(array);
+        if (array.size() > 0) {
+            int nextHead = pop(array);
+            sort(array, nextHead);
+        }
+        if (prevHead < currHead) {
+            append(array, prevHead);
+            append(array, currHead);
+        } else {
+            append(array, currHead);
+            append(array, prevHead);
+        }
+    }
+
+    private Integer pop(ArrayList<Integer> array) {
+        int lastIndex = array.size() - 1;
+        int value = array.get(lastIndex);
+        array.remove(lastIndex);
+        return value;
+    }
+
+    private void append(ArrayList<Integer> array, int value) {
+        array.add(value);
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Medium] Suffix Trie Construction
+
+> Write a SuffixTrie class for a Suffix-Trie-like data structure. The class should have a root property set to be the
+> root node of the trie and should support:
+> Creating the trie from a string; this will be done by calling the populateSuffixTrieFrom method upon class
+> instantiation, which should populate the root of the class.
+> Searching for strings in the trie.
+> Note that every string added to the trie should end with the special endSymbol character: "*".
+
+<details>
+  <summary>Solution</summary>
+
+```
+import java.util.*;
+
+class Program {
+
+    static class SuffixTrie {
+        TrieNode root = new TrieNode();
+        char endSymbol = '*';
+
+        public SuffixTrie(String str) {
+            populateSuffixTrieFrom(str);
+        }
+
+        // Space: O(N^2)
+        // Time: O(N^2)
+
+        public void populateSuffixTrieFrom(String str) {
+            for (int cut = 0; cut < str.length(); cut++) {
+                TrieNode node = root;
+                for (int i = 0 + cut; i < str.length(); i++) {
+                    char ch = str.charAt(i);
+                    if (!node.children.containsKey(ch)) {
+                        node.children.put(ch, new TrieNode());
+                    }
+                    node = node.children.get(ch);
+                    if (i == str.length() - 1) {
+                        node.children.put(endSymbol, null);
+                    }
+                }
+            }
+        }
+
+        // Space: O(1)
+        // Time: O(N)
+
+        public boolean contains(String str) {
+            TrieNode node = root;
+            for (int i = 0; i < str.length(); i++) {
+                char ch = str.charAt(i);
+                if (!node.children.containsKey(ch)) {
+                    return false;
+                }
+                node = node.children.get(ch);
+            }
+            return node.children.containsKey(endSymbol);
+        }
+    }
+
+    static class TrieNode {
+        Map<Character, TrieNode> children = new HashMap<Character, TrieNode>();
+    }
+}
+```
+
+</details>
+
+--------------------
+
 ## [Hard] Largest Range
 
 > Write a function that takes in an array of integers and returns an array of length 2 representing the largest range 
@@ -4859,3 +5843,1466 @@ class Program {
 </details>
 
 --------------------
+
+## [Hard] Subarray Sort
+
+> Write a function that takes in an array of at least two integers and that returns an array of the starting and
+> ending indices of the smallest subarray in the input array that needs to be sorted in place in order for the entire
+> input array to be sorted (in ascending order).
+> If the input array is already sorted, the function should return [-1, -1].
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N*log(N)) | O(N) |
+
+```
+import java.util.*;
+
+class Program {
+    public static int[] subarraySort(int[] array) {
+        int[] copy = makeCopy(array);
+        Arrays.sort(copy);
+        int firstDiffValueIndex = -1;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] != copy[i]) {
+                firstDiffValueIndex = i;
+                break;
+            }
+        }
+        if (firstDiffValueIndex == -1) {
+            return new int[]{-1, -1};
+        }
+        int lastDiffValueIndex = -1;
+        for (int i = array.length - 1; i >= 0; i--) {
+            if (array[i] != copy[i]) {
+                lastDiffValueIndex = i;
+                break;
+            }
+        }
+        return new int[]{firstDiffValueIndex, lastDiffValueIndex};
+    }
+
+    private static int[] makeCopy(int[] array) {
+        int[] result = new int[array.length];
+        for (int i = 0; i < array.length; i++) {
+            result[i] = array[i];
+        }
+        return result;
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Hard] Zigzag Traverse
+
+> Write a function that takes in an n x m two-dimensional array (that can be square-shaped when n == m) and returns
+> a one-dimensional array of all the array's elements in zigzag order.
+> Zigzag order starts at the top left corner of the two-dimensional array, goes down by one element, and proceeds
+> in a zigzag pattern all the way to the bottom right corner.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(W*H) | O(1) |
+
+```
+import java.util.*;
+
+class Program {
+    private static int rows;
+    private static int cols;
+
+    public static List<Integer> zigzagTraverse(List<List<Integer>> array) {
+        rows = array.size();
+        if (rows == 0) {
+            return new ArrayList<>();
+        }
+        cols = array.get(0).size();
+        if (rows == 1) {
+            return array.get(0);
+        }
+        if (cols == 1) {
+            List<Integer> result = new ArrayList<>(rows);
+            for (int i = 0; i < rows; i++) {
+                result.add(array.get(i).get(0));
+            }
+            return result;
+        }
+        List<Integer> result = new ArrayList<>(rows * cols);
+        fill(result, array);
+        return result;
+    }
+
+    private static void fill(List<Integer> result, List<List<Integer>> array) {
+        int row = 0, col = 0;
+        boolean isGoUp = false;
+        while (row < rows && col < cols) {
+            int value = array.get(row).get(col);
+            result.add(value);
+            if (isGoUp) {
+                if (row == 0 || col == cols - 1) {
+                    if (col == cols - 1) {
+                        row++;
+                    } else {
+                        col++;
+                    }
+                    isGoUp = false;
+                } else {
+                    row--;
+                    col++;
+                }
+            } else {
+                if (col == 0 || row == rows - 1) {
+                    if (row == rows - 1) {
+                        col++;
+                    } else {
+                        row++;
+                    }
+                    isGoUp = true;
+                } else {
+                    row++;
+                    col--;
+                }
+            }
+        }
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Hard] Validate Three Nodes
+
+> You're given three nodes that are contained in the same Binary Search Tree: nodeOne, nodeTwo, and nodeThree. 
+> Write a function that returns a boolean representing whether one of nodeOne or nodeThree is an ancestor of nodeTwo
+> and the other node is a descendant of nodeTwo. For example, if your function determines that nodeOne is an ancestor
+> of nodeTwo, then it needs to see if nodeThree is a descendant of nodeTwo. If your function determines that nodeThree
+> is an ancestor, then it needs to see if nodeOne is a descendant.
+> A descendant of a node N is defined as a node contained in the tree rooted at N. A node N is an ancestor of another
+> node M if M is a descendant of N.
+> It isn't guaranteed that nodeOne or nodeThree will be ancestors or descendants of nodeTwo, but it is guaranteed
+> that all three nodes will be unique and will never be None / null. In other words, you'll be given valid input nodes.
+
+<details>
+  <summary>Solution 1</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(H) | O(H) |
+
+```
+import java.util.*;
+
+class Program {
+    static class BST {
+        public int value;
+        public BST left = null;
+        public BST right = null;
+
+        public BST(int value) {
+            this.value = value;
+        }
+    }
+
+    public boolean validateThreeNodes(BST nodeOne, BST nodeTwo, BST nodeThree) {
+        BST descendant = findDescendant(nodeTwo, nodeOne, nodeThree);
+        if (descendant == null) {
+            return false;
+        }
+        BST ancestor = descendant.equals(nodeThree) ? nodeOne : nodeThree;
+        return findDescendant(ancestor, nodeTwo) != null;
+    }
+
+    private BST findDescendant(BST root, BST... children) {
+        Queue<BST> queue = new LinkedList<>();
+        queue.add(root);
+        do {
+            BST node = queue.remove();
+            for (BST child : children) {
+                if (node.equals(child)) {
+                    return child;
+                }
+            }
+            if (node.left != null) {
+                queue.add(node.left);
+            }
+            if (node.right != null) {
+                queue.add(node.right);
+            }
+        } while (queue.size() > 0);
+        return null;
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Hard] Find Nodes Distance K
+
+> You're given the root node of a Binary Tree, a target value of a node that's contained in the tree, and a positive
+> integer k. Write a function that returns the values of all the nodes that are exactly distance k from the node
+> with target value.
+> The distance between two nodes is defined as the number of edges that must be traversed to go from one node to the other.
+> For example, the distance between a node and its immediate left or right child is 1. The same holds in reverse:
+> the distance between a node and its parent is 1. In a tree of three nodes where the root node has a left
+> and right child, the left and right children are distance 2 from each other.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N+K) | O(N) |
+
+```
+import java.util.*;
+
+class Program {
+    private final Map<Integer, List<Integer>> paths = new HashMap<>();
+    private final ArrayList<Integer> result = new ArrayList<>();
+
+    public ArrayList<Integer> findNodesDistanceK(BinaryTree tree, int target, int k) {
+        fillPaths(tree);
+        fillResult(target, k);
+        return result;
+    }
+
+    private void fillPaths(BinaryTree node) {
+        paths.clear();
+        fillPaths(node, null);
+    }
+
+    private void fillPaths(BinaryTree node, BinaryTree parent) {
+        paths.putIfAbsent(node.value, new ArrayList<>());
+        if (parent != null) {
+            paths.get(node.value).add(parent.value);
+        }
+        if (node.left != null) {
+            paths.get(node.value).add(node.left.value);
+            fillPaths(node.left, node);
+        }
+        if (node.right != null) {
+            paths.get(node.value).add(node.right.value);
+            fillPaths(node.right, node);
+        }
+    }
+
+    private void fillResult(int target, int k) {
+        result.clear();
+        doFillResult(target, null, 0, k);
+    }
+
+    private void doFillResult(Integer node, Integer prevNode, int currentLevel, int targetLevel) {
+        if (currentLevel == targetLevel) {
+            result.add(node);
+            return;
+        }
+        for (Integer nextNode : paths.get(node)) {
+            if (nextNode == prevNode) {
+                continue;
+            }
+            doFillResult(nextNode, node, currentLevel + 1, targetLevel);
+        }
+    }
+
+    static class BinaryTree {
+        public int value;
+        public BinaryTree left = null;
+        public BinaryTree right = null;
+
+        public BinaryTree(int value) {
+            this.value = value;
+        }
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Hard] Maximum Sum Submatrix
+
+> You're given a two-dimensional array (a matrix) of potentially unequal height and width that's filled with integers.
+> You're also given a positive integer size. Write a function that returns the maximum sum that can be generated from
+> a submatrix with dimensions size * size.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(W*H) | O(W*H) |
+
+```
+class Program {
+    private int rows;
+    private int cols;
+    private int[][] sums;
+
+    public int maximumSumSubmatrix(int[][] matrix, int size) {
+        rows = matrix.length;
+        cols = matrix[0].length;
+        sums = new int[rows][cols];
+        fillSums(matrix);
+        return findMaxSumSubmatrix(matrix, size);
+    }
+
+    private int findMaxSumSubmatrix(int[][] matrix, int size) {
+        Integer maxSum = null;
+        for (int row = 0; row <= rows - size; row++) {
+            for (int col = 0; col <= cols - size; col++) {
+                int sum = calcSubmatrixSum(matrix, size, row, col);
+                if (maxSum == null || maxSum < sum) {
+                    maxSum = sum;
+                }
+            }
+        }
+        return maxSum;
+    }
+
+    private int calcSubmatrixSum(int[][] matrix, int size, int row, int col) {
+        int allSum = sums[row + size - 1][col + size - 1];
+        int leftColSum = col - 1 >= 0 ? sums[row + size - 1][col - 1] : 0;
+        int topColSum = row - 1 >= 0 ? sums[row - 1][col + size - 1] : 0;
+        int leftTopSum = (col - 1 >= 0 && row - 1 >= 0) ? sums[row - 1][col - 1] : 0;
+        return allSum - leftColSum - topColSum + leftTopSum;
+    }
+
+    private void fillSums(int[][] matrix) {
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < cols; col++) {
+                if (row == 0 && col == 0) {
+                    sums[row][col] = matrix[row][col];
+                    continue;
+                }
+                int sum = matrix[row][col];
+                if (row - 1 >= 0) {
+                    sum += sums[row - 1][col];
+                }
+                if (col - 1 >= 0) {
+                    sum += sums[row][col - 1];
+                }
+                if (row - 1 >= 0 && col - 1 >= 0) {
+                    sum -= sums[row - 1][col - 1];
+                }
+                sums[row][col] = sum;
+            }
+        }
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Hard] Boggle Board
+
+> You're given a two-dimensional array (a matrix) of potentially unequal height and width containing letters;
+> this matrix represents a boggle board. You're also given a list of words.
+> Write a function that returns an array of all the words contained in the boggle board. The final words don't
+> need to be in any particular order.
+> A word is constructed in the boggle board by connecting adjacent (horizontally, vertically, or diagonally)
+> letters, without using any single letter at a given position more than once; while a word can of course have
+> repeated letters, those repeated letters must come from different positions in the boggle board in order for
+> the word to be contained in the board. Note that two or more words are allowed to overlap and use the same letters
+> in the boggle board.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(W*H*8^LONGEST_WORD + WORDS*LONGEST_WORD) | O(WORDS*LONGEST_WORD) |
+
+```
+import java.util.*;
+
+class Program {
+    private static BoggleBoard board;
+
+    public static List<String> boggleBoard(char[][] chars, String[] words) {
+        board = new BoggleBoard(chars);
+        Map<Character, Set<String>> firstLetterToWords = new HashMap<>();
+        for (String word : words) {
+            firstLetterToWords.putIfAbsent(word.charAt(0), new HashSet<>());
+            firstLetterToWords.get(word.charAt(0)).add(word);
+        }
+        List<String> presentedWords = new ArrayList<>();
+        for (int row = 0; row < board.rows(); row++) {
+            for (int col = 0; col < board.cols(); col++) {
+                if (firstLetterToWords.size() == 0) {
+                    return presentedWords;
+                }
+                char currentChar = board.chars[row][col];
+                if (!firstLetterToWords.containsKey(currentChar)) {
+                    continue;
+                }
+                Set<String> setOfWords = firstLetterToWords.get(currentChar);
+                Iterator<String> iterator = setOfWords.iterator();
+                while (iterator.hasNext()) {
+                    String word = iterator.next();
+                    if (!isWordPresented(word, row, col)) {
+                        continue;
+                    }
+                    presentedWords.add(word);
+                    iterator.remove();
+                    if (setOfWords.size() == 0) {
+                        firstLetterToWords.remove(currentChar);
+                    }
+                }
+            }
+        }
+        return presentedWords;
+    }
+
+    private static boolean isWordPresented(String wordToFind, int row, int col) {
+        if (board.chars[row][col] != wordToFind.charAt(0)) {
+            return false;
+        }
+        BoggleBoardWord startingWord = new BoggleBoardWord(wordToFind);
+        startingWord.addChar(new BoggleBoardChar(row, col));
+        return isWordPresented(startingWord);
+    }
+
+    private static boolean isWordPresented(BoggleBoardWord startingWord) {
+        Queue<BoggleBoardWord> queue = new LinkedList<>();
+        queue.add(startingWord);
+        do {
+            BoggleBoardWord word = queue.remove();
+            if (word.isConstructed()) {
+                return true;
+            }
+            BoggleBoardChar bbchar = word.getLastChar();
+            checkCharAndAddExtendedWordIntoQueue(bbchar.row + 1, bbchar.col, word, queue);
+            checkCharAndAddExtendedWordIntoQueue(bbchar.row - 1, bbchar.col, word, queue);
+            checkCharAndAddExtendedWordIntoQueue(bbchar.row, bbchar.col + 1, word, queue);
+            checkCharAndAddExtendedWordIntoQueue(bbchar.row, bbchar.col - 1, word, queue);
+            checkCharAndAddExtendedWordIntoQueue(bbchar.row + 1, bbchar.col + 1, word, queue);
+            checkCharAndAddExtendedWordIntoQueue(bbchar.row + 1, bbchar.col - 1, word, queue);
+            checkCharAndAddExtendedWordIntoQueue(bbchar.row - 1, bbchar.col + 1, word, queue);
+            checkCharAndAddExtendedWordIntoQueue(bbchar.row - 1, bbchar.col - 1, word, queue);
+        } while (queue.size() > 0);
+        return false;
+    }
+
+    private static void checkCharAndAddExtendedWordIntoQueue(
+        int row, int col, BoggleBoardWord word, Queue<BoggleBoardWord> queue
+    ) {
+        if (row < 0 || row >= board.rows() || col < 0 || col >= board.cols()) {
+            return;
+        }
+        char currentChar = board.chars[row][col];
+        if (currentChar != word.getNextChar()) {
+            return;
+        }
+        BoggleBoardChar bbchar = new BoggleBoardChar(row, col);
+        if (!word.canUseChar(bbchar)) {
+            return;
+        }
+        queue.add(new BoggleBoardWord(word, bbchar));
+    }
+
+    private static class BoggleBoard {
+        public char[][] chars;
+
+        public BoggleBoard(char[][] chars) {
+            this.chars = chars;
+        }
+
+        public int rows() {
+            return chars.length;
+        }
+
+        public int cols() {
+            return chars[0].length;
+        }
+    }
+
+    private static class BoggleBoardWord {
+        public String word;
+        public List<BoggleBoardChar> chars;
+        public Set<Integer> charsCoords;
+
+        public BoggleBoardWord(String word) {
+            this.word = word;
+            this.chars = new ArrayList<>();
+            this.charsCoords = new HashSet<>();
+        }
+
+        public BoggleBoardWord(BoggleBoardWord bbword, BoggleBoardChar bbchar) {
+            this.word = bbword.word;
+            this.chars = new ArrayList<>(bbword.chars);
+            this.charsCoords = new HashSet<>(bbword.charsCoords);
+            addChar(bbchar);
+        }
+
+        public BoggleBoardChar getLastChar() {
+            return chars.get(chars.size() - 1);
+        }
+
+        public void addChar(BoggleBoardChar bbchar) {
+            chars.add(bbchar);
+            charsCoords.add(bbchar.getCoord());
+        }
+
+        public boolean isConstructed() {
+            if (chars.size() != word.length()) {
+                return false;
+            }
+            for (int i = 0; i < chars.size(); i++) {
+                BoggleBoardChar bbchar = chars.get(i);
+                char ch = board.chars[bbchar.row][bbchar.col];
+                if (ch != word.charAt(i)) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public Character getNextChar() {
+            if (isConstructed()) {
+                return null;
+            }
+            return word.charAt(chars.size());
+        }
+
+        public boolean canUseChar(BoggleBoardChar bbchar) {
+            return !charsCoords.contains(bbchar.getCoord());
+        }
+    }
+
+    private static class BoggleBoardChar {
+        public int row;
+        public int col;
+
+        public BoggleBoardChar(int row, int col) {
+            this.row = row;
+            this.col = col;
+        }
+
+        public int getCoord() {
+            return row * board.cols() + col;
+        }
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Hard] Find Loop
+
+> Write a function that takes in the head of a Singly Linked List that contains a loop
+> (in other words, the list's tail node points to some node in the list instead of None / null).
+> The function should return the node (the actual node--not just its value) from which the loop originates
+> in constant space.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(1) |
+
+```
+class Program {
+    public static LinkedList findLoop(LinkedList head) {
+        LinkedList first = head;
+        LinkedList second = head;
+        do {
+            first = first.next;
+            second = second.next.next;
+        } while (!first.equals(second));
+        first = head;
+        while (!first.equals(second)) {
+            first = first.next;
+            second = second.next;
+        }
+        return first;
+    }
+
+    static class LinkedList {
+        int value;
+        LinkedList next = null;
+
+        public LinkedList(int value) {
+            this.value = value;
+        }
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Hard] Merge Linked Lists
+
+> Write a function that takes in the heads of two Singly Linked Lists that are in sorted order, respectively.
+> The function should merge the lists in place (i.e., it shouldn't create a brand new list) and return the head of
+> the merged list; the merged list should be in sorted order.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(F+S) | O(1) |
+
+```
+class Program {
+    public static LinkedList mergeLinkedLists(LinkedList headOne, LinkedList headTwo) {
+        LinkedList first = null, second = null;
+        if (headOne.value < headTwo.value) {
+            first = headOne;
+            second = headTwo;
+        } else {
+            first = headTwo;
+            second = headOne;
+        }
+        merge(first, second);
+        return first;
+    }
+
+    private static void merge(LinkedList first, LinkedList second) {
+        while (second != null) {
+            while (first.value <= second.value && first.next != null &&
+                first.next.value <= second.value) {
+                first = first.next;
+            }
+            LinkedList secondNext = second.next;
+            LinkedList firstNext = first.next;
+            second.next = firstNext;
+            first.next = second;
+            first = second;
+            second = secondNext;
+        }
+    }
+
+    public static class LinkedList {
+        int value;
+        LinkedList next;
+
+        LinkedList(int value) {
+            this.value = value;
+            this.next = null;
+        }
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Hard] Interweaving Strings
+
+> Write a function that takes in three strings and returns a boolean representing whether the third string can be
+> formed by interweaving the first two strings.
+> To interweave strings means to merge them by alternating their letters without any specific pattern. For instance,
+> the strings "abc" and "123" can be interwoven as "a1b2c3", as "abc123", and as "ab1c23" (this list is nonexhaustive).
+> Letters within a string must maintain their relative ordering in the interwoven string.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(LS) | O(LS) |
+
+Where `LS` is the longest string.
+
+```
+class Program {
+    public static boolean interweavingStrings(String s1, String s2, String s3) {
+        if (s1.length() + s2.length() != s3.length()) {
+            return false;
+        }
+        return check(s1, s2, s3, 0, 0, 0);
+    }
+
+    private static boolean check(String s1, String s2, String s3, int p1, int p2, int p3) {
+        while (true) {
+            Character ch1 = p1 < s1.length() ? s1.charAt(p1) : null;
+            Character ch2 = p2 < s2.length() ? s2.charAt(p2) : null;
+            char ch3 = s3.charAt(p3);
+            if (ch1 == null && ch2 == null) {
+                return false;
+            }
+            if (ch1 == ch2 && ch1 == ch3) {
+                if (check(s1, s2, s3, p1 + 1, p2, p3 + 1)) {
+                    return true;
+                }
+                return check(s1, s2, s3, p1, p2 + 1, p3 + 1);
+            }
+            if (ch1 != null && ch1 == ch3) {
+                p1++;
+                p3++;
+            } else if (ch2 != null && ch2 == ch3) {
+                p2++;
+                p3++;
+            } else {
+                p1++;
+                p2++;
+            }
+            if (p3 == s3.length()) {
+                return true;
+            }
+        }
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Hard] Quickselect
+
+> Write a function that takes in an array of distinct integers as well as an integer k and that returns the
+> kth smallest integer in that array.
+> The function should do this in linear time, on average.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N*K) | O(K) |
+
+```
+import java.util.*;
+
+class Program {
+    private static int size;
+
+    public static int quickselect(int[] array, int k) {
+        size = array.length;
+        if (k > size) {
+            throw new RuntimeException("Parameter \"k\" is too large");
+        }
+        int middleIndex = (int) Math.ceil(size / 2.0);
+        if (k <= middleIndex) {
+            return findKValue(array, k, true);
+        }
+        return findKValue(array, size - k + 1, false);
+    }
+
+    private static int findKValue(int[] array, int k, boolean isSmallest) {
+        Set<Integer> usedIndices = new HashSet<>();
+        Integer targetValueIndex = null;
+        for (int counter = 0; counter < k; counter++) {
+            targetValueIndex = null;
+            for (int i = 0; i < size; i++) {
+                if (usedIndices.contains(i)) {
+                    continue;
+                }
+                if (targetValueIndex == null) {
+                    targetValueIndex = i;
+                    continue;
+                }
+                int value = array[i];
+                int targetValue = array[targetValueIndex];
+                if (isSmallest) {
+                    if (targetValue > value) {
+                        targetValueIndex = i;
+                    }
+                } else {
+                    if (targetValue < value) {
+                        targetValueIndex = i;
+                    }
+                }
+            }
+            usedIndices.add(targetValueIndex);
+        }
+        return array[targetValueIndex];
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Hard] Index Equals Value
+
+> Write a function that takes in a sorted array of distinct integers and returns the first index in the array that
+> is equal to the value at that index. In other words, your function should return the minimum index where index == array[index].
+> If there is no such index, your function should return -1.
+
+<details>
+  <summary>Solution 1</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(1) |
+
+```
+class Program {
+    public int indexEqualsValue(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            if (i == array[i]) {
+                return i;
+            }
+        }
+        return -1;
+    }
+}
+```
+
+</details>
+
+<details>
+  <summary>Solution 2</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(log(N) on avg) | O(1) |
+
+```
+class Program {
+    public int indexEqualsValue(int[] array) {
+        int leftIndex = 0, rightIndex = array.length - 1;
+        while (leftIndex <= rightIndex) {
+            int middleIndex = (rightIndex + leftIndex) / 2;
+            if (middleIndex == array[middleIndex]) {
+                int targetIndex = middleIndex;
+                do {
+                    int prevIndex = targetIndex - 1;
+                    if (prevIndex < 0 || prevIndex != array[prevIndex]) {
+                        break;
+                    }
+                    targetIndex = prevIndex;
+                } while (true);
+                return targetIndex;
+            }
+            if (middleIndex > array[middleIndex]) {
+                leftIndex = middleIndex + 1;
+            } else {
+                rightIndex = middleIndex - 1;
+            }
+        }
+        return -1;
+    }
+}
+```
+
+</details>
+
+<details>
+  <summary>Solution 3</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(log(N)) | O(1) |
+
+```
+class Program {
+    public int indexEqualsValue(int[] array) {
+        int leftIndex = 0, rightIndex = array.length - 1;
+        while (leftIndex <= rightIndex) {
+            int middleIndex = (rightIndex + leftIndex) / 2;
+            if (middleIndex == array[middleIndex]) {
+                if (middleIndex - 1 >= 0 && middleIndex - 1 == array[middleIndex - 1]) {
+                    rightIndex = middleIndex - 1;
+                    continue;
+                }
+                return middleIndex;
+            }
+            if (middleIndex > array[middleIndex]) {
+                leftIndex = middleIndex + 1;
+            } else {
+                rightIndex = middleIndex - 1;
+            }
+        }
+        return -1;
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Very Hard] Iterative In-order Traversal
+
+> Write a function that takes in a Binary Tree (where nodes have an additional pointer to their parent node) and
+> traverses it iteratively using the in-order tree-traversal technique; the traversal should specifically not
+> use recursion. As the tree is being traversed, a callback function passed in as an argument to the main function
+> should be called on each node (i.e., callback(currentNode)).
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(H) |
+
+```
+import java.util.Stack;
+import java.util.function.Function;
+
+class Program {
+    public static void iterativeInOrderTraversal(
+        BinaryTree tree, Function<BinaryTree, Void> callback) {
+        Stack<BinaryTreeHolder> stack = new Stack<>();
+        stack.push(new BinaryTreeHolder(tree));
+        do {
+            BinaryTreeHolder holder = stack.peek();
+            if (holder.isLeftVisited && holder.isCallbackApplied && holder.isRightVisited) {
+                stack.pop();
+                continue;
+            }
+            if (!holder.isLeftVisited) {
+                holder.isLeftVisited = true;
+                if (holder.tree.left != null) {
+                    stack.push(new BinaryTreeHolder(holder.tree.left));
+                    continue;
+                }
+            }
+            if (!holder.isCallbackApplied) {
+                holder.isCallbackApplied = true;
+                callback.apply(holder.tree);
+            }
+            if (!holder.isRightVisited) {
+                holder.isRightVisited = true;
+                if (holder.tree.right != null) {
+                    stack.push(new BinaryTreeHolder(holder.tree.right));
+                    continue;
+                }
+            }
+        } while (!stack.empty());
+    }
+
+    static class BinaryTreeHolder {
+        public BinaryTree tree;
+        public boolean isCallbackApplied = false;
+        public boolean isLeftVisited = false;
+        public boolean isRightVisited = false;
+
+        public BinaryTreeHolder(BinaryTree tree) {
+            this.tree = tree;
+        }
+    }
+
+    static class BinaryTree {
+        public int value;
+        public BinaryTree left;
+        public BinaryTree right;
+        public BinaryTree parent;
+
+        public BinaryTree(int value) {
+            this.value = value;
+        }
+
+        public BinaryTree(int value, BinaryTree parent) {
+            this.value = value;
+            this.parent = parent;
+        }
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Very Hard] Square of Zeroes
+
+> Write a function that takes in a square-shaped n x n two-dimensional array of only 1s and 0s and returns a boolean
+> representing whether the input matrix contains a square whose borders are made up of only 0s. 
+> Note that a 1 x 1 square doesn't count as a valid square for the purpose of this question. In other words,
+> a singular 0 in the input matrix doesn't constitute a square whose borders are made up of only 0s; a square
+> of zeroes has to be at least 2 x 2.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N^4) | O(1) |
+
+```
+import java.util.*;
+
+class Program {
+    private static List<List<Integer>> matrix;
+
+    public static boolean squareOfZeroes(List<List<Integer>> matrix) {
+        Program.matrix = matrix;
+        int rows = matrix.size();
+        int cols = matrix.get(0).size();
+        int maxSide = Math.max(rows, cols);
+        for (int row = 0; row < rows - 1; row++) {
+            for (int col = 0; col < cols - 1; col++) {
+                for (int i = 1; i < maxSide; i++) {
+                    int top = row, left = col;
+                    int bottom = top + i, right = left + i;
+                    if (bottom >= rows || right >= cols) {
+                        break;
+                    }
+                    if (isSquareOfZeroes(top, left, bottom, right)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private static boolean isSquareOfZeroes(
+        int top, int left, int bottom, int right
+    ) {
+        int size = bottom - top + 1;
+        try {
+            for (int i = 0; i < size - 1; i++) {
+                // TopLeft => TopRight
+                checkBorderCell(top, left + i);
+                // TopRight => BottomRight
+                checkBorderCell(top + i, right);
+                // BottomRight => BottomLeft
+                checkBorderCell(bottom, right - i);
+                // BottomLeft => TopLeft
+                checkBorderCell(bottom - i, left);
+            }
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+
+    private static void checkBorderCell(int row, int col) {
+        if (get(row, col) == 1) {
+            throw new RuntimeException("Border cannot contain \"1\"");
+        }
+    }
+
+    private static int get(int row, int col) {
+        return matrix.get(row).get(col);
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Very Hard] Merge Sorted Arrays
+
+> Write a function that takes in a non-empty list of non-empty sorted arrays of integers and returns a merged list
+> of all of those arrays.
+> The integers in the merged list should be in sorted order.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(NUM_OF_ARRAYS * MAX_ARR_LENGTH) | O(NUM_OF_ARRAYS) |
+
+```
+import java.util.*;
+
+class Program {
+    public static List<Integer> mergeSortedArrays(List<List<Integer>> arrays) {
+        List<Integer> result = new ArrayList<Integer>();
+        merge(arrays, result);
+        return result;
+    }
+
+    private static void merge(List<List<Integer>> arrays, List<Integer> result) {
+        int size = arrays.size();
+        int[] pointers = new int[size];
+        Arrays.fill(pointers, 0);
+        Boolean done = null;
+        do {
+            done = true;
+            Integer lowestValue = null, lowestValuePointerIndex = null;
+            for (int i = 0; i < size; i++) {
+                int pointer = pointers[i];
+                List<Integer> array = arrays.get(i);
+                boolean isPointerValid = pointer < array.size();
+                if (!isPointerValid) {
+                    continue;
+                }
+                done = false;
+                int value = array.get(pointer);
+                if (lowestValue == null || value < lowestValue) {
+                    lowestValue = value;
+                    lowestValuePointerIndex = i;
+                }
+            }
+            if (lowestValue != null) {
+                result.add(lowestValue);
+                pointers[lowestValuePointerIndex]++;
+            }
+        } while (!done);
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Very Hard] Rearrange Linked List
+
+> Write a function that takes in the head of a Singly Linked List and an integer k, rearranges the list in place
+> (i.e., doesn't create a brand new list) around nodes with value k, and returns its new head.
+> Rearranging a Linked List around nodes with value k means moving all nodes with a value smaller than k before
+> all nodes with value k and moving all nodes with a value greater than k after all nodes with value k.
+> All moved nodes should maintain their original relative ordering if possible.
+> Note that the linked list should be rearranged even if it doesn't have any nodes with value k.
+
+<details>
+  <summary>Solution 1</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(1) |
+
+```
+class Program {
+    public static LinkedList rearrangeLinkedList(LinkedList head, int k) {
+        LinkedList tmpHead = new LinkedList(Integer.MIN_VALUE);
+        tmpHead.next = head;
+        LinkedList left = tmpHead, prev = left, curr = head;
+        while (curr != null) {
+            if (curr.value <= k) {
+                if (left == prev) {
+                    if (curr.value != k) {
+                        left = curr;
+                    }
+                    prev = curr;
+                    curr = curr.next;
+                    continue;
+                }
+                prev.next = curr.next;
+                curr.next = left.next;
+                left.next = curr;
+                if (curr.value != k) {
+                    left = left.next;
+                }
+                curr = prev.next;
+            } else {
+                prev = curr;
+                curr = curr.next;
+            }
+        }
+        return tmpHead.next;
+    }
+
+    static class LinkedList {
+        public int value;
+        public LinkedList next;
+
+        public LinkedList(int value) {
+            this.value = value;
+            next = null;
+        }
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Very Hard] Linked List Palindrome
+
+> Write a function that takes in the head of a Singly Linked List and returns a boolean representing whether
+> the linked list's nodes form a palindrome. Your function shouldn't make use of any auxiliary data structure.
+> A palindrome is usually defined as a string that's written the same forward and backward.
+> For a linked list's nodes to form a palindrome, their values must be the same when read from left to right and
+> from right to left. Note that single-character strings are palindromes, which means that single-node linked
+> lists form palindromes.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(N) |
+
+```
+class Program {
+    private int length = 0;
+    private boolean isPalindrome = true;
+    private LinkedList opposite = null;
+
+    public boolean linkedListPalindrome(LinkedList head) {
+        if (head.next == null) {
+            return true;
+        }
+        if (head.next.next == null) {
+            return head.value == head.next.value;
+        }
+        length = calcLength(head);
+        isPalindrome = true;
+        check(head, 0, (length / 2) - 1);
+        return isPalindrome;
+    }
+
+    private int calcLength(LinkedList head) {
+        int counter = 0;
+        while (head != null) {
+            counter++;
+            head = head.next;
+        }
+        return counter;
+    }
+
+    private void check(LinkedList node, int index, int startingIndex) {
+        if (index != startingIndex) {
+            check(node.next, index + 1, startingIndex);
+        } else {
+            opposite = length % 2 == 0 ? node.next : node.next.next;
+        }
+        if (!isPalindrome) {
+            return;
+        }
+        if (node.value != opposite.value) {
+            isPalindrome = false;
+        }
+        opposite = opposite.next;
+    }
+
+    public static class LinkedList {
+        public int value;
+        public LinkedList next;
+
+        public LinkedList(int value) {
+            this.value = value;
+            this.next = null;
+        }
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Very Hard] Node Swap
+
+> Write a function that takes in the head of a Singly Linked List, swaps every pair of adjacent nodes in place
+> (i.e., doesn't create a brand new list), and returns its new head.
+> If the input Linked List has an odd number of nodes, its final node should remain the same.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N) | O(1) |
+
+```
+class Program {
+    public LinkedList nodeSwap(LinkedList head) {
+        if (head.next == null) {
+            return head;
+        }
+        LinkedList newHead = head.next;
+        LinkedList prev = null, curr = head, next = curr.next;
+        while (curr != null && next != null) {
+            if (prev != null) {
+                prev.next = next;
+            }
+            curr.next = next.next;
+            next.next = curr;
+
+            prev = curr;
+            curr = curr.next;
+            next = curr != null ? curr.next : null;
+        }
+        return newHead;
+    }
+
+    public static class LinkedList {
+        public int value;
+        public LinkedList next;
+
+        public LinkedList(int value) {
+            this.value = value;
+            this.next = null;
+        }
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Very Hard] Non-Attacking Queens
+
+> Write a function that takes in a positive integer n and returns the number of non-attacking placements of n queens
+> on an n x n chessboard.
+> A non-attacking placement is one where no queen can attack another queen in a single turn. In other words,
+> it's a placement where no queen can move to the same position as another queen in a single turn.
+> In chess, queens can move any number of squares horizontally, vertically, or diagonally in a single turn.
+> The chessboard above is an example of a non-attacking placement of 4 queens on a 4x4 chessboard.
+> For reference, there are only 2 non-attacking placements of 4 queens on a 4x4 chessboard.
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N!) | O(N) |
+
+```
+import java.util.HashMap;
+import java.util.Map;
+
+class Program {
+    private int counter = 0;
+    private int size = 0;
+
+    public int nonAttackingQueens(int n) {
+        counter = 0;
+        size = n;
+        for (int col = 0; col < size; col++) {
+            Map<Integer, Integer> queens = new HashMap<>();
+            setQueen(queens, 0, col);
+            placeQueens(queens, 1);
+        }
+        return counter;
+    }
+
+    private void placeQueens(Map<Integer, Integer> queens, int row) {
+        if (row >= size) {
+            counter++;
+            return;
+        }
+        for (int col = 0; col < size; col++) {
+            if (canPlaceQueen(queens, row, col)) {
+                Map<Integer, Integer> queensCopy = copy(queens);
+                setQueen(queensCopy, row, col);
+                placeQueens(queensCopy, row + 1);
+            }
+        }
+    }
+
+    private boolean canPlaceQueen(Map<Integer, Integer> queens, int row, int col) {
+        if (queens.containsValue(col)) {
+            return false;
+        }
+        boolean isLeftDiagonalClean = isTopDiagonalClean(queens, row, col, true);
+        boolean isRightDiagonalClean = isTopDiagonalClean(queens, row, col, false);
+        return isLeftDiagonalClean && isRightDiagonalClean;
+    }
+
+    private boolean isTopDiagonalClean(
+        Map<Integer, Integer> queens,
+        int row, int col, boolean isGoLeft
+    ) {
+        while (row >= 0 && (col >= 0 || col < size)) {
+            if (hasQueen(queens, row, col)) {
+                return false;
+            }
+            row--;
+            col = isGoLeft ? (col - 1) : (col + 1);
+        }
+        return true;
+    }
+
+    private void setQueen(Map<Integer, Integer> queens, int row, int col) {
+        queens.put(row, col);
+    }
+
+    private boolean hasQueen(Map<Integer, Integer> queens, int row, int col) {
+        return queens.containsKey(row) && queens.get(row) == col;
+    }
+
+    private Map<Integer, Integer> copy(Map<Integer, Integer> map) {
+        return new HashMap<>(map);
+    }
+}
+```
+
+</details>
+
+--------------------
+
+## [Very Hard] Zip Linked List
+
+> You're given the head of a Singly Linked List of arbitrary length k. Write a function that zips the Linked List
+> in place (i.e., doesn't create a brand new list) and returns its head.
+> A Linked List is zipped if its nodes are in the following order, where k is the length of the Linked List:
+> 1st node -> kth node -> 2nd node -> (k - 1)th node -> 3rd node -> (k - 2)th node -> ...
+
+<details>
+  <summary>Solution</summary>
+
+| Time complexity | Space complexity |
+| :-------------: | :--------------: |
+| O(N^2) | O(1) |
+
+```
+class Program {
+    public static class LinkedList {
+        public int value;
+        public LinkedList next;
+
+        public LinkedList(int value) {
+            this.value = value;
+            this.next = null;
+        }
+    }
+
+    public static class LinkedListPair {
+        public LinkedList prev;
+        public LinkedList curr;
+
+        public LinkedListPair(LinkedList prev, LinkedList curr) {
+            this.prev = prev;
+            this.curr = curr;
+        }
+    }
+
+    public LinkedList zipLinkedList(LinkedList head) {
+        LinkedList curr = head;
+        while (curr.next != null) {
+            LinkedListPair lastInfo = getLastInfo(curr);
+            LinkedList last = lastInfo.curr;
+            LinkedList lastPrev = lastInfo.prev;
+            if (curr == lastPrev) {
+                break;
+            }
+            LinkedList currNext = curr.next;
+            last.next = curr.next;
+            curr.next = last;
+            lastPrev.next = null;
+            curr = currNext;
+        }
+        return head;
+    }
+
+    private LinkedListPair getLastInfo(LinkedList node) {
+        LinkedList prev = null, curr = node;
+        while (curr.next != null) {
+            prev = curr;
+            curr = curr.next;
+        }
+        return new LinkedListPair(prev, curr);
+    }
+}
+```
+
+</details>
