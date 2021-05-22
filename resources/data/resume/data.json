@@ -141,7 +141,7 @@
         "Created lots of different tools to automate and harmonize the product's knowledge base.",
         "Fixed tons of bugs, made hundreds of little improvements across the whole product.",
         "Maintained the product infrastructure.",
-        "Built from scratch a dozen and a half intentionally vulnerable Java projects as a half-time employee of another team in the company (hacktory.ai)."
+        "Built from scratch a dozen and half intentionally vulnerable Java projects as a half-time employee of another team in the company (hacktory.ai)."
       ],
       "technologies": [
         "Spring Boot (Java)",
@@ -164,7 +164,7 @@
       "companyName": "OKTarget",
       "companyDescription": "SAAS – a lot of marketing tools for searching target (hot) audiences.",
       "website": "https://oktarget.ru",
-      "position": "Lead Developer",
+      "position": "CTO",
       "isFounder": true,
       "isRemote": false,
       "isInSupport": true,
@@ -179,7 +179,7 @@
         "Managed a team of two junior developers who joined us at the end of the development process.",
         "Made rich, interactive, user-friendly UI.",
         "Implemented lots of integrations with other systems like social networks, external marketing tools, etc.",
-        "Created an unique, powerful administrative panel."
+        "Created a unique, powerful administrative panel."
       ],
       "technologies": [
         "Symfony (PHP + MySQL)",
@@ -201,9 +201,9 @@
       "endDate": "12.2020",
       "duties": [
         "Created the entire system from scratch.",
-        "Implemented fast and robust mechanism of importing products from different vendors.",
+        "Implemented a fast and robust subsystem of importing products from different vendors.",
         "Developed two-ways integration with CRM.",
-        "Made lots of tricky optimizations (SQL, caching) to achieve faster working speed on not so powerful VPS.",
+        "Made lots of tricky optimizations (SQL, caching) to reduce latency throughout the system.",
         "Created a handy admin panel for administrators and sales managers."
       ],
       "technologies": [
