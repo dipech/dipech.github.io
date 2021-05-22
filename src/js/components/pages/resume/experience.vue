@@ -25,7 +25,7 @@
                     (remote)
                 </template>
                 <template v-if="experience.isFounder">
-                    &nbsp; <u>Founder</u>
+                    &nbsp; <u>Co-founder</u>
                 </template>
             </small>
             <ul>
@@ -36,7 +36,7 @@
             <template v-if="experience.isInSupport">
                 <div class="mb-2">
                     <i class="text-secondary small">
-                        This project isn't being actively developed. It's in a support mode.
+                        This project isn't being actively developed. It's in support mode.
                     </i>
                 </div>
             </template>
