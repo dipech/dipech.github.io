@@ -127,7 +127,6 @@
       "companyDescription": "One of the leading Russian consulting companies, specializing in Information Security.",
       "website": "https://dsec.ru",
       "position": "Lead Java Developer",
-      "isFounder": false,
       "isRemote": false,
       "isInSupport": false,
       "employmentType": "full-time",
@@ -139,7 +138,7 @@
         "Created lots of monthly product releases.",
         "Implemented a few huge modules of the main product I worked on.",
         "Created lots of different tools to automate and harmonize the product's knowledge base.",
-        "Fixed tons of bugs, made hundreds of little improvements across the whole product.",
+        "Fixed tons of bugs, made hundreds of small improvements across the whole product.",
         "Maintained the product infrastructure.",
         "Built from scratch a dozen and half intentionally vulnerable Java projects as a half-time employee of another team in the company (hacktory.ai)."
       ],
@@ -164,8 +163,7 @@
       "companyName": "OKTarget",
       "companyDescription": "SAAS – a lot of marketing tools for searching target (hot) audiences.",
       "website": "https://oktarget.ru",
-      "position": "CTO",
-      "isFounder": true,
+      "position": "Lead Web Developer, CTO, Co-Founder",
       "isRemote": false,
       "isInSupport": true,
       "employmentType": "self-employment",
@@ -175,7 +173,7 @@
       "duties": [
         "Created the entire system from scratch.",
         "Implemented a multi-processing subsystem for running users' tasks.",
-        "I was in charge of all the infrastructural duties, like configuring the server, setting up CI/CD, automating the deployment process, and so on and so forth.",
+        "I was in charge of all the infrastructural duties, for example configuring the server, setting up CI/CD, automating the deployment process, and so forth.",
         "Managed a team of two junior developers who joined us at the end of the development process.",
         "Made rich, interactive, user-friendly UI.",
         "Implemented lots of integrations with other systems like social networks, external marketing tools, etc.",
@@ -192,7 +190,6 @@
       "companyDescription": "E-Commerce platform for selling products of official suppliers.",
       "website": "https://alifba.ru",
       "position": "Web Developer",
-      "isFounder": false,
       "isRemote": true,
       "isInSupport": true,
       "employmentType": "freelance",
@@ -204,7 +201,7 @@
         "Implemented a fast and robust subsystem of importing products from different vendors.",
         "Developed two-ways integration with CRM.",
         "Made lots of tricky optimizations (SQL, caching) to reduce latency throughout the system.",
-        "Created a handy admin panel for administrators and sales managers."
+        "Created a practical and well designed admin panel for administrators and sales managers."
       ],
       "technologies": [
         "Laravel (PHP + MySQL)",
@@ -219,7 +216,6 @@
       "companyDescription": "One of the most successful commercial CMS in Russia.",
       "website": "https://netcat.ru",
       "position": "Web Developer",
-      "isFounder": false,
       "isRemote": true,
       "isInSupport": false,
       "employmentType": "full-time",
@@ -227,7 +223,7 @@
       "startDate": "07.2017",
       "endDate": "09.2018",
       "duties": [
-        "Implemented an entire CMS module, it imports and exports the e-commerce data between the CMS and other systems.",
+        "Implemented an entire CMS module, that imports and exports the e-commerce data between the CMS and other systems.",
         "Took participate in seriously improving the kernel during working on the next big version of the system.",
         "Integrated the system with Yandex.Delivery."
       ],
@@ -244,7 +240,6 @@
       "companyDescription": "Web sites development: landing pages, online shopping sites, corporate websites, etc.",
       "website": null,
       "position": "Web Developer",
-      "isFounder": false,
       "isRemote": false,
       "isInSupport": false,
       "employmentType": "full-time",
@@ -252,7 +247,7 @@
       "startDate": "11.2015",
       "endDate": "05.2017",
       "duties": [
-        "Created many different web-projects with different business-logic.",
+        "Created numerous different web projects with different business logic.",
         "Developed several modules for NetCat CMS.",
         "Implemented tons of API integrations and data exchanges with different systems (1C, Yandex.Market, custom external APIs, etc)."
       ],
