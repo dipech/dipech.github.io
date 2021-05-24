@@ -24,9 +24,6 @@
                 <template v-if="experience.isRemote">
                     (remote)
                 </template>
-                <template v-if="experience.isFounder">
-                    &nbsp; <u>Co-founder</u>
-                </template>
             </small>
             <ul>
                 <li v-for="duty in experience.duties">
