@@ -17,8 +17,8 @@
       "title": "Algorithms tips and tricks",
       "preview": "There're some handy tips and tricks you may pay attention to",
       "logo": "algorithms/logo.png",
-      "isPublished": false,
       "text": "algorithms/text.md",
+      "isPublished": true,
       "dateCreated": "07.10.2020",
       "dateUpdated": null,
       "tags": []
@@ -26,9 +26,9 @@
     "system-design": {
       "title": "System Design tips and tricks",
       "preview": "There're some handy tips and tricks you may pay attention to",
+      "text": "system-design/text.md",
       "logo": null,
       "isPublished": false,
-      "text": "system-design/text.md",
       "dateCreated": "07.10.2020",
       "dateUpdated": null,
       "tags": []
@@ -36,9 +36,9 @@
     "java-coding-interview-code-snippets": {
       "title": "Java code snippets",
       "preview": "A bunch of java snippets useful during coding interview sessions",
+      "text": "java-coding-interview-code-snippets/text.md",
       "logo": "java-coding-interview-code-snippets/logo.svg",
       "isPublished": true,
-      "text": "java-coding-interview-code-snippets/text.md",
       "dateCreated": null,
       "dateUpdated": null,
       "tags": []
@@ -46,8 +46,9 @@
     "data-structures": {
       "title": "Data structures",
       "preview": "Let's walk through some basic data structures",
-      "logo": "data-structures/logo.png",
       "text": "data-structures/text.md",
+      "logo": "data-structures/logo.png",
+      "isPublished": true,
       "dateCreated": "07.10.2020",
       "dateUpdated": null,
       "tags": []
