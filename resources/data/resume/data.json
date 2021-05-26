@@ -71,7 +71,11 @@
     },
     {
       "name": "English",
-      "level": "intermediate"
+      "level": "upper-intermediate"
+    },
+    {
+      "name": "Java",
+      "level": "fluent"
     }
   ],
   "courses": [
@@ -154,7 +158,7 @@
         "RabbitMQ",
         "Redis",
         "Groovy",
-        "Teamcity",
+        "CI/CD (Teamcity)",
         "Bash",
         "Yii (PHP)"
       ]
