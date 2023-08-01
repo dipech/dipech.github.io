@@ -10,5 +10,6 @@ npm run start
 ## 2. How to deploy
 
 ```
+nvm use 8
 npm run deploy
 ```
