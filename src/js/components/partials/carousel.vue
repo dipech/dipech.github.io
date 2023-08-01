@@ -1,7 +1,7 @@
 <template>
     <div>
         <c-slider :auto-width="true" :mouse-drag="true" :loop="false"
-                  :gutter="15" :controls="false" :touch="true">
+                  :gutter="15" :controls="false" :touch="true" :freezable="false">
             <div v-for="image in images">
                 <!--suppress HtmlUnknownTarget -->
                 <c-image :src="image.url" class="carousel-image" alt="Image!"/>
@@ -27,7 +27,7 @@
     export default class CarouselComponent extends Vue {
 
         @Prop()
-        private images!: ApiResource[];
+        public images!: ApiResource[];
 
     }
 </script>

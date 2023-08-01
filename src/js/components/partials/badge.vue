@@ -1,5 +1,5 @@
 <template>
-    <div class="badge badge-secondary my-badge">
+    <div class="badge badge-secondary my-badge" :class="{ 'badge-muted': additional }">
         <slot/>
     </div>
 </template>
@@ -13,11 +13,17 @@
     export default class BadgeComponent extends Vue {
         @Prop()
         private name!: string;
+
+        @Prop()
+        public additional!: boolean;
     }
 </script>
 
 <style scoped>
-    .my-badge {
-        margin-right: 5px;
-    }
+.my-badge {
+    margin-right: 5px;
+}
+.badge-muted {
+    opacity: 0.8;
+}
 </style>

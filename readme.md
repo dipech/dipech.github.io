@@ -3,6 +3,7 @@
 ## 1. How to run
 
 ```
+nvm use 8
 npm run start
 ```
 

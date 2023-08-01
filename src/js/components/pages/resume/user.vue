@@ -4,10 +4,10 @@
             <!--suppress HtmlUnknownTarget -->
             <c-image :src="userPhotoUrl" class="mr-3 mb-3" alt="That's me!"/>
         </div>
-        <h2>{{ user.lastName }} {{ user.firstName }} {{ user.middleName }}</h2>
+        <h2>{{ user.firstName }} {{ user.lastName }}</h2>
         <div>
             <b>{{ user.specialization }}</b><br>
-            {{ ages }} years old. {{ user.location }}.
+            {{ ages }} years old. Live in {{ user.location }}.
         </div>
         <div class="mt-2">
             <div v-for="contact in user.contacts">

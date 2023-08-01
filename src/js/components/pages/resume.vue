@@ -3,8 +3,11 @@
         <c-preloader v-if="!loaded"/>
         <div v-if="loaded">
             <c-user :user="resume.user"/>
-            <h3 class="mt-2">Key skills</h3>
-            <c-badge v-for="skill in resume.keySkills" :key="skill">
+            <h3 class="mt-2">Skills</h3>
+            <c-badge v-for="skill in resume.keySkills" :key="'skill-' + skill">
+                {{ skill }}
+            </c-badge>
+            <c-badge v-for="skill in resume.additionalSkills" :key="'skill-' + skill" :additional="true">
                 {{ skill }}
             </c-badge>
             <h3 class="mt-4">
