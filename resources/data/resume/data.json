@@ -1,23 +1,17 @@
 {
   "user": {
-    "about": "I've been programming since 2010. I'm a developer, founder, freelancer. In love with clean-code. I've built from scratch several large projects and quite many medium-sized projects. Constantly improving my skills. I love odd humor, building bicycles (in spare time, of course), sport, and cooking.",
-    "specialization": "Java Developer",
+    "about": "I've been programming since 2010. I'm a Software Developer / Freelancer / Entrepreneur. I've built from scratch several quite large projects and many medium-sized projects. I love odd humor, useful apps building, gym / sport, and cooking.",
+    "specialization": "Senior Java Developer",
     "photo": "photo.jpg",
-    "firstName": "Dmitry",
-    "lastName": "Pechkovsky-Tsikorin",
-    "middleName": "Mikhailovich",
+    "firstName": "Dmitrii",
+    "lastName": "Pechkovskii-Tsikorin",
     "birthDate": "25.12.1994",
-    "location": "Saint-Petersburg",
+    "location": "Sofia (Bulgaria)",
     "contacts": [
       {
         "type": "link",
         "value": "https://t.me/dipech",
         "icon": "icons/telegram.svg"
-      },
-      {
-        "type": "link",
-        "value": "https://wa.me/+79033751387",
-        "icon": "icons/whatsup.svg"
       },
       {
         "type": "email",
@@ -26,7 +20,7 @@
       },
       {
         "type": "phone",
-        "value": "+7 (903) 375-13-87",
+        "value": "+359 88 7111387",
         "icon": "icons/phone.png"
       },
       {
@@ -44,25 +38,34 @@
   "keySkills": [
     "Java",
     "Spring",
-    "Hibernate",
-    "Maven/Gradle",
+    "Google Cloud Platform",
+    "MongoDB",
+    "OpenAPI",
+    "Gradle",
     "Docker",
     "Git",
-    "OOP (SOLID, GRASP)",
     "CI/CD",
-    "VueJS",
-    "Webpack",
     "Unit Testing",
     "TDD",
+    "Terraform",
+    "OOP (SOLID, GRASP, DRY, KISS, YAGNI, and other silly words)",
+    "SQL (MySQL, PostgreSQL)"
+  ],
+  "additionalSkills": [
+    "OpenAI/GPT",
+    "Hibernate",
+    "VueJS",
+    "Webpack",
     "SCSS",
     "Jquery",
-    "SQL (MySQL, PostgreSQL)",
+    "Maven",
     "Bootstrap",
     "Redis",
     "RabbitMQ",
     "PHP",
     "Symfony",
-    "Laravel"
+    "Laravel",
+    "Statamic"
   ],
   "languages": [
     {
@@ -72,6 +75,10 @@
     {
       "name": "English",
       "level": "upper-intermediate"
+    },
+    {
+      "name": "Bulgarian",
+      "level": "beginner"
     },
     {
       "name": "Java",
@@ -92,7 +99,8 @@
     "certificates/algo-expert-cert.png",
     "certificates/systems-expert-cert.png",
     "certificates/basejava-cert.png",
-    "certificates/topjava-cert.png"
+    "certificates/topjava-cert.png",
+    "certificates/terranova-security-awareness-training.png"
   ],
   "education": [
     {
@@ -127,16 +135,53 @@
   ],
   "experience": [
     {
-      "companyName": "Digital Security",
-      "companyDescription": "One of the leading Russian consulting companies, specializing in Information Security.",
-      "website": "https://dsec.ru",
-      "position": "Lead Java Developer",
+      "companyName": "Market Logic Software / QuiteByte",
+      "companyDescription": "Leading marketing research platform.",
+      "websites": ["https://marketlogicsoftware.com/", "https://quitebyte.com/"],
+      "position": "Senior Java Developer",
       "isRemote": false,
       "isInSupport": false,
       "employmentType": "full-time",
+      "location": "Sofia, Bulgaria",
+      "startDate": "07.2021",
+      "endDate": null,
+      "duties": [
+        "Created and maintained over 50 microservices.",
+        "Participated in architecturing scalable and fault-tolerant systems.",
+        "Implemented several large system modules from scratch.",
+        "Introduced and integrated API-first approach into our team.",
+        "Maintained and improved lots of code in our large cloud-based highloaded fault-tolerant solution."
+      ],
+      "technologies": [
+        "Spring",
+        "Java",
+        "MongoDB",
+        "Google Cloud Platform",
+        "Azure Cloud",
+        "Microservices / Highload",
+        "OpenAPI",
+        "Kubernetes",
+        "Terraform",
+        "OpenAI",
+        "Docker",
+        "Redis",
+        "Groovy",
+        "CI/CD (Gitlab)",
+        "Python",
+        "ReactJS"
+      ]
+    },
+    {
+      "companyName": "Digital Security",
+      "companyDescription": "One of the leading Russian consulting companies, specializing in Information Security.",
+      "websites": [ "https://dsec.ru" ],
+      "position": "Lead Java Developer",
+      "isRemote": false,
+      "isInSupport": false,
+      "employmentType": "full-time / Part-time",
       "location": "Russia, Saint-Petersburg",
       "startDate": "09.2019",
-      "endDate": null,
+      "endDate": "01.2023",
       "duties": [
         "Managed a small development team.",
         "Created lots of monthly product releases.",
@@ -166,10 +211,10 @@
     {
       "companyName": "OKTarget",
       "companyDescription": "SAAS – a lot of marketing tools for searching target (hot) audiences.",
-      "website": "https://oktarget.ru",
+      "websites": [ "https://oktarget.ru" ],
       "position": "Lead Web Developer, CTO, Co-Founder",
       "isRemote": false,
-      "isInSupport": true,
+      "isInSupport": false,
       "employmentType": "self-employment",
       "location": "Russia, Saint-Petersburg",
       "startDate": "10.2017",
@@ -192,7 +237,7 @@
     {
       "companyName": "Alifba",
       "companyDescription": "E-Commerce platform for selling products of official suppliers.",
-      "website": "https://alifba.ru",
+      "websites": [ "https://alifba.ru" ],
       "position": "Web Developer",
       "isRemote": true,
       "isInSupport": true,
@@ -218,7 +263,7 @@
     {
       "companyName": "NetCat",
       "companyDescription": "One of the most successful commercial CMS in Russia.",
-      "website": "https://netcat.ru",
+      "websites": [ "https://netcat.ru" ],
       "position": "Web Developer",
       "isRemote": true,
       "isInSupport": false,
@@ -242,7 +287,7 @@
     {
       "companyName": "NetCat34",
       "companyDescription": "Web sites development: landing pages, online shopping sites, corporate websites, etc.",
-      "website": null,
+      "websites": null,
       "position": "Web Developer",
       "isRemote": false,
       "isInSupport": false,

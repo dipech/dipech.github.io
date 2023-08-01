@@ -1,5 +1,3 @@
-Hi, my name is Dmitry! I love technology, programming, gadgets. I like to create useful and interesting software.
-
-If I did not become a developer, I would become a physicist, because our world is a place of unrevealed secrets.
-
-I have a wonderful wife, and a funny cat :)
+Hey! Nice to meet you! My name's Dmitrii. How're you doing? Fine, glad to hear that! Let me tell you about myself.<br>
+I'm in love with Technology, Programming, and Gadgets. Creating useful software is my passion. Cooking is another part of my life, I'm serious about that, believe me! Do you like sport? Yes, me too! And also I like to go to SPA after every training. BTW, you can join me, we can have a talk there.<br>
+Take a look at pictures of me, my wonderful wife, and my funny cat :)
