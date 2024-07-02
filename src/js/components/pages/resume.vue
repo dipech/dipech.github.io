@@ -14,7 +14,9 @@
                 Experience
                 <small class="text-secondary total">
                     {{ years }} {{ pluralForm(years, "year") }}
-                    {{ months }} {{ pluralForm(months, "month") }}
+                    <template v-if="months > 0">
+                      and {{ months }} {{ pluralForm(months, "month") }}
+                    </template>
                 </small>
             </h3>
             <c-experience v-for="experience in resume.experience"
@@ -28,8 +30,8 @@
             <h3 class="mt-4">Languages</h3>
             <c-language v-for="language in resume.languages"
                         :language="language" :key="language.name"/>
-            <h3 class="mt-4">Certificates</h3>
-            <c-carousel :images="certificates"/>
+<!--            <h3 class="mt-4">Certificates</h3>-->
+<!--            <c-carousel :images="certificates"/>-->
         </div>
     </div>
 </template>

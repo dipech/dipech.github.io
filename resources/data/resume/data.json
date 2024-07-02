@@ -1,6 +1,6 @@
 {
   "user": {
-    "about": "I've been programming since 2010. I'm a Software Developer / Freelancer / Entrepreneur. I've built from scratch several quite large projects and many medium-sized projects. I love odd humor, useful apps building, gym / sport, and cooking.",
+    "about": "I have been passionate about programming since 2010. As a Senior Software Developer with a background in freelancing and entrepreneurship, I have successfully developed several large-scale projects from the ground up. I enjoy traveling, networking, and embracing new opportunities.",
     "specialization": "Senior Java Developer",
     "photo": "photo.jpg",
     "firstName": "Dmitrii",
@@ -10,27 +10,44 @@
     "contacts": [
       {
         "type": "link",
+        "displayName": "https://t.me/dipech",
         "value": "https://t.me/dipech",
         "icon": "icons/telegram.svg"
       },
       {
-        "type": "email",
-        "value": "dmitry.pechkovsky@gmail.com",
-        "icon": "icons/envelope.png"
-      },
-      {
-        "type": "phone",
-        "value": "+359 88 7111387",
-        "icon": "icons/phone.png"
+        "type": "link",
+        "displayName": "WhatsApp: +359 88 711 1387",
+        "value": "https://wa.me/359887111387",
+        "icon": "icons/whatsapp.svg"
       },
       {
         "type": "link",
+        "displayName": "Viber: +359 88 711 1387",
+        "value": "viber://contact?number=%2B359887111387",
+        "icon": "icons/viber.svg"
+      },
+      {
+        "type": "phone",
+        "displayName": "+359 88 711 1387",
+        "value": "+359 88 711 1387",
+        "icon": "icons/phone.svg"
+      },
+      {
+        "type": "link",
+        "displayName": "https://github.com/DiPech",
         "value": "https://github.com/DiPech",
         "icon": "icons/github.svg"
       },
       {
+        "type": "email",
+        "displayName": "dmitry.pechkovsky@gmail.com",
+        "value": "dmitry.pechkovsky@gmail.com",
+        "icon": "icons/envelope.png"
+      },
+      {
         "type": "link",
-        "value": "http://linkedin.com/in/dipech",
+        "displayName": "https://linkedin.com/in/dipech",
+        "value": "https://linkedin.com/in/dipech",
         "icon": "icons/linkedin.ico"
       }
     ]
@@ -41,31 +58,23 @@
     "Google Cloud Platform",
     "MongoDB",
     "OpenAPI",
-    "Gradle",
+    "Gradle/Maven",
     "Docker",
     "Git",
     "CI/CD",
     "Unit Testing",
     "TDD",
     "Terraform",
-    "OOP (SOLID, GRASP, DRY, KISS, YAGNI, and other silly words)",
-    "SQL (MySQL, PostgreSQL)"
+    "OOP (SOLID, GRASP, DRY, KISS, YAGNI)",
+    "SQL (MySQL, PostgreSQL)",
+    "OpenAI/ChatGPT"
   ],
   "additionalSkills": [
-    "OpenAI/GPT",
-    "Hibernate",
-    "VueJS",
-    "Webpack",
-    "SCSS",
-    "Jquery",
-    "Maven",
-    "Bootstrap",
-    "Redis",
-    "RabbitMQ",
     "PHP",
     "Symfony",
     "Laravel",
-    "Statamic"
+    "Javascript",
+    "VueJS"
   ],
   "languages": [
     {
@@ -79,19 +88,15 @@
     {
       "name": "Bulgarian",
       "level": "beginner"
-    },
-    {
-      "name": "Java",
-      "level": "fluent"
     }
   ],
   "courses": [
     {
-      "name": "«TopJava» – Retraining from PHP to Java developer (enterprise level)",
+      "name": "«TopJava» – Retraining from PHP to Java Dev (Enterprise Level)",
       "year": "2019"
     },
     {
-      "name": "«BaseJava» – Retraining from PHP to Java developer",
+      "name": "«BaseJava» – Retraining from PHP to Java Dev",
       "year": "2019"
     }
   ],
@@ -146,11 +151,11 @@
       "startDate": "07.2021",
       "endDate": null,
       "duties": [
-        "Created and maintained over 50 microservices.",
-        "Participated in architecturing scalable and fault-tolerant systems.",
+        "Developed and maintained over 50 microservices.",
+        "Contributed to the architecture of scalable and fault-tolerant systems.",
         "Implemented several large system modules from scratch.",
-        "Introduced and integrated API-first approach into our team.",
-        "Maintained and improved lots of code in our large cloud-based highloaded fault-tolerant solution."
+        "Introduced and integrated an API-first approach within the team.",
+        "Enhanced and optimized code in a high-load, cloud-based fault-tolerant solution."
       ],
       "technologies": [
         "Spring",
@@ -158,14 +163,12 @@
         "MongoDB",
         "Google Cloud Platform",
         "Azure Cloud",
-        "Microservices / Highload",
+        "Microservices / High-load",
         "OpenAPI",
         "Kubernetes",
         "Terraform",
         "OpenAI",
         "Docker",
-        "Redis",
-        "Groovy",
         "CI/CD (Gitlab)",
         "Python",
         "ReactJS"
@@ -173,23 +176,22 @@
     },
     {
       "companyName": "Digital Security",
-      "companyDescription": "One of the leading Russian consulting companies, specializing in Information Security.",
+      "companyDescription": "Leading consulting company specializing in Information Security.",
       "websites": [ "https://dsec.ru" ],
       "position": "Lead Java Developer",
       "isRemote": false,
       "isInSupport": false,
-      "employmentType": "full-time / Part-time",
+      "employmentType": "full-time (then part-time remote)",
       "location": "Russia, Saint-Petersburg",
       "startDate": "09.2019",
       "endDate": "01.2023",
       "duties": [
-        "Managed a small development team.",
-        "Created lots of monthly product releases.",
-        "Implemented a few huge modules of the main product I worked on.",
-        "Created lots of different tools to automate and harmonize the product's knowledge base.",
-        "Fixed tons of bugs, made hundreds of small improvements across the whole product.",
-        "Maintained the product infrastructure.",
-        "Built from scratch a dozen and half intentionally vulnerable Java projects as a half-time employee of another team in the company (hacktory.ai)."
+        "Managed a development team.",
+        "Delivered over 10 monthly product releases.",
+        "Developed several major subsystems for the primary product.",
+        "Created many automation tools and harmonized the product's knowledge base.",
+        "Resolved numerous bugs and implemented hundreds of product improvements.",
+        "Maintained the product's infrastructure prior to the onboarding of a DevOps engineer."
       ],
       "technologies": [
         "Spring Boot (Java)",
@@ -210,9 +212,9 @@
     },
     {
       "companyName": "OKTarget",
-      "companyDescription": "SAAS – a lot of marketing tools for searching target (hot) audiences.",
+      "companyDescription": "SaaS providing extensive marketing tools for targeting audiences.",
       "websites": [ "https://oktarget.ru" ],
-      "position": "Lead Web Developer, CTO, Co-Founder",
+      "position": "Lead Developer, Founder",
       "isRemote": false,
       "isInSupport": false,
       "employmentType": "self-employment",
@@ -220,13 +222,13 @@
       "startDate": "10.2017",
       "endDate": "06.2020",
       "duties": [
-        "Created the entire system from scratch.",
-        "Implemented a multi-processing subsystem for running users' tasks.",
-        "I was in charge of all the infrastructural duties, for example configuring the server, setting up CI/CD, automating the deployment process, and so forth.",
-        "Managed a team of two junior developers who joined us at the end of the development process.",
-        "Made rich, interactive, user-friendly UI.",
-        "Implemented lots of integrations with other systems like social networks, external marketing tools, etc.",
-        "Created a unique, powerful administrative panel."
+        "Designed and developed the entire software solution from the ground up.",
+        "Implemented a multi-threading subsystem for executing user tasks efficiently.",
+        "Managed all infrastructure responsibilities, including server configuration, CI/CD setup, and deployment automation.",
+        "Led and mentored a team of two junior developers.",
+        "Developed a rich, interactive, and user-friendly UI.",
+        "Integrated the software with various external systems, including social networks and marketing tools.",
+        "Created a comprehensive administrative panel for managing the SAAS."
       ],
       "technologies": [
         "Symfony (PHP + MySQL)",
@@ -238,19 +240,19 @@
       "companyName": "Alifba",
       "companyDescription": "E-Commerce platform for selling products of official suppliers.",
       "websites": [ "https://alifba.ru" ],
-      "position": "Web Developer",
+      "position": "PHP Developer",
       "isRemote": true,
-      "isInSupport": true,
+      "isInSupport": false,
       "employmentType": "freelance",
       "location": "Russia, Makhachkala",
       "startDate": "01.2017",
       "endDate": "12.2020",
       "duties": [
-        "Created the entire system from scratch.",
-        "Implemented a fast and robust subsystem of importing products from different vendors.",
-        "Developed two-ways integration with CRM.",
-        "Made lots of tricky optimizations (SQL, caching) to reduce latency throughout the system.",
-        "Created a practical and well designed admin panel for administrators and sales managers."
+        "Architected and developed a comprehensive software solution from inception.",
+        "Engineered a fast and robust product import subsystem capable of handling diverse vendor data.",
+        "Implemented a bidirectional CRM integration.",
+        "Significantly optimized the system's performance through intricate SQL and caching techniques.",
+        "Designed and implemented an intuitive admin panel tailored for administrators and sales managers."
       ],
       "technologies": [
         "Laravel (PHP + MySQL)",
@@ -264,7 +266,7 @@
       "companyName": "NetCat",
       "companyDescription": "One of the most successful commercial CMS in Russia.",
       "websites": [ "https://netcat.ru" ],
-      "position": "Web Developer",
+      "position": "PHP Developer",
       "isRemote": true,
       "isInSupport": false,
       "employmentType": "full-time",
@@ -272,9 +274,9 @@
       "startDate": "07.2017",
       "endDate": "09.2018",
       "duties": [
-        "Implemented an entire CMS module, that imports and exports the e-commerce data between the CMS and other systems.",
-        "Took participate in seriously improving the kernel during working on the next big version of the system.",
-        "Integrated the system with Yandex.Delivery."
+        "Designed and implemented a comprehensive CMS module facilitating seamless import and export of e-commerce data between the CMS and various external systems.",
+        "Enhanced the core functionality while contributing to the development of the upcoming major version of the system.",
+        "Successfully integrated the CMS with several large service providers like Yandex.Delivery, enhancing system capabilities."
       ],
       "technologies": [
         "PHP",
@@ -296,9 +298,9 @@
       "startDate": "11.2015",
       "endDate": "05.2017",
       "duties": [
-        "Created numerous different web projects with different business logic.",
-        "Developed several modules for NetCat CMS.",
-        "Implemented tons of API integrations and data exchanges with different systems (1C, Yandex.Market, custom external APIs, etc)."
+        "Implemented a variety of web projects for different local businesses.",
+        "Designed and implemented several large modules for the NetCat CMS platform, enhancing its functionality and usability.",
+        "Implemented numerous API integrations and streamlined data exchanges with various systems such as 1C, Yandex.Market, and custom external APIs."
       ],
       "technologies": [
         "NetCat (PHP + MySQL)",

@@ -2,7 +2,7 @@
     <div>
         <!--suppress HtmlUnknownTarget -->
         <c-image :src="iconUrl" class="icon" alt="icon"/>
-        <a :href="href" target="_blank" rel="nofollow">{{ contact.value }}</a>
+        <a :href="href" target="_blank" rel="nofollow">{{ contact.displayName }}</a>
     </div>
 </template>
 
