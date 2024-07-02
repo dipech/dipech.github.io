@@ -6,7 +6,9 @@
                 <template v-if="years > 0">
                     {{ years }} {{ pluralForm(years, "year") }}
                 </template>
-                {{ months }} {{ pluralForm(months, "month") }}
+                <template v-if="months > 0">
+                  and {{ months }} {{ pluralForm(months, "month") }}
+                </template>
             </small>
         </div>
         <div class="col-md-9">

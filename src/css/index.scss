@@ -3,3 +3,7 @@
 @import "~viewerjs/dist/viewer.css";
 @import "blog";
 @import "misc";
+
+body {
+  background-image: linear-gradient(to right top, #fbfaff, #f8fcff, #f7feff, #fafffc, #fefffb);
+}
