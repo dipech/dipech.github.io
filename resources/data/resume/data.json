@@ -1,6 +1,6 @@
 {
   "user": {
-    "about": "I have been passionate about programming since 2010. As a Senior Software Developer with a background in freelancing and entrepreneurship, I have successfully developed several large-scale projects from the ground up. I enjoy traveling, networking, and embracing new opportunities.",
+    "about": "I've been passionate about programming since 2010. As a Senior Software Developer with a background in freelancing and entrepreneurship, I've successfully developed several large-scale projects from the ground up. I enjoy traveling, networking, and embracing new opportunities.",
     "specialization": "Senior Java Developer",
     "photo": "photo.jpg",
     "firstName": "Dmitrii",
@@ -238,7 +238,7 @@
     },
     {
       "companyName": "Alifba",
-      "companyDescription": "E-Commerce platform for selling products of official suppliers.",
+      "companyDescription": "E-commerce platform for products from official suppliers.",
       "websites": [ "https://alifba.ru" ],
       "position": "PHP Developer",
       "isRemote": true,
@@ -249,9 +249,9 @@
       "endDate": "12.2020",
       "duties": [
         "Architected and developed a comprehensive software solution from inception.",
-        "Engineered a fast and robust product import subsystem capable of handling diverse vendor data.",
+        "Engineered a high-performance product import subsystem capable of handling diverse vendor data.",
         "Implemented a bidirectional CRM integration.",
-        "Significantly optimized the system's performance through intricate SQL and caching techniques.",
+        "Significantly optimized the system's performance using advanced SQL and caching techniques.",
         "Designed and implemented an intuitive admin panel tailored for administrators and sales managers."
       ],
       "technologies": [
@@ -264,7 +264,7 @@
     },
     {
       "companyName": "NetCat",
-      "companyDescription": "One of the most successful commercial CMS in Russia.",
+      "companyDescription": "One of the most successful commercial CMS platforms in Russia.",
       "websites": [ "https://netcat.ru" ],
       "position": "PHP Developer",
       "isRemote": true,
@@ -275,7 +275,7 @@
       "endDate": "09.2018",
       "duties": [
         "Designed and implemented a comprehensive CMS module facilitating seamless import and export of e-commerce data between the CMS and various external systems.",
-        "Enhanced the core functionality while contributing to the development of the upcoming major version of the system.",
+        "Enhanced core functionality and contributed to the development of a major upcoming version of the system.",
         "Successfully integrated the CMS with several large service providers like Yandex.Delivery, enhancing system capabilities."
       ],
       "technologies": [
@@ -288,7 +288,7 @@
     },
     {
       "companyName": "NetCat34",
-      "companyDescription": "Web sites development: landing pages, online shopping sites, corporate websites, etc.",
+      "companyDescription": "Web development services: landing pages, e-commerce sites, corporate websites, and more.",
       "websites": null,
       "position": "Web Developer",
       "isRemote": false,
@@ -298,9 +298,9 @@
       "startDate": "11.2015",
       "endDate": "05.2017",
       "duties": [
-        "Implemented a variety of web projects for different local businesses.",
-        "Designed and implemented several large modules for the NetCat CMS platform, enhancing its functionality and usability.",
-        "Implemented numerous API integrations and streamlined data exchanges with various systems such as 1C, Yandex.Market, and custom external APIs."
+        "Developed diverse web projects for local businesses.",
+        "Designed and implemented several major modules for the NetCat CMS platform, enhancing its functionality and usability.",
+        "Implemented numerous API integrations and data exchanges with various systems including 1C, Yandex.Market, and custom external APIs."
       ],
       "technologies": [
         "NetCat (PHP + MySQL)",
